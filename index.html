@@ -991,7 +991,6 @@ function abrirInvModal(m){
     <div class="campo">
       <label>Tienda</label>
       <div class="tiendas-lista" id="inv-tiendas-lista"></div>
-      <button type="button" class="btn btn-gris" style="margin-top:10px;padding:12px;font-size:14px" onclick="agregarNuevaTienda()">➕ Agregar nueva tienda</button>
     </div>
 
     <div class="campo">
@@ -1024,7 +1023,7 @@ function pintarTiendasModal(seleccionada){
 
   if (!tiendas.length){
     cont.innerHTML = `<div style="font-size:13px;color:#9aa3ad;padding:6px 2px;line-height:1.5">
-      No hay tiendas todavía. Toca <b>➕ Agregar nueva tienda</b> para crear una.
+      No hay tiendas todavía. Ve a la pantalla de inventario para crear una.
     </div>`;
     return;
   }
