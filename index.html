@@ -47,6 +47,7 @@ main{padding:14px;max-width:640px;margin:0 auto}
 .btn-rojo-grad{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
 .btn-guardar{background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;box-shadow:0 4px 12px rgba(22,163,74,.4)}
 .btn-guardar:disabled{background:#d1d5db;color:#9ca3af;box-shadow:none}
+.btn-editar{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;box-shadow:0 4px 12px rgba(245,158,11,.4)}
 .btn-bloque{width:100%;flex:none;padding:17px;font-size:17px}
 .btn-volver{background:none;border:none;color:var(--rojo);font-weight:700;font-size:15px;padding:6px 0;margin-bottom:6px;cursor:pointer;font-family:inherit}
 .btn-foto-chip{width:100%;padding:18px;border:none;border-radius:14px;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#DA291C,#8f170e);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 12px rgba(218,41,28,.35);margin-bottom:10px}
@@ -250,6 +251,16 @@ main{padding:14px;max-width:640px;margin:0 auto}
 #colorModal .btns{display:flex;gap:10px}
 #colorModal .btns button{flex:1;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;background:#eef0f3;color:#374151}
 
+/* ===== Gestión de tiendas ===== */
+.gestion-titulo{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px}
+.tienda-gestion-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border:2px solid var(--line);border-radius:12px;margin-bottom:8px;background:#fff}
+.tienda-gestion-item .punto{width:18px;height:18px;border-radius:50%;flex:0 0 auto;border:2px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.tienda-gestion-item .nombre{flex:1;min-width:0;font-weight:800;font-size:15px;word-break:break-word;line-height:1.3}
+.tienda-gestion-item .mini{background:#eef0f3;border:none;border-radius:9px;padding:8px 11px;font-size:15px;cursor:pointer;font-family:inherit;line-height:1}
+.tienda-gestion-item .mini:active{transform:scale(.94)}
+.tienda-gestion-item .mini.del{background:#fdeceb}
+.tienda-gestion-vacio{text-align:center;color:#9aa3ad;font-size:13px;line-height:1.55;padding:14px 8px}
+
 #previewModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:650;display:none;align-items:center;justify-content:center;padding:16px}
 #previewModal.ver{display:flex}
 #previewModal .box{background:#fff;border-radius:20px;padding:20px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;animation:pop .2s ease-out}
@@ -345,9 +356,15 @@ main{padding:14px;max-width:640px;margin:0 auto}
     <div class="card">
       <button class="btn btn-rojo-grad btn-bloque" id="btnAgregarInv" onclick="abrirInvModalNuevo()">➕ Agregar teléfono</button>
       <button class="btn btn-guardar btn-bloque" id="btnGuardarInv" style="margin-top:10px" onclick="guardarInventarioBloqueado()">💾 Guardar inventario</button>
-      <button class="btn btn-gris btn-bloque" id="btnDesbloquearInv" style="margin-top:10px;display:none" onclick="desbloquearInventario()">🔓 Desbloquear para editar</button>
+      <button class="btn btn-editar btn-bloque" id="btnDesbloquearInv" style="margin-top:10px;display:none" onclick="desbloquearInventario()">✏️ Editar inventario</button>
       <button class="btn btn-osc btn-bloque" style="margin-top:10px" onclick="mostrarVistaPrevia()">👁️ Vista previa (tabla)</button>
       <button class="btn btn-azul btn-bloque" style="margin-top:10px" onclick="exportarInventarioCSV()">📊 Exportar inventario (CSV)</button>
+    </div>
+
+    <div class="card" id="card-tiendas">
+      <div class="gestion-titulo">🏪 Tiendas</div>
+      <div id="tiendas-gestion-lista"></div>
+      <button class="btn btn-rojo-grad btn-bloque" id="btnAgregarTienda" style="margin-top:10px" onclick="agregarNuevaTienda()">➕ Agregar tienda</button>
     </div>
 
     <div id="tienda-filtros" class="tienda-filtros"></div>
@@ -441,11 +458,8 @@ let tiendas = [];
 let inventarioBloqueado = false;
 let filtroTienda = 'todas';
 
-/* Tiendas por defecto CON sus colores asignados */
-const TIENDAS_DEFAULT = [
-  { nombre: 'Tecno',      color: '#eab308' },  // Amarillo
-  { nombre: 'Kiosko Máx', color: '#DA291C' },  // Rojo Claro
-];
+/* Tiendas por defecto: ninguna. El usuario las agrega desde el botón ➕ */
+const TIENDAS_DEFAULT = [];
 
 /* Paleta de colores disponibles para elegir */
 const PALETA_COLORES = [
@@ -571,12 +585,10 @@ function cargarTiendas(){
   try{
     const guardadas = JSON.parse(localStorage.getItem(TIENDAS_STORE) || 'null');
     if (Array.isArray(guardadas) && guardadas.length){
-      // Nuevo formato: {nombre, color}
       if (typeof guardadas[0] === 'string'){
-        // Formato viejo: array de strings → migrar
         tiendas = guardadas.map((n, i) => ({
           nombre: n,
-          color: TIENDAS_DEFAULT[i] ? TIENDAS_DEFAULT[i].color : PALETA_COLORES[i % PALETA_COLORES.length].valor
+          color: PALETA_COLORES[i % PALETA_COLORES.length].valor
         }));
         guardarTiendas();
       } else {
@@ -587,6 +599,20 @@ function cargarTiendas(){
     }
   }catch(e){ tiendas = TIENDAS_DEFAULT.slice(); }
 }
+
+/* Elimina una sola vez las tiendas por defecto antiguas (Tecno, Kiosko Máx) */
+const TIENDAS_LIMPIEZA_KEY = 'claro_tiendas_limpieza_v1';
+function limpiarTiendasAntiguas(){
+  if (localStorage.getItem(TIENDAS_LIMPIEZA_KEY) === '1') return;
+  localStorage.setItem(TIENDAS_LIMPIEZA_KEY, '1');
+  const antiguas = ['Tecno', 'Kiosko Máx'];
+  const antes = tiendas.length;
+  tiendas = tiendas.filter(t =>
+    !(antiguas.includes(t.nombre) && !inventario.some(m => m.tienda === t.nombre))
+  );
+  if (tiendas.length !== antes) guardarTiendas();
+}
+
 function guardarTiendas(){
   try{ localStorage.setItem(TIENDAS_STORE, JSON.stringify(tiendas)); }catch(e){}
 }
@@ -603,7 +629,6 @@ function cargarInventario(){
   try{ inventario = JSON.parse(localStorage.getItem(INV_STORE) || '[]'); }
   catch(e){ inventario = []; }
   if (!Array.isArray(inventario)) inventario = [];
-  inventario.forEach(m => { if (!m.tienda) m.tienda = 'Tecno'; });
   inventarioBloqueado = localStorage.getItem(INV_BLOQ_STORE) === '1';
 }
 function guardarInventario(){
@@ -626,8 +651,8 @@ function renderEstadoInventario(){
       <div class="inv-estado bloqueado">
         <span class="ico">🔒</span>
         <div class="txt">
-          <b>Inventario guardado</b>
-          <small>${totalModelos} ${totalModelos === 1 ? 'modelo' : 'modelos'} · ${total} en stock. Toca "Desbloquear" para editar.</small>
+          <b>Inventario guardado y bloqueado</b>
+          <small>${totalModelos} ${totalModelos === 1 ? 'modelo' : 'modelos'} · ${total} en stock. Nada se puede modificar. Toca <b>✏️ Editar inventario</b> para hacer cambios.</small>
         </div>
       </div>`;
   } else {
@@ -636,7 +661,7 @@ function renderEstadoInventario(){
         <span class="ico">✏️</span>
         <div class="txt">
           <b>Modo edición</b>
-          <small>Agrega o modifica teléfonos. Toca <b>💾 Guardar inventario</b> al terminar.</small>
+          <small>Agrega o modifica teléfonos y tiendas. Toca <b>💾 Guardar inventario</b> al terminar para bloquearlo.</small>
         </div>
       </div>`;
   }
@@ -646,35 +671,34 @@ function renderBotonesInv(){
   const btnAgregar = $('#btnAgregarInv');
   const btnGuardar = $('#btnGuardarInv');
   const btnDesbloquear = $('#btnDesbloquearInv');
+  const btnAgregarTienda = $('#btnAgregarTienda');
 
   if (inventarioBloqueado){
     if (btnAgregar) btnAgregar.style.display = 'none';
     if (btnGuardar) btnGuardar.style.display = 'none';
     if (btnDesbloquear) btnDesbloquear.style.display = 'flex';
+    if (btnAgregarTienda) btnAgregarTienda.style.display = 'none';
   } else {
     if (btnAgregar) btnAgregar.style.display = 'flex';
     if (btnGuardar) btnGuardar.style.display = 'flex';
     if (btnDesbloquear) btnDesbloquear.style.display = 'none';
+    if (btnAgregarTienda) btnAgregarTienda.style.display = 'flex';
   }
 }
 
 function guardarInventarioBloqueado(){
-  if (!inventario.length){ toast('⚠️ No hay teléfonos para guardar'); return; }
-  if (!confirm('¿Guardar el inventario?\n\nNo podrás agregar más teléfonos hasta que lo desbloquees.')) return;
+  if (!inventario.length && !tiendas.length){ toast('⚠️ No hay nada que guardar'); return; }
+  if (!confirm('💾 Guardar inventario\n\nSe va a BLOQUEAR. Ya no podrás modificar nada (ni teléfonos, ni tiendas, ni colores) hasta que toques "✏️ Editar inventario".\n\n¿Guardar y bloquear?')) return;
   inventarioBloqueado = true;
   guardarEstadoBloqueo();
-  renderEstadoInventario();
-  renderBotonesInv();
   renderInventario();
-  toast('✅ Inventario guardado y bloqueado', 2400);
+  toast('🔒 Inventario guardado y bloqueado', 2400);
 }
 
 function desbloquearInventario(){
-  if (!confirm('¿Desbloquear el inventario para editarlo otra vez?')) return;
+  if (!confirm('✏️ Editar inventario\n\nSe va a DESBLOQUEAR para que puedas modificar teléfonos, tiendas y colores.\n\n¿Continuar?')) return;
   inventarioBloqueado = false;
   guardarEstadoBloqueo();
-  renderEstadoInventario();
-  renderBotonesInv();
   renderInventario();
   toast('🔓 Desbloqueado. Ya puedes editar.');
 }
@@ -682,6 +706,10 @@ function desbloquearInventario(){
 function renderTiendaFiltros(){
   const cont = $('#tienda-filtros');
   if (!cont) return;
+  if (!tiendas.length){
+    cont.innerHTML = '';
+    return;
+  }
   const lista = ['todas'].concat(nombreTiendas());
   cont.innerHTML = lista.map(t => {
     const activo = filtroTienda === t;
@@ -709,6 +737,73 @@ function cambiarFiltroTienda(t){
   renderInventario();
 }
 
+/* ===== Panel de gestión de tiendas ===== */
+function renderGestionTiendas(){
+  const cont = document.getElementById('tiendas-gestion-lista');
+  if (!cont) return;
+
+  if (!tiendas.length){
+    cont.innerHTML = `<div class="tienda-gestion-vacio">
+      Aún no hay tiendas.<br>Toca <b>➕ Agregar tienda</b> para crear la primera.
+    </div>`;
+    return;
+  }
+
+  // Si el inventario está bloqueado, mostrar solo lectura
+  if (inventarioBloqueado){
+    cont.innerHTML = tiendas.map(t => `
+      <div class="tienda-gestion-item" style="opacity:.75;background:#f9fafb">
+        <span class="punto" style="background:${t.color}"></span>
+        <span class="nombre">${esc(t.nombre)}</span>
+        <span style="font-size:14px;color:#9aa3ad" title="Bloqueado">🔒</span>
+      </div>
+    `).join('');
+    return;
+  }
+
+  cont.innerHTML = tiendas.map((t, i) => `
+    <div class="tienda-gestion-item">
+      <span class="punto" style="background:${t.color}"></span>
+      <span class="nombre">${esc(t.nombre)}</span>
+      <button class="mini" title="Cambiar color" onclick="abrirColorModalIdx(${i})">🎨</button>
+      <button class="mini del" title="Eliminar tienda" onclick="eliminarTiendaIdx(${i})">🗑️</button>
+    </div>
+  `).join('');
+}
+
+function abrirColorModalIdx(i){
+  const t = tiendas[i];
+  if (t) abrirColorModal(t.nombre);
+}
+
+function eliminarTiendaIdx(i){
+  const t = tiendas[i];
+  if (t) eliminarTienda(t.nombre);
+}
+
+function eliminarTienda(nombre){
+  if (inventarioBloqueado){ toast('🔒 Desbloquea el inventario para eliminar tiendas'); return; }
+  const t = tiendas.find(x => x.nombre === nombre);
+  if (!t) return;
+
+  const enTienda = inventario.filter(m => m.tienda === nombre);
+  const totalEquipos = enTienda.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
+
+  if (enTienda.length){
+    if (!confirm(`"${nombre}" tiene ${enTienda.length} modelo(s) con ${totalEquipos} equipo(s) en stock.\n\nSi eliminas la tienda, también se eliminarán esos teléfonos del inventario.\n\n¿Continuar?`)) return;
+    inventario = inventario.filter(m => m.tienda !== nombre);
+    guardarInventario();
+  } else {
+    if (!confirm(`¿Eliminar la tienda "${nombre}"?`)) return;
+  }
+
+  tiendas = tiendas.filter(x => x.nombre !== nombre);
+  guardarTiendas();
+  if (filtroTienda === nombre) filtroTienda = 'todas';
+  renderInventario();
+  toast('🗑️ Tienda eliminada');
+}
+
 function renderInventario(){
   const cont = $('#inv-lista');
   if (!cont) return;
@@ -730,6 +825,7 @@ function renderInventario(){
   }
 
   renderTiendaFiltros();
+  renderGestionTiendas();
   renderEstadoInventario();
   renderBotonesInv();
 
@@ -737,12 +833,15 @@ function renderInventario(){
   if (filtroTienda !== 'todas') lista = lista.filter(m => m.tienda === filtroTienda);
 
   if (!lista.length){
+    const sinTiendas = !tiendas.length;
     cont.innerHTML = `
       <div class="vacio">
         <span class="em">📦</span>
-        ${filtroTienda === 'todas'
-          ? 'No hay teléfonos en el inventario.<br>Toca <b>➕ Agregar teléfono</b>.'
-          : `No hay teléfonos en <b>${esc(filtroTienda)}</b>.`}
+        ${sinTiendas
+          ? 'Aún no hay tiendas.<br>Crea una con <b>➕ Agregar tienda</b> y después agrega teléfonos.'
+          : (filtroTienda === 'todas'
+              ? 'No hay teléfonos en el inventario.<br>Toca <b>➕ Agregar teléfono</b>.'
+              : `No hay teléfonos en <b>${esc(filtroTienda)}</b>.`)}
       </div>`;
     return;
   }
@@ -765,8 +864,8 @@ function renderInventario(){
       <div class="inv-grupo">
         <div class="inv-grupo-header" style="background:${color}">
           <div class="lado-izq">
-            <span>🏪 ${esc(t)}</span>
-            <button class="btn-color" onclick="abrirColorModal('${esc(t)}')" title="Cambiar color">🎨</button>
+            <span>🏪 ${esc(t)}${bloq ? ' 🔒' : ''}</span>
+            ${bloq ? '' : `<button class="btn-color" onclick="abrirColorModal('${esc(t)}')" title="Cambiar color">🎨</button>`}
           </div>
           <span class="n">${sumaGrupo}</span>
         </div>
@@ -826,6 +925,7 @@ function eliminarModeloInv(id){
 /* ========== MODAL CAMBIAR COLOR ========== */
 let _tiendaColorActual = '';
 function abrirColorModal(nombreTienda){
+  if (inventarioBloqueado){ toast('🔒 Desbloquea el inventario para cambiar colores'); return; }
   _tiendaColorActual = nombreTienda;
   const actual = colorDeTienda(nombreTienda);
   $('#colorModalBox').innerHTML = `
@@ -847,6 +947,7 @@ function abrirColorModal(nombreTienda){
 }
 
 function setColorTienda(color){
+  if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); return; }
   const t = tiendas.find(x => x.nombre === _tiendaColorActual);
   if (!t) return;
   t.color = color;
@@ -863,6 +964,7 @@ function cerrarColorModal(){
 /* ========== MODAL AGREGAR/EDITAR TELÉFONO ========== */
 function abrirInvModalNuevo(){
   if (inventarioBloqueado){ toast('🔒 Desbloquea primero el inventario'); return; }
+  if (!tiendas.length){ toast('⚠️ Agrega una tienda primero', 2600); ir('inventario'); return; }
   abrirInvModal(null);
 }
 function abrirInvModalEditar(id){
@@ -872,6 +974,7 @@ function abrirInvModalEditar(id){
   abrirInvModal(m);
 }
 function abrirInvModal(m){
+  if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); return; }
   const editando = !!m;
   const modeloActual = m ? m.modelo : '';
   const tiendaActual = m ? m.tienda : (tiendas[0] ? tiendas[0].nombre : '');
@@ -918,6 +1021,14 @@ function pintarTiendasModal(seleccionada){
   _tiendaSeleccionada = seleccionada || (tiendas[0] ? tiendas[0].nombre : '');
   const cont = $('#inv-tiendas-lista');
   if (!cont) return;
+
+  if (!tiendas.length){
+    cont.innerHTML = `<div style="font-size:13px;color:#9aa3ad;padding:6px 2px;line-height:1.5">
+      No hay tiendas todavía. Toca <b>➕ Agregar nueva tienda</b> para crear una.
+    </div>`;
+    return;
+  }
+
   cont.innerHTML = tiendas.map(t => {
     const activo = t.nombre === _tiendaSeleccionada;
     const bg = activo ? t.color : '#fff';
@@ -934,23 +1045,29 @@ function seleccionarTienda(t){
   pintarTiendasModal(t);
 }
 function agregarNuevaTienda(){
+  if (inventarioBloqueado){ toast('🔒 Desbloquea el inventario para editar tiendas'); return; }
   const nueva = prompt('Nombre de la nueva tienda:');
   if (nueva === null) return;
   const limpio = nueva.trim();
   if (!limpio){ toast('⚠️ Nombre vacío'); return; }
   if (tiendas.some(t => t.nombre.toLowerCase() === limpio.toLowerCase())){
     toast('⚠️ Ya existe esa tienda');
-    seleccionarTienda(limpio);
+    const modal = document.getElementById('invModal');
+    if (modal && modal.classList.contains('ver')) seleccionarTienda(limpio);
     return;
   }
-  // Asignar un color que no esté en uso
+
   const usados = tiendas.map(t => t.color.toLowerCase());
   const disponible = PALETA_COLORES.find(c => !usados.includes(c.valor.toLowerCase()));
   const colorNuevo = disponible ? disponible.valor : PALETA_COLORES[0].valor;
 
   tiendas.push({ nombre: limpio, color: colorNuevo });
   guardarTiendas();
-  pintarTiendasModal(limpio);
+
+  const modal = document.getElementById('invModal');
+  if (modal && modal.classList.contains('ver')) pintarTiendasModal(limpio);
+
+  renderInventario();
   toast('✅ Tienda agregada');
 }
 function invModalCant(delta){
@@ -962,6 +1079,7 @@ function cerrarInvModal(){
   $('#invModal').classList.remove('ver');
 }
 function guardarInvModal(id){
+  if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); cerrarInvModal(); return; }
   const modelo = ($('#inv-f-modelo').value || '').trim();
   const cant = Math.max(0, Math.floor(Number($('#inv-f-cant').value) || 0));
   const tienda = _tiendaSeleccionada || (tiendas[0] ? tiendas[0].nombre : '');
@@ -1068,7 +1186,7 @@ function mostrarVistaPrevia(){
   }
 
   const estado = inventarioBloqueado
-    ? `<div style="background:#d1fae5;color:#065f46;padding:8px 12px;border-radius:10px;text-align:center;font-size:12px;font-weight:800;margin-bottom:12px">🔒 INVENTARIO GUARDADO</div>`
+    ? `<div style="background:#d1fae5;color:#065f46;padding:8px 12px;border-radius:10px;text-align:center;font-size:12px;font-weight:800;margin-bottom:12px">🔒 INVENTARIO GUARDADO Y BLOQUEADO</div>`
     : '';
 
   $('#previewBox').innerHTML = `
@@ -1142,6 +1260,7 @@ function cargar(){
   normalizarFechas();
   cargarInventario();
   cargarTiendas();
+  limpiarTiendasAntiguas();
 }
 function guardarLS(){
   try{ localStorage.setItem(STORE, JSON.stringify(registros)); return true; }
@@ -1754,11 +1873,10 @@ $('#inpImport').onchange = e => {
       const ex = new Set(registros.map(x => x.id));
       let ag = 0;
       nuevos.forEach(x => { if (x && x.id && !ex.has(x.id)){ if (x.tipo === 'chip' && x.foto && !x.fotoChip) x.fotoChip = x.foto; if (x.tipo === 'telefono' && x.foto && !x.fotoEquipo) x.fotoEquipo = x.foto; if (!x.fechaLocal) x.fechaLocal = derivarFechaLocal(x.fecha); registros.push(x); ag++; } });
-      if (inv.length){ const exInv = new Set(inventario.map(x => x.id)); inv.forEach(x => { if (x && x.id && !exInv.has(x.id)){ if (!x.tienda) x.tienda = 'Tecno'; inventario.push(x); } }); guardarInventario(); }
+      if (inv.length){ const exInv = new Set(inventario.map(x => x.id)); inv.forEach(x => { if (x && x.id && !exInv.has(x.id)){ inventario.push(x); } }); guardarInventario(); }
       if (tien.length){
-        // Migrar formato si es viejo
         if (typeof tien[0] === 'string'){
-          tiendas = tien.map((n, i) => ({ nombre: n, color: TIENDAS_DEFAULT[i] ? TIENDAS_DEFAULT[i].color : PALETA_COLORES[i % PALETA_COLORES.length].valor }));
+          tiendas = tien.map((n, i) => ({ nombre: n, color: PALETA_COLORES[i % PALETA_COLORES.length].valor }));
         } else {
           tiendas = tien;
         }
