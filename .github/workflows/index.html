@@ -24,7 +24,7 @@ main{padding:14px;max-width:640px;margin:0 auto}
 .bg-chip{background:linear-gradient(135deg,#DA291C,#8f170e)}
 .bg-tel{background:linear-gradient(135deg,#2b2f36,#111418)}
 .bg-fotos{background:linear-gradient(135deg,#2563eb,#1e40af)}
-.bg-inv{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.bg-inv{background:linear-gradient(135deg,#DA291C,#6b0f08)}
 .card{background:var(--card);border-radius:16px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:14px}
 .titulo-vista{font-size:20px;font-weight:800;margin:4px 0 16px}
 .campo{margin-bottom:14px}
@@ -44,7 +44,7 @@ main{padding:14px;max-width:640px;margin:0 auto}
 .btn-verde{background:var(--ok);color:#fff}
 .btn-osc{background:#2b2f36;color:#fff}
 .btn-azul{background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff}
-.btn-naranja{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
+.btn-rojo-grad{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
 .btn-guardar{background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;box-shadow:0 4px 12px rgba(22,163,74,.4)}
 .btn-guardar:disabled{background:#d1d5db;color:#9ca3af;box-shadow:none}
 .btn-bloque{width:100%;flex:none;padding:17px;font-size:17px}
@@ -171,8 +171,10 @@ main{padding:14px;max-width:640px;margin:0 auto}
 
 /* ============ INVENTARIO ============ */
 .inv-grupo{margin-bottom:16px}
-.inv-grupo-header{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-weight:800;font-size:14px;box-shadow:0 2px 6px rgba(245,158,11,.3)}
+.inv-grupo-header{color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-weight:800;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.inv-grupo-header .lado-izq{display:flex;align-items:center;gap:8px}
 .inv-grupo-header .n{background:rgba(255,255,255,.25);padding:4px 10px;border-radius:20px;font-size:13px;font-family:monospace}
+.inv-grupo-header .btn-color{background:rgba(255,255,255,.2);border:none;color:#fff;padding:4px 8px;border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit;line-height:1}
 .inv-item{background:#fff;border-radius:14px;padding:14px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.06);display:flex;flex-direction:column;align-items:stretch}
 .inv-item.bloqueado{background:#f9fafb}
 .inv-nombre{flex:1;min-width:0;font-weight:800;font-size:16px;word-break:break-word;line-height:1.3}
@@ -191,16 +193,17 @@ main{padding:14px;max-width:640px;margin:0 auto}
 .inv-acciones button{flex:1;padding:8px;border:none;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit}
 .inv-acciones button:disabled{opacity:.4;cursor:not-allowed}
 .inv-edit{background:#eef0f3;color:#374151}
-.inv-mover{background:#eff6ff;color:#1d4ed8}
-.inv-del{background:#fdeceb;color:var(--rojo)}
-.inv-total{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:14px;padding:16px;text-align:center;margin-bottom:14px;box-shadow:0 4px 12px rgba(245,158,11,.35)}
+.inv-mover{background:#fdeceb;color:var(--rojo)}
+.inv-del{background:#fdeceb;color:#b91c1c}
+
+.inv-total{color:#fff;border-radius:14px;padding:16px;text-align:center;margin-bottom:14px;box-shadow:0 4px 12px rgba(218,41,28,.35);background:linear-gradient(135deg,#DA291C,#6b0f08)}
 .inv-total .t{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px;opacity:.9}
 .inv-total .n{font-size:38px;font-weight:900;margin-top:4px;line-height:1}
-.inv-total .mini-stats{display:flex;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.3);font-size:12px}
-.inv-total .mini-stats div{flex:1;text-align:center}
-.inv-total .mini-stats b{display:block;font-size:16px;font-weight:900}
+.inv-total .mini-stats{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.3);font-size:12px;flex-wrap:wrap;justify-content:center}
+.inv-total .mini-stats div{text-align:center;padding:4px 8px;border-radius:20px;background:rgba(255,255,255,.15);display:flex;align-items:center;gap:5px}
+.inv-total .mini-stats b{font-size:16px;font-weight:900}
+.inv-total .mini-stats .punto{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
 
-/* Estado bloqueado */
 .inv-estado{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;font-size:13px;font-weight:700;margin-bottom:14px}
 .inv-estado.abierto{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
 .inv-estado.bloqueado{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7}
@@ -209,12 +212,14 @@ main{padding:14px;max-width:640px;margin:0 auto}
 .inv-estado .txt b{display:block;font-size:13.5px}
 .inv-estado .txt small{font-size:11.5px;opacity:.85;font-weight:500;display:block;margin-top:2px}
 
+/* Filtros por tienda (con color dinámico) */
 .tienda-filtros{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none}
 .tienda-filtros::-webkit-scrollbar{display:none}
-.tienda-filtro{flex:0 0 auto;padding:8px 14px;border:2px solid var(--line);border-radius:20px;background:#fff;color:var(--muted);font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;transition:.15s}
+.tienda-filtro{flex:0 0 auto;padding:8px 14px;border:2px solid var(--line);border-radius:20px;background:#fff;color:var(--muted);font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;transition:.15s;display:flex;align-items:center;gap:6px}
 .tienda-filtro:active{transform:scale(.95)}
-.tienda-filtro.activo{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-color:transparent;box-shadow:0 3px 10px rgba(245,158,11,.3)}
+.tienda-filtro .punto{width:12px;height:12px;border-radius:50%;flex:0 0 auto;border:2px solid rgba(0,0,0,.1)}
 
+/* Modal inventario */
 #invModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:700;display:none;align-items:center;justify-content:center;padding:16px}
 #invModal.ver{display:flex}
 #invModal .box{background:#fff;border-radius:20px;padding:22px;max-width:440px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out}
@@ -224,13 +229,26 @@ main{padding:14px;max-width:640px;margin:0 auto}
 #invModal .campo input{width:100%;padding:14px;border:2px solid var(--line);border-radius:12px;font-size:16px;background:#fff;font-family:inherit;color:var(--txt)}
 #invModal .campo input:focus{outline:none;border-color:var(--rojo)}
 #invModal .tiendas-lista{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-#invModal .tienda-chip{padding:8px 14px;border:2px solid var(--line);border-radius:20px;background:#fff;color:var(--txt);font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;transition:.15s}
-#invModal .tienda-chip:hover{border-color:var(--rojo)}
-#invModal .tienda-chip.activo{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-color:transparent}
+#invModal .tienda-chip{padding:8px 14px;border:2px solid var(--line);border-radius:20px;background:#fff;color:var(--txt);font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;transition:.15s;display:flex;align-items:center;gap:6px}
+#invModal .tienda-chip .punto{width:12px;height:12px;border-radius:50%;flex:0 0 auto;border:2px solid rgba(0,0,0,.1)}
 #invModal .btns{display:flex;gap:10px;margin-top:18px}
 #invModal .btns button{flex:1;padding:15px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
-#invModal .guardar{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
+#invModal .guardar{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
 #invModal .cancelar{background:#eef0f3;color:#374151}
+
+/* Modal colores */
+#colorModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:750;display:none;align-items:center;justify-content:center;padding:16px}
+#colorModal.ver{display:flex}
+#colorModal .box{background:#fff;border-radius:20px;padding:22px;max-width:400px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out}
+#colorModal h3{margin:0 0 6px;font-size:18px}
+#colorModal .sub{margin:0 0 16px;font-size:13px;color:var(--muted)}
+#colorModal .paleta{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+#colorModal .color-opt{aspect-ratio:1;border:3px solid transparent;border-radius:14px;cursor:pointer;position:relative;transition:.15s;padding:0}
+#colorModal .color-opt:active{transform:scale(.95)}
+#colorModal .color-opt.activo{border-color:#111;box-shadow:0 0 0 3px #fff inset}
+#colorModal .color-opt.activo::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,.5)}
+#colorModal .btns{display:flex;gap:10px}
+#colorModal .btns button{flex:1;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;background:#eef0f3;color:#374151}
 
 #previewModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:650;display:none;align-items:center;justify-content:center;padding:16px}
 #previewModal.ver{display:flex}
@@ -238,18 +256,18 @@ main{padding:14px;max-width:640px;margin:0 auto}
 #previewModal h3{margin:0 0 6px;font-size:19px}
 #previewModal .fecha{font-size:12px;color:var(--muted);margin-bottom:16px}
 #previewModal .grupo{margin-bottom:16px}
-#previewModal .grupo-titulo{background:#f9fafb;padding:8px 12px;border-radius:8px;font-weight:800;font-size:13px;color:#d97706;display:flex;justify-content:space-between;margin-bottom:6px;border-left:4px solid #f59e0b}
+#previewModal .grupo-titulo{padding:8px 12px;border-radius:8px;font-weight:800;font-size:13px;color:#fff;display:flex;justify-content:space-between;margin-bottom:6px}
 #previewModal table{width:100%;border-collapse:collapse;font-size:14px}
 #previewModal thead th{padding:8px;text-align:left;font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--line)}
 #previewModal tbody td{padding:8px;border-bottom:1px solid var(--line);font-weight:700;font-size:13.5px}
 #previewModal tbody tr:last-child td{border-bottom:none}
 #previewModal tbody .cant{text-align:center;font-family:monospace;font-size:15px;font-weight:900;color:var(--rojo)}
-#previewModal .gran-total{margin-top:16px;padding:14px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;text-align:center;font-weight:800}
+#previewModal .gran-total{margin-top:16px;padding:14px;background:linear-gradient(135deg,#DA291C,#6b0f08);color:#fff;border-radius:12px;text-align:center;font-weight:800}
 #previewModal .gran-total .t{font-size:11px;text-transform:uppercase;letter-spacing:1px;opacity:.9}
 #previewModal .gran-total .n{font-size:30px;font-weight:900;margin-top:4px;font-family:monospace}
 #previewModal .acciones{display:flex;gap:10px;margin-top:16px}
 #previewModal .acciones button{flex:1;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
-#previewModal .prim{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
+#previewModal .prim{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
 #previewModal .seg{background:#eef0f3;color:#374151}
 </style>
 </head>
@@ -267,7 +285,7 @@ main{padding:14px;max-width:640px;margin:0 auto}
   <section id="vista-home" class="vista activa">
     <button class="btn-grande bg-inv" onclick="ir('inventario')">
       <span class="ico">📦</span>
-      <span>Inventario de Teléfonos<span class="sub">Por tienda · Tecno · Kiosko Máx</span></span>
+      <span>Inventario de Teléfonos<span class="sub">Por tienda · colores personalizados</span></span>
     </button>
     <button class="btn-grande bg-chip" onclick="abrirForm('chip')">
       <span class="ico">📶</span>
@@ -312,7 +330,6 @@ main{padding:14px;max-width:640px;margin:0 auto}
     <div id="lista"></div>
   </section>
 
-  <!-- ============ INVENTARIO ============ -->
   <section id="vista-inventario" class="vista">
     <button class="btn-volver" onclick="ir('home')">← Volver al inicio</button>
     <h2 class="titulo-vista">📦 Inventario de Teléfonos</h2>
@@ -326,7 +343,7 @@ main{padding:14px;max-width:640px;margin:0 auto}
     <div id="inv-estado"></div>
 
     <div class="card">
-      <button class="btn btn-naranja btn-bloque" id="btnAgregarInv" onclick="abrirInvModalNuevo()">➕ Agregar teléfono</button>
+      <button class="btn btn-rojo-grad btn-bloque" id="btnAgregarInv" onclick="abrirInvModalNuevo()">➕ Agregar teléfono</button>
       <button class="btn btn-guardar btn-bloque" id="btnGuardarInv" style="margin-top:10px" onclick="guardarInventarioBloqueado()">💾 Guardar inventario</button>
       <button class="btn btn-gris btn-bloque" id="btnDesbloquearInv" style="margin-top:10px;display:none" onclick="desbloquearInventario()">🔓 Desbloquear para editar</button>
       <button class="btn btn-osc btn-bloque" style="margin-top:10px" onclick="mostrarVistaPrevia()">👁️ Vista previa (tabla)</button>
@@ -393,6 +410,10 @@ main{padding:14px;max-width:640px;margin:0 auto}
   <div class="box" id="invModalBox"></div>
 </div>
 
+<div id="colorModal">
+  <div class="box" id="colorModalBox"></div>
+</div>
+
 <div id="previewModal">
   <div class="box" id="previewBox"></div>
 </div>
@@ -406,8 +427,8 @@ main{padding:14px;max-width:640px;margin:0 auto}
 const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const STORE = 'claro_registros_v1';
-const INV_STORE = 'claro_inventario_v2';
-const TIENDAS_STORE = 'claro_tiendas_v1';
+const INV_STORE = 'claro_inventario_v3';
+const TIENDAS_STORE = 'claro_tiendas_v2';
 const INV_BLOQ_STORE = 'claro_inv_bloqueado';
 
 let registros = [];
@@ -420,7 +441,27 @@ let tiendas = [];
 let inventarioBloqueado = false;
 let filtroTienda = 'todas';
 
-const TIENDAS_DEFAULT = ['Tecno', 'Kiosko Máx'];
+/* Tiendas por defecto CON sus colores asignados */
+const TIENDAS_DEFAULT = [
+  { nombre: 'Tecno',      color: '#eab308' },  // Amarillo
+  { nombre: 'Kiosko Máx', color: '#DA291C' },  // Rojo Claro
+];
+
+/* Paleta de colores disponibles para elegir */
+const PALETA_COLORES = [
+  { nombre: 'Rojo Claro',    valor: '#DA291C' },
+  { nombre: 'Amarillo',      valor: '#eab308' },
+  { nombre: 'Verde',         valor: '#16a34a' },
+  { nombre: 'Azul',          valor: '#2563eb' },
+  { nombre: 'Morado',        valor: '#7c3aed' },
+  { nombre: 'Naranja',       valor: '#f97316' },
+  { nombre: 'Rosa',          valor: '#ec4899' },
+  { nombre: 'Turquesa',      valor: '#06b6d4' },
+  { nombre: 'Índigo',        valor: '#4f46e5' },
+  { nombre: 'Vino',          valor: '#7f1d1d' },
+  { nombre: 'Café',          valor: '#92400e' },
+  { nombre: 'Gris',          valor: '#475569' },
+];
 
 let filtroFecha = 'hoy';
 let fechaCustom = null;
@@ -525,6 +566,38 @@ function copiar(txt){
   }
 }
 
+/* ============ TIENDAS CON COLORES ============ */
+function cargarTiendas(){
+  try{
+    const guardadas = JSON.parse(localStorage.getItem(TIENDAS_STORE) || 'null');
+    if (Array.isArray(guardadas) && guardadas.length){
+      // Nuevo formato: {nombre, color}
+      if (typeof guardadas[0] === 'string'){
+        // Formato viejo: array de strings → migrar
+        tiendas = guardadas.map((n, i) => ({
+          nombre: n,
+          color: TIENDAS_DEFAULT[i] ? TIENDAS_DEFAULT[i].color : PALETA_COLORES[i % PALETA_COLORES.length].valor
+        }));
+        guardarTiendas();
+      } else {
+        tiendas = guardadas;
+      }
+    } else {
+      tiendas = TIENDAS_DEFAULT.slice();
+    }
+  }catch(e){ tiendas = TIENDAS_DEFAULT.slice(); }
+}
+function guardarTiendas(){
+  try{ localStorage.setItem(TIENDAS_STORE, JSON.stringify(tiendas)); }catch(e){}
+}
+function colorDeTienda(nombre){
+  const t = tiendas.find(x => x.nombre === nombre);
+  return t ? t.color : '#DA291C';
+}
+function nombreTiendas(){
+  return tiendas.map(t => t.nombre);
+}
+
 /* ============ INVENTARIO ============ */
 function cargarInventario(){
   try{ inventario = JSON.parse(localStorage.getItem(INV_STORE) || '[]'); }
@@ -540,14 +613,6 @@ function guardarInventario(){
 function guardarEstadoBloqueo(){
   if (inventarioBloqueado) localStorage.setItem(INV_BLOQ_STORE, '1');
   else localStorage.removeItem(INV_BLOQ_STORE);
-}
-function cargarTiendas(){
-  try{ tiendas = JSON.parse(localStorage.getItem(TIENDAS_STORE) || 'null'); }
-  catch(e){ tiendas = null; }
-  if (!Array.isArray(tiendas) || !tiendas.length) tiendas = TIENDAS_DEFAULT.slice();
-}
-function guardarTiendas(){
-  try{ localStorage.setItem(TIENDAS_STORE, JSON.stringify(tiendas)); }catch(e){}
 }
 
 function renderEstadoInventario(){
@@ -571,7 +636,7 @@ function renderEstadoInventario(){
         <span class="ico">✏️</span>
         <div class="txt">
           <b>Modo edición</b>
-          <small>Agrega o modifica teléfonos. Cuando termines toca <b>💾 Guardar inventario</b>.</small>
+          <small>Agrega o modifica teléfonos. Toca <b>💾 Guardar inventario</b> al terminar.</small>
         </div>
       </div>`;
   }
@@ -594,10 +659,7 @@ function renderBotonesInv(){
 }
 
 function guardarInventarioBloqueado(){
-  if (!inventario.length){
-    toast('⚠️ No hay teléfonos para guardar');
-    return;
-  }
+  if (!inventario.length){ toast('⚠️ No hay teléfonos para guardar'); return; }
   if (!confirm('¿Guardar el inventario?\n\nNo podrás agregar más teléfonos hasta que lo desbloquees.')) return;
   inventarioBloqueado = true;
   guardarEstadoBloqueo();
@@ -620,11 +682,24 @@ function desbloquearInventario(){
 function renderTiendaFiltros(){
   const cont = $('#tienda-filtros');
   if (!cont) return;
-  const lista = ['todas'].concat(tiendas);
+  const lista = ['todas'].concat(nombreTiendas());
   cont.innerHTML = lista.map(t => {
-    const label = t === 'todas' ? 'Todas' : t;
-    const activo = filtroTienda === t ? ' activo' : '';
-    return `<button class="tienda-filtro${activo}" onclick="cambiarFiltroTienda('${esc(t)}')">${esc(label)}</button>`;
+    const activo = filtroTienda === t;
+    if (t === 'todas'){
+      const bg = activo ? 'background:#DA291C;color:#fff;border-color:transparent' : '';
+      const puntoBg = activo ? '#fff' : '#DA291C';
+      return `<button class="tienda-filtro" style="${bg}" onclick="cambiarFiltroTienda('todas')">
+        <span class="punto" style="background:${puntoBg}"></span>
+        Todas
+      </button>`;
+    }
+    const color = colorDeTienda(t);
+    const bg = activo ? `background:${color};color:#fff;border-color:transparent` : '';
+    const puntoBg = activo ? '#fff' : color;
+    return `<button class="tienda-filtro" style="${bg}" onclick="cambiarFiltroTienda('${esc(t)}')">
+      <span class="punto" style="background:${puntoBg}"></span>
+      ${esc(t)}
+    </button>`;
   }).join('');
 }
 
@@ -641,12 +716,13 @@ function renderInventario(){
   const total = inventario.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
   $('#inv-total-num').textContent = total;
 
+  // Mini stats con colores
   const miniStats = $('#inv-mini-stats');
   if (miniStats){
     if (tiendas.length){
       miniStats.innerHTML = tiendas.map(t => {
-        const suma = inventario.filter(m => m.tienda === t).reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
-        return `<div><b>${suma}</b>${esc(t)}</div>`;
+        const suma = inventario.filter(m => m.tienda === t.nombre).reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
+        return `<div><span class="punto" style="background:${t.color}"></span><b>${suma}</b>${esc(t.nombre)}</div>`;
       }).join('');
     } else {
       miniStats.innerHTML = '';
@@ -684,14 +760,18 @@ function renderInventario(){
   cont.innerHTML = ordenTiendas.map(t => {
     const items = grupos[t].sort((a, b) => a.modelo.localeCompare(b.modelo, 'es'));
     const sumaGrupo = items.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
+    const color = colorDeTienda(t);
     return `
       <div class="inv-grupo">
-        <div class="inv-grupo-header">
-          <span>🏪 ${esc(t)}</span>
+        <div class="inv-grupo-header" style="background:${color}">
+          <div class="lado-izq">
+            <span>🏪 ${esc(t)}</span>
+            <button class="btn-color" onclick="abrirColorModal('${esc(t)}')" title="Cambiar color">🎨</button>
+          </div>
           <span class="n">${sumaGrupo}</span>
         </div>
         ${items.map(m => `
-          <div class="inv-item ${bloq ? 'bloqueado' : ''}">
+          <div class="inv-item ${bloq ? 'bloqueado' : ''}" style="border-left:4px solid ${color}">
             <div style="display:flex;align-items:center;gap:10px">
               <div class="inv-nombre">${esc(m.modelo)}</div>
               <div class="inv-controles">
@@ -743,7 +823,44 @@ function eliminarModeloInv(id){
   toast('🗑️ Eliminado');
 }
 
-/* ========== MODAL AGREGAR/EDITAR ========== */
+/* ========== MODAL CAMBIAR COLOR ========== */
+let _tiendaColorActual = '';
+function abrirColorModal(nombreTienda){
+  _tiendaColorActual = nombreTienda;
+  const actual = colorDeTienda(nombreTienda);
+  $('#colorModalBox').innerHTML = `
+    <h3>🎨 Color de "${esc(nombreTienda)}"</h3>
+    <p class="sub">Toca un color para asignarlo a esta tienda.</p>
+    <div class="paleta">
+      ${PALETA_COLORES.map(c => `
+        <button class="color-opt ${c.valor.toLowerCase() === actual.toLowerCase() ? 'activo' : ''}"
+                style="background:${c.valor}"
+                onclick="setColorTienda('${c.valor}')"
+                title="${esc(c.nombre)}"></button>
+      `).join('')}
+    </div>
+    <div class="btns">
+      <button onclick="cerrarColorModal()">Cerrar</button>
+    </div>
+  `;
+  $('#colorModal').classList.add('ver');
+}
+
+function setColorTienda(color){
+  const t = tiendas.find(x => x.nombre === _tiendaColorActual);
+  if (!t) return;
+  t.color = color;
+  guardarTiendas();
+  cerrarColorModal();
+  renderInventario();
+  toast('✅ Color actualizado');
+}
+
+function cerrarColorModal(){
+  $('#colorModal').classList.remove('ver');
+}
+
+/* ========== MODAL AGREGAR/EDITAR TELÉFONO ========== */
 function abrirInvModalNuevo(){
   if (inventarioBloqueado){ toast('🔒 Desbloquea primero el inventario'); return; }
   abrirInvModal(null);
@@ -757,7 +874,7 @@ function abrirInvModalEditar(id){
 function abrirInvModal(m){
   const editando = !!m;
   const modeloActual = m ? m.modelo : '';
-  const tiendaActual = m ? m.tienda : (tiendas[0] || '');
+  const tiendaActual = m ? m.tienda : (tiendas[0] ? tiendas[0].nombre : '');
   const cantActual = m ? (Number(m.cantidad) || 0) : 0;
 
   $('#invModalBox').innerHTML = `
@@ -798,12 +915,18 @@ function abrirInvModal(m){
 
 let _tiendaSeleccionada = '';
 function pintarTiendasModal(seleccionada){
-  _tiendaSeleccionada = seleccionada || tiendas[0] || '';
+  _tiendaSeleccionada = seleccionada || (tiendas[0] ? tiendas[0].nombre : '');
   const cont = $('#inv-tiendas-lista');
   if (!cont) return;
   cont.innerHTML = tiendas.map(t => {
-    const activo = t === _tiendaSeleccionada ? ' activo' : '';
-    return `<button type="button" class="tienda-chip${activo}" onclick="seleccionarTienda('${esc(t)}')">${esc(t)}</button>`;
+    const activo = t.nombre === _tiendaSeleccionada;
+    const bg = activo ? t.color : '#fff';
+    const colorTexto = activo ? '#fff' : '#17191c';
+    const borde = activo ? 'transparent' : '#e6e8eb';
+    return `<button type="button" class="tienda-chip" style="background:${bg};color:${colorTexto};border-color:${borde}" onclick="seleccionarTienda('${esc(t.nombre)}')">
+      <span class="punto" style="background:${activo ? '#fff' : t.color}"></span>
+      ${esc(t.nombre)}
+    </button>`;
   }).join('');
 }
 function seleccionarTienda(t){
@@ -815,12 +938,17 @@ function agregarNuevaTienda(){
   if (nueva === null) return;
   const limpio = nueva.trim();
   if (!limpio){ toast('⚠️ Nombre vacío'); return; }
-  if (tiendas.some(t => t.toLowerCase() === limpio.toLowerCase())){
+  if (tiendas.some(t => t.nombre.toLowerCase() === limpio.toLowerCase())){
     toast('⚠️ Ya existe esa tienda');
     seleccionarTienda(limpio);
     return;
   }
-  tiendas.push(limpio);
+  // Asignar un color que no esté en uso
+  const usados = tiendas.map(t => t.color.toLowerCase());
+  const disponible = PALETA_COLORES.find(c => !usados.includes(c.valor.toLowerCase()));
+  const colorNuevo = disponible ? disponible.valor : PALETA_COLORES[0].valor;
+
+  tiendas.push({ nombre: limpio, color: colorNuevo });
   guardarTiendas();
   pintarTiendasModal(limpio);
   toast('✅ Tienda agregada');
@@ -836,12 +964,11 @@ function cerrarInvModal(){
 function guardarInvModal(id){
   const modelo = ($('#inv-f-modelo').value || '').trim();
   const cant = Math.max(0, Math.floor(Number($('#inv-f-cant').value) || 0));
-  const tienda = _tiendaSeleccionada || tiendas[0] || '';
+  const tienda = _tiendaSeleccionada || (tiendas[0] ? tiendas[0].nombre : '');
 
   if (!modelo){ toast('⚠️ Escribe el modelo'); $('#inv-f-modelo').focus(); return; }
   if (!tienda){ toast('⚠️ Selecciona la tienda'); return; }
 
-  // Evitar duplicados (mismo modelo + misma tienda)
   const dup = inventario.find(m =>
     m.id !== id &&
     m.tienda.toLowerCase() === tienda.toLowerCase() &&
@@ -873,20 +1000,19 @@ function abrirInvModalMover(id){
   if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); return; }
   const m = inventario.find(x => x.id === id);
   if (!m) return;
-  const otras = tiendas.filter(t => t !== m.tienda);
+  const otras = tiendas.filter(t => t.nombre !== m.tienda);
   if (!otras.length){
     toast('⚠️ Solo tienes una tienda. Agrega otra primero.');
     return;
   }
   const msg = `Mover "${m.modelo}" de ${m.tienda} a:\n\n` +
-              otras.map((t, i) => `${i+1}. ${t}`).join('\n') +
+              otras.map((t, i) => `${i+1}. ${t.nombre}`).join('\n') +
               `\n\nEscribe el número:`;
   const r = prompt(msg);
   if (r === null) return;
   const idx = parseInt(r, 10) - 1;
   if (isNaN(idx) || idx < 0 || idx >= otras.length){ toast('⚠️ Opción inválida'); return; }
-  // Evitar duplicado en destino
-  const destino = otras[idx];
+  const destino = otras[idx].nombre;
   const dup = inventario.find(x =>
     x.id !== m.id &&
     x.tienda === destino &&
@@ -923,9 +1049,10 @@ function mostrarVistaPrevia(){
     contenido = ordenTiendas.map(t => {
       const items = grupos[t].sort((a, b) => a.modelo.localeCompare(b.modelo, 'es'));
       const subtotal = items.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
+      const color = colorDeTienda(t);
       return `
         <div class="grupo">
-          <div class="grupo-titulo">
+          <div class="grupo-titulo" style="background:${color}">
             <span>🏪 ${esc(t)}</span>
             <span>${subtotal}</span>
           </div>
@@ -1030,6 +1157,7 @@ function cerrarTodo(){
   $('#selectorModal').classList.remove('ver');
   $('#previewModal').classList.remove('ver');
   $('#invModal').classList.remove('ver');
+  $('#colorModal').classList.remove('ver');
   const crop = document.getElementById('cropModal');
   if (crop) crop.remove();
   _selectorCallback = null;
@@ -1608,7 +1736,7 @@ function exportarCSV(){
   toast('📊 CSV exportado');
 }
 function exportarJSON(){
-  const data = { app:'Registro Claro', version:10, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado };
+  const data = { app:'Registro Claro', version:12, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado };
   descargar(new Blob([JSON.stringify(data)], {type:'application/json'}), 'respaldo_claro.json');
   toast('📦 Respaldo creado');
 }
@@ -1627,7 +1755,15 @@ $('#inpImport').onchange = e => {
       let ag = 0;
       nuevos.forEach(x => { if (x && x.id && !ex.has(x.id)){ if (x.tipo === 'chip' && x.foto && !x.fotoChip) x.fotoChip = x.foto; if (x.tipo === 'telefono' && x.foto && !x.fotoEquipo) x.fotoEquipo = x.foto; if (!x.fechaLocal) x.fechaLocal = derivarFechaLocal(x.fecha); registros.push(x); ag++; } });
       if (inv.length){ const exInv = new Set(inventario.map(x => x.id)); inv.forEach(x => { if (x && x.id && !exInv.has(x.id)){ if (!x.tienda) x.tienda = 'Tecno'; inventario.push(x); } }); guardarInventario(); }
-      if (tien.length){ const exT = new Set(tiendas.map(t => t.toLowerCase())); tien.forEach(t => { if (t && !exT.has(t.toLowerCase())) tiendas.push(t); }); guardarTiendas(); }
+      if (tien.length){
+        // Migrar formato si es viejo
+        if (typeof tien[0] === 'string'){
+          tiendas = tien.map((n, i) => ({ nombre: n, color: TIENDAS_DEFAULT[i] ? TIENDAS_DEFAULT[i].color : PALETA_COLORES[i % PALETA_COLORES.length].valor }));
+        } else {
+          tiendas = tien;
+        }
+        guardarTiendas();
+      }
       if (typeof bloq === 'boolean'){ inventarioBloqueado = bloq; guardarEstadoBloqueo(); }
       if (guardarLS()){ toast(`📥 ${ag} registros restaurados`); renderLista(); renderFotos(); renderInventario(); }
     }catch(err){ toast('⚠️ Archivo inválido'); }
