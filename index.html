@@ -1249,7 +1249,7 @@ function exportarInventarioCSV(){
 
   const csv = filas.map(f => f.map(c => `"${String(c ?? '').replace(/"/g, '""')}"`).join(',')).join('\r\n');
   descargar(new Blob(['\ufeff' + csv], {type:'text/csv;charset=utf-8'}), 'inventario_claro.csv');
-  toast('📊 Inventario exportado');
+  toast('📊 Preparando exportación...');
 }
 
 /* ============ STORAGE GENERAL ============ */
@@ -1840,7 +1840,51 @@ function renderFotos(){
   cont.className = 'grid-fotos';
   cont.innerHTML = fotos.map(f => `<div class="f" onclick="abrirDetalle('${f.id}')"><img src="${f.src}" loading="lazy"><span class="tag">${f.label}</span></div>`).join('');
 }
-function descargar(blob, nombre){ const u = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = u; a.download = nombre; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 3000); }
+function descargar(blob, nombre){
+  // Fix para APK (WebView): Usar el menú de compartir de Android si está disponible
+  try {
+      const file = new File([blob], nombre, { type: blob.type });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          navigator.share({
+              files: [file],
+              title: 'Exportar ' + nombre,
+              text: 'Aquí tienes tu archivo ' + nombre
+          }).then(() => toast('✅ Compartido'))
+            .catch((error) => {
+                console.log('Error al compartir:', error);
+                descargarFallback(blob, nombre);
+            });
+          return;
+      }
+  } catch (e) { console.log('Error en share:', e); }
+
+  // Fallback normal (Chrome/Safari/WebView básico)
+  descargarFallback(blob, nombre);
+}
+
+function descargarFallback(blob, nombre) {
+  const reader = new FileReader();
+  reader.onload = function() {
+      const dataUrl = reader.result;
+      const a = document.createElement('a');
+      a.href = dataUrl;
+      a.download = nombre;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      // Si es un archivo de texto, ofrecer copiar al portapapeles
+      if (blob.type.includes('text') || blob.type.includes('json')) {
+          setTimeout(() => {
+              const texto = decodeURIComponent(dataUrl.split(',')[1]);
+              if (confirm(`Si el archivo ${nombre} no se descargó correctamente, ¿quieres copiar los datos al portapapeles?`)) {
+                  copiar(texto);
+              }
+          }, 1000);
+      }
+  };
+  reader.readAsDataURL(blob);
+}
 function exportarCSV(){
   if (!registros.length) return toast('Sin registros');
   const f = [['Tipo','Numero','IMSI','IMEI','Nota','Fecha','Dia','Foto chip','Foto equipo']];
@@ -1851,12 +1895,12 @@ function exportarCSV(){
   });
   const csv = f.map(x => x.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\r\n');
   descargar(new Blob(['\ufeff' + csv], {type:'text/csv;charset=utf-8'}), 'registros_claro.csv');
-  toast('📊 CSV exportado');
+  toast('📊 Preparando exportación...');
 }
 function exportarJSON(){
   const data = { app:'Registro Claro', version:12, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado };
   descargar(new Blob([JSON.stringify(data)], {type:'application/json'}), 'respaldo_claro.json');
-  toast('📦 Respaldo creado');
+  toast('📦 Preparando respaldo...');
 }
 $('#inpImport').onchange = e => {
   const file = e.target.files[0]; if (!file) return;
