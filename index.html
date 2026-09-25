@@ -2,16 +2,14 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="theme-color" content="#DA291C">
 <title>Registro Claro</title>
 <style>
 :root{--rojo:#DA291C;--rojo2:#a81c12;--bg:#f2f3f5;--card:#fff;--txt:#17191c;--muted:#6b7280;--line:#e6e8eb;--ok:#16a34a}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0;height:100%;overflow:hidden;position:fixed;width:100%;top:0;left:0;overscroll-behavior:none;overscroll-behavior-y:none;background:var(--bg);touch-action:none}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--txt);font-size:16px}
-#appScroll{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;overscroll-behavior-y:contain;touch-action:pan-y;padding-bottom:calc(80px + env(safe-area-inset-bottom))}
-#appScroll::-webkit-scrollbar{display:none}
+html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--txt);font-size:16px;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
 header{position:sticky;top:0;z-index:30;background:linear-gradient(135deg,var(--rojo),var(--rojo2));color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 10px rgba(0,0,0,.18)}
 .logo{width:38px;height:38px;border-radius:10px;background:#fff;color:var(--rojo);display:grid;place-items:center;font-weight:800;font-size:20px}
 .h-t{font-weight:700;font-size:16px;line-height:1.1}
@@ -48,51 +46,57 @@ main{padding:14px;max-width:640px;margin:0 auto}
 .btn-azul{background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff}
 .btn-rojo-grad{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
 .btn-guardar{background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;box-shadow:0 4px 12px rgba(22,163,74,.4)}
-.btn-editar{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;box-shadow:0 4px 12px rgba(245,158,11,.4)}
+.btn-guardar:disabled{background:#d1d5db;color:#9ca3af;box-shadow:none}
 .btn-bloque{width:100%;flex:none;padding:17px;font-size:17px}
 .btn-volver{background:none;border:none;color:var(--rojo);font-weight:700;font-size:15px;padding:6px 0;margin-bottom:6px;cursor:pointer;font-family:inherit}
 .btn-foto-chip{width:100%;padding:18px;border:none;border-radius:14px;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#DA291C,#8f170e);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 12px rgba(218,41,28,.35);margin-bottom:10px}
+.btn-foto-chip:active{transform:scale(.98)}
 .btn-foto-chip .em{font-size:22px}
 .btn-foto-imei{background:linear-gradient(135deg,#2b2f36,#111418);box-shadow:0 4px 12px rgba(43,47,54,.35)}
 .btn-galeria{width:100%;padding:14px;border:2px solid var(--line);border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:var(--txt);margin-bottom:8px}
+.btn-galeria:active{background:#f3f4f6}
 .filtros{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none}
 .filtros::-webkit-scrollbar{display:none}
-.filtro{flex:0 0 auto;padding:9px 14px;border:2px solid var(--line);border-radius:20px;background:#fff;color:var(--muted);font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;transition:.15s}
+.filtro{flex:0 0 auto;padding:9px 14px;border:2px solid var(--line);border-radius:20px;background:#fff;color:var(--muted);font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;transition:.15s;letter-spacing:.3px}
+.filtro:active{transform:scale(.95)}
 .filtro.activo{background:linear-gradient(135deg,var(--rojo),var(--rojo2));color:#fff;border-color:transparent;box-shadow:0 3px 10px rgba(218,41,28,.3)}
 .fecha-custom{display:flex;gap:8px;align-items:center;background:#fff;border-radius:14px;padding:10px 12px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:12px}
 .fecha-custom label{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;flex:0 0 auto}
 .fecha-custom input[type="date"]{flex:1;padding:8px 10px;border:2px solid var(--line);border-radius:10px;font-size:14px;font-family:inherit;font-weight:700;color:var(--txt);background:#fff;min-width:0}
+.fecha-custom input[type="date"]:focus{outline:none;border-color:var(--rojo)}
 .fecha-custom .limpiar{padding:8px 12px;border:none;border-radius:10px;background:#fdeceb;color:var(--rojo);font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;flex:0 0 auto}
 .filtro-info{font-size:13px;color:var(--muted);font-weight:700;padding:0 4px 10px;display:flex;align-items:center;gap:6px}
 .filtro-info b{color:var(--txt)}
 .lista-header{display:flex;justify-content:space-between;align-items:center;padding:4px 4px 10px;font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.4px}
-.lista-header .count{background:#eef0f3;color:#374151;padding:4px 10px;border-radius:20px;font-size:11px}
+.lista-header .count{background:#eef0f3;color:#374151;padding:4px 10px;border-radius:20px;font-size:11px;letter-spacing:0}
 .buscador{position:relative;margin-bottom:12px}
 .buscador input{width:100%;padding:14px 14px 14px 42px;border:2px solid var(--line);border-radius:14px;font-size:16px;background:#fff;font-family:inherit}
+.buscador input:focus{outline:none;border-color:var(--rojo)}
 .buscador .lupa{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#9aa3ad}
 .item{display:flex;gap:12px;align-items:center;background:#fff;border-radius:14px;padding:12px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.06);cursor:pointer}
+.item:active{transform:scale(.99)}
 .thumb{width:54px;height:54px;border-radius:12px;flex:0 0 54px;overflow:hidden;background:#f0f2f5;display:grid;place-items:center;font-size:22px}
 .thumb img{width:100%;height:100%;object-fit:cover}
 .item .info{flex:1;min-width:0}
 .item .t1{font-weight:800;font-size:15px;display:flex;align-items:center;gap:6px}
 .item .t2{font-size:12.5px;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .item .t3{font-size:11px;color:#9aa3ad;margin-top:3px}
-.pill{font-size:10px;font-weight:800;padding:2px 7px;border-radius:20px}
+.pill{font-size:10px;font-weight:800;padding:2px 7px;border-radius:20px;letter-spacing:.3px}
 .pill-chip{background:#fdeceb;color:var(--rojo)}
 .pill-tel{background:#e8eaee;color:#2b2f36}
 .stats{display:flex;gap:10px;margin-bottom:12px}
 .stat{flex:1;background:#fff;border-radius:14px;padding:12px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.06)}
 .stat b{display:block;font-size:22px;color:var(--rojo)}
-.stat span{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase}
+.stat span{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
 .grid-fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .grid-fotos .f{position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;background:#e9ecef;cursor:pointer}
 .grid-fotos .f img{width:100%;height:100%;object-fit:cover}
 .grid-fotos .f .tag{position:absolute;left:5px;bottom:5px;background:rgba(0,0,0,.6);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:20px}
 .det-foto{width:100%;border-radius:16px;margin-bottom:14px;display:block}
-.det-foto-label{font-size:12px;font-weight:800;color:var(--muted);margin:-8px 0 8px;text-transform:uppercase}
+.det-foto-label{font-size:12px;font-weight:800;color:var(--muted);margin:-8px 0 8px;text-transform:uppercase;letter-spacing:.4px}
 .dato{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
 .dato:last-child{border-bottom:none}
-.dato .k{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase}
+.dato .k{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.4px}
 .dato .v{font-size:16px;font-weight:700;text-align:right;word-break:break-all}
 .mini{background:#eef0f3;border:none;border-radius:9px;padding:7px 11px;font-size:12px;font-weight:800;color:#374151;cursor:pointer;font-family:inherit;margin-left:8px}
 .vacio{text-align:center;color:#9aa3ad;padding:36px 20px;font-size:14px;line-height:1.6}
@@ -109,86 +113,97 @@ main{padding:14px;max-width:640px;margin:0 auto}
 .spinner{width:38px;height:38px;border:4px solid rgba(255,255,255,.2);border-top-color:#DA291C;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 #overlay .barra{width:100%;height:6px;background:rgba(255,255,255,.15);border-radius:20px;overflow:hidden;margin-top:4px}
-#overlay .barra div{height:100%;background:var(--rojo);width:0%}
-#overlay .sub{font-size:12px;color:#9aa3ad;font-weight:500}
+#overlay .barra div{height:100%;background:var(--rojo);width:0%;transition:width .2s}
+#overlay .sub{font-size:12px;color:#9aa3ad;font-weight:500;line-height:1.4}
 #selectorModal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:460;display:none;align-items:flex-end;justify-content:center}
 #selectorModal.ver{display:flex}
-#selectorModal .box{background:#fff;width:100%;max-width:500px;border-radius:20px 20px 0 0;padding:20px;max-height:88vh;overflow-y:auto}
+#selectorModal .box{background:#fff;width:100%;max-width:500px;border-radius:20px 20px 0 0;padding:20px;max-height:88vh;overflow-y:auto;animation:subir .18s ease-out}
+@keyframes subir{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
 #selectorModal h3{margin:0 0 4px;font-size:17px}
-#selectorModal .sub{margin:0 0 16px;font-size:13px;color:var(--muted)}
-#selectorModal .opc{display:flex;align-items:center;gap:12px;padding:14px;border:2px solid var(--line);border-radius:14px;margin-bottom:10px;cursor:pointer;background:#fff}
+#selectorModal .sub{margin:0 0 16px;font-size:13px;color:var(--muted);line-height:1.4}
+#selectorModal .opc{display:flex;align-items:center;gap:12px;padding:14px;border:2px solid var(--line);border-radius:14px;margin-bottom:10px;cursor:pointer;transition:.15s;background:#fff}
+#selectorModal .opc:active{transform:scale(.98);border-color:var(--rojo);background:#fdf5f4}
 #selectorModal .opc.recomendado{border-color:#16a34a;background:#f0fdf4}
 #selectorModal .opc .col{flex:1;min-width:0}
-#selectorModal .opc .tag{display:inline-block;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;background:#eef0f3;color:#374151;margin-bottom:5px}
+#selectorModal .opc .tag{display:inline-block;font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;background:#eef0f3;color:#374151;letter-spacing:.4px;margin-bottom:5px}
 #selectorModal .opc .tag.imei1{background:#16a34a;color:#fff}
 #selectorModal .opc .tag.imei2{background:#2563eb;color:#fff}
 #selectorModal .opc .tag.sn{background:#f59e0b;color:#fff}
 #selectorModal .opc .tag.otro{background:#e5e7eb;color:#4b5563}
-#selectorModal .opc .num{font-family:monospace;font-size:15px;font-weight:800;word-break:break-all}
+#selectorModal .opc .num{font-family:monospace;font-size:15px;font-weight:800;word-break:break-all;line-height:1.3}
 #selectorModal .opc .len{font-size:11px;color:var(--muted);margin-top:3px}
-#selectorModal .opc .flecha{font-size:22px;color:#c3c8cf}
+#selectorModal .opc .flecha{font-size:22px;color:#c3c8cf;flex:0 0 auto}
 #selectorModal .aviso{background:#dbeafe;border:1px solid #93c5fd;color:#1e40af;font-size:12.5px;padding:10px 12px;border-radius:10px;margin-bottom:14px;line-height:1.45}
-#selectorModal .cerrar{width:100%;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;background:#eef0f3;color:#374151;cursor:pointer;margin-top:6px}
+#selectorModal .aviso.warn{background:#fef3c7;border-color:#fcd34d;color:#92400e}
+#selectorModal .cerrar{width:100%;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;background:#eef0f3;color:#374151;cursor:pointer;font-family:inherit;margin-top:6px}
 #camModal{position:fixed;inset:0;z-index:500;background:#000;display:flex;flex-direction:column}
-#camModal .top{background:rgba(0,0,0,.9);color:#fff;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;gap:10px}
-#camModal .top button{background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:4px 10px}
+#camModal .top{flex:0 0 auto;background:rgba(0,0,0,.9);color:#fff;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;gap:10px}
+#camModal .top button{background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:4px 10px;font-family:inherit}
 #camModal .top .titulo{flex:1;text-align:center;font-weight:700;font-size:15px}
 #camModal .view{flex:1;position:relative;overflow:hidden;background:#000}
 #camModal video{width:100%;height:100%;object-fit:cover;display:block}
-#camModal .bottom{background:#000;padding:16px 20px calc(20px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:20px}
-#camModal .btn-lado{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:22px;cursor:pointer}
-#camModal .shutter{flex:1;max-width:130px;height:70px;border-radius:40px;background:var(--rojo);border:none;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
+#camModal .bottom{flex:0 0 auto;background:#000;padding:16px 20px calc(20px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:20px}
+#camModal .btn-lado{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#camModal .shutter{flex:1;max-width:130px;height:70px;border-radius:40px;background:var(--rojo);border:none;color:#fff;font-weight:800;font-size:16px;cursor:pointer;box-shadow:0 4px 20px rgba(218,41,28,.5);letter-spacing:.5px}
+#camModal .shutter:active{transform:scale(.96)}
 #camModal .flash{position:absolute;inset:0;background:#fff;z-index:10;pointer-events:none;animation:flash .25s ease-out}
 @keyframes flash{from{opacity:.9}to{opacity:0}}
 #camModal .error{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:30px;text-align:center;gap:16px}
 #camModal .error .em{font-size:52px}
 #camModal .error h3{margin:0;font-size:18px}
-#camModal .error p{margin:0;font-size:14px;opacity:.85}
-#camModal .error button{padding:14px 24px;border:none;border-radius:12px;font-weight:800;background:var(--rojo);color:#fff;width:100%;max-width:280px}
+#camModal .error p{margin:0;font-size:14px;opacity:.85;line-height:1.5}
+#camModal .error button{padding:14px 24px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;background:var(--rojo);color:#fff;width:100%;max-width:280px}
 #cropModal{position:fixed;inset:0;z-index:600;background:#000;display:flex;flex-direction:column}
-#cropModal .top{background:rgba(0,0,0,.95);color:#fff;padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top));display:flex;align-items:center;gap:10px}
-#cropModal .top button{background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:4px 10px}
+#cropModal .top{flex:0 0 auto;background:rgba(0,0,0,.95);color:#fff;padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top));display:flex;align-items:center;gap:10px}
+#cropModal .top button{background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:4px 10px;font-family:inherit}
 #cropModal .top .titulo{flex:1;text-align:center;font-weight:700;font-size:14px}
-#cropModal .aviso{background:#fef3c7;color:#92400e;padding:8px 14px;font-size:12px;text-align:center}
-#cropModal .view{flex:1;position:relative;overflow:hidden;background:#000;touch-action:none}
-#cropModal .view img{position:absolute;top:0;left:0;width:100%;height:auto;pointer-events:none;-webkit-user-drag:none}
+#cropModal .aviso{background:#fef3c7;color:#92400e;padding:8px 14px;font-size:12px;line-height:1.4;text-align:center;flex:0 0 auto}
+#cropModal .view{flex:1;position:relative;overflow:hidden;background:#000;touch-action:none;user-select:none;-webkit-user-select:none}
+#cropModal .view img{position:absolute;top:0;left:0;width:100%;height:auto;pointer-events:none;user-select:none;-webkit-user-drag:none}
 #cropModal .sel{position:absolute;border:3px solid #DA291C;background:rgba(218,41,28,.15);box-shadow:0 0 0 9999px rgba(0,0,0,.55);display:none;pointer-events:none;border-radius:4px}
 #cropModal .sel::before,#cropModal .sel::after{content:"";position:absolute;background:#DA291C}
 #cropModal .sel::before{left:50%;top:0;bottom:0;width:1px}
 #cropModal .sel::after{top:50%;left:0;right:0;height:1px}
-#cropModal .bottom{background:#000;padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:flex;gap:10px}
-#cropModal .bottom button{flex:1;padding:16px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer}
-#cropModal .bottom .prim{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
+#cropModal .bottom{flex:0 0 auto;background:#000;padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:flex;gap:10px}
+#cropModal .bottom button{flex:1;padding:16px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
+#cropModal .bottom .prim{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff;box-shadow:0 4px 12px rgba(218,41,28,.5)}
 #cropModal .bottom .sec{background:#2b2f36;color:#fff;flex:0 0 100px}
+
+/* ============ INVENTARIO ============ */
 .inv-grupo{margin-bottom:16px}
 .inv-grupo-header{color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-weight:800;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
 .inv-grupo-header .lado-izq{display:flex;align-items:center;gap:8px}
 .inv-grupo-header .n{background:rgba(255,255,255,.25);padding:4px 10px;border-radius:20px;font-size:13px;font-family:monospace}
-.inv-grupo-header .btn-color{background:rgba(255,255,255,.2);border:none;color:#fff;padding:4px 8px;border-radius:8px;font-size:14px;cursor:pointer}
-.inv-item{background:#fff;border-radius:14px;padding:14px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.inv-grupo-header .btn-color{background:rgba(255,255,255,.2);border:none;color:#fff;padding:4px 8px;border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit;line-height:1}
+.inv-item{background:#fff;border-radius:14px;padding:14px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.06);display:flex;flex-direction:column;align-items:stretch}
 .inv-item.bloqueado{background:#f9fafb}
 .inv-nombre{flex:1;min-width:0;font-weight:800;font-size:16px;word-break:break-word;line-height:1.3}
-.inv-controles{display:flex;align-items:center;gap:6px}
-.inv-btn{width:38px;height:38px;border:none;border-radius:10px;font-size:22px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+.inv-controles{display:flex;align-items:center;gap:6px;flex:0 0 auto}
+.inv-btn{width:38px;height:38px;border:none;border-radius:10px;font-size:22px;font-weight:900;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;transition:.1s;line-height:1}
+.inv-btn:active{transform:scale(.92)}
 .inv-btn:disabled{opacity:.4;cursor:not-allowed}
 .inv-menos{background:#fdeceb;color:var(--rojo)}
 .inv-mas{background:#d1fae5;color:#059669}
 .inv-cant{width:52px;height:38px;border:2px solid var(--line);border-radius:10px;text-align:center;font-size:17px;font-weight:900;font-family:monospace;background:#fff;color:var(--txt);padding:0}
+.inv-cant:focus{outline:none;border-color:var(--rojo)}
 .inv-cant:disabled{background:#f3f4f6;color:#9ca3af}
 .inv-cant::-webkit-outer-spin-button,.inv-cant::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.inv-cant{-moz-appearance:textfield}
 .inv-acciones{display:flex;gap:4px;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
 .inv-acciones button{flex:1;padding:8px;border:none;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit}
 .inv-acciones button:disabled{opacity:.4;cursor:not-allowed}
 .inv-edit{background:#eef0f3;color:#374151}
 .inv-mover{background:#fdeceb;color:var(--rojo)}
 .inv-del{background:#fdeceb;color:#b91c1c}
+
 .inv-total{color:#fff;border-radius:14px;padding:16px;text-align:center;margin-bottom:14px;box-shadow:0 4px 12px rgba(218,41,28,.35);background:linear-gradient(135deg,#DA291C,#6b0f08)}
 .inv-total .t{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px;opacity:.9}
 .inv-total .n{font-size:38px;font-weight:900;margin-top:4px;line-height:1}
 .inv-total .mini-stats{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.3);font-size:12px;flex-wrap:wrap;justify-content:center}
-.inv-total .mini-stats div{padding:4px 8px;border-radius:20px;background:rgba(255,255,255,.15);display:flex;align-items:center;gap:5px}
+.inv-total .mini-stats div{text-align:center;padding:4px 8px;border-radius:20px;background:rgba(255,255,255,.15);display:flex;align-items:center;gap:5px}
 .inv-total .mini-stats b{font-size:16px;font-weight:900}
-.inv-total .mini-stats .punto{width:8px;height:8px;border-radius:50%}
+.inv-total .mini-stats .punto{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+
 .inv-estado{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;font-size:13px;font-weight:700;margin-bottom:14px}
 .inv-estado.abierto{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
 .inv-estado.bloqueado{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7}
@@ -196,156 +211,189 @@ main{padding:14px;max-width:640px;margin:0 auto}
 .inv-estado .txt{flex:1;line-height:1.35}
 .inv-estado .txt b{display:block;font-size:13.5px}
 .inv-estado .txt small{font-size:11.5px;opacity:.85;font-weight:500;display:block;margin-top:2px}
-.tienda-filtros{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px}
+
+/* Filtros por tienda (con color dinámico) */
+.tienda-filtros{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none}
 .tienda-filtros::-webkit-scrollbar{display:none}
-.tienda-filtro{flex:0 0 auto;padding:8px 14px;border:2px solid var(--line);border-radius:20px;background:#fff;color:var(--muted);font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
-.tienda-filtro .punto{width:12px;height:12px;border-radius:50%;border:2px solid rgba(0,0,0,.1)}
+.tienda-filtro{flex:0 0 auto;padding:8px 14px;border:2px solid var(--line);border-radius:20px;background:#fff;color:var(--muted);font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;transition:.15s;display:flex;align-items:center;gap:6px}
+.tienda-filtro:active{transform:scale(.95)}
+.tienda-filtro .punto{width:12px;height:12px;border-radius:50%;flex:0 0 auto;border:2px solid rgba(0,0,0,.1)}
+
+/* Modal inventario */
 #invModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:700;display:none;align-items:center;justify-content:center;padding:16px}
 #invModal.ver{display:flex}
-#invModal .box{background:#fff;border-radius:20px;padding:22px;max-width:440px;width:100%;max-height:92vh;overflow-y:auto}
+#invModal .box{background:#fff;border-radius:20px;padding:22px;max-width:440px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
 #invModal h3{margin:0 0 16px;font-size:18px}
-#invModal .campo label{font-size:12px;font-weight:800;color:var(--muted);display:block;margin-bottom:6px;text-transform:uppercase}
+#invModal .campo label{font-size:12px;font-weight:800;color:var(--muted);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
 #invModal .campo input{width:100%;padding:14px;border:2px solid var(--line);border-radius:12px;font-size:16px;background:#fff;font-family:inherit;color:var(--txt)}
+#invModal .campo input:focus{outline:none;border-color:var(--rojo)}
 #invModal .tiendas-lista{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-#invModal .tienda-chip{padding:8px 14px;border:2px solid var(--line);border-radius:20px;background:#fff;color:var(--txt);font-size:13px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px}
-#invModal .tienda-chip .punto{width:12px;height:12px;border-radius:50%;border:2px solid rgba(0,0,0,.1)}
+#invModal .tienda-chip{padding:8px 14px;border:2px solid var(--line);border-radius:20px;background:#fff;color:var(--txt);font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;transition:.15s;display:flex;align-items:center;gap:6px}
+#invModal .tienda-chip .punto{width:12px;height:12px;border-radius:50%;flex:0 0 auto;border:2px solid rgba(0,0,0,.1)}
 #invModal .btns{display:flex;gap:10px;margin-top:18px}
-#invModal .btns button{flex:1;padding:15px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer}
+#invModal .btns button{flex:1;padding:15px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
 #invModal .guardar{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
 #invModal .cancelar{background:#eef0f3;color:#374151}
+
+/* Modal colores */
 #colorModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:750;display:none;align-items:center;justify-content:center;padding:16px}
 #colorModal.ver{display:flex}
-#colorModal .box{background:#fff;border-radius:20px;padding:22px;max-width:400px;width:100%;max-height:92vh;overflow-y:auto}
+#colorModal .box{background:#fff;border-radius:20px;padding:22px;max-width:400px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out}
 #colorModal h3{margin:0 0 6px;font-size:18px}
 #colorModal .sub{margin:0 0 16px;font-size:13px;color:var(--muted)}
 #colorModal .paleta{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
-#colorModal .color-opt{aspect-ratio:1;border:3px solid transparent;border-radius:14px;cursor:pointer;position:relative;padding:0}
+#colorModal .color-opt{aspect-ratio:1;border:3px solid transparent;border-radius:14px;cursor:pointer;position:relative;transition:.15s;padding:0}
+#colorModal .color-opt:active{transform:scale(.95)}
 #colorModal .color-opt.activo{border-color:#111;box-shadow:0 0 0 3px #fff inset}
 #colorModal .color-opt.activo::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,.5)}
-#colorModal .btns button{width:100%;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;background:#eef0f3;color:#374151}
+#colorModal .btns{display:flex;gap:10px}
+#colorModal .btns button{flex:1;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;background:#eef0f3;color:#374151}
+
+/* ===== Gestión de tiendas ===== */
 .gestion-titulo{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px}
 .tienda-gestion-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border:2px solid var(--line);border-radius:12px;margin-bottom:8px;background:#fff}
-.tienda-gestion-item .punto{width:18px;height:18px;border-radius:50%;border:2px solid rgba(0,0,0,.12)}
-.tienda-gestion-item .nombre{flex:1;min-width:0;font-weight:800;font-size:15px;word-break:break-word}
-.tienda-gestion-item .mini{background:#eef0f3;border:none;border-radius:9px;padding:8px 11px;font-size:15px;cursor:pointer;line-height:1}
+.tienda-gestion-item .punto{width:18px;height:18px;border-radius:50%;flex:0 0 auto;border:2px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.tienda-gestion-item .nombre{flex:1;min-width:0;font-weight:800;font-size:15px;word-break:break-word;line-height:1.3}
+.tienda-gestion-item .mini{background:#eef0f3;border:none;border-radius:9px;padding:8px 11px;font-size:15px;cursor:pointer;font-family:inherit;line-height:1}
+.tienda-gestion-item .mini:active{transform:scale(.94)}
 .tienda-gestion-item .mini.del{background:#fdeceb}
 .tienda-gestion-vacio{text-align:center;color:#9aa3ad;font-size:13px;line-height:1.55;padding:14px 8px}
+
 #previewModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:650;display:none;align-items:center;justify-content:center;padding:16px}
 #previewModal.ver{display:flex}
-#previewModal .box{background:#fff;border-radius:20px;padding:20px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto}
+#previewModal .box{background:#fff;border-radius:20px;padding:20px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;animation:pop .2s ease-out}
 #previewModal h3{margin:0 0 6px;font-size:19px}
 #previewModal .fecha{font-size:12px;color:var(--muted);margin-bottom:16px}
 #previewModal .grupo{margin-bottom:16px}
 #previewModal .grupo-titulo{padding:8px 12px;border-radius:8px;font-weight:800;font-size:13px;color:#fff;display:flex;justify-content:space-between;margin-bottom:6px}
 #previewModal table{width:100%;border-collapse:collapse;font-size:14px}
-#previewModal thead th{padding:8px;text-align:left;font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--line)}
+#previewModal thead th{padding:8px;text-align:left;font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--line)}
 #previewModal tbody td{padding:8px;border-bottom:1px solid var(--line);font-weight:700;font-size:13.5px}
+#previewModal tbody tr:last-child td{border-bottom:none}
 #previewModal tbody .cant{text-align:center;font-family:monospace;font-size:15px;font-weight:900;color:var(--rojo)}
 #previewModal .gran-total{margin-top:16px;padding:14px;background:linear-gradient(135deg,#DA291C,#6b0f08);color:#fff;border-radius:12px;text-align:center;font-weight:800}
-#previewModal .gran-total .t{font-size:11px;text-transform:uppercase}
+#previewModal .gran-total .t{font-size:11px;text-transform:uppercase;letter-spacing:1px;opacity:.9}
 #previewModal .gran-total .n{font-size:30px;font-weight:900;margin-top:4px;font-family:monospace}
 #previewModal .acciones{display:flex;gap:10px;margin-top:16px}
-#previewModal .acciones button{flex:1;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer}
+#previewModal .acciones button{flex:1;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
 #previewModal .prim{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
 #previewModal .seg{background:#eef0f3;color:#374151}
-#exportModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
-#exportModal.ver{display:flex}
-#exportModal .box{background:#fff;border-radius:20px;padding:20px;max-width:520px;width:100%;max-height:92vh;overflow-y:auto}
-#exportModal h3{margin:0 0 6px;font-size:18px}
-#exportModal .sub{margin:0 0 14px;font-size:13px;color:var(--muted);line-height:1.4}
-#exportModal .nombre-archivo{background:#f0f2f5;padding:10px 12px;border-radius:10px;font-family:monospace;font-size:13px;font-weight:700;color:#374151;margin-bottom:14px;word-break:break-all}
-#exportModal textarea{width:100%;height:120px;padding:12px;border:2px solid var(--line);border-radius:12px;font-family:monospace;font-size:12px;color:#374151;background:#fafbfc;resize:none;margin-bottom:14px}
-#exportModal .acciones{display:flex;flex-direction:column;gap:8px}
-#exportModal .acciones button{padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
-#exportModal .b-compartir{background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff}
-#exportModal .b-copiar{background:#eef0f3;color:#374151}
-#exportModal .b-cerrar{background:#fdeceb;color:#b91c1c}
 </style>
 </head>
 <body>
 
-<div id="appScroll">
-  <header>
-    <div class="logo">C</div>
-    <div>
-      <div class="h-t">Registro Claro</div>
-      <div class="h-s">Chips, equipos e inventario</div>
+<header>
+  <div class="logo">C</div>
+  <div>
+    <div class="h-t">Registro Claro</div>
+    <div class="h-s">Chips, equipos e inventario</div>
+  </div>
+</header>
+
+<main>
+  <section id="vista-home" class="vista activa">
+    <button class="btn-grande bg-inv" onclick="ir('inventario')">
+      <span class="ico">📦</span>
+      <span>Inventario de Teléfonos<span class="sub">Por tienda · colores personalizados</span></span>
+    </button>
+    <button class="btn-grande bg-chip" onclick="abrirForm('chip')">
+      <span class="ico">📶</span>
+      <span>Registrar Chip<span class="sub">Foto + lectura de IMSI</span></span>
+    </button>
+    <button class="btn-grande bg-tel" onclick="abrirForm('telefono')">
+      <span class="ico">📱</span>
+      <span>Registrar Teléfono<span class="sub">Lectura de IMEI desde la caja</span></span>
+    </button>
+    <button class="btn-grande bg-fotos" onclick="ir('fotos')">
+      <span class="ico">🖼️</span>
+      <span>Galería de fotos<span class="sub">Todas las fotos guardadas</span></span>
+    </button>
+
+    <div class="filtros" id="filtros">
+      <button class="filtro activo" data-f="hoy">HOY</button>
+      <button class="filtro" data-f="ayer">AYER</button>
+      <button class="filtro" data-f="semana">ESTA SEMANA</button>
+      <button class="filtro" data-f="mes">ESTE MES</button>
+      <button class="filtro" data-f="todo">TODO</button>
     </div>
-  </header>
 
-  <main>
-    <section id="vista-home" class="vista activa">
-      <button class="btn-grande bg-inv" onclick="ir('inventario')"><span class="ico">📦</span><span>Inventario de Teléfonos<span class="sub">Por tienda · colores personalizados</span></span></button>
-      <button class="btn-grande bg-chip" onclick="abrirForm('chip')"><span class="ico">📶</span><span>Registrar Chip<span class="sub">Foto + lectura de IMSI</span></span></button>
-      <button class="btn-grande bg-tel" onclick="abrirForm('telefono')"><span class="ico">📱</span><span>Registrar Teléfono<span class="sub">Lectura de IMEI desde la caja</span></span></button>
-      <button class="btn-grande bg-fotos" onclick="ir('fotos')"><span class="ico">🖼️</span><span>Galería de fotos<span class="sub">Todas las fotos guardadas</span></span></button>
+    <div class="fecha-custom">
+      <label>📅 Otro día:</label>
+      <input type="date" id="fechaPicker">
+      <button class="limpiar" id="btnLimpiarFecha" style="display:none">✕</button>
+    </div>
 
-      <div class="filtros" id="filtros">
-        <button class="filtro activo" data-f="hoy">HOY</button>
-        <button class="filtro" data-f="ayer">AYER</button>
-        <button class="filtro" data-f="semana">ESTA SEMANA</button>
-        <button class="filtro" data-f="mes">ESTE MES</button>
-        <button class="filtro" data-f="todo">TODO</button>
-      </div>
-      <div class="fecha-custom">
-        <label>📅 Otro día:</label>
-        <input type="date" id="fechaPicker">
-        <button class="limpiar" id="btnLimpiarFecha" style="display:none">✕</button>
-      </div>
-      <div class="filtro-info" id="filtroInfo"></div>
-      <div class="stats">
-        <div class="stat"><b id="st-total">0</b><span>Total</span></div>
-        <div class="stat"><b id="st-chips">0</b><span>Chips</span></div>
-        <div class="stat"><b id="st-tels">0</b><span>Equipos</span></div>
-      </div>
-      <div class="buscador">
-        <span class="lupa">🔍</span>
-        <input id="buscar" type="search" placeholder="Buscar número, IMSI o IMEI…" oninput="renderLista()">
-      </div>
-      <div id="lista"></div>
-    </section>
+    <div class="filtro-info" id="filtroInfo"></div>
 
-    <section id="vista-inventario" class="vista">
-      <button class="btn-volver" onclick="ir('home')">← Volver al inicio</button>
-      <h2 class="titulo-vista">📦 Inventario de Teléfonos</h2>
-      <div class="inv-total">
-        <div class="t">Total en stock</div>
-        <div class="n" id="inv-total-num">0</div>
-        <div class="mini-stats" id="inv-mini-stats"></div>
-      </div>
-      <div id="inv-estado"></div>
-      <div class="card">
-        <button class="btn btn-rojo-grad btn-bloque" id="btnAgregarInv" onclick="abrirInvModalNuevo()">➕ Agregar teléfono</button>
-        <button class="btn btn-guardar btn-bloque" id="btnGuardarInv" style="margin-top:10px" onclick="guardarInventarioBloqueado()">💾 Guardar inventario</button>
-        <button class="btn btn-editar btn-bloque" id="btnDesbloquearInv" style="margin-top:10px;display:none" onclick="desbloquearInventario()">✏️ Editar inventario</button>
-        <button class="btn btn-osc btn-bloque" style="margin-top:10px" onclick="mostrarVistaPrevia()">👁️ Vista previa (tabla)</button>
-        <button class="btn btn-azul btn-bloque" style="margin-top:10px" onclick="exportarInventarioCSV()">📊 Exportar inventario (CSV)</button>
-      </div>
-      <div class="card" id="card-tiendas">
-        <div class="gestion-titulo">🏪 Tiendas</div>
-        <div id="tiendas-gestion-lista"></div>
-        <button class="btn btn-rojo-grad btn-bloque" id="btnAgregarTienda" style="margin-top:10px" onclick="agregarNuevaTienda()">➕ Agregar tienda</button>
-      </div>
-      <div id="tienda-filtros" class="tienda-filtros"></div>
-      <div id="inv-lista"></div>
-    </section>
+    <div class="stats">
+      <div class="stat"><b id="st-total">0</b><span>Total</span></div>
+      <div class="stat"><b id="st-chips">0</b><span>Chips</span></div>
+      <div class="stat"><b id="st-tels">0</b><span>Equipos</span></div>
+    </div>
 
-    <section id="vista-form" class="vista"></section>
-    <section id="vista-detalle" class="vista"></section>
-    <section id="vista-fotos" class="vista"><h2 class="titulo-vista">🖼️ Galería de fotos</h2><div id="grid-fotos"></div></section>
-    <section id="vista-respaldo" class="vista">
-      <h2 class="titulo-vista">💾 Respaldo y datos</h2>
-      <div class="card">
-        <p style="margin:0 0 14px;font-size:13.5px;color:#6b7280;line-height:1.5">Exporta tus registros para no perder nada. El archivo <b>.json</b> sirve para restaurar todo (incluidas las fotos y el inventario) en otro celular.</p>
-        <button class="btn btn-verde btn-bloque" style="margin-bottom:10px" onclick="exportarCSV()">📊 Exportar Excel (CSV)</button>
-        <button class="btn btn-osc btn-bloque" style="margin-bottom:10px" onclick="exportarJSON()">📦 Respaldar todo (.json)</button>
-        <button class="btn btn-rosa btn-bloque" style="margin-bottom:10px" onclick="$('#inpImport').click()">📥 Restaurar respaldo</button>
-        <input type="file" id="inpImport" accept="application/json" hidden>
-        <button class="btn btn-gris btn-bloque" onclick="borrarTodo()">🗑️ Borrar todos los registros</button>
-      </div>
-    </section>
-  </main>
-</div>
+    <div class="buscador">
+      <span class="lupa">🔍</span>
+      <input id="buscar" type="search" placeholder="Buscar número, IMSI o IMEI…" oninput="renderLista()">
+    </div>
+
+    <div id="lista"></div>
+  </section>
+
+  <section id="vista-inventario" class="vista">
+    <button class="btn-volver" onclick="ir('home')">← Volver al inicio</button>
+    <h2 class="titulo-vista">📦 Inventario de Teléfonos</h2>
+
+    <div class="inv-total">
+      <div class="t">Total en stock</div>
+      <div class="n" id="inv-total-num">0</div>
+      <div class="mini-stats" id="inv-mini-stats"></div>
+    </div>
+
+    <div id="inv-estado"></div>
+
+    <div class="card">
+      <button class="btn btn-rojo-grad btn-bloque" id="btnAgregarInv" onclick="abrirInvModalNuevo()">➕ Agregar teléfono</button>
+      <button class="btn btn-guardar btn-bloque" id="btnGuardarInv" style="margin-top:10px" onclick="guardarInventarioBloqueado()">💾 Guardar inventario</button>
+      <button class="btn btn-gris btn-bloque" id="btnDesbloquearInv" style="margin-top:10px;display:none" onclick="desbloquearInventario()">🔓 Desbloquear para editar</button>
+      <button class="btn btn-osc btn-bloque" style="margin-top:10px" onclick="mostrarVistaPrevia()">👁️ Vista previa (tabla)</button>
+      <button class="btn btn-azul btn-bloque" style="margin-top:10px" onclick="exportarInventarioCSV()">📊 Exportar inventario (CSV)</button>
+    </div>
+
+    <div class="card">
+      <div class="gestion-titulo">🏪 Tiendas</div>
+      <div id="tiendas-gestion-lista"></div>
+      <button class="btn btn-rojo-grad btn-bloque" style="margin-top:10px" onclick="agregarNuevaTienda()">➕ Agregar tienda</button>
+    </div>
+
+    <div id="tienda-filtros" class="tienda-filtros"></div>
+
+    <div id="inv-lista"></div>
+  </section>
+
+  <section id="vista-form" class="vista"></section>
+  <section id="vista-detalle" class="vista"></section>
+
+  <section id="vista-fotos" class="vista">
+    <h2 class="titulo-vista">🖼️ Galería de fotos</h2>
+    <div id="grid-fotos"></div>
+  </section>
+
+  <section id="vista-respaldo" class="vista">
+    <h2 class="titulo-vista">💾 Respaldo y datos</h2>
+    <div class="card">
+      <p style="margin:0 0 14px;font-size:13.5px;color:#6b7280;line-height:1.5">
+        Exporta tus registros para no perder nada. El archivo <b>.json</b> sirve para restaurar todo
+        (incluidas las fotos y el inventario) en otro celular.
+      </p>
+      <button class="btn btn-verde btn-bloque" style="margin-bottom:10px" onclick="exportarCSV()">📊 Exportar Excel (CSV)</button>
+      <button class="btn btn-osc btn-bloque" style="margin-bottom:10px" onclick="exportarJSON()">📦 Respaldar todo (.json)</button>
+      <button class="btn btn-rosa btn-bloque" style="margin-bottom:10px" onclick="$('#inpImport').click()">📥 Restaurar respaldo</button>
+      <input type="file" id="inpImport" accept="application/json" hidden>
+      <button class="btn btn-gris btn-bloque" onclick="borrarTodo()">🗑️ Borrar todos los registros</button>
+    </div>
+  </section>
+</main>
 
 <nav class="nav">
   <button data-v="home" class="activo"><i>🏠</i><span>Inicio</span></button>
@@ -355,95 +403,43 @@ main{padding:14px;max-width:640px;margin:0 auto}
 </nav>
 
 <div class="toast" id="toast"></div>
-<div id="overlay"><div class="box"><div class="spinner"></div><div id="overlayTxt">Analizando…</div><div class="sub" id="overlaySub"></div><div class="barra"><div id="overlayBarra"></div></div></div></div>
-<div id="selectorModal"><div class="box"><h3 id="selTitulo">Códigos</h3><p class="sub" id="selSub">Toca el que quieras usar.</p><div id="selLista"></div><button class="cerrar" onclick="cerrarSelector()">Cancelar</button></div></div>
-<div id="invModal"><div class="box" id="invModalBox"></div></div>
-<div id="colorModal"><div class="box" id="colorModalBox"></div></div>
-<div id="previewModal"><div class="box" id="previewBox"></div></div>
-<div id="exportModal"><div class="box" id="exportBox"></div></div>
+
+<div id="overlay">
+  <div class="box">
+    <div class="spinner"></div>
+    <div id="overlayTxt">Analizando…</div>
+    <div class="sub" id="overlaySub"></div>
+    <div class="barra"><div id="overlayBarra"></div></div>
+  </div>
+</div>
+
+<div id="selectorModal">
+  <div class="box">
+    <h3 id="selTitulo">Códigos encontrados</h3>
+    <p class="sub" id="selSub">Toca el que quieras usar.</p>
+    <div id="selLista"></div>
+    <button class="cerrar" onclick="cerrarSelector()">Cancelar</button>
+  </div>
+</div>
+
+<div id="invModal">
+  <div class="box" id="invModalBox"></div>
+</div>
+
+<div id="colorModal">
+  <div class="box" id="colorModalBox"></div>
+</div>
+
+<div id="previewModal">
+  <div class="box" id="previewBox"></div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js" defer></script>
 
 <script>
 /* =========================================================
-   BLOQUEO TOTAL DE PULL-TO-REFRESH
-   Estrategia: interceptar touchmove en captura sobre TODO
-   el documento. Bloquear cuando:
-   - Estamos en el tope (0) y el dedo baja → previene reload
-   - Estamos en el fondo (max) y el dedo sube → previene bounce
+   REGISTRO CLARO
    ========================================================= */
-(function(){
-  var startY = 0;
-  var startX = 0;
-  var target = null;
-
-  function getScrollable(el){
-    while (el && el !== document.body && el !== document.documentElement){
-      var style = window.getComputedStyle(el);
-      var oy = style.overflowY;
-      if ((oy === 'auto' || oy === 'scroll') && el.scrollHeight > el.clientHeight + 2){
-        return el;
-      }
-      el = el.parentElement;
-    }
-    return null;
-  }
-
-  function modales(sel){
-    return sel && sel.closest && (
-      sel.closest('#invModal') || sel.closest('#colorModal') ||
-      sel.closest('#previewModal') || sel.closest('#exportModal') ||
-      sel.closest('#selectorModal') || sel.closest('#cropModal') ||
-      sel.closest('#camModal')
-    );
-  }
-
-  document.addEventListener('touchstart', function(e){
-    if (e.touches.length !== 1) return;
-    startY = e.touches[0].clientY;
-    startX = e.touches[0].clientX;
-    target = e.target;
-  }, { passive: true, capture: true });
-
-  document.addEventListener('touchmove', function(e){
-    if (e.touches.length !== 1) return;
-    if (!e.cancelable) return;
-    // Dejar pasar scroll dentro de modales
-    if (modales(e.target)) return;
-
-    var y = e.touches[0].clientY;
-    var x = e.touches[0].clientX;
-    var dy = y - startY;
-    var dx = x - startX;
-
-    // Si el movimiento es más horizontal que vertical, no tocar
-    if (Math.abs(dx) > Math.abs(dy)) return;
-
-    var sc = getScrollable(e.target) || document.getElementById('appScroll');
-    if (!sc){ e.preventDefault(); return; }
-
-    var st = sc.scrollTop;
-    var max = sc.scrollHeight - sc.clientHeight;
-
-    // Tope y bajando → bloquear pull-to-refresh
-    if (st <= 0 && dy > 0){ e.preventDefault(); e.stopPropagation(); return; }
-    // Fondo y subiendo → bloquear overscroll inferior
-    if (st >= max - 1 && dy < 0){ e.preventDefault(); e.stopPropagation(); return; }
-  }, { passive: false, capture: true });
-
-  document.addEventListener('gesturestart', function(e){ e.preventDefault(); }, { passive: false });
-  document.addEventListener('gesturechange', function(e){ e.preventDefault(); }, { passive: false });
-  document.addEventListener('gestureend', function(e){ e.preventDefault(); }, { passive: false });
-
-  // Doble tap zoom
-  var lastTap = 0;
-  document.addEventListener('touchend', function(e){
-    var now = Date.now();
-    if (now - lastTap < 300 && e.cancelable){ e.preventDefault(); }
-    lastTap = now;
-  }, { passive: false });
-})();
-
 const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const STORE = 'claro_registros_v1';
@@ -452,476 +448,801 @@ const TIENDAS_STORE = 'claro_tiendas_v2';
 const INV_BLOQ_STORE = 'claro_inv_bloqueado';
 
 let registros = [];
-let formTipo = 'chip';
-let editId = null;
+let formTipo  = 'chip';
+let editId    = null;
 let fotoChipTemp = null;
 let fotoEquipoTemp = null;
 let inventario = [];
 let tiendas = [];
 let inventarioBloqueado = false;
 let filtroTienda = 'todas';
+
+/* Tiendas por defecto: ninguna. El usuario las agrega desde el botón ➕ */
 const TIENDAS_DEFAULT = [];
+
+/* Paleta de colores disponibles para elegir */
 const PALETA_COLORES = [
-  { nombre:'Rojo', valor:'#DA291C' }, { nombre:'Amarillo', valor:'#eab308' },
-  { nombre:'Verde', valor:'#16a34a' }, { nombre:'Azul', valor:'#2563eb' },
-  { nombre:'Morado', valor:'#7c3aed' }, { nombre:'Naranja', valor:'#f97316' },
-  { nombre:'Rosa', valor:'#ec4899' }, { nombre:'Turquesa', valor:'#06b6d4' },
-  { nombre:'Índigo', valor:'#4f46e5' }, { nombre:'Vino', valor:'#7f1d1d' },
-  { nombre:'Café', valor:'#92400e' }, { nombre:'Gris', valor:'#475569' }
+  { nombre: 'Rojo Claro',    valor: '#DA291C' },
+  { nombre: 'Amarillo',      valor: '#eab308' },
+  { nombre: 'Verde',         valor: '#16a34a' },
+  { nombre: 'Azul',          valor: '#2563eb' },
+  { nombre: 'Morado',        valor: '#7c3aed' },
+  { nombre: 'Naranja',       valor: '#f97316' },
+  { nombre: 'Rosa',          valor: '#ec4899' },
+  { nombre: 'Turquesa',      valor: '#06b6d4' },
+  { nombre: 'Índigo',        valor: '#4f46e5' },
+  { nombre: 'Vino',          valor: '#7f1d1d' },
+  { nombre: 'Café',          valor: '#92400e' },
+  { nombre: 'Gris',          valor: '#475569' },
 ];
+
 let filtroFecha = 'hoy';
 let fechaCustom = null;
 
 const soloDigitos = s => String(s || '').replace(/\D/g, '');
 const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,7);
-const fmt = iso => new Date(iso).toLocaleString('es-MX', {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'});
-function pad(n){ return String(n).padStart(2,'0'); }
-function fechaLocalHoy(){ const d=new Date(); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
-function derivarFechaLocal(iso){ const d=new Date(iso); if (isNaN(d)) return fechaLocalHoy(); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
-function sumarDias(f, dias){ const [y,m,d]=f.split('-').map(Number); const dt=new Date(y,m-1,d); dt.setDate(dt.getDate()+dias); return `${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}`; }
-function nombreFechaCorta(f){ if(!f) return ''; const [y,m,d]=f.split('-').map(Number); return new Date(y,m-1,d).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}); }
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+
+const fmt = iso => {
+  const d = new Date(iso);
+  return d.toLocaleString('es-MX', {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'});
+};
+
+function pad(n){ return String(n).padStart(2, '0'); }
+function fechaLocalHoy(){
+  const d = new Date();
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+}
+function derivarFechaLocal(iso){
+  const d = new Date(iso);
+  if (isNaN(d)) return fechaLocalHoy();
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+}
+function sumarDias(fechaStr, dias){
+  const [y, m, d] = fechaStr.split('-').map(Number);
+  const date = new Date(y, m-1, d);
+  date.setDate(date.getDate() + dias);
+  return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}`;
+}
+function nombreFechaCorta(fechaStr){
+  if (!fechaStr) return '';
+  const [y, m, d] = fechaStr.split('-').map(Number);
+  return new Date(y, m-1, d).toLocaleDateString('es-MX', { day: '2-digit', month: 'short' });
+}
+
 function obtenerRangoFechas(){
   const hoy = fechaLocalHoy();
   switch(filtroFecha){
-    case 'hoy': return { desde: hoy, hasta: hoy };
-    case 'ayer': { const a=sumarDias(hoy,-1); return { desde:a, hasta:a }; }
-    case 'semana': { const d=new Date(); const dia=d.getDay(); const off=dia===0?6:dia-1; return { desde:sumarDias(hoy,-off), hasta:hoy }; }
-    case 'mes': { const [y,m]=hoy.split('-'); return { desde:`${y}-${m}-01`, hasta:hoy }; }
-    case 'custom': { const f=fechaCustom||hoy; return { desde:f, hasta:f }; }
-    default: return { desde:null, hasta:null };
+    case 'hoy':    return { desde: hoy, hasta: hoy };
+    case 'ayer':   { const a = sumarDias(hoy, -1); return { desde: a, hasta: a }; }
+    case 'semana': {
+      const d = new Date();
+      const dia = d.getDay();
+      const offsetLunes = dia === 0 ? 6 : dia - 1;
+      return { desde: sumarDias(hoy, -offsetLunes), hasta: hoy };
+    }
+    case 'mes': {
+      const [y, m] = hoy.split('-');
+      return { desde: `${y}-${m}-01`, hasta: hoy };
+    }
+    case 'custom': { const f = fechaCustom || hoy; return { desde: f, hasta: f }; }
+    case 'todo':
+    default: return { desde: null, hasta: null };
   }
 }
+
 function registroEnRango(r, rango){
   const f = r.fechaLocal || derivarFechaLocal(r.fecha);
   if (rango.desde && f < rango.desde) return false;
   if (rango.hasta && f > rango.hasta) return false;
   return true;
 }
+
 function normalizarFechas(){
-  let c=false;
-  registros.forEach(r => { if(!r.fechaLocal){ r.fechaLocal=derivarFechaLocal(r.fecha); c=true; } });
-  if (c) guardarLS();
+  let cambio = false;
+  registros.forEach(r => {
+    if (!r.fechaLocal){ r.fechaLocal = derivarFechaLocal(r.fecha); cambio = true; }
+  });
+  if (cambio) guardarLS();
 }
+
 let toastTimer;
 function toast(msg, ms=2000){
-  const t=$('#toast'); t.textContent=msg; t.classList.add('ver');
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('ver');
   clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('ver'), ms);
+  toastTimer = setTimeout(() => t.classList.remove('ver'), ms);
 }
-function overlay(m, txt, prog, sub){
-  const ov=$('#overlay');
-  if (txt!==undefined) $('#overlayTxt').textContent=txt;
-  if (sub!==undefined) $('#overlaySub').textContent=sub;
-  if (prog!==undefined) $('#overlayBarra').style.width=prog+'%';
-  if (m && prog===undefined) $('#overlayBarra').style.width='0%';
-  ov.classList.toggle('ver', !!m);
+
+function overlay(mostrar, txt, progreso, sub){
+  const ov = $('#overlay');
+  if (txt !== undefined) $('#overlayTxt').textContent = txt;
+  if (sub !== undefined) $('#overlaySub').textContent = sub;
+  if (progreso !== undefined) $('#overlayBarra').style.width = progreso + '%';
+  if (mostrar && progreso === undefined) $('#overlayBarra').style.width = '0%';
+  ov.classList.toggle('ver', !!mostrar);
 }
+
 function copiar(txt){
   if(!txt) return;
   const ok = () => toast('✅ Copiado');
   if(navigator.clipboard && window.isSecureContext){
-    navigator.clipboard.writeText(txt).then(ok).catch(fb);
-  } else fb();
-  function fb(){
-    const ta=document.createElement('textarea');
-    ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+    navigator.clipboard.writeText(txt).then(ok).catch(fallback);
+  } else fallback();
+  function fallback(){
+    const ta = document.createElement('textarea');
+    ta.value = txt; ta.style.position='fixed'; ta.style.opacity='0';
     document.body.appendChild(ta); ta.select();
     try{ document.execCommand('copy'); ok(); }catch(e){ toast('No se pudo copiar'); }
     ta.remove();
   }
 }
 
+/* ============ TIENDAS CON COLORES ============ */
 function cargarTiendas(){
   try{
-    const g = JSON.parse(localStorage.getItem(TIENDAS_STORE) || 'null');
-    if (Array.isArray(g) && g.length){
-      if (typeof g[0]==='string'){
-        tiendas = g.map((n,i) => ({ nombre:n, color: PALETA_COLORES[i%PALETA_COLORES.length].valor }));
+    const guardadas = JSON.parse(localStorage.getItem(TIENDAS_STORE) || 'null');
+    if (Array.isArray(guardadas) && guardadas.length){
+      // Formato viejo: array de strings → migrar a {nombre, color}
+      if (typeof guardadas[0] === 'string'){
+        tiendas = guardadas.map((n, i) => ({
+          nombre: n,
+          color: PALETA_COLORES[i % PALETA_COLORES.length].valor
+        }));
         guardarTiendas();
-      } else tiendas = g;
-    } else tiendas = TIENDAS_DEFAULT.slice();
+      } else {
+        tiendas = guardadas;
+      }
+    } else {
+      tiendas = TIENDAS_DEFAULT.slice();
+    }
   }catch(e){ tiendas = TIENDAS_DEFAULT.slice(); }
 }
+
+/* Elimina una sola vez las tiendas por defecto antiguas (Tecno, Kiosko Máx)
+   siempre que NO tengan teléfonos registrados en el inventario. */
 const TIENDAS_LIMPIEZA_KEY = 'claro_tiendas_limpieza_v1';
 function limpiarTiendasAntiguas(){
-  if (localStorage.getItem(TIENDAS_LIMPIEZA_KEY)==='1') return;
-  localStorage.setItem(TIENDAS_LIMPIEZA_KEY,'1');
-  const ant=['Tecno','Kiosko Máx'];
-  const a=tiendas.length;
-  tiendas=tiendas.filter(t => !(ant.includes(t.nombre) && !inventario.some(m => m.tienda===t.nombre)));
-  if (tiendas.length !== a) guardarTiendas();
+  if (localStorage.getItem(TIENDAS_LIMPIEZA_KEY) === '1') return;
+  localStorage.setItem(TIENDAS_LIMPIEZA_KEY, '1');
+  const antiguas = ['Tecno', 'Kiosko Máx'];
+  const antes = tiendas.length;
+  tiendas = tiendas.filter(t =>
+    !(antiguas.includes(t.nombre) && !inventario.some(m => m.tienda === t.nombre))
+  );
+  if (tiendas.length !== antes) guardarTiendas();
 }
-function guardarTiendas(){ try{ localStorage.setItem(TIENDAS_STORE, JSON.stringify(tiendas)); }catch(e){} }
-function colorDeTienda(n){ const t=tiendas.find(x => x.nombre===n); return t?t.color:'#DA291C'; }
-function nombreTiendas(){ return tiendas.map(t => t.nombre); }
 
-function cargarInventario(){
-  try{ inventario = JSON.parse(localStorage.getItem(INV_STORE) || '[]'); }catch(e){ inventario=[]; }
-  if (!Array.isArray(inventario)) inventario=[];
-  inventarioBloqueado = localStorage.getItem(INV_BLOQ_STORE)==='1';
+function guardarTiendas(){
+  try{ localStorage.setItem(TIENDAS_STORE, JSON.stringify(tiendas)); }catch(e){}
 }
-function guardarInventario(){ try{ localStorage.setItem(INV_STORE, JSON.stringify(inventario)); return true; }catch(e){ toast('⚠️ No se pudo guardar'); return false; } }
-function guardarEstadoBloqueo(){ if (inventarioBloqueado) localStorage.setItem(INV_BLOQ_STORE,'1'); else localStorage.removeItem(INV_BLOQ_STORE); }
+function colorDeTienda(nombre){
+  const t = tiendas.find(x => x.nombre === nombre);
+  return t ? t.color : '#DA291C';
+}
+function nombreTiendas(){
+  return tiendas.map(t => t.nombre);
+}
+
+/* ============ INVENTARIO ============ */
+function cargarInventario(){
+  try{ inventario = JSON.parse(localStorage.getItem(INV_STORE) || '[]'); }
+  catch(e){ inventario = []; }
+  if (!Array.isArray(inventario)) inventario = [];
+  inventarioBloqueado = localStorage.getItem(INV_BLOQ_STORE) === '1';
+}
+function guardarInventario(){
+  try{ localStorage.setItem(INV_STORE, JSON.stringify(inventario)); return true; }
+  catch(e){ toast('⚠️ No se pudo guardar'); return false; }
+}
+function guardarEstadoBloqueo(){
+  if (inventarioBloqueado) localStorage.setItem(INV_BLOQ_STORE, '1');
+  else localStorage.removeItem(INV_BLOQ_STORE);
+}
 
 function renderEstadoInventario(){
-  const c=$('#inv-estado'); if(!c) return;
-  const total = inventario.reduce((s,m) => s+(Number(m.cantidad)||0), 0);
-  const n = inventario.length;
+  const cont = $('#inv-estado');
+  if (!cont) return;
+  const total = inventario.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
+  const totalModelos = inventario.length;
+
   if (inventarioBloqueado){
-    c.innerHTML = `<div class="inv-estado bloqueado"><span class="ico">🔒</span><div class="txt"><b>Inventario guardado y bloqueado</b><small>${n} ${n===1?'modelo':'modelos'} · ${total} en stock. Toca <b>✏️ Editar inventario</b> para modificar.</small></div></div>`;
+    cont.innerHTML = `
+      <div class="inv-estado bloqueado">
+        <span class="ico">🔒</span>
+        <div class="txt">
+          <b>Inventario guardado</b>
+          <small>${totalModelos} ${totalModelos === 1 ? 'modelo' : 'modelos'} · ${total} en stock. Toca "Desbloquear" para editar.</small>
+        </div>
+      </div>`;
   } else {
-    c.innerHTML = `<div class="inv-estado abierto"><span class="ico">✏️</span><div class="txt"><b>Modo edición</b><small>Agrega o modifica teléfonos y tiendas. Toca <b>💾 Guardar inventario</b> al terminar.</small></div></div>`;
+    cont.innerHTML = `
+      <div class="inv-estado abierto">
+        <span class="ico">✏️</span>
+        <div class="txt">
+          <b>Modo edición</b>
+          <small>Agrega o modifica teléfonos. Toca <b>💾 Guardar inventario</b> al terminar.</small>
+        </div>
+      </div>`;
   }
 }
+
 function renderBotonesInv(){
-  const bA=$('#btnAgregarInv'), bG=$('#btnGuardarInv'), bD=$('#btnDesbloquearInv'), bT=$('#btnAgregarTienda');
+  const btnAgregar = $('#btnAgregarInv');
+  const btnGuardar = $('#btnGuardarInv');
+  const btnDesbloquear = $('#btnDesbloquearInv');
+
   if (inventarioBloqueado){
-    if(bA) bA.style.display='none';
-    if(bG) bG.style.display='none';
-    if(bD) bD.style.display='flex';
-    if(bT) bT.style.display='none';
+    if (btnAgregar) btnAgregar.style.display = 'none';
+    if (btnGuardar) btnGuardar.style.display = 'none';
+    if (btnDesbloquear) btnDesbloquear.style.display = 'flex';
   } else {
-    if(bA) bA.style.display='flex';
-    if(bG) bG.style.display='flex';
-    if(bD) bD.style.display='none';
-    if(bT) bT.style.display='flex';
+    if (btnAgregar) btnAgregar.style.display = 'flex';
+    if (btnGuardar) btnGuardar.style.display = 'flex';
+    if (btnDesbloquear) btnDesbloquear.style.display = 'none';
   }
 }
+
 function guardarInventarioBloqueado(){
-  if (!inventario.length && !tiendas.length){ toast('⚠️ No hay nada que guardar'); return; }
-  if (!confirm('💾 Guardar inventario\n\nSe va a BLOQUEAR hasta que toques "✏️ Editar inventario".\n\n¿Continuar?')) return;
+  if (!inventario.length){ toast('⚠️ No hay teléfonos para guardar'); return; }
+  if (!confirm('¿Guardar el inventario?\n\nNo podrás agregar más teléfonos hasta que lo desbloquees.')) return;
   inventarioBloqueado = true;
   guardarEstadoBloqueo();
+  renderEstadoInventario();
+  renderBotonesInv();
   renderInventario();
-  toast('🔒 Guardado y bloqueado', 2400);
+  toast('✅ Inventario guardado y bloqueado', 2400);
 }
+
 function desbloquearInventario(){
-  if (!confirm('✏️ Editar inventario\n\nSe DESBLOQUEARÁ para modificar. ¿Continuar?')) return;
+  if (!confirm('¿Desbloquear el inventario para editarlo otra vez?')) return;
   inventarioBloqueado = false;
   guardarEstadoBloqueo();
+  renderEstadoInventario();
+  renderBotonesInv();
   renderInventario();
-  toast('🔓 Desbloqueado');
+  toast('🔓 Desbloqueado. Ya puedes editar.');
 }
-function renderTiendaFiltros(){
-  const c=$('#tienda-filtros'); if(!c) return;
-  if (!tiendas.length){ c.innerHTML=''; return; }
-  const lista = ['todas'].concat(nombreTiendas());
-  c.innerHTML = lista.map(t => {
-    const act = filtroTienda===t;
-    if (t==='todas'){
-      const bg = act?'background:#DA291C;color:#fff;border-color:transparent':'';
-      const pb = act?'#fff':'#DA291C';
-      return `<button class="tienda-filtro" style="${bg}" onclick="cambiarFiltroTienda('todas')"><span class="punto" style="background:${pb}"></span>Todas</button>`;
-    }
-    const color = colorDeTienda(t);
-    const bg = act?`background:${color};color:#fff;border-color:transparent`:'';
-    const pb = act?'#fff':color;
-    return `<button class="tienda-filtro" style="${bg}" onclick="cambiarFiltroTienda('${esc(t)}')"><span class="punto" style="background:${pb}"></span>${esc(t)}</button>`;
-  }).join('');
-}
-function cambiarFiltroTienda(t){ filtroTienda=t; renderTiendaFiltros(); renderInventario(); }
 
-function renderGestionTiendas(){
-  const c=document.getElementById('tiendas-gestion-lista'); if(!c) return;
-  if (!tiendas.length){ c.innerHTML=`<div class="tienda-gestion-vacio">Aún no hay tiendas.<br>Toca <b>➕ Agregar tienda</b>.</div>`; return; }
-  if (inventarioBloqueado){
-    c.innerHTML = tiendas.map(t => `<div class="tienda-gestion-item" style="opacity:.75;background:#f9fafb"><span class="punto" style="background:${t.color}"></span><span class="nombre">${esc(t.nombre)}</span><span style="font-size:14px;color:#9aa3ad">🔒</span></div>`).join('');
+function renderTiendaFiltros(){
+  const cont = $('#tienda-filtros');
+  if (!cont) return;
+  if (!tiendas.length){
+    cont.innerHTML = '';
     return;
   }
-  c.innerHTML = tiendas.map((t,i) => `<div class="tienda-gestion-item"><span class="punto" style="background:${t.color}"></span><span class="nombre">${esc(t.nombre)}</span><button class="mini" onclick="abrirColorModalIdx(${i})">🎨</button><button class="mini del" onclick="eliminarTiendaIdx(${i})">🗑️</button></div>`).join('');
+  const lista = ['todas'].concat(nombreTiendas());
+  cont.innerHTML = lista.map(t => {
+    const activo = filtroTienda === t;
+    if (t === 'todas'){
+      const bg = activo ? 'background:#DA291C;color:#fff;border-color:transparent' : '';
+      const puntoBg = activo ? '#fff' : '#DA291C';
+      return `<button class="tienda-filtro" style="${bg}" onclick="cambiarFiltroTienda('todas')">
+        <span class="punto" style="background:${puntoBg}"></span>
+        Todas
+      </button>`;
+    }
+    const color = colorDeTienda(t);
+    const bg = activo ? `background:${color};color:#fff;border-color:transparent` : '';
+    const puntoBg = activo ? '#fff' : color;
+    return `<button class="tienda-filtro" style="${bg}" onclick="cambiarFiltroTienda('${esc(t)}')">
+      <span class="punto" style="background:${puntoBg}"></span>
+      ${esc(t)}
+    </button>`;
+  }).join('');
 }
-function abrirColorModalIdx(i){ const t=tiendas[i]; if(t) abrirColorModal(t.nombre); }
-function eliminarTiendaIdx(i){ const t=tiendas[i]; if(t) eliminarTienda(t.nombre); }
+
+function cambiarFiltroTienda(t){
+  filtroTienda = t;
+  renderTiendaFiltros();
+  renderInventario();
+}
+
+/* ===== Panel de gestión de tiendas ===== */
+function renderGestionTiendas(){
+  const cont = document.getElementById('tiendas-gestion-lista');
+  if (!cont) return;
+
+  if (!tiendas.length){
+    cont.innerHTML = `<div class="tienda-gestion-vacio">
+      Aún no hay tiendas.<br>Toca <b>➕ Agregar tienda</b> para crear la primera.
+    </div>`;
+    return;
+  }
+
+  cont.innerHTML = tiendas.map((t, i) => `
+    <div class="tienda-gestion-item">
+      <span class="punto" style="background:${t.color}"></span>
+      <span class="nombre">${esc(t.nombre)}</span>
+      <button class="mini" title="Cambiar color" onclick="abrirColorModalIdx(${i})">🎨</button>
+      <button class="mini del" title="Eliminar tienda" onclick="eliminarTiendaIdx(${i})">🗑️</button>
+    </div>
+  `).join('');
+}
+
+function abrirColorModalIdx(i){
+  const t = tiendas[i];
+  if (t) abrirColorModal(t.nombre);
+}
+
+function eliminarTiendaIdx(i){
+  const t = tiendas[i];
+  if (t) eliminarTienda(t.nombre);
+}
+
 function eliminarTienda(nombre){
-  if (inventarioBloqueado){ toast('🔒 Bloqueado'); return; }
-  const t=tiendas.find(x => x.nombre===nombre); if(!t) return;
-  const en=inventario.filter(m => m.tienda===nombre);
-  const tot=en.reduce((s,m) => s+(Number(m.cantidad)||0), 0);
-  if (en.length){
-    if (!confirm(`"${nombre}" tiene ${en.length} modelo(s) con ${tot} equipo(s).\n\nSe eliminarán también.\n\n¿Continuar?`)) return;
-    inventario = inventario.filter(m => m.tienda!==nombre);
+  const t = tiendas.find(x => x.nombre === nombre);
+  if (!t) return;
+
+  const enTienda = inventario.filter(m => m.tienda === nombre);
+  const totalEquipos = enTienda.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
+
+  if (enTienda.length){
+    if (!confirm(`"${nombre}" tiene ${enTienda.length} modelo(s) con ${totalEquipos} equipo(s) en stock.\n\nSi eliminas la tienda, también se eliminarán esos teléfonos del inventario.\n\n¿Continuar?`)) return;
+    inventario = inventario.filter(m => m.tienda !== nombre);
     guardarInventario();
   } else {
     if (!confirm(`¿Eliminar la tienda "${nombre}"?`)) return;
   }
-  tiendas = tiendas.filter(x => x.nombre!==nombre);
+
+  tiendas = tiendas.filter(x => x.nombre !== nombre);
   guardarTiendas();
-  if (filtroTienda===nombre) filtroTienda='todas';
+  if (filtroTienda === nombre) filtroTienda = 'todas';
   renderInventario();
   toast('🗑️ Tienda eliminada');
 }
 
 function renderInventario(){
-  const c=$('#inv-lista'); if(!c) return;
-  const total = inventario.reduce((s,m) => s+(Number(m.cantidad)||0), 0);
+  const cont = $('#inv-lista');
+  if (!cont) return;
+
+  const total = inventario.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
   $('#inv-total-num').textContent = total;
-  const mini=$('#inv-mini-stats');
-  if (mini){
+
+  // Mini stats con colores
+  const miniStats = $('#inv-mini-stats');
+  if (miniStats){
     if (tiendas.length){
-      mini.innerHTML = tiendas.map(t => {
-        const s=inventario.filter(m => m.tienda===t.nombre).reduce((a,m) => a+(Number(m.cantidad)||0), 0);
-        return `<div><span class="punto" style="background:${t.color}"></span><b>${s}</b>${esc(t.nombre)}</div>`;
+      miniStats.innerHTML = tiendas.map(t => {
+        const suma = inventario.filter(m => m.tienda === t.nombre).reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
+        return `<div><span class="punto" style="background:${t.color}"></span><b>${suma}</b>${esc(t.nombre)}</div>`;
       }).join('');
-    } else mini.innerHTML='';
+    } else {
+      miniStats.innerHTML = '';
+    }
   }
-  renderTiendaFiltros(); renderGestionTiendas(); renderEstadoInventario(); renderBotonesInv();
+
+  renderTiendaFiltros();
+  renderGestionTiendas();
+  renderEstadoInventario();
+  renderBotonesInv();
+
   let lista = inventario.slice();
-  if (filtroTienda!=='todas') lista = lista.filter(m => m.tienda===filtroTienda);
+  if (filtroTienda !== 'todas') lista = lista.filter(m => m.tienda === filtroTienda);
+
   if (!lista.length){
-    const sinT = !tiendas.length;
-    c.innerHTML = `<div class="vacio"><span class="em">📦</span>${sinT?'Aún no hay tiendas.<br>Crea una con <b>➕ Agregar tienda</b>.':(filtroTienda==='todas'?'No hay teléfonos.<br>Toca <b>➕ Agregar teléfono</b>.':`No hay teléfonos en <b>${esc(filtroTienda)}</b>.`)}</div>`;
+    const sinTiendas = !tiendas.length;
+    cont.innerHTML = `
+      <div class="vacio">
+        <span class="em">📦</span>
+        ${sinTiendas
+          ? 'Aún no hay tiendas.<br>Crea una con <b>➕ Agregar tienda</b> y después agrega teléfonos.'
+          : (filtroTienda === 'todas'
+              ? 'No hay teléfonos en el inventario.<br>Toca <b>➕ Agregar teléfono</b>.'
+              : `No hay teléfonos en <b>${esc(filtroTienda)}</b>.`)}
+      </div>`;
     return;
   }
-  const grupos={};
-  lista.forEach(m => { const t=m.tienda||'Sin tienda'; if(!grupos[t]) grupos[t]=[]; grupos[t].push(m); });
-  const orden = Object.keys(grupos).sort((a,b) => a.localeCompare(b,'es'));
+
+  const grupos = {};
+  lista.forEach(m => {
+    const t = m.tienda || 'Sin tienda';
+    if (!grupos[t]) grupos[t] = [];
+    grupos[t].push(m);
+  });
+
+  const ordenTiendas = Object.keys(grupos).sort((a, b) => a.localeCompare(b, 'es'));
   const bloq = inventarioBloqueado;
-  c.innerHTML = orden.map(t => {
-    const items = grupos[t].sort((a,b) => a.modelo.localeCompare(b.modelo,'es'));
-    const suma = items.reduce((s,m) => s+(Number(m.cantidad)||0), 0);
+
+  cont.innerHTML = ordenTiendas.map(t => {
+    const items = grupos[t].sort((a, b) => a.modelo.localeCompare(b.modelo, 'es'));
+    const sumaGrupo = items.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
     const color = colorDeTienda(t);
-    return `<div class="inv-grupo"><div class="inv-grupo-header" style="background:${color}"><div class="lado-izq"><span>🏪 ${esc(t)}${bloq?' 🔒':''}</span>${bloq?'':`<button class="btn-color" onclick="abrirColorModal('${esc(t)}')">🎨</button>`}</div><span class="n">${suma}</span></div>${items.map(m => `<div class="inv-item ${bloq?'bloqueado':''}" style="border-left:4px solid ${color}"><div style="display:flex;align-items:center;gap:10px"><div class="inv-nombre">${esc(m.modelo)}</div><div class="inv-controles"><button class="inv-btn inv-menos" onclick="cambiarStock('${m.id}',-1)" ${bloq?'disabled':''}>−</button><input type="number" class="inv-cant" value="${Number(m.cantidad)||0}" min="0" onchange="setStockDirecto('${m.id}',this.value)" ${bloq?'disabled':''}><button class="inv-btn inv-mas" onclick="cambiarStock('${m.id}',1)" ${bloq?'disabled':''}>+</button></div></div><div class="inv-acciones"><button class="inv-edit" onclick="abrirInvModalEditar('${m.id}')" ${bloq?'disabled':''}>✏️ Editar</button><button class="inv-mover" onclick="abrirInvModalMover('${m.id}')" ${bloq?'disabled':''}>🏪 Mover</button><button class="inv-del" onclick="eliminarModeloInv('${m.id}')" ${bloq?'disabled':''}>🗑️ Eliminar</button></div></div>`).join('')}</div>`;
+    return `
+      <div class="inv-grupo">
+        <div class="inv-grupo-header" style="background:${color}">
+          <div class="lado-izq">
+            <span>🏪 ${esc(t)}</span>
+            <button class="btn-color" onclick="abrirColorModal('${esc(t)}')" title="Cambiar color">🎨</button>
+          </div>
+          <span class="n">${sumaGrupo}</span>
+        </div>
+        ${items.map(m => `
+          <div class="inv-item ${bloq ? 'bloqueado' : ''}" style="border-left:4px solid ${color}">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="inv-nombre">${esc(m.modelo)}</div>
+              <div class="inv-controles">
+                <button class="inv-btn inv-menos" onclick="cambiarStock('${m.id}', -1)" ${bloq ? 'disabled' : ''}>−</button>
+                <input type="number" class="inv-cant" value="${Number(m.cantidad) || 0}" min="0"
+                       onchange="setStockDirecto('${m.id}', this.value)" onfocus="this.select()" ${bloq ? 'disabled' : ''}>
+                <button class="inv-btn inv-mas" onclick="cambiarStock('${m.id}', 1)" ${bloq ? 'disabled' : ''}>+</button>
+              </div>
+            </div>
+            <div class="inv-acciones">
+              <button class="inv-edit" onclick="abrirInvModalEditar('${m.id}')" ${bloq ? 'disabled' : ''}>✏️ Editar</button>
+              <button class="inv-mover" onclick="abrirInvModalMover('${m.id}')" ${bloq ? 'disabled' : ''}>🏪 Mover</button>
+              <button class="inv-del" onclick="eliminarModeloInv('${m.id}')" ${bloq ? 'disabled' : ''}>🗑️ Eliminar</button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
   }).join('');
 }
-function cambiarStock(id,d){
-  if (inventarioBloqueado){ toast('🔒 Bloqueado'); return; }
-  const m=inventario.find(x => x.id===id); if(!m) return;
-  m.cantidad = Math.max(0, (Number(m.cantidad)||0)+d);
-  guardarInventario(); renderInventario();
+
+function cambiarStock(id, delta){
+  if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); return; }
+  const m = inventario.find(x => x.id === id);
+  if (!m) return;
+  m.cantidad = Math.max(0, (Number(m.cantidad) || 0) + delta);
+  guardarInventario();
+  renderInventario();
+  if (navigator.vibrate){ try{ navigator.vibrate(15); }catch(e){} }
 }
-function setStockDirecto(id,v){
-  if (inventarioBloqueado){ toast('🔒 Bloqueado'); renderInventario(); return; }
-  const m=inventario.find(x => x.id===id); if(!m) return;
-  m.cantidad = Math.max(0, Math.floor(Number(v)||0));
-  guardarInventario(); renderInventario();
+
+function setStockDirecto(id, valor){
+  if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); renderInventario(); return; }
+  const m = inventario.find(x => x.id === id);
+  if (!m) return;
+  m.cantidad = Math.max(0, Math.floor(Number(valor) || 0));
+  guardarInventario();
+  renderInventario();
 }
+
 function eliminarModeloInv(id){
-  if (inventarioBloqueado){ toast('🔒 Bloqueado'); return; }
-  const m=inventario.find(x => x.id===id); if(!m) return;
+  if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); return; }
+  const m = inventario.find(x => x.id === id);
+  if (!m) return;
   if (!confirm(`¿Eliminar "${m.modelo}" de ${m.tienda}?`)) return;
-  inventario = inventario.filter(x => x.id!==id);
-  guardarInventario(); renderInventario();
+  inventario = inventario.filter(x => x.id !== id);
+  guardarInventario();
+  renderInventario();
   toast('🗑️ Eliminado');
 }
-let _tiendaColorActual='';
-function abrirColorModal(n){
-  if (inventarioBloqueado){ toast('🔒 Bloqueado'); return; }
-  _tiendaColorActual=n;
-  const act=colorDeTienda(n);
-  $('#colorModalBox').innerHTML = `<h3>🎨 Color de "${esc(n)}"</h3><p class="sub">Toca un color.</p><div class="paleta">${PALETA_COLORES.map(c => `<button class="color-opt ${c.valor.toLowerCase()===act.toLowerCase()?'activo':''}" style="background:${c.valor}" onclick="setColorTienda('${c.valor}')"></button>`).join('')}</div><div class="btns"><button onclick="cerrarColorModal()">Cerrar</button></div>`;
+
+/* ========== MODAL CAMBIAR COLOR ========== */
+let _tiendaColorActual = '';
+function abrirColorModal(nombreTienda){
+  _tiendaColorActual = nombreTienda;
+  const actual = colorDeTienda(nombreTienda);
+  $('#colorModalBox').innerHTML = `
+    <h3>🎨 Color de "${esc(nombreTienda)}"</h3>
+    <p class="sub">Toca un color para asignarlo a esta tienda.</p>
+    <div class="paleta">
+      ${PALETA_COLORES.map(c => `
+        <button class="color-opt ${c.valor.toLowerCase() === actual.toLowerCase() ? 'activo' : ''}"
+                style="background:${c.valor}"
+                onclick="setColorTienda('${c.valor}')"
+                title="${esc(c.nombre)}"></button>
+      `).join('')}
+    </div>
+    <div class="btns">
+      <button onclick="cerrarColorModal()">Cerrar</button>
+    </div>
+  `;
   $('#colorModal').classList.add('ver');
 }
-function setColorTienda(c){
-  if (inventarioBloqueado){ toast('🔒 Bloqueado'); return; }
-  const t=tiendas.find(x => x.nombre===_tiendaColorActual); if(!t) return;
-  t.color=c; guardarTiendas(); cerrarColorModal(); renderInventario();
+
+function setColorTienda(color){
+  const t = tiendas.find(x => x.nombre === _tiendaColorActual);
+  if (!t) return;
+  t.color = color;
+  guardarTiendas();
+  cerrarColorModal();
+  renderInventario();
   toast('✅ Color actualizado');
 }
-function cerrarColorModal(){ $('#colorModal').classList.remove('ver'); }
 
+function cerrarColorModal(){
+  $('#colorModal').classList.remove('ver');
+}
+
+/* ========== MODAL AGREGAR/EDITAR TELÉFONO ========== */
 function abrirInvModalNuevo(){
-  if (inventarioBloqueado){ toast('🔒 Bloqueado'); return; }
-  if (!tiendas.length){ toast('⚠️ Agrega una tienda primero', 2600); return; }
+  if (inventarioBloqueado){ toast('🔒 Desbloquea primero el inventario'); return; }
+  if (!tiendas.length){ toast('⚠️ Agrega una tienda primero', 2600); ir('inventario'); return; }
   abrirInvModal(null);
 }
 function abrirInvModalEditar(id){
-  if (inventarioBloqueado){ toast('🔒 Bloqueado'); return; }
-  const m=inventario.find(x => x.id===id); if(!m) return;
+  if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); return; }
+  const m = inventario.find(x => x.id === id);
+  if (!m) return;
   abrirInvModal(m);
 }
 function abrirInvModal(m){
-  if (inventarioBloqueado){ toast('🔒 Bloqueado'); return; }
-  const ed = !!m;
-  const modeloActual = m?m.modelo:'';
-  const tiendaActual = m?m.tienda:(tiendas[0]?tiendas[0].nombre:'');
-  const cantActual = m?(Number(m.cantidad)||0):0;
-  $('#invModalBox').innerHTML = `<h3>${ed?'✏️ Editar teléfono':'➕ Agregar teléfono'}</h3><div class="campo"><label>Modelo</label><input id="inv-f-modelo" type="text" placeholder="Ej: Redmi 15..." value="${esc(modeloActual)}"></div><div class="campo"><label>Tienda</label><div class="tiendas-lista" id="inv-tiendas-lista"></div></div><div class="campo"><label>Cantidad</label><div style="display:flex;align-items:center;gap:8px"><button type="button" class="inv-btn inv-menos" onclick="invModalCant(-1)">−</button><input id="inv-f-cant" type="number" min="0" value="${cantActual}" style="flex:1;text-align:center;font-size:20px;font-weight:900;font-family:monospace;padding:14px;border:2px solid var(--line);border-radius:12px"><button type="button" class="inv-btn inv-mas" onclick="invModalCant(1)">+</button></div></div><div class="btns"><button class="cancelar" onclick="cerrarInvModal()">Cancelar</button><button class="guardar" onclick="guardarInvModal(${ed?`'${m.id}'`:'null'})">${ed?'💾 Guardar':'✅ Agregar'}</button></div>`;
+  const editando = !!m;
+  const modeloActual = m ? m.modelo : '';
+  const tiendaActual = m ? m.tienda : (tiendas[0] ? tiendas[0].nombre : '');
+  const cantActual = m ? (Number(m.cantidad) || 0) : 0;
+
+  $('#invModalBox').innerHTML = `
+    <h3>${editando ? '✏️ Editar teléfono' : '➕ Agregar teléfono'}</h3>
+
+    <div class="campo">
+      <label>Modelo</label>
+      <input id="inv-f-modelo" type="text" placeholder="Ej: Redmi 15, Samsung A05..." value="${esc(modeloActual)}" autocapitalize="words">
+    </div>
+
+    <div class="campo">
+      <label>Tienda</label>
+      <div class="tiendas-lista" id="inv-tiendas-lista"></div>
+      <button type="button" class="btn btn-gris" style="margin-top:10px;padding:12px;font-size:14px" onclick="agregarNuevaTienda()">➕ Agregar nueva tienda</button>
+    </div>
+
+    <div class="campo">
+      <label>Cantidad</label>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button type="button" class="inv-btn inv-menos" onclick="invModalCant(-1)">−</button>
+        <input id="inv-f-cant" type="number" min="0" value="${cantActual}" style="flex:1;text-align:center;font-size:20px;font-weight:900;font-family:monospace;padding:14px;border:2px solid var(--line);border-radius:12px">
+        <button type="button" class="inv-btn inv-mas" onclick="invModalCant(1)">+</button>
+      </div>
+    </div>
+
+    <div class="btns">
+      <button class="cancelar" onclick="cerrarInvModal()">Cancelar</button>
+      <button class="guardar" onclick="guardarInvModal(${editando ? `'${m.id}'` : 'null'})">
+        ${editando ? '💾 Guardar' : '✅ Agregar'}
+      </button>
+    </div>
+  `;
+
   pintarTiendasModal(tiendaActual);
   $('#invModal').classList.add('ver');
-  setTimeout(() => { const i=$('#inv-f-modelo'); if(i) i.focus(); }, 100);
-}
-let _tiendaSeleccionada='';
-function pintarTiendasModal(sel){
-  _tiendaSeleccionada = sel || (tiendas[0]?tiendas[0].nombre:'');
-  const c=$('#inv-tiendas-lista'); if(!c) return;
-  if (!tiendas.length){ c.innerHTML=`<div style="font-size:13px;color:#9aa3ad;padding:6px 2px">No hay tiendas todavía.</div>`; return; }
-  c.innerHTML = tiendas.map(t => {
-    const a = t.nombre===_tiendaSeleccionada;
-    const bg = a?t.color:'#fff';
-    const ct = a?'#fff':'#17191c';
-    const bd = a?'transparent':'#e6e8eb';
-    return `<button type="button" class="tienda-chip" style="background:${bg};color:${ct};border-color:${bd}" onclick="seleccionarTienda('${esc(t.nombre)}')"><span class="punto" style="background:${a?'#fff':t.color}"></span>${esc(t.nombre)}</button>`;
-  }).join('');
-}
-function seleccionarTienda(t){ _tiendaSeleccionada=t; pintarTiendasModal(t); }
-function agregarNuevaTienda(){
-  if (inventarioBloqueado){ toast('🔒 Bloqueado'); return; }
-  const n=prompt('Nombre de la nueva tienda:'); if(n===null) return;
-  const l=n.trim(); if(!l){ toast('⚠️ Nombre vacío'); return; }
-  if (tiendas.some(t => t.nombre.toLowerCase()===l.toLowerCase())){ toast('⚠️ Ya existe'); return; }
-  const usados = tiendas.map(t => t.color.toLowerCase());
-  const disp = PALETA_COLORES.find(c => !usados.includes(c.valor.toLowerCase()));
-  tiendas.push({ nombre:l, color: disp?disp.valor:PALETA_COLORES[0].valor });
-  guardarTiendas(); renderInventario();
-  toast('✅ Tienda agregada');
-}
-function invModalCant(d){ const i=$('#inv-f-cant'); if(!i) return; i.value=Math.max(0, (Number(i.value)||0)+d); }
-function cerrarInvModal(){ $('#invModal').classList.remove('ver'); }
-function guardarInvModal(id){
-  if (inventarioBloqueado){ toast('🔒 Bloqueado'); cerrarInvModal(); return; }
-  const modelo = ($('#inv-f-modelo').value||'').trim();
-  const cant = Math.max(0, Math.floor(Number($('#inv-f-cant').value)||0));
-  const tienda = _tiendaSeleccionada || (tiendas[0]?tiendas[0].nombre:'');
-  if (!modelo){ toast('⚠️ Escribe el modelo'); return; }
-  if (!tienda){ toast('⚠️ Selecciona tienda'); return; }
-  const dup = inventario.find(m => m.id!==id && m.tienda.toLowerCase()===tienda.toLowerCase() && m.modelo.toLowerCase()===modelo.toLowerCase());
-  if (dup){ toast(`⚠️ "${modelo}" ya existe en ${tienda}`, 3200); return; }
-  if (id){
-    const m=inventario.find(x => x.id===id); if(!m){ cerrarInvModal(); return; }
-    m.modelo=modelo; m.tienda=tienda; m.cantidad=cant;
-    guardarInventario(); toast('✅ Actualizado');
-  } else {
-    inventario.push({ id:uid(), modelo, tienda, cantidad:cant });
-    guardarInventario(); toast('✅ Agregado');
-  }
-  cerrarInvModal(); renderInventario();
-}
-function abrirInvModalMover(id){
-  if (inventarioBloqueado){ toast('🔒 Bloqueado'); return; }
-  const m=inventario.find(x => x.id===id); if(!m) return;
-  const otras = tiendas.filter(t => t.nombre!==m.tienda);
-  if (!otras.length){ toast('⚠️ Solo tienes una tienda.'); return; }
-  const msg = `Mover "${m.modelo}" de ${m.tienda} a:\n\n` + otras.map((t,i) => `${i+1}. ${t.nombre}`).join('\n') + `\n\nEscribe el número:`;
-  const r = prompt(msg); if (r===null) return;
-  const idx = parseInt(r,10)-1;
-  if (isNaN(idx) || idx<0 || idx>=otras.length){ toast('⚠️ Opción inválida'); return; }
-  const dest = otras[idx].nombre;
-  const dup = inventario.find(x => x.id!==m.id && x.tienda===dest && x.modelo.toLowerCase()===m.modelo.toLowerCase());
-  if (dup){
-    if (!confirm(`"${m.modelo}" ya existe en ${dest}. ¿Juntar cantidades?`)) return;
-    dup.cantidad = (Number(dup.cantidad)||0) + (Number(m.cantidad)||0);
-    inventario = inventario.filter(x => x.id!==m.id);
-  } else m.tienda = dest;
-  guardarInventario(); renderInventario();
-  toast('✅ Movido a '+dest);
+  setTimeout(() => { const inp = $('#inv-f-modelo'); if (inp) inp.focus(); }, 100);
 }
 
+let _tiendaSeleccionada = '';
+function pintarTiendasModal(seleccionada){
+  _tiendaSeleccionada = seleccionada || (tiendas[0] ? tiendas[0].nombre : '');
+  const cont = $('#inv-tiendas-lista');
+  if (!cont) return;
+
+  if (!tiendas.length){
+    cont.innerHTML = `<div style="font-size:13px;color:#9aa3ad;padding:6px 2px;line-height:1.5">
+      No hay tiendas todavía. Toca <b>➕ Agregar nueva tienda</b> para crear una.
+    </div>`;
+    return;
+  }
+
+  cont.innerHTML = tiendas.map(t => {
+    const activo = t.nombre === _tiendaSeleccionada;
+    const bg = activo ? t.color : '#fff';
+    const colorTexto = activo ? '#fff' : '#17191c';
+    const borde = activo ? 'transparent' : '#e6e8eb';
+    return `<button type="button" class="tienda-chip" style="background:${bg};color:${colorTexto};border-color:${borde}" onclick="seleccionarTienda('${esc(t.nombre)}')">
+      <span class="punto" style="background:${activo ? '#fff' : t.color}"></span>
+      ${esc(t.nombre)}
+    </button>`;
+  }).join('');
+}
+function seleccionarTienda(t){
+  _tiendaSeleccionada = t;
+  pintarTiendasModal(t);
+}
+function agregarNuevaTienda(){
+  const nueva = prompt('Nombre de la nueva tienda:');
+  if (nueva === null) return;
+  const limpio = nueva.trim();
+  if (!limpio){ toast('⚠️ Nombre vacío'); return; }
+  if (tiendas.some(t => t.nombre.toLowerCase() === limpio.toLowerCase())){
+    toast('⚠️ Ya existe esa tienda');
+    const modal = document.getElementById('invModal');
+    if (modal && modal.classList.contains('ver')) seleccionarTienda(limpio);
+    return;
+  }
+
+  // Asignar un color de la paleta que aún no esté en uso
+  const usados = tiendas.map(t => t.color.toLowerCase());
+  const disponible = PALETA_COLORES.find(c => !usados.includes(c.valor.toLowerCase()));
+  const colorNuevo = disponible ? disponible.valor : PALETA_COLORES[0].valor;
+
+  tiendas.push({ nombre: limpio, color: colorNuevo });
+  guardarTiendas();
+
+  // Si el modal de teléfono está abierto, refrescar sus chips
+  const modal = document.getElementById('invModal');
+  if (modal && modal.classList.contains('ver')) pintarTiendasModal(limpio);
+
+  renderInventario();
+  toast('✅ Tienda agregada');
+}
+function invModalCant(delta){
+  const inp = $('#inv-f-cant');
+  if (!inp) return;
+  inp.value = Math.max(0, (Number(inp.value) || 0) + delta);
+}
+function cerrarInvModal(){
+  $('#invModal').classList.remove('ver');
+}
+function guardarInvModal(id){
+  const modelo = ($('#inv-f-modelo').value || '').trim();
+  const cant = Math.max(0, Math.floor(Number($('#inv-f-cant').value) || 0));
+  const tienda = _tiendaSeleccionada || (tiendas[0] ? tiendas[0].nombre : '');
+
+  if (!modelo){ toast('⚠️ Escribe el modelo'); $('#inv-f-modelo').focus(); return; }
+  if (!tienda){ toast('⚠️ Selecciona la tienda'); return; }
+
+  const dup = inventario.find(m =>
+    m.id !== id &&
+    m.tienda.toLowerCase() === tienda.toLowerCase() &&
+    m.modelo.toLowerCase() === modelo.toLowerCase()
+  );
+  if (dup){
+    toast(`⚠️ "${modelo}" ya existe en ${tienda}`, 3200);
+    return;
+  }
+
+  if (id){
+    const m = inventario.find(x => x.id === id);
+    if (!m){ cerrarInvModal(); return; }
+    m.modelo = modelo;
+    m.tienda = tienda;
+    m.cantidad = cant;
+    guardarInventario();
+    toast('✅ Actualizado');
+  } else {
+    inventario.push({ id: uid(), modelo, tienda, cantidad: cant });
+    guardarInventario();
+    toast('✅ Agregado');
+  }
+  cerrarInvModal();
+  renderInventario();
+}
+
+function abrirInvModalMover(id){
+  if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); return; }
+  const m = inventario.find(x => x.id === id);
+  if (!m) return;
+  const otras = tiendas.filter(t => t.nombre !== m.tienda);
+  if (!otras.length){
+    toast('⚠️ Solo tienes una tienda. Agrega otra primero.');
+    return;
+  }
+  const msg = `Mover "${m.modelo}" de ${m.tienda} a:\n\n` +
+              otras.map((t, i) => `${i+1}. ${t.nombre}`).join('\n') +
+              `\n\nEscribe el número:`;
+  const r = prompt(msg);
+  if (r === null) return;
+  const idx = parseInt(r, 10) - 1;
+  if (isNaN(idx) || idx < 0 || idx >= otras.length){ toast('⚠️ Opción inválida'); return; }
+  const destino = otras[idx].nombre;
+  const dup = inventario.find(x =>
+    x.id !== m.id &&
+    x.tienda === destino &&
+    x.modelo.toLowerCase() === m.modelo.toLowerCase()
+  );
+  if (dup){
+    if (!confirm(`"${m.modelo}" ya existe en ${destino}. ¿Juntar las cantidades?`)) return;
+    dup.cantidad = (Number(dup.cantidad) || 0) + (Number(m.cantidad) || 0);
+    inventario = inventario.filter(x => x.id !== m.id);
+  } else {
+    m.tienda = destino;
+  }
+  guardarInventario();
+  renderInventario();
+  toast('✅ Movido a ' + destino);
+}
+
+/* Vista previa */
 function mostrarVistaPrevia(){
-  const total = inventario.reduce((s,m) => s+(Number(m.cantidad)||0), 0);
+  const total = inventario.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
   const fecha = new Date().toLocaleString('es-MX', {day:'2-digit', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit'});
+
   let contenido = '';
   if (!inventario.length){
-    contenido = `<tr><td colspan="2" style="text-align:center;color:#9aa3ad;padding:24px">Sin teléfonos</td></tr>`;
+    contenido = `<tr><td colspan="2" style="text-align:center;color:#9aa3ad;padding:24px">Sin teléfonos registrados</td></tr>`;
   } else {
-    const g={};
-    inventario.forEach(m => { const t=m.tienda||'Sin tienda'; if(!g[t]) g[t]=[]; g[t].push(m); });
-    const o=Object.keys(g).sort((a,b) => a.localeCompare(b,'es'));
-    contenido = o.map(t => {
-      const items=g[t].sort((a,b) => a.modelo.localeCompare(b.modelo,'es'));
-      const sub=items.reduce((s,m) => s+(Number(m.cantidad)||0), 0);
-      const color=colorDeTienda(t);
-      return `<div class="grupo"><div class="grupo-titulo" style="background:${color}"><span>🏪 ${esc(t)}</span><span>${sub}</span></div><table><thead><tr><th>Modelo</th><th style="text-align:center;width:80px">Cant.</th></tr></thead><tbody>${items.map(m => `<tr><td>${esc(m.modelo)}</td><td class="cant">${Number(m.cantidad)||0}</td></tr>`).join('')}</tbody></table></div>`;
+    const grupos = {};
+    inventario.forEach(m => {
+      const t = m.tienda || 'Sin tienda';
+      if (!grupos[t]) grupos[t] = [];
+      grupos[t].push(m);
+    });
+    const ordenTiendas = Object.keys(grupos).sort((a, b) => a.localeCompare(b, 'es'));
+    contenido = ordenTiendas.map(t => {
+      const items = grupos[t].sort((a, b) => a.modelo.localeCompare(b.modelo, 'es'));
+      const subtotal = items.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
+      const color = colorDeTienda(t);
+      return `
+        <div class="grupo">
+          <div class="grupo-titulo" style="background:${color}">
+            <span>🏪 ${esc(t)}</span>
+            <span>${subtotal}</span>
+          </div>
+          <table>
+            <thead><tr><th>Modelo</th><th style="text-align:center;width:80px">Cant.</th></tr></thead>
+            <tbody>
+              ${items.map(m => `<tr><td>${esc(m.modelo)}</td><td class="cant">${Number(m.cantidad) || 0}</td></tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
     }).join('');
   }
-  const estado = inventarioBloqueado?'<div style="background:#d1fae5;color:#065f46;padding:8px 12px;border-radius:10px;text-align:center;font-size:12px;font-weight:800;margin-bottom:12px">🔒 INVENTARIO BLOQUEADO</div>':'';
-  $('#previewBox').innerHTML = `<h3>📋 Inventario actual</h3><div class="fecha">Actualizado: ${esc(fecha)}</div>${estado}${contenido}${inventario.length?`<div class="gran-total"><div class="t">Total general</div><div class="n">${total}</div></div>`:''}<div class="acciones"><button class="seg" onclick="cerrarPreview()">Cerrar</button><button class="prim" onclick="copiarInventarioTexto()">📋 Copiar</button></div>`;
+
+  const estado = inventarioBloqueado
+    ? `<div style="background:#d1fae5;color:#065f46;padding:8px 12px;border-radius:10px;text-align:center;font-size:12px;font-weight:800;margin-bottom:12px">🔒 INVENTARIO GUARDADO</div>`
+    : '';
+
+  $('#previewBox').innerHTML = `
+    <h3>📋 Inventario actual</h3>
+    <div class="fecha">Actualizado: ${esc(fecha)}</div>
+    ${estado}
+    ${contenido}
+    ${inventario.length ? `
+      <div class="gran-total">
+        <div class="t">Total general</div>
+        <div class="n">${total}</div>
+      </div>
+    ` : ''}
+    <div class="acciones">
+      <button class="seg" onclick="cerrarPreview()">Cerrar</button>
+      <button class="prim" onclick="copiarInventarioTexto()">📋 Copiar</button>
+    </div>
+  `;
   $('#previewModal').classList.add('ver');
 }
-function cerrarPreview(){ $('#previewModal').classList.remove('ver'); }
+
+function cerrarPreview(){
+  $('#previewModal').classList.remove('ver');
+}
+
 function copiarInventarioTexto(){
   if (!inventario.length){ toast('Sin datos'); return; }
-  const g={};
-  inventario.forEach(m => { const t=m.tienda||'Sin tienda'; if(!g[t]) g[t]=[]; g[t].push(m); });
-  const o=Object.keys(g).sort((a,b) => a.localeCompare(b,'es'));
-  const total=inventario.reduce((s,m) => s+(Number(m.cantidad)||0), 0);
-  let txt='📦 INVENTARIO\n\n';
-  o.forEach(t => {
-    const items=g[t].sort((a,b) => a.modelo.localeCompare(b.modelo,'es'));
-    const sub=items.reduce((s,m) => s+(Number(m.cantidad)||0), 0);
-    txt+=`🏪 ${t}\n`;
-    items.forEach(m => { txt+=`  ${m.modelo}: ${Number(m.cantidad)||0}\n`; });
-    txt+=`  Subtotal: ${sub}\n\n`;
+  const grupos = {};
+  inventario.forEach(m => {
+    const t = m.tienda || 'Sin tienda';
+    if (!grupos[t]) grupos[t] = [];
+    grupos[t].push(m);
   });
-  txt+=`Total: ${total}`;
+  const ordenTiendas = Object.keys(grupos).sort((a, b) => a.localeCompare(b, 'es'));
+  const total = inventario.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
+  let txt = '📦 INVENTARIO\n\n';
+  ordenTiendas.forEach(t => {
+    const items = grupos[t].sort((a, b) => a.modelo.localeCompare(b.modelo, 'es'));
+    const subtotal = items.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
+    txt += `🏪 ${t}\n`;
+    items.forEach(m => { txt += `  ${m.modelo}: ${Number(m.cantidad) || 0}\n`; });
+    txt += `  Subtotal: ${subtotal}\n\n`;
+  });
+  txt += `Total: ${total}`;
   copiar(txt);
 }
 
-/* ====== EXPORTACIÓN (SOLO COMPARTIR O COPIAR) ====== */
-function generarCSVInventario(){
-  const f=[['Tienda','Modelo','Cantidad']];
-  inventario.slice().sort((a,b) => {
-    const t=(a.tienda||'').localeCompare(b.tienda||'','es'); if(t!==0) return t;
-    return a.modelo.localeCompare(b.modelo,'es');
-  }).forEach(m => f.push([m.tienda||'', m.modelo, Number(m.cantidad)||0]));
-  f.push([]);
-  const total=inventario.reduce((s,m) => s+(Number(m.cantidad)||0), 0);
-  f.push(['TOTAL','',total]);
-  return f.map(x => x.map(c => `"${String(c ?? '').replace(/"/g,'""')}"`).join(',')).join('\r\n');
-}
-function generarCSVRegistros(){
-  const f=[['Tipo','Numero','IMSI','IMEI','Nota','Fecha','Dia','Foto chip','Foto equipo']];
-  registros.slice().sort((a,b) => new Date(b.fecha)-new Date(a.fecha)).forEach(r => {
-    const c=r.fotoChip||(r.tipo==='chip'?r.foto:null);
-    const e=r.fotoEquipo||(r.tipo==='telefono'?r.foto:null);
-    f.push([r.tipo==='chip'?'Chip':'Telefono', r.numero, r.imsi||'', r.imei||'', r.nota||'', fmt(r.fecha), r.fechaLocal||derivarFechaLocal(r.fecha), c?'Si':'No', e?'Si':'No']);
+function exportarInventarioCSV(){
+  if (!inventario.length) return toast('Sin datos para exportar');
+  const filas = [['Tienda','Modelo','Cantidad']];
+  inventario.slice().sort((a, b) => {
+    const t = (a.tienda || '').localeCompare(b.tienda || '', 'es');
+    if (t !== 0) return t;
+    return a.modelo.localeCompare(b.modelo, 'es');
+  }).forEach(m => {
+    filas.push([m.tienda || '', m.modelo, Number(m.cantidad) || 0]);
   });
-  return f.map(x => x.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\r\n');
-}
-async function exportarInventarioCSV(){
-  if (!inventario.length) return toast('Sin datos');
-  await intentarCompartir(generarCSVInventario(), 'inventario_claro.csv', '📊 Inventario');
-}
-async function exportarCSV(){
-  if (!registros.length) return toast('Sin registros');
-  await intentarCompartir(generarCSVRegistros(), 'registros_claro.csv', '📊 Registros');
-}
-async function exportarJSON(){
-  const data = { app:'Registro Claro', version:12, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado };
-  await intentarCompartir(JSON.stringify(data), 'respaldo_claro.json', '📦 Respaldo');
-}
-async function intentarCompartir(contenido, nombre, titulo){
-  const esCSV = nombre.endsWith('.csv');
-  const tipo = esCSV ? 'text/csv;charset=utf-8' : 'application/json;charset=utf-8';
-  const blob = new Blob([esCSV?'\ufeff'+contenido:contenido], { type: tipo });
-  const file = new File([blob], nombre, { type: tipo });
-  if (navigator.canShare && navigator.canShare({ files: [file] })){
-    try { await navigator.share({ files: [file], title: titulo }); toast('✅ Compartido'); return; }
-    catch(e){ if (e && e.name==='AbortError') return; }
-  }
-  abrirExportModal(titulo, contenido, nombre);
-}
-function abrirExportModal(titulo, contenido, nombre){
-  $('#exportBox').innerHTML = `<h3>${esc(titulo)}</h3><p class="sub">Tu dispositivo no permite compartir archivos. Puedes <b>copiar el contenido</b> y pegarlo donde quieras (WhatsApp, Notas, Sheets).</p><div class="nombre-archivo">📄 ${esc(nombre)}</div><textarea readonly onclick="this.select()">${esc(contenido.substring(0,4000))}${contenido.length>4000?'\n…':''}</textarea><div class="acciones"><button class="b-compartir" onclick="exportReintentarShare()">📤 Reintentar compartir</button><button class="b-copiar" onclick="exportCopiarTodo()">📋 Copiar al portapapeles</button><button class="b-cerrar" onclick="cerrarExportModal()">Cancelar</button></div>`;
-  window._exportActual = { contenido, nombre, titulo };
-  $('#exportModal').classList.add('ver');
-}
-function cerrarExportModal(){ $('#exportModal').classList.remove('ver'); window._exportActual=null; }
-async function exportReintentarShare(){
-  if (!window._exportActual) return;
-  const { contenido, nombre, titulo } = window._exportActual;
-  const esCSV = nombre.endsWith('.csv');
-  const tipo = esCSV ? 'text/csv;charset=utf-8' : 'application/json;charset=utf-8';
-  const blob = new Blob([esCSV?'\ufeff'+contenido:contenido], { type: tipo });
-  const file = new File([blob], nombre, { type: tipo });
-  if (navigator.canShare && navigator.canShare({ files: [file] })){
-    try { await navigator.share({ files: [file], title: titulo }); toast('✅ Compartido'); cerrarExportModal(); return; }
-    catch(e){ if (e && e.name==='AbortError') return; }
-  }
-  if (navigator.share){
-    try { await navigator.share({ title: titulo, text: contenido }); toast('✅ Compartido como texto'); cerrarExportModal(); return; }
-    catch(e){ if (e && e.name==='AbortError') return; }
-  }
-  toast('⚠️ No se puede compartir');
-}
-function exportCopiarTodo(){
-  if (!window._exportActual) return;
-  copiar(window._exportActual.contenido);
-  cerrarExportModal();
+  filas.push([]);
+  const total = inventario.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
+  filas.push(['TOTAL', '', total]);
+
+  const csv = filas.map(f => f.map(c => `"${String(c ?? '').replace(/"/g, '""')}"`).join(',')).join('\r\n');
+  descargar(new Blob(['\ufeff' + csv], {type:'text/csv;charset=utf-8'}), 'inventario_claro.csv');
+  toast('📊 Inventario exportado');
 }
 
+/* ============ STORAGE GENERAL ============ */
 function cargar(){
-  try{ registros = JSON.parse(localStorage.getItem(STORE)||'[]'); }catch(e){ registros=[]; }
+  try{ registros = JSON.parse(localStorage.getItem(STORE) || '[]'); }
+  catch(e){ registros = []; }
   normalizarFechas();
   cargarInventario();
   cargarTiendas();
@@ -929,56 +1250,86 @@ function cargar(){
 }
 function guardarLS(){
   try{ localStorage.setItem(STORE, JSON.stringify(registros)); return true; }
-  catch(e){ alert('⚠️ Almacenamiento lleno.\n\nExporta tus datos desde "Respaldo".'); return false; }
+  catch(e){
+    alert('⚠️ El almacenamiento del celular está lleno.\n\nVe a "Respaldo" y exporta tus datos, luego borra registros antiguos.');
+    return false;
+  }
 }
+
 function cerrarTodo(){
   $('#overlay').classList.remove('ver');
-  $('#overlayBarra').style.width='0%';
+  $('#overlayBarra').style.width = '0%';
   $('#selectorModal').classList.remove('ver');
   $('#previewModal').classList.remove('ver');
   $('#invModal').classList.remove('ver');
   $('#colorModal').classList.remove('ver');
-  $('#exportModal').classList.remove('ver');
-  const crop=document.getElementById('cropModal'); if(crop) crop.remove();
-  _selectorCallback=null;
+  const crop = document.getElementById('cropModal');
+  if (crop) crop.remove();
+  _selectorCallback = null;
   cerrarCamara();
-  ['#inpGaleriaChip','#inpGaleriaIMEI','#inpGaleriaEquipo'].forEach(s => { const el=$(s); if(el) el.value=''; });
+  ['#inpGaleriaChip','#inpGaleriaIMEI','#inpGaleriaEquipo'].forEach(sel => {
+    const el = $(sel); if (el) el.value = '';
+  });
 }
-function limpiarEstadoFormulario(){ editId=null; fotoChipTemp=null; fotoEquipoTemp=null; }
-function volverAlInicio(msg){ cerrarTodo(); limpiarEstadoFormulario(); ir('home'); if(msg) setTimeout(() => toast(msg), 60); }
+
+function limpiarEstadoFormulario(){
+  editId = null;
+  fotoChipTemp = null;
+  fotoEquipoTemp = null;
+}
+
+function volverAlInicio(mensajeToast){
+  cerrarTodo();
+  limpiarEstadoFormulario();
+  ir('home');
+  if (mensajeToast) setTimeout(() => toast(mensajeToast), 60);
+}
+
 function ir(vista){
   $$('.vista').forEach(v => v.classList.remove('activa'));
-  $('#vista-'+vista).classList.add('activa');
-  $$('.nav button').forEach(b => b.classList.toggle('activo', b.dataset.v===vista));
-  const c=document.getElementById('appScroll'); if(c) c.scrollTop=0;
-  if (vista==='home') renderLista();
-  if (vista==='fotos') renderFotos();
-  if (vista==='inventario') renderInventario();
+  $('#vista-' + vista).classList.add('activa');
+  $$('.nav button').forEach(b => b.classList.toggle('activo', b.dataset.v === vista));
+  window.scrollTo(0, 0);
+  if(vista === 'home')        renderLista();
+  if(vista === 'fotos')       renderFotos();
+  if(vista === 'inventario')  renderInventario();
 }
 $$('.nav button').forEach(b => b.onclick = () => ir(b.dataset.v));
+
 $$('.filtro').forEach(btn => {
   btn.onclick = () => {
     $$('.filtro').forEach(b => b.classList.remove('activo'));
     btn.classList.add('activo');
     filtroFecha = btn.dataset.f;
-    if (filtroFecha!=='custom'){ fechaCustom=null; $('#fechaPicker').value=''; $('#btnLimpiarFecha').style.display='none'; }
+    if (filtroFecha !== 'custom'){
+      fechaCustom = null;
+      $('#fechaPicker').value = '';
+      $('#btnLimpiarFecha').style.display = 'none';
+    }
     renderLista();
   };
 });
-$('#fechaPicker').addEventListener('change', e => {
-  const v=e.target.value; if(!v) return;
-  fechaCustom=v; filtroFecha='custom';
+
+$('#fechaPicker').addEventListener('change', (e) => {
+  const val = e.target.value;
+  if (!val) return;
+  fechaCustom = val;
+  filtroFecha = 'custom';
   $$('.filtro').forEach(b => b.classList.remove('activo'));
-  $('#btnLimpiarFecha').style.display='block';
-  renderLista();
-});
-$('#btnLimpiarFecha').addEventListener('click', () => {
-  fechaCustom=null; $('#fechaPicker').value=''; $('#btnLimpiarFecha').style.display='none';
-  filtroFecha='hoy';
-  $$('.filtro').forEach(b => b.classList.toggle('activo', b.dataset.f==='hoy'));
+  $('#btnLimpiarFecha').style.display = 'block';
   renderLista();
 });
 
+$('#btnLimpiarFecha').addEventListener('click', () => {
+  fechaCustom = null;
+  $('#fechaPicker').value = '';
+  $('#btnLimpiarFecha').style.display = 'none';
+  filtroFecha = 'hoy';
+  $$('.filtro').forEach(b => b.classList.toggle('activo', b.dataset.f === 'hoy'));
+  renderLista();
+});
+
+/* ZXing worker */
 function precargarTodo(){
   if (!window.ZXing && !window._zxingPrecargado){
     window._zxingPrecargado = true;
@@ -986,18 +1337,20 @@ function precargarTodo(){
     s.src = 'https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js';
     document.head.appendChild(s);
   }
-  initZXingWorker(); getBarcodeDetector();
-  setTimeout(() => { try{ if(window.ZXing) new ZXing.MultiFormatReader(); }catch(e){} }, 400);
+  initZXingWorker();
+  getBarcodeDetector();
+  setTimeout(() => { try { if (window.ZXing) new ZXing.MultiFormatReader(); } catch(e){} }, 400);
 }
-let _barcodeDetector=null, _barcodeDetectorIntentado=false;
+let _barcodeDetector = null, _barcodeDetectorIntentado = false;
 function getBarcodeDetector(){
   if (_barcodeDetectorIntentado) return _barcodeDetector;
   _barcodeDetectorIntentado = true;
   if (!('BarcodeDetector' in window)) return null;
   try{
-    const fmts=['code_128','code_39','code_93','itf','ean_13','ean_8','upc_a','upc_e','codabar','qr_code'];
-    try{ _barcodeDetector = new BarcodeDetector({ formats: fmts }); }catch(e){ _barcodeDetector = new BarcodeDetector(); }
-  }catch(e){ _barcodeDetector=null; }
+    const formatos = ['code_128','code_39','code_93','itf','ean_13','ean_8','upc_a','upc_e','codabar','qr_code'];
+    try{ _barcodeDetector = new BarcodeDetector({ formats: formatos }); }
+    catch(e){ _barcodeDetector = new BarcodeDetector(); }
+  }catch(e){ _barcodeDetector = null; }
   return _barcodeDetector;
 }
 const ZXING_WORKER_CODE = `
@@ -1007,7 +1360,7 @@ self.onmessage = function(e){
   try{
     const data = new Uint8ClampedArray(imageData);
     const rgb = new Int32Array(width * height);
-    for (let i=0, j=0; i<rgb.length; i++, j+=4){ rgb[i]=(data[j]<<16)|(data[j+1]<<8)|data[j+2]; }
+    for (let i = 0, j = 0; i < rgb.length; i++, j += 4){ rgb[i] = (data[j] << 16) | (data[j+1] << 8) | data[j+2]; }
     const source = new self.ZXing.RGBLuminanceSource(rgb, width, height);
     const reader = new self.ZXing.MultiFormatReader();
     const hints = new Map();
@@ -1020,230 +1373,318 @@ self.onmessage = function(e){
     ]);
     hints.set(self.ZXing.DecodeHintType.TRY_HARDER, true);
     let texto = null;
-    try{ const bm = new self.ZXing.BinaryBitmap(new self.ZXing.HybridBinarizer(source)); texto = reader.decode(bm, hints).getText(); }catch(err){}
+    try{
+      const bitmap = new self.ZXing.BinaryBitmap(new self.ZXing.HybridBinarizer(source));
+      texto = reader.decode(bitmap, hints).getText();
+    }catch(err){}
     self.postMessage({ id, texto });
   }catch(err){ self.postMessage({ id, error: String(err && err.message || err) }); }
 };
 `;
-let _zxingWorker=null, _zxingWorkerIntentado=false, _zxingMsgId=0;
-const _zxingPendientes=new Map();
+let _zxingWorker = null, _zxingWorkerIntentado = false, _zxingMsgId = 0;
+const _zxingPendientes = new Map();
 function initZXingWorker(){
   if (_zxingWorker || _zxingWorkerIntentado) return _zxingWorker;
-  _zxingWorkerIntentado=true;
+  _zxingWorkerIntentado = true;
   try{
     if (!window.Worker || !window.Blob || !window.URL) return null;
-    const blob=new Blob([ZXING_WORKER_CODE], { type:'application/javascript' });
-    _zxingWorker=new Worker(URL.createObjectURL(blob));
-    _zxingWorker.onmessage = e => { const { id, texto, error }=e.data||{}; const cb=_zxingPendientes.get(id); if(cb){ _zxingPendientes.delete(id); cb(texto||null, error||null); } };
-    _zxingWorker.onerror = () => { _zxingPendientes.forEach(cb => cb(null,'worker_error')); _zxingPendientes.clear(); _zxingWorker=null; };
+    const blob = new Blob([ZXING_WORKER_CODE], { type: 'application/javascript' });
+    _zxingWorker = new Worker(URL.createObjectURL(blob));
+    _zxingWorker.onmessage = (e) => {
+      const { id, texto, error } = e.data || {};
+      const cb = _zxingPendientes.get(id);
+      if (cb){ _zxingPendientes.delete(id); cb(texto || null, error || null); }
+    };
+    _zxingWorker.onerror = () => {
+      _zxingPendientes.forEach(cb => cb(null, 'worker_error'));
+      _zxingPendientes.clear();
+      _zxingWorker = null;
+    };
     return _zxingWorker;
-  }catch(e){ _zxingWorker=null; return null; }
+  }catch(e){ _zxingWorker = null; return null; }
 }
 function decodificarEnWorker(canvas, timeoutMs){
-  return new Promise(resolve => {
-    const worker=initZXingWorker(); if(!worker) return resolve(null);
+  return new Promise((resolve) => {
+    const worker = initZXingWorker();
+    if (!worker) return resolve(null);
     let imageData;
-    try{ imageData=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height); }catch(e){ return resolve(null); }
-    const id=++_zxingMsgId;
-    let resuelto=false;
-    const tid=setTimeout(() => { if(!resuelto){ resuelto=true; _zxingPendientes.delete(id); resolve(null); } }, timeoutMs);
-    _zxingPendientes.set(id, texto => { if(resuelto) return; resuelto=true; clearTimeout(tid); resolve(texto); });
-    try{ const buf=imageData.data.buffer; worker.postMessage({ id, imageData: buf, width: canvas.width, height: canvas.height }, [buf]); }
-    catch(e){ if(!resuelto){ resuelto=true; clearTimeout(tid); _zxingPendientes.delete(id); resolve(null); } }
+    try{ imageData = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height); }
+    catch(e){ return resolve(null); }
+    const id = ++_zxingMsgId;
+    let resuelto = false;
+    const timeoutId = setTimeout(() => {
+      if (!resuelto){ resuelto = true; _zxingPendientes.delete(id); resolve(null); }
+    }, timeoutMs);
+    _zxingPendientes.set(id, (texto) => {
+      if (resuelto) return;
+      resuelto = true; clearTimeout(timeoutId); resolve(texto);
+    });
+    try{
+      const buffer = imageData.data.buffer;
+      worker.postMessage({ id, imageData: buffer, width: canvas.width, height: canvas.height }, [buffer]);
+    }catch(e){
+      if (!resuelto){ resuelto = true; clearTimeout(timeoutId); _zxingPendientes.delete(id); resolve(null); }
+    }
   });
 }
 
-let _camStream=null, _camCallback=null, _camFacing='environment';
-function tomarFoto(t, cb){ _camCallback=cb; _camFacing='environment'; abrirCamaraModal(t||'Tomar foto'); }
+/* Cámara */
+let _camStream = null, _camCallback = null, _camFacing = 'environment';
+function tomarFoto(titulo, callback){ _camCallback = callback; _camFacing = 'environment'; abrirCamaraModal(titulo || 'Tomar foto'); }
 async function abrirCamaraModal(titulo){
-  const p=document.getElementById('camModal'); if(p) p.remove();
-  const m=document.createElement('div');
-  m.id='camModal';
-  m.innerHTML=`<div class="top"><button onclick="cerrarCamara()">✕</button><div class="titulo">${esc(titulo)}</div><button onclick="cambiarCamara()">🔄</button></div><div class="view" id="camView"><video id="camVideo" autoplay playsinline muted></video></div><div class="bottom"><button class="btn-lado" onclick="cerrarCamara()">✕</button><button class="shutter" onclick="capturarCamara()">CAPTURAR</button><button class="btn-lado" onclick="cambiarCamara()">🔄</button></div>`;
-  document.body.appendChild(m);
-  try{ await abrirStreamCamara(_camFacing); }catch(err){ mostrarErrorCamara(explicarErrorCamara(err)); }
+  const previo = document.getElementById('camModal');
+  if (previo) previo.remove();
+  const modal = document.createElement('div');
+  modal.id = 'camModal';
+  modal.innerHTML = `
+    <div class="top">
+      <button onclick="cerrarCamara()">✕</button>
+      <div class="titulo">${esc(titulo)}</div>
+      <button onclick="cambiarCamara()">🔄</button>
+    </div>
+    <div class="view" id="camView"><video id="camVideo" autoplay playsinline muted></video></div>
+    <div class="bottom">
+      <button class="btn-lado" onclick="cerrarCamara()">✕</button>
+      <button class="shutter" onclick="capturarCamara()">CAPTURAR</button>
+      <button class="btn-lado" onclick="cambiarCamara()">🔄</button>
+    </div>`;
+  document.body.appendChild(modal);
+  try{ await abrirStreamCamara(_camFacing); }
+  catch(err){ mostrarErrorCamara(explicarErrorCamara(err)); }
 }
 async function abrirStreamCamara(facing){
-  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error('Sin cámara.');
-  if (_camStream){ _camStream.getTracks().forEach(t => t.stop()); _camStream=null; }
-  _camStream=await navigator.mediaDevices.getUserMedia({ audio:false, video:{ facingMode:{ ideal: facing }, width:{ ideal:1920 }, height:{ ideal:1080 } } });
-  const v=document.getElementById('camVideo'); if(!v) return;
-  v.srcObject=_camStream; await v.play().catch(()=>{});
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error('Sin soporte de cámara.');
+  if (_camStream){ _camStream.getTracks().forEach(t => t.stop()); _camStream = null; }
+  _camStream = await navigator.mediaDevices.getUserMedia({
+    audio: false,
+    video: { facingMode: { ideal: facing }, width: { ideal: 1920 }, height: { ideal: 1080 } }
+  });
+  const video = document.getElementById('camVideo');
+  if (!video) return;
+  video.srcObject = _camStream;
+  await video.play().catch(() => {});
 }
-async function cambiarCamara(){ _camFacing = (_camFacing==='environment')?'user':'environment'; try{ await abrirStreamCamara(_camFacing); }catch(e){ toast('⚠️ No se pudo'); } }
+async function cambiarCamara(){
+  _camFacing = (_camFacing === 'environment') ? 'user' : 'environment';
+  try{ await abrirStreamCamara(_camFacing); } catch(e){ toast('⚠️ No se pudo'); }
+}
 function capturarCamara(){
-  const v=document.getElementById('camVideo'); if(!v) return;
-  const w=v.videoWidth, h=v.videoHeight;
+  const video = document.getElementById('camVideo');
+  if (!video) return;
+  const w = video.videoWidth, h = video.videoHeight;
   if (!w || !h){ toast('⚠️ Cámara no lista'); return; }
-  const view=document.getElementById('camView');
-  if (view){ const f=document.createElement('div'); f.className='flash'; view.appendChild(f); setTimeout(() => f.remove(), 250); }
+  const view = document.getElementById('camView');
+  if (view){
+    const flash = document.createElement('div');
+    flash.className = 'flash'; view.appendChild(flash);
+    setTimeout(() => flash.remove(), 250);
+  }
   if (navigator.vibrate){ try{ navigator.vibrate(30); }catch(e){} }
-  const c=document.createElement('canvas'); c.width=w; c.height=h;
-  c.getContext('2d').drawImage(v,0,0,w,h);
-  const d=c.toDataURL('image/jpeg',0.9);
-  const cb=_camCallback; cerrarCamara();
-  if (cb) setTimeout(() => cb(d), 30);
+  const c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  c.getContext('2d').drawImage(video, 0, 0, w, h);
+  const dataUrl = c.toDataURL('image/jpeg', 0.9);
+  const cb = _camCallback;
+  cerrarCamara();
+  if (cb) setTimeout(() => cb(dataUrl), 30);
 }
-function mostrarErrorCamara(m){ const v=document.getElementById('camView'); if(!v) return; v.innerHTML=`<div class="error"><span class="em">📷</span><h3>No se pudo abrir la cámara</h3><p>${esc(m)}</p><button onclick="cerrarCamara()">Cerrar</button></div>`; }
-function explicarErrorCamara(e){ const n=e && e.name||''; if(n==='NotAllowedError'||n==='PermissionDeniedError') return 'Permiso denegado.'; if(n==='NotFoundError') return 'No hay cámara.'; if(n==='NotReadableError') return 'Cámara en uso.'; return (e&&e.message)||'Error.'; }
-function cerrarCamara(){ if(_camStream){ _camStream.getTracks().forEach(t => t.stop()); _camStream=null; } const m=document.getElementById('camModal'); if(m) m.remove(); _camCallback=null; }
+function mostrarErrorCamara(motivo){
+  const view = document.getElementById('camView');
+  if (!view) return;
+  view.innerHTML = `<div class="error"><span class="em">📷</span><h3>No se pudo abrir la cámara</h3><p>${esc(motivo)}</p><button onclick="cerrarCamara()">Cerrar</button></div>`;
+}
+function explicarErrorCamara(err){
+  const n = err && err.name ? err.name : '';
+  if (n === 'NotAllowedError' || n === 'PermissionDeniedError') return 'Permiso denegado.';
+  if (n === 'NotFoundError') return 'No hay cámara.';
+  if (n === 'NotReadableError') return 'Cámara en uso.';
+  return (err && err.message) || 'Error.';
+}
+function cerrarCamara(){
+  if (_camStream){ _camStream.getTracks().forEach(t => t.stop()); _camStream = null; }
+  const modal = document.getElementById('camModal');
+  if (modal) modal.remove();
+  _camCallback = null;
+}
 
-let _cropRect=null, _cropDrag=false;
-function abrirCropIMEI(d){ abrirCropGenerico(d,'Marca el código del IMEI','escanearCrop'); }
-function abrirCropChip(d){ abrirCropGenerico(d,'Marca el código del chip','escanearCropChip'); }
+/* Crop */
+let _cropRect = null, _cropDrag = false;
+function abrirCropIMEI(dataUrl){ abrirCropGenerico(dataUrl, 'Marca el código del IMEI', 'escanearCrop'); }
+function abrirCropChip(dataUrl){ abrirCropGenerico(dataUrl, 'Marca el código del chip', 'escanearCropChip'); }
 function abrirCropGenerico(dataUrl, titulo, fn){
-  const m=document.createElement('div');
-  m.id='cropModal';
-  m.innerHTML=`<div class="top"><button onclick="cerrarCrop()">✕</button><div class="titulo">${esc(titulo)}</div></div><div class="aviso">✏️ Arrastra el dedo sobre el código</div><div class="view" id="cropView"><img id="cropImg" src="${dataUrl}" draggable="false"><div class="sel" id="cropSel"></div></div><div class="bottom"><button class="sec" onclick="cerrarCrop()">✕</button><button class="prim" onclick="${fn}()">🔍 ESCANEAR</button></div>`;
-  document.body.appendChild(m);
+  const modal = document.createElement('div');
+  modal.id = 'cropModal';
+  modal.innerHTML = `
+    <div class="top"><button onclick="cerrarCrop()">✕</button><div class="titulo">${esc(titulo)}</div></div>
+    <div class="aviso">✏️ Arrastra el dedo sobre el código de barras</div>
+    <div class="view" id="cropView">
+      <img id="cropImg" src="${dataUrl}" draggable="false">
+      <div class="sel" id="cropSel"></div>
+    </div>
+    <div class="bottom">
+      <button class="sec" onclick="cerrarCrop()">✕</button>
+      <button class="prim" onclick="${fn}()">🔍 ESCANEAR</button>
+    </div>`;
+  document.body.appendChild(modal);
   configurarCropEvents();
 }
 function configurarCropEvents(){
-  const view=document.getElementById('cropView'), sel=document.getElementById('cropSel');
+  const view = document.getElementById('cropView');
+  const sel = document.getElementById('cropSel');
   if (!view || !sel) return;
-  function pv(e){ const r=view.getBoundingClientRect(); const t=e.touches?e.touches[0]:e; return { x:Math.max(0,Math.min(t.clientX-r.left,r.width)), y:Math.max(0,Math.min(t.clientY-r.top,r.height)) }; }
-  function pintar(){ if(!_cropRect){ sel.style.display='none'; return; } const x=Math.min(_cropRect.x0,_cropRect.x1), y=Math.min(_cropRect.y0,_cropRect.y1); const w=Math.abs(_cropRect.x1-_cropRect.x0), h=Math.abs(_cropRect.y1-_cropRect.y0); sel.style.display='block'; sel.style.left=x+'px'; sel.style.top=y+'px'; sel.style.width=w+'px'; sel.style.height=h+'px'; }
-  view.addEventListener('touchstart', e => { e.preventDefault(); const p=pv(e); _cropRect={ x0:p.x, y0:p.y, x1:p.x, y1:p.y }; _cropDrag=true; pintar(); }, { passive:false });
-  view.addEventListener('touchmove', e => { if(!_cropDrag) return; e.preventDefault(); const p=pv(e); _cropRect.x1=p.x; _cropRect.y1=p.y; pintar(); }, { passive:false });
-  view.addEventListener('touchend', () => { _cropDrag=false; });
-  view.addEventListener('mousedown', e => { const p=pv(e); _cropRect={ x0:p.x, y0:p.y, x1:p.x, y1:p.y }; _cropDrag=true; pintar(); });
-  view.addEventListener('mousemove', e => { if(!_cropDrag) return; const p=pv(e); _cropRect.x1=p.x; _cropRect.y1=p.y; pintar(); });
-  view.addEventListener('mouseup', () => { _cropDrag=false; });
+  function pv(e){ const r = view.getBoundingClientRect(); const t = e.touches ? e.touches[0] : e; return { x: Math.max(0, Math.min(t.clientX - r.left, r.width)), y: Math.max(0, Math.min(t.clientY - r.top, r.height)) }; }
+  function pintar(){
+    if (!_cropRect){ sel.style.display = 'none'; return; }
+    const x = Math.min(_cropRect.x0, _cropRect.x1), y = Math.min(_cropRect.y0, _cropRect.y1);
+    const w = Math.abs(_cropRect.x1 - _cropRect.x0), h = Math.abs(_cropRect.y1 - _cropRect.y0);
+    sel.style.display = 'block';
+    sel.style.left = x + 'px'; sel.style.top = y + 'px';
+    sel.style.width = w + 'px'; sel.style.height = h + 'px';
+  }
+  view.addEventListener('touchstart', e => { e.preventDefault(); const p = pv(e); _cropRect = { x0:p.x, y0:p.y, x1:p.x, y1:p.y }; _cropDrag = true; pintar(); }, { passive:false });
+  view.addEventListener('touchmove', e => { if(!_cropDrag) return; e.preventDefault(); const p = pv(e); _cropRect.x1 = p.x; _cropRect.y1 = p.y; pintar(); }, { passive:false });
+  view.addEventListener('touchend', () => { _cropDrag = false; });
+  view.addEventListener('mousedown', e => { const p = pv(e); _cropRect = { x0:p.x, y0:p.y, x1:p.x, y1:p.y }; _cropDrag = true; pintar(); });
+  view.addEventListener('mousemove', e => { if(!_cropDrag) return; const p = pv(e); _cropRect.x1 = p.x; _cropRect.y1 = p.y; pintar(); });
+  view.addEventListener('mouseup', () => { _cropDrag = false; });
 }
-function cerrarCrop(){ const m=document.getElementById('cropModal'); if(m) m.remove(); _cropRect=null; _cropDrag=false; }
+function cerrarCrop(){ const m = document.getElementById('cropModal'); if (m) m.remove(); _cropRect = null; _cropDrag = false; }
 function obtenerCropCanvas(){
-  const img=document.getElementById('cropImg'), view=document.getElementById('cropView');
-  const vr=view.getBoundingClientRect(), ir=img.getBoundingClientRect();
-  const eX=img.naturalWidth/ir.width, eY=img.naturalHeight/ir.height;
-  const oX=ir.left-vr.left, oY=ir.top-vr.top;
-  const x=Math.min(_cropRect.x0,_cropRect.x1)-oX;
-  const y=Math.min(_cropRect.y0,_cropRect.y1)-oY;
-  const w=Math.abs(_cropRect.x1-_cropRect.x0), h=Math.abs(_cropRect.y1-_cropRect.y0);
-  const cX=Math.max(0,Math.round(x*eX)), cY=Math.max(0,Math.round(y*eY));
-  const cW=Math.min(img.naturalWidth-cX,Math.round(w*eX));
-  const cH=Math.min(img.naturalHeight-cY,Math.round(h*eY));
-  if (cW<20 || cH<10) return null;
-  const scale=Math.min(3, 1600/cW);
-  const canvas=document.createElement('canvas');
-  canvas.width=Math.round(cW*scale); canvas.height=Math.round(cH*scale);
-  const ctx=canvas.getContext('2d'); ctx.imageSmoothingEnabled=false;
-  ctx.drawImage(img,cX,cY,cW,cH,0,0,canvas.width,canvas.height);
+  const img = document.getElementById('cropImg');
+  const view = document.getElementById('cropView');
+  const viewRect = view.getBoundingClientRect(), imgRect = img.getBoundingClientRect();
+  const escalaX = img.naturalWidth / imgRect.width, escalaY = img.naturalHeight / imgRect.height;
+  const offsetXImg = imgRect.left - viewRect.left, offsetYImg = imgRect.top - viewRect.top;
+  const x = Math.min(_cropRect.x0, _cropRect.x1) - offsetXImg;
+  const y = Math.min(_cropRect.y0, _cropRect.y1) - offsetYImg;
+  const w = Math.abs(_cropRect.x1 - _cropRect.x0), h = Math.abs(_cropRect.y1 - _cropRect.y0);
+  const cropX = Math.max(0, Math.round(x * escalaX)), cropY = Math.max(0, Math.round(y * escalaY));
+  const cropW = Math.min(img.naturalWidth - cropX, Math.round(w * escalaX));
+  const cropH = Math.min(img.naturalHeight - cropY, Math.round(h * escalaY));
+  if (cropW < 20 || cropH < 10) return null;
+  const scale = Math.min(3, 1600 / cropW);
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.round(cropW * scale); canvas.height = Math.round(cropH * scale);
+  const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, canvas.width, canvas.height);
   return canvas;
 }
-async function escanearCrop(){ if(!_cropRect){ toast('⚠️ Marca el código'); return; } const c=obtenerCropCanvas(); cerrarCrop(); if(!c){ toast('⚠️ Zona pequeña'); return; } await escanearCanvasRapido(c,'#f-imei'); }
-async function escanearCropChip(){ if(!_cropRect){ toast('⚠️ Marca el código'); return; } const c=obtenerCropCanvas(); cerrarCrop(); if(!c){ toast('⚠️ Zona pequeña'); return; } await escanearCanvasRapido(c,'#f-imsi'); }
+async function escanearCrop(){ if (!_cropRect){ toast('⚠️ Marca el código'); return; } const canvas = obtenerCropCanvas(); cerrarCrop(); if (!canvas){ toast('⚠️ Zona muy pequeña'); return; } await escanearCanvasRapido(canvas, '#f-imei'); }
+async function escanearCropChip(){ if (!_cropRect){ toast('⚠️ Marca el código'); return; } const canvas = obtenerCropCanvas(); cerrarCrop(); if (!canvas){ toast('⚠️ Zona muy pequeña'); return; } await escanearCanvasRapido(canvas, '#f-imsi'); }
 async function escanearCanvasRapido(canvas, campo){
-  overlay(true,'Escaneando…',40);
+  overlay(true, 'Escaneando…', 40);
   try{
-    let texto=null;
-    const det=getBarcodeDetector();
-    if (det){ try{ const codes=await det.detect(canvas); if(codes && codes.length) texto=codes[0].rawValue; }catch(e){} }
-    if (!texto) texto=await decodificarEnWorker(canvas, 2500);
+    let texto = null;
+    const det = getBarcodeDetector();
+    if (det){ try{ const codes = await det.detect(canvas); if (codes && codes.length) texto = codes[0].rawValue; }catch(e){} }
+    if (!texto) texto = await decodificarEnWorker(canvas, 2500);
     if (!texto){
-      const rot=document.createElement('canvas');
-      rot.width=canvas.height; rot.height=canvas.width;
-      const rc=rot.getContext('2d');
+      const rot = document.createElement('canvas');
+      rot.width = canvas.height; rot.height = canvas.width;
+      const rc = rot.getContext('2d');
       rc.translate(rot.width/2, rot.height/2); rc.rotate(Math.PI/2);
-      rc.drawImage(canvas,-canvas.width/2,-canvas.height/2);
-      texto=await decodificarEnWorker(rot, 2000);
+      rc.drawImage(canvas, -canvas.width/2, -canvas.height/2);
+      texto = await decodificarEnWorker(rot, 2000);
     }
     overlay(false);
     if (texto){
-      const num=soloDigitos(texto);
-      escribirCampo(campo, num||texto);
+      const num = soloDigitos(texto);
+      escribirCampo(campo, num || texto);
       if (navigator.vibrate){ try{ navigator.vibrate([60,40,80]); }catch(e){} }
-      toast('✅ '+(num||texto), 2200);
-    } else toast('⚠️ No se pudo leer. Marca más ajustado.', 2800);
+      toast('✅ ' + (num || texto), 2200);
+    } else {
+      toast('⚠️ No se pudo leer. Marca más ajustado.', 2800);
+    }
   }catch(err){ console.error(err); overlay(false); toast('⚠️ Error'); }
 }
+
+/* Lecturas */
 async function procesarDataUrlIMEI(dataUrl){
-  const img=await dataUrlAImagen(dataUrl);
-  setTimeout(() => { try{ fotoEquipoTemp=comprimirImagen(img); pintarFotos(); }catch(e){} }, 0);
-  const det=getBarcodeDetector();
-  let codigos=[];
-  if (det){ try{ const codes=await det.detect(img); if(codes && codes.length) codigos=codes.map(c => ({ texto:c.rawValue, y:c.boundingBox?c.boundingBox.y:0 })); }catch(e){} }
-  const hayIMEI=codigos.some(c => soloDigitos(c.texto).length===15);
+  const img = await dataUrlAImagen(dataUrl);
+  setTimeout(() => { try{ fotoEquipoTemp = comprimirImagen(img); pintarFotos(); }catch(e){} }, 0);
+  const det = getBarcodeDetector();
+  let codigos = [];
+  if (det){ try{ const codes = await det.detect(img); if (codes && codes.length) codigos = codes.map(c => ({ texto: c.rawValue, y: c.boundingBox ? c.boundingBox.y : 0 })); }catch(e){} }
+  const hayIMEI = codigos.some(c => soloDigitos(c.texto).length === 15);
   if (hayIMEI){ abrirSelectorIMEI(clasificarCodigos(codigos), true, null); return; }
   setTimeout(() => abrirCropIMEI(dataUrl), 50);
 }
 async function procesarDataUrlChip(dataUrl){
-  const img=await dataUrlAImagen(dataUrl);
-  setTimeout(() => { try{ fotoChipTemp=comprimirImagen(img); pintarFotos(); }catch(e){} }, 0);
-  const det=getBarcodeDetector();
-  let codigos=[];
-  if (det){ try{ const codes=await det.detect(img); if(codes && codes.length) codigos=codes.map(c => ({ texto:c.rawValue, y:c.boundingBox?c.boundingBox.y:0 })); }catch(e){} }
+  const img = await dataUrlAImagen(dataUrl);
+  setTimeout(() => { try{ fotoChipTemp = comprimirImagen(img); pintarFotos(); }catch(e){} }, 0);
+  const det = getBarcodeDetector();
+  let codigos = [];
+  if (det){ try{ const codes = await det.detect(img); if (codes && codes.length) codigos = codes.map(c => ({ texto: c.rawValue, y: c.boundingBox ? c.boundingBox.y : 0 })); }catch(e){} }
   if (codigos.length){
-    const et=clasificarCodigos(codigos);
-    if (et.length===1){ escribirCampo('#f-imsi', et[0].num||et[0].texto); toast('✅ IMSI: '+(et[0].num||et[0].texto), 2400); }
-    else abrirSelector(et,'IMSI', v => { escribirCampo('#f-imsi', v); toast('✅ IMSI'); });
+    const et = clasificarCodigos(codigos);
+    if (et.length === 1){ escribirCampo('#f-imsi', et[0].num || et[0].texto); toast('✅ IMSI: ' + (et[0].num || et[0].texto), 2400); }
+    else { abrirSelector(et, 'IMSI', (v) => { escribirCampo('#f-imsi', v); toast('✅ IMSI'); }); }
     return;
   }
   setTimeout(() => abrirCropChip(dataUrl), 50);
 }
+
 function clasificarCodigos(codigos){
-  const r=[], v=new Set();
-  const imeis=codigos.map(c => ({ ...c, num:soloDigitos(c.texto) })).filter(c => c.num.length===15).sort((a,b) => (a.y||0)-(b.y||0));
-  imeis.forEach((c,i) => { if(v.has(c.num)) return; v.add(c.num); r.push({ texto:c.texto, num:c.num, etiqueta:i===0?'IMEI1':(i===1?'IMEI2':'IMEI '+(i+1)), tipo:i===0?'imei1':'imei2', y:c.y }); });
-  codigos.forEach(c => { const n=soloDigitos(c.texto); if(v.has(n)) return; if(/[A-Za-z\/]/.test(c.texto) && n.length<15 && n.length>=6){ v.add(n); r.push({ texto:c.texto, num:n||c.texto, etiqueta:'SN', tipo:'sn', y:c.y }); } });
-  codigos.forEach(c => { const n=soloDigitos(c.texto); if(v.has(n)) return; if(n.length>=8){ v.add(n); r.push({ texto:c.texto, num:n, etiqueta:n.length+' dígitos', tipo:'otro', y:c.y }); } });
-  const prio={ imei1:0, imei2:1, sn:2, otro:3 };
-  r.sort((a,b) => { const pa=prio[a.tipo]??3, pb=prio[b.tipo]??3; if(pa!==pb) return pa-pb; return (a.y||0)-(b.y||0); });
+  const r = [], v = new Set();
+  const imeis = codigos.map(c => ({ ...c, num: soloDigitos(c.texto) })).filter(c => c.num.length === 15).sort((a,b) => (a.y||0) - (b.y||0));
+  imeis.forEach((c, i) => { if (v.has(c.num)) return; v.add(c.num); r.push({ texto: c.texto, num: c.num, etiqueta: i===0?'IMEI1':(i===1?'IMEI2':'IMEI '+(i+1)), tipo: i===0?'imei1':'imei2', y: c.y }); });
+  codigos.forEach(c => { const n = soloDigitos(c.texto); if (v.has(n)) return; if (/[A-Za-z\/]/.test(c.texto) && n.length<15 && n.length>=6){ v.add(n); r.push({ texto:c.texto, num:n||c.texto, etiqueta:'SN', tipo:'sn', y:c.y }); } });
+  codigos.forEach(c => { const n = soloDigitos(c.texto); if (v.has(n)) return; if (n.length>=8){ v.add(n); r.push({ texto:c.texto, num:n, etiqueta:n.length+' dígitos', tipo:'otro', y:c.y }); } });
+  const prio = { imei1:0, imei2:1, sn:2, otro:3 };
+  r.sort((a,b) => { const pa = prio[a.tipo]??3, pb = prio[b.tipo]??3; if (pa !== pb) return pa - pb; return (a.y||0) - (b.y||0); });
   return r;
 }
-function escribirCampo(sel, v){ const i=$(sel); if(!i) return; i.value=v; i.style.background='#d1fae5'; setTimeout(() => { i.style.background=''; }, 1200); }
-let _selectorCallback=null;
+function escribirCampo(sel, valor){ const i = $(sel); if (!i) return; i.value = valor; i.style.background = '#d1fae5'; setTimeout(() => { i.style.background = ''; }, 1200); }
+let _selectorCallback = null;
 function abrirSelectorIMEI(codigos, hayIMEI, dataUrl){
-  _selectorCallback=null;
+  _selectorCallback = null;
   $('#selTitulo').textContent = hayIMEI ? `${codigos.length} códigos` : 'Marca el código manualmente';
-  let aviso = hayIMEI ? `<div class="aviso">💡 Toca el que quieras usar. El <b>IMEI1</b> es el recomendado.</div>` : `<div class="aviso">⚠️ Marca el código manualmente.</div>`;
-  const opciones = codigos.map((c,i) => {
-    const recom = c.tipo==='imei1';
-    return `<div class="opc ${recom?'recomendado':''}" onclick="elegirOpcionIMEI(${i})"><div class="col"><span class="tag ${c.tipo}">${esc(c.etiqueta)}${recom?' · rec.':''}</span><div class="num">${esc(c.texto)}</div><div class="len">${c.num?c.num.length+' dígitos':''}</div></div><div class="flecha">›</div></div>`;
+  let aviso = hayIMEI ? `<div class="aviso">💡 Toca el que quieras usar. El <b>IMEI1</b> es el recomendado.</div>` : `<div class="aviso warn">⚠️ Marca el código manualmente.</div>`;
+  const opciones = codigos.map((c, i) => {
+    const recom = c.tipo === 'imei1';
+    return `<div class="opc ${recom ? 'recomendado' : ''}" onclick="elegirOpcionIMEI(${i})"><div class="col"><span class="tag ${c.tipo}">${esc(c.etiqueta)}${recom ? ' · rec.' : ''}</span><div class="num">${esc(c.texto)}</div><div class="len">${c.num ? c.num.length + ' dígitos' : ''}</div></div><div class="flecha">›</div></div>`;
   }).join('');
-  const botonCrop = dataUrl ? `<button class="btn btn-osc btn-bloque" style="margin-top:12px" onclick="cerrarSelector();abrirCropIMEI('${dataUrl.replace(/'/g,"\\'")}')">🔍 Marcar el código manualmente</button>` : '';
+  const botonCrop = dataUrl ? `<button class="btn btn-osc btn-bloque" style="margin-top:12px" onclick="cerrarSelector();abrirCropIMEI('${dataUrl.replace(/'/g, "\\'")}')">🔍 Marcar el código manualmente</button>` : '';
   $('#selLista').innerHTML = aviso + opciones + botonCrop;
-  $('#selectorModal')._codigos=codigos;
+  $('#selectorModal')._codigos = codigos;
   $('#selectorModal').classList.add('ver');
 }
-function elegirOpcionIMEI(i){ const m=$('#selectorModal'); const c=(m._codigos||[])[i]; if(!c) return; const v=c.num && c.num.length ? c.num : c.texto; escribirCampo('#f-imei',v); if(navigator.vibrate){ try{ navigator.vibrate([60,40,100]); }catch(e){} } toast('✅ IMEI: '+v, 2400); cerrarSelector(); }
-function cerrarSelector(){ $('#selectorModal').classList.remove('ver'); _selectorCallback=null; }
+function elegirOpcionIMEI(i){ const m = $('#selectorModal'); const c = (m._codigos || [])[i]; if (!c) return; const v = c.num && c.num.length ? c.num : c.texto; escribirCampo('#f-imei', v); if (navigator.vibrate){ try{ navigator.vibrate([60,40,100]); }catch(e){} } toast('✅ IMEI: ' + v, 2400); cerrarSelector(); }
+function cerrarSelector(){ $('#selectorModal').classList.remove('ver'); _selectorCallback = null; }
 function abrirSelector(codigos, tipo, callback){
-  _selectorCallback=callback;
-  $('#selTitulo').textContent=`${codigos.length} códigos`;
-  $('#selSub').textContent='Toca el que quieras usar.';
-  const cl=codigos.map(c => {
-    const n=soloDigitos(c.texto); const l=n.length;
-    let e='', k='otro';
-    if (l===15){ e='IMEI'; k='imei1'; }
-    else if (l>=13 && l<=20) e='POSIBLE IMSI';
-    else if (/[A-Za-z]/.test(c.texto)){ e='SN'; k='sn'; }
-    else e=l+' dígitos';
-    return { texto:c.texto, num:n, len:l, etiqueta:e, clase:k };
-  });
-  $('#selLista').innerHTML = cl.map((c,i) => `<div class="opc" onclick="elegirOpcion(${i})"><div class="col"><span class="tag ${c.clase}">${esc(c.etiqueta)}</span><div class="num">${esc(c.texto)}</div><div class="len">${c.len} dígitos</div></div><div class="flecha">›</div></div>`).join('');
-  $('#selectorModal')._codigos=cl;
+  _selectorCallback = callback;
+  $('#selTitulo').textContent = `${codigos.length} códigos`;
+  $('#selSub').textContent = 'Toca el que quieras usar.';
+  const cl = codigos.map(c => { const n = soloDigitos(c.texto); const l = n.length; let e='', k='otro'; if (l===15){ e='IMEI'; k='imei1'; } else if (l>=13 && l<=20){ e='POSIBLE IMSI'; } else if (/[A-Za-z]/.test(c.texto)){ e='SN'; k='sn'; } else { e=l+' dígitos'; } return { texto:c.texto, num:n, len:l, etiqueta:e, clase:k }; });
+  $('#selLista').innerHTML = cl.map((c, i) => `<div class="opc" onclick="elegirOpcion(${i})"><div class="col"><span class="tag ${c.clase}">${esc(c.etiqueta)}</span><div class="num">${esc(c.texto)}</div><div class="len">${c.len} dígitos</div></div><div class="flecha">›</div></div>`).join('');
+  $('#selectorModal')._codigos = cl;
   $('#selectorModal').classList.add('ver');
 }
-function elegirOpcion(i){ const m=$('#selectorModal'); const c=(m._codigos||[])[i]; if(!c) return; const v=c.num && c.num.length ? c.num : c.texto; if(_selectorCallback) _selectorCallback(v); cerrarSelector(); }
-async function procesarDataUrlEquipo(dataUrl){ try{ const img=await dataUrlAImagen(dataUrl); fotoEquipoTemp=comprimirImagen(img); pintarFotos(); toast('📷 Foto guardada'); }catch(e){ toast('⚠️ Error'); } }
-function dataUrlAImagen(dataUrl){ return new Promise((res, rej) => { const img=new Image(); img.onload=() => res(img); img.onerror=rej; img.src=dataUrl; }); }
-function comprimirImagen(img, max=1400, calidad=0.75){ let w=img.width, h=img.height; if(w>h && w>max){ h=Math.round(h*max/w); w=max; } else if(h>=w && h>max){ w=Math.round(w*max/h); h=max; } const c=document.createElement('canvas'); c.width=w; c.height=h; c.getContext('2d').drawImage(img,0,0,w,h); return c.toDataURL('image/jpeg',calidad); }
-function leerArchivoYProcesar(file, tipo){ if(!file.type.startsWith('image/')) return toast('No es imagen'); const r=new FileReader(); r.onload=ev => { const d=ev.target.result; if(tipo==='chip') procesarDataUrlChip(d); else if(tipo==='imei') procesarDataUrlIMEI(d); else procesarDataUrlEquipo(d); }; r.readAsDataURL(file); }
+function elegirOpcion(i){ const m = $('#selectorModal'); const c = (m._codigos || [])[i]; if (!c) return; const v = c.num && c.num.length ? c.num : c.texto; if (_selectorCallback) _selectorCallback(v); cerrarSelector(); }
 
-function abrirForm(tipo, id=null){
-  formTipo=tipo; editId=id;
-  const r=id ? registros.find(x => x.id===id) : null;
-  if (tipo==='chip'){ fotoChipTemp = r ? (r.fotoChip||r.foto) : null; fotoEquipoTemp=null; }
-  else { fotoEquipoTemp = r ? (r.fotoEquipo||r.foto) : null; fotoChipTemp = r ? r.fotoChip : null; }
-  const esTel = tipo==='telefono';
+async function procesarDataUrlEquipo(dataUrl){
+  try{ const img = await dataUrlAImagen(dataUrl); fotoEquipoTemp = comprimirImagen(img); pintarFotos(); toast('📷 Foto guardada'); }catch(e){ toast('⚠️ Error'); }
+}
+function dataUrlAImagen(dataUrl){ return new Promise((res, rej) => { const img = new Image(); img.onload = () => res(img); img.onerror = rej; img.src = dataUrl; }); }
+function comprimirImagen(img, max=1400, calidad=0.75){ let w = img.width, h = img.height; if(w>h && w>max){ h = Math.round(h*max/w); w = max; } else if(h>=w && h>max){ w = Math.round(w*max/h); h = max; } const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(img, 0, 0, w, h); return c.toDataURL('image/jpeg', calidad); }
+function leerArchivoYProcesar(file, tipo){ if (!file.type.startsWith('image/')) return toast('No es imagen'); const r = new FileReader(); r.onload = ev => { const d = ev.target.result; if (tipo==='chip') procesarDataUrlChip(d); else if (tipo==='imei') procesarDataUrlIMEI(d); else procesarDataUrlEquipo(d); }; r.readAsDataURL(file); }
+
+/* Formulario */
+function abrirForm(tipo, id = null){
+  formTipo = tipo; editId = id;
+  const r = id ? registros.find(x => x.id === id) : null;
+  if (tipo === 'chip'){ fotoChipTemp = r ? (r.fotoChip || r.foto) : null; fotoEquipoTemp = null; }
+  else { fotoEquipoTemp = r ? (r.fotoEquipo || r.foto) : null; fotoChipTemp = r ? r.fotoChip : null; }
+  const esTel = tipo === 'telefono';
   $('#vista-form').innerHTML = `
     <button class="btn-volver" onclick="volverAlInicio()">← Volver al inicio</button>
-    <h2 class="titulo-vista">${esTel?'📱 Registrar Teléfono':'📶 Registrar Chip'}</h2>
+    <h2 class="titulo-vista">${esTel ? '📱 Registrar Teléfono' : '📶 Registrar Chip'}</h2>
     <div class="card">
-      <div class="campo"><label>Número de línea</label><input id="f-numero" type="tel" inputmode="numeric" placeholder="Ej. 5512345678" value="${r?esc(r.numero):''}"></div>
-      <div class="campo"><label>IMSI</label><input id="f-imsi" type="tel" inputmode="numeric" placeholder="Se llena al leer el chip" value="${r?esc(r.imsi):''}"><div class="ayuda">Toca el botón rojo 👇</div></div>
-      ${esTel?`<div class="campo"><label>IMEI</label><input id="f-imei" type="tel" inputmode="numeric" placeholder="Se llena al leer la etiqueta" value="${r?esc(r.imei||''):''}"><div class="ayuda">Toca el botón oscuro 👇</div></div>`:''}
-      <div class="campo"><label>Nota (opcional)</label><textarea id="f-nota" rows="2" placeholder="Cliente, sucursal…">${r?esc(r.nota||''):''}</textarea></div>
+      <div class="campo"><label>Número de línea</label><input id="f-numero" type="tel" inputmode="numeric" placeholder="Ej. 5512345678" value="${r ? esc(r.numero) : ''}"></div>
+      <div class="campo"><label>IMSI</label><input id="f-imsi" type="tel" inputmode="numeric" placeholder="Se llena al leer el chip" value="${r ? esc(r.imsi) : ''}"><div class="ayuda">Toca el botón rojo 👇</div></div>
+      ${esTel ? `<div class="campo"><label>IMEI</label><input id="f-imei" type="tel" inputmode="numeric" placeholder="Se llena al leer la etiqueta" value="${r ? esc(r.imei || '') : ''}"><div class="ayuda">Toca el botón oscuro 👇</div></div>` : ''}
+      <div class="campo"><label>Nota (opcional)</label><textarea id="f-nota" rows="2" placeholder="Cliente, sucursal…">${r ? esc(r.nota || '') : ''}</textarea></div>
     </div>
     <div class="card">
       <div class="campo" style="margin-bottom:10px"><label>📶 Foto del Chip</label></div>
@@ -1253,7 +1694,7 @@ function abrirForm(tipo, id=null){
       <button class="btn btn-gris btn-bloque" id="btnQuitarFotoChip" onclick="quitarFoto('chip')" style="display:none">✖️ Quitar foto</button>
       <input type="file" id="inpGaleriaChip" accept="image/*" hidden>
     </div>
-    ${esTel?`
+    ${esTel ? `
     <div class="card" style="border:2px solid #2b2f36">
       <div class="campo" style="margin-bottom:6px"><label>🔎 Leer IMEI de la etiqueta</label></div>
       <div class="ayuda" style="margin-bottom:12px">Si no lee automático, <b>marca el código con el dedo</b>.</div>
@@ -1270,13 +1711,13 @@ function abrirForm(tipo, id=null){
       </div>
       <button class="btn btn-gris btn-bloque" id="btnQuitarFotoEquipo" onclick="quitarFoto('equipo')" style="display:none">✖️ Quitar foto</button>
       <input type="file" id="inpGaleriaEquipo" accept="image/*" hidden>
-    </div>`:''}
-    <button class="btn btn-rojo btn-bloque" onclick="guardarRegistro()">${r?'💾 Guardar cambios':'✅ Guardar registro'}</button>
+    </div>` : ''}
+    <button class="btn btn-rojo btn-bloque" onclick="guardarRegistro()">${r ? '💾 Guardar cambios' : '✅ Guardar registro'}</button>
     <div style="height:20px"></div>`;
-  const ic=$('#inpGaleriaChip'); if(ic) ic.onchange = e => { const f=e.target.files[0]; if(f) leerArchivoYProcesar(f,'chip'); e.target.value=''; };
+  const ic = $('#inpGaleriaChip'); if (ic) ic.onchange = e => { const f = e.target.files[0]; if (f) leerArchivoYProcesar(f, 'chip'); e.target.value = ''; };
   if (esTel){
-    const ii=$('#inpGaleriaIMEI'); if(ii) ii.onchange = e => { const f=e.target.files[0]; if(f) leerArchivoYProcesar(f,'imei'); e.target.value=''; };
-    const ie=$('#inpGaleriaEquipo'); if(ie) ie.onchange = e => { const f=e.target.files[0]; if(f) leerArchivoYProcesar(f,'equipo'); e.target.value=''; };
+    const ii = $('#inpGaleriaIMEI'); if (ii) ii.onchange = e => { const f = e.target.files[0]; if (f) leerArchivoYProcesar(f, 'imei'); e.target.value = ''; };
+    const ie = $('#inpGaleriaEquipo'); if (ie) ie.onchange = e => { const f = e.target.files[0]; if (f) leerArchivoYProcesar(f, 'equipo'); e.target.value = ''; };
   }
   pintarFotos();
   ir('form');
@@ -1285,75 +1726,76 @@ function tomarFotoChip(){ tomarFoto('Foto del Chip', d => procesarDataUrlChip(d)
 function tomarFotoIMEI(){ tomarFoto('Foto de la etiqueta', d => procesarDataUrlIMEI(d)); }
 function tomarFotoEquipo(){ tomarFoto('Foto del Teléfono', d => procesarDataUrlEquipo(d)); }
 function pintarFotos(){
-  const cb=$('#fotoChipBox');
-  if (cb){ if(fotoChipTemp){ cb.innerHTML=`<img src="${fotoChipTemp}">`; const b=$('#btnQuitarFotoChip'); if(b) b.style.display='flex'; } else { cb.innerHTML='<div class="ph">📷<br>Sin foto</div>'; const b=$('#btnQuitarFotoChip'); if(b) b.style.display='none'; } }
-  const eb=$('#fotoEquipoBox');
-  if (eb){ if(fotoEquipoTemp){ eb.innerHTML=`<img src="${fotoEquipoTemp}">`; const b=$('#btnQuitarFotoEquipo'); if(b) b.style.display='flex'; } else { eb.innerHTML='<div class="ph">📷<br>Sin foto</div>'; const b=$('#btnQuitarFotoEquipo'); if(b) b.style.display='none'; } }
+  const cb = $('#fotoChipBox');
+  if (cb){ if (fotoChipTemp){ cb.innerHTML = `<img src="${fotoChipTemp}">`; const b = $('#btnQuitarFotoChip'); if (b) b.style.display = 'flex'; } else { cb.innerHTML = `<div class="ph">📷<br>Sin foto</div>`; const b = $('#btnQuitarFotoChip'); if (b) b.style.display = 'none'; } }
+  const eb = $('#fotoEquipoBox');
+  if (eb){ if (fotoEquipoTemp){ eb.innerHTML = `<img src="${fotoEquipoTemp}">`; const b = $('#btnQuitarFotoEquipo'); if (b) b.style.display = 'flex'; } else { eb.innerHTML = `<div class="ph">📷<br>Sin foto</div>`; const b = $('#btnQuitarFotoEquipo'); if (b) b.style.display = 'none'; } }
 }
-function quitarFoto(t){ if(t==='chip') fotoChipTemp=null; else fotoEquipoTemp=null; pintarFotos(); }
+function quitarFoto(t){ if (t === 'chip') fotoChipTemp = null; else fotoEquipoTemp = null; pintarFotos(); }
 function guardarRegistro(){
-  const numero=soloDigitos($('#f-numero').value);
-  const imsi=soloDigitos($('#f-imsi').value);
-  const imei=formTipo==='telefono'?soloDigitos($('#f-imei').value):'';
-  const nota=$('#f-nota').value.trim();
-  if (numero.length<7) return toast('⚠️ Número inválido');
-  if (imsi.length<10) return toast('⚠️ IMSI incompleto');
-  if (formTipo==='telefono' && imei.length<10) return toast('⚠️ IMEI incompleto');
-  const dup=registros.find(r => r.id!==editId && ((imsi && r.imsi===imsi) || (imei && r.imei && r.imei===imei)));
-  if (dup){ const c=(dup.imsi===imsi)?'IMSI':'IMEI'; if(!confirm(`Ya existe con ese ${c} (${dup.numero}).\n\n¿Guardar?`)) return; }
-  let msj='';
-  if (editId){ const r=registros.find(x => x.id===editId); Object.assign(r, { numero, imsi, imei, nota, fotoChip:fotoChipTemp, fotoEquipo: formTipo==='telefono'?fotoEquipoTemp:undefined, editado:new Date().toISOString() }); delete r.foto; msj='✅ Actualizado'; }
-  else { const n={ id:uid(), tipo:formTipo, numero, imsi, imei, nota, fotoChip:fotoChipTemp, fecha:new Date().toISOString(), fechaLocal:fechaLocalHoy() }; if(formTipo==='telefono') n.fotoEquipo=fotoEquipoTemp; registros.push(n); msj='✅ Guardado'; }
+  const numero = soloDigitos($('#f-numero').value);
+  const imsi = soloDigitos($('#f-imsi').value);
+  const imei = formTipo === 'telefono' ? soloDigitos($('#f-imei').value) : '';
+  const nota = $('#f-nota').value.trim();
+  if (numero.length < 7) return toast('⚠️ Número inválido');
+  if (imsi.length < 10) return toast('⚠️ IMSI incompleto');
+  if (formTipo === 'telefono' && imei.length < 10) return toast('⚠️ IMEI incompleto');
+  const dup = registros.find(r => r.id !== editId && ((imsi && r.imsi === imsi) || (imei && r.imei && r.imei === imei)));
+  if (dup){ const c = (dup.imsi === imsi) ? 'IMSI' : 'IMEI'; if (!confirm(`Ya existe con ese ${c} (${dup.numero}).\n\n¿Guardar?`)) return; }
+  let msj = '';
+  if (editId){ const r = registros.find(x => x.id === editId); Object.assign(r, { numero, imsi, imei, nota, fotoChip: fotoChipTemp, fotoEquipo: formTipo === 'telefono' ? fotoEquipoTemp : undefined, editado: new Date().toISOString() }); delete r.foto; msj = '✅ Actualizado'; }
+  else { const n = { id: uid(), tipo: formTipo, numero, imsi, imei, nota, fotoChip: fotoChipTemp, fecha: new Date().toISOString(), fechaLocal: fechaLocalHoy() }; if (formTipo === 'telefono') n.fotoEquipo = fotoEquipoTemp; registros.push(n); msj = '✅ Guardado'; }
   if (!guardarLS()) return;
   volverAlInicio(msj);
 }
 
 function renderLista(){
-  const rango=obtenerRangoFechas();
-  const q=($('#buscar').value||'').trim().toLowerCase();
-  let lista=registros.filter(r => registroEnRango(r,rango));
-  if (q) lista=lista.filter(r => [r.numero, r.imsi, r.imei, r.nota].join(' ').toLowerCase().includes(q));
-  lista.sort((a,b) => new Date(b.fecha)-new Date(a.fecha));
-  const lr=registros.filter(r => registroEnRango(r,rango));
-  const chips=lr.filter(r => r.tipo==='chip').length;
-  $('#st-total').textContent=lr.length;
-  $('#st-chips').textContent=chips;
-  $('#st-tels').textContent=lr.length-chips;
-  const info=$('#filtroInfo');
-  if (filtroFecha==='todo') info.innerHTML='📊 <b>Todos</b>';
-  else if (filtroFecha==='custom') info.innerHTML=`📅 <b>${esc(nombreFechaCorta(fechaCustom))}</b>`;
-  else if (filtroFecha==='hoy') info.innerHTML=`📅 Hoy · <b>${esc(nombreFechaCorta(fechaLocalHoy()))}</b>`;
-  else if (filtroFecha==='ayer'){ const a=sumarDias(fechaLocalHoy(),-1); info.innerHTML=`📅 Ayer · <b>${esc(nombreFechaCorta(a))}</b>`; }
-  else if (filtroFecha==='semana') info.innerHTML='📅 <b>Esta semana</b>';
-  else if (filtroFecha==='mes') info.innerHTML='📅 <b>Este mes</b>';
-  const c=$('#lista');
-  if (!lista.length){ c.innerHTML=`<div class="vacio"><span class="em">${q?'🔍':'📋'}</span>${q?'Sin resultados.':'Sin registros.'}</div>`; return; }
-  const conteo=lista.length;
-  const headerHTML=`<div class="lista-header"><span>${filtroFecha==='hoy'?'📅 HOY':filtroFecha==='ayer'?'📅 AYER':filtroFecha==='custom'?'📅 '+nombreFechaCorta(fechaCustom).toUpperCase():filtroFecha==='semana'?'📅 SEMANA':filtroFecha==='mes'?'📅 MES':'📋 TODOS'}</span><span class="count">${conteo} ${conteo===1?'venta':'ventas'}</span></div>`;
-  const items=lista.map(r => {
-    let src=null;
-    if (r.tipo==='chip') src=r.fotoChip||r.foto; else src=r.fotoEquipo||r.fotoChip||r.foto;
-    const mh=filtroFecha==='todo'||filtroFecha==='semana'||filtroFecha==='mes';
-    const fm=mh?fmt(r.fecha):nombreFechaCorta(r.fechaLocal||derivarFechaLocal(r.fecha))+' · '+new Date(r.fecha).toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
-    return `<div class="item" onclick="abrirDetalle('${r.id}')"><div class="thumb">${src?`<img src="${src}" loading="lazy">`:(r.tipo==='chip'?'📶':'📱')}</div><div class="info"><div class="t1">${esc(r.numero)}<span class="pill ${r.tipo==='chip'?'pill-chip':'pill-tel'}">${r.tipo==='chip'?'CHIP':'EQUIPO'}</span></div><div class="t2">IMSI: ${esc(r.imsi||'—')}</div>${r.imei?`<div class="t2">IMEI: ${esc(r.imei)}</div>`:''}<div class="t3">${esc(fm)}</div></div><div style="color:#c3c8cf;font-size:20px">›</div></div>`;
+  const rango = obtenerRangoFechas();
+  const q = ($('#buscar').value || '').trim().toLowerCase();
+  let lista = registros.filter(r => registroEnRango(r, rango));
+  if (q) lista = lista.filter(r => [r.numero, r.imsi, r.imei, r.nota].join(' ').toLowerCase().includes(q));
+  lista.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+  const lr = registros.filter(r => registroEnRango(r, rango));
+  const chips = lr.filter(r => r.tipo === 'chip').length;
+  $('#st-total').textContent = lr.length;
+  $('#st-chips').textContent = chips;
+  $('#st-tels').textContent = lr.length - chips;
+  const info = $('#filtroInfo');
+  if (filtroFecha === 'todo') info.innerHTML = `📊 <b>Todos</b>`;
+  else if (filtroFecha === 'custom') info.innerHTML = `📅 <b>${esc(nombreFechaCorta(fechaCustom))}</b>`;
+  else if (filtroFecha === 'hoy') info.innerHTML = `📅 Hoy · <b>${esc(nombreFechaCorta(fechaLocalHoy()))}</b>`;
+  else if (filtroFecha === 'ayer'){ const a = sumarDias(fechaLocalHoy(), -1); info.innerHTML = `📅 Ayer · <b>${esc(nombreFechaCorta(a))}</b>`; }
+  else if (filtroFecha === 'semana') info.innerHTML = `📅 <b>Esta semana</b>`;
+  else if (filtroFecha === 'mes') info.innerHTML = `📅 <b>Este mes</b>`;
+  const cont = $('#lista');
+  if (!lista.length){ cont.innerHTML = `<div class="vacio"><span class="em">${q ? '🔍' : '📋'}</span>${q ? 'Sin resultados.' : 'Sin registros.'}</div>`; return; }
+  const conteo = lista.length;
+  const headerHTML = `<div class="lista-header"><span>${filtroFecha === 'hoy' ? '📅 HOY' : filtroFecha === 'ayer' ? '📅 AYER' : filtroFecha === 'custom' ? '📅 ' + nombreFechaCorta(fechaCustom).toUpperCase() : filtroFecha === 'semana' ? '📅 SEMANA' : filtroFecha === 'mes' ? '📅 MES' : '📋 TODOS'}</span><span class="count">${conteo} ${conteo === 1 ? 'venta' : 'ventas'}</span></div>`;
+  const items = lista.map(r => {
+    let src = null;
+    if (r.tipo === 'chip') src = r.fotoChip || r.foto; else src = r.fotoEquipo || r.fotoChip || r.foto;
+    const mostrarHora = filtroFecha === 'todo' || filtroFecha === 'semana' || filtroFecha === 'mes';
+    const fechaMostrar = mostrarHora ? fmt(r.fecha) : nombreFechaCorta(r.fechaLocal || derivarFechaLocal(r.fecha)) + ' · ' + new Date(r.fecha).toLocaleTimeString('es-MX', {hour:'2-digit', minute:'2-digit'});
+    return `<div class="item" onclick="abrirDetalle('${r.id}')"><div class="thumb">${src ? `<img src="${src}" loading="lazy">` : (r.tipo === 'chip' ? '📶' : '📱')}</div><div class="info"><div class="t1">${esc(r.numero)}<span class="pill ${r.tipo === 'chip' ? 'pill-chip' : 'pill-tel'}">${r.tipo === 'chip' ? 'CHIP' : 'EQUIPO'}</span></div><div class="t2">IMSI: ${esc(r.imsi || '—')}</div>${r.imei ? `<div class="t2">IMEI: ${esc(r.imei)}</div>` : ''}<div class="t3">${esc(fechaMostrar)}</div></div><div style="color:#c3c8cf;font-size:20px">›</div></div>`;
   }).join('');
-  c.innerHTML=headerHTML+items;
+  cont.innerHTML = headerHTML + items;
 }
 function abrirDetalle(id){
-  const r=registros.find(x => x.id===id); if(!r) return;
-  const fc=r.fotoChip||(r.tipo==='chip'?r.foto:null);
-  const fe=r.fotoEquipo||(r.tipo==='telefono'?r.foto:null);
+  const r = registros.find(x => x.id === id);
+  if (!r) return;
+  const fc = r.fotoChip || (r.tipo === 'chip' ? r.foto : null);
+  const fe = r.fotoEquipo || (r.tipo === 'telefono' ? r.foto : null);
   $('#vista-detalle').innerHTML = `
     <button class="btn-volver" onclick="ir('home')">← Volver</button>
-    <h2 class="titulo-vista">${r.tipo==='chip'?'📶 Chip':'📱 Teléfono'}</h2>
-    ${fe?`<div class="det-foto-label">📱 Foto del Teléfono</div><img class="det-foto" src="${fe}">`:''}
-    ${fc?`<div class="det-foto-label">📶 Foto del Chip</div><img class="det-foto" src="${fc}">`:''}
+    <h2 class="titulo-vista">${r.tipo === 'chip' ? '📶 Chip' : '📱 Teléfono'}</h2>
+    ${fe ? `<div class="det-foto-label">📱 Foto del Teléfono</div><img class="det-foto" src="${fe}">` : ''}
+    ${fc ? `<div class="det-foto-label">📶 Foto del Chip</div><img class="det-foto" src="${fc}">` : ''}
     <div class="card">
       <div class="dato"><span class="k">Número</span><span class="v">${esc(r.numero)}<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.numero)}')">Copiar</button></span></div>
-      <div class="dato"><span class="k">IMSI</span><span class="v">${esc(r.imsi||'—')}${r.imsi?`<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.imsi)}')">Copiar</button>`:''}</span></div>
-      ${r.imei?`<div class="dato"><span class="k">IMEI</span><span class="v">${esc(r.imei)}<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.imei)}')">Copiar</button></span></div>`:''}
+      <div class="dato"><span class="k">IMSI</span><span class="v">${esc(r.imsi || '—')}${r.imsi ? `<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.imsi)}')">Copiar</button>` : ''}</span></div>
+      ${r.imei ? `<div class="dato"><span class="k">IMEI</span><span class="v">${esc(r.imei)}<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.imei)}')">Copiar</button></span></div>` : ''}
       <div class="dato"><span class="k">Fecha</span><span class="v" style="font-size:13px;font-weight:600">${fmt(r.fecha)}</span></div>
-      ${r.nota?`<div class="dato" style="display:block"><span class="k">Nota</span><div style="margin-top:6px;font-size:14px;line-height:1.5">${esc(r.nota)}</div></div>`:''}
+      ${r.nota ? `<div class="dato" style="display:block"><span class="k">Nota</span><div style="margin-top:6px;font-size:14px;line-height:1.5">${esc(r.nota)}</div></div>` : ''}
     </div>
     <div class="fila-botones" style="margin-bottom:10px">
       <button class="btn btn-rosa" onclick="abrirForm('${r.tipo}','${r.id}')">✏️ Editar</button>
@@ -1364,66 +1806,90 @@ function abrirDetalle(id){
   ir('detalle');
 }
 function compartir(id){
-  const r=registros.find(x => x.id===id); if(!r) return;
-  const t=`*${r.tipo==='chip'?'CHIP':'TELÉFONO'} CLARO*\nNúmero: ${r.numero}\nIMSI: ${r.imsi||'—'}\n`+(r.imei?`IMEI: ${r.imei}\n`:'')+(r.nota?`Nota: ${r.nota}\n`:'')+`Fecha: ${fmt(r.fecha)}`;
-  if (navigator.share) navigator.share({ title:'Registro Claro', text:t }).catch(()=>{});
-  else copiar(t.replace(/\*/g,''));
+  const r = registros.find(x => x.id === id);
+  if (!r) return;
+  const t = `*${r.tipo === 'chip' ? 'CHIP' : 'TELÉFONO'} CLARO*\nNúmero: ${r.numero}\nIMSI: ${r.imsi || '—'}\n` + (r.imei ? `IMEI: ${r.imei}\n` : '') + (r.nota ? `Nota: ${r.nota}\n` : '') + `Fecha: ${fmt(r.fecha)}`;
+  if (navigator.share) navigator.share({ title: 'Registro Claro', text: t }).catch(() => {});
+  else copiar(t.replace(/\*/g, ''));
 }
-function eliminar(id){ const r=registros.find(x => x.id===id); if(!r) return; if(!confirm(`¿Eliminar ${r.numero}?`)) return; registros=registros.filter(x => x.id!==id); guardarLS(); toast('🗑️ Eliminado'); ir('home'); }
+function eliminar(id){ const r = registros.find(x => x.id === id); if (!r) return; if (!confirm(`¿Eliminar ${r.numero}?`)) return; registros = registros.filter(x => x.id !== id); guardarLS(); toast('🗑️ Eliminado'); ir('home'); }
 function renderFotos(){
-  let fotos=[];
+  let fotos = [];
   registros.forEach(r => {
-    const c=r.fotoChip||(r.tipo==='chip'?r.foto:null);
-    if (c) fotos.push({ src:c, id:r.id, label:'CHIP' });
-    const e=r.fotoEquipo||(r.tipo==='telefono'?r.foto:null);
-    if (e) fotos.push({ src:e, id:r.id, label:'EQUIPO' });
+    const c = r.fotoChip || (r.tipo === 'chip' ? r.foto : null);
+    if (c) fotos.push({ src: c, id: r.id, label: 'CHIP' });
+    const e = r.fotoEquipo || (r.tipo === 'telefono' ? r.foto : null);
+    if (e) fotos.push({ src: e, id: r.id, label: 'EQUIPO' });
   });
-  fotos.sort((a,b) => { const ra=registros.find(x => x.id===a.id), rb=registros.find(x => x.id===b.id); return new Date(rb.fecha)-new Date(ra.fecha); });
-  const c=$('#grid-fotos');
-  if (!fotos.length){ c.innerHTML='<div class="vacio"><span class="em">🖼️</span>Sin fotos.</div>'; return; }
-  c.className='grid-fotos';
-  c.innerHTML=fotos.map(f => `<div class="f" onclick="abrirDetalle('${f.id}')"><img src="${f.src}" loading="lazy"><span class="tag">${f.label}</span></div>`).join('');
+  fotos.sort((a, b) => { const ra = registros.find(x => x.id === a.id), rb = registros.find(x => x.id === b.id); return new Date(rb.fecha) - new Date(ra.fecha); });
+  const cont = $('#grid-fotos');
+  if (!fotos.length){ cont.innerHTML = `<div class="vacio"><span class="em">🖼️</span>Sin fotos.</div>`; return; }
+  cont.className = 'grid-fotos';
+  cont.innerHTML = fotos.map(f => `<div class="f" onclick="abrirDetalle('${f.id}')"><img src="${f.src}" loading="lazy"><span class="tag">${f.label}</span></div>`).join('');
 }
-
+function descargar(blob, nombre){ const u = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = u; a.download = nombre; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 3000); }
+function exportarCSV(){
+  if (!registros.length) return toast('Sin registros');
+  const f = [['Tipo','Numero','IMSI','IMEI','Nota','Fecha','Dia','Foto chip','Foto equipo']];
+  registros.slice().sort((a, b) => new Date(b.fecha) - new Date(a.fecha)).forEach(r => {
+    const c = r.fotoChip || (r.tipo === 'chip' ? r.foto : null);
+    const e = r.fotoEquipo || (r.tipo === 'telefono' ? r.foto : null);
+    f.push([r.tipo === 'chip' ? 'Chip' : 'Telefono', r.numero, r.imsi || '', r.imei || '', r.nota || '', fmt(r.fecha), r.fechaLocal || derivarFechaLocal(r.fecha), c ? 'Si' : 'No', e ? 'Si' : 'No']);
+  });
+  const csv = f.map(x => x.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\r\n');
+  descargar(new Blob(['\ufeff' + csv], {type:'text/csv;charset=utf-8'}), 'registros_claro.csv');
+  toast('📊 CSV exportado');
+}
+function exportarJSON(){
+  const data = { app:'Registro Claro', version:12, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado };
+  descargar(new Blob([JSON.stringify(data)], {type:'application/json'}), 'respaldo_claro.json');
+  toast('📦 Respaldo creado');
+}
 $('#inpImport').onchange = e => {
-  const file=e.target.files[0]; if(!file) return;
-  const r=new FileReader();
+  const file = e.target.files[0]; if (!file) return;
+  const r = new FileReader();
   r.onload = ev => {
     try{
-      const data=JSON.parse(ev.target.result);
-      const nuevos=Array.isArray(data)?data:(data.registros||[]);
-      const inv=data.inventario||[];
-      const tien=data.tiendas||[];
-      const bloq=data.inventarioBloqueado;
+      const data = JSON.parse(ev.target.result);
+      const nuevos = Array.isArray(data) ? data : (data.registros || []);
+      const inv = data.inventario || [];
+      const tien = data.tiendas || [];
+      const bloq = data.inventarioBloqueado;
       if (!nuevos.length && !inv.length) return toast('Sin datos');
-      const ex=new Set(registros.map(x => x.id));
-      let ag=0;
-      nuevos.forEach(x => { if(x && x.id && !ex.has(x.id)){ if(x.tipo==='chip' && x.foto && !x.fotoChip) x.fotoChip=x.foto; if(x.tipo==='telefono' && x.foto && !x.fotoEquipo) x.fotoEquipo=x.foto; if(!x.fechaLocal) x.fechaLocal=derivarFechaLocal(x.fecha); registros.push(x); ag++; } });
-      if (inv.length){ const exI=new Set(inventario.map(x => x.id)); inv.forEach(x => { if(x && x.id && !exI.has(x.id)) inventario.push(x); }); guardarInventario(); }
+      const ex = new Set(registros.map(x => x.id));
+      let ag = 0;
+      nuevos.forEach(x => { if (x && x.id && !ex.has(x.id)){ if (x.tipo === 'chip' && x.foto && !x.fotoChip) x.fotoChip = x.foto; if (x.tipo === 'telefono' && x.foto && !x.fotoEquipo) x.fotoEquipo = x.foto; if (!x.fechaLocal) x.fechaLocal = derivarFechaLocal(x.fecha); registros.push(x); ag++; } });
+      if (inv.length){ const exInv = new Set(inventario.map(x => x.id)); inv.forEach(x => { if (x && x.id && !exInv.has(x.id)){ inventario.push(x); } }); guardarInventario(); }
       if (tien.length){
-        if (typeof tien[0]==='string') tiendas=tien.map((n,i) => ({ nombre:n, color:PALETA_COLORES[i%PALETA_COLORES.length].valor }));
-        else tiendas=tien;
+        // Migrar formato si es viejo
+        if (typeof tien[0] === 'string'){
+          tiendas = tien.map((n, i) => ({ nombre: n, color: PALETA_COLORES[i % PALETA_COLORES.length].valor }));
+        } else {
+          tiendas = tien;
+        }
         guardarTiendas();
       }
-      if (typeof bloq==='boolean'){ inventarioBloqueado=bloq; guardarEstadoBloqueo(); }
+      if (typeof bloq === 'boolean'){ inventarioBloqueado = bloq; guardarEstadoBloqueo(); }
       if (guardarLS()){ toast(`📥 ${ag} registros restaurados`); renderLista(); renderFotos(); renderInventario(); }
     }catch(err){ toast('⚠️ Archivo inválido'); }
   };
-  r.readAsText(file); e.target.value='';
+  r.readAsText(file); e.target.value = '';
 };
 function borrarTodo(){
-  if (!confirm('¿Borrar TODOS los registros, fotos e inventario?')) return;
+  if (!confirm('¿Borrar TODOS los registros, fotos e inventario?\n\nRespalda antes.')) return;
   if (!confirm('Confirma de nuevo.')) return;
-  registros=[]; inventario=[]; inventarioBloqueado=false;
-  localStorage.removeItem(STORE); localStorage.removeItem(INV_STORE); localStorage.removeItem(INV_BLOQ_STORE);
+  registros = []; inventario = []; inventarioBloqueado = false;
+  localStorage.removeItem(STORE);
+  localStorage.removeItem(INV_STORE);
+  localStorage.removeItem(INV_BLOQ_STORE);
   toast('🗑️ Todo borrado');
   renderLista(); renderFotos(); renderInventario();
 }
 
-let _diaActualGuardado=fechaLocalHoy();
+let _diaActualGuardado = fechaLocalHoy();
 setInterval(() => {
-  const h=fechaLocalHoy();
-  if (h!==_diaActualGuardado){ _diaActualGuardado=h; if(filtroFecha==='hoy'){ renderLista(); toast('📅 Nuevo día', 2500); } }
+  const h = fechaLocalHoy();
+  if (h !== _diaActualGuardado){ _diaActualGuardado = h; if (filtroFecha === 'hoy'){ renderLista(); toast('📅 Nuevo día', 2500); } }
 }, 60000);
 
 cargar();
