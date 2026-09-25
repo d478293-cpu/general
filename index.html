@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="theme-color" content="#DA291C">
+<meta name="theme-color" content="#DA291C" id="metaTema">
 <title>Registro Claro</title>
 <style>
 :root{--rojo:#DA291C;--rojo2:#a81c12;--bg:#f2f3f5;--card:#fff;--txt:#17191c;--muted:#6b7280;--line:#e6e8eb;--ok:#16a34a}
@@ -195,7 +195,6 @@ main{padding:14px;max-width:640px;margin:0 auto}
 .inv-edit{background:#eef0f3;color:#374151}
 .inv-mover{background:#fdeceb;color:var(--rojo)}
 .inv-del{background:#fdeceb;color:#b91c1c}
-
 .inv-total{color:#fff;border-radius:14px;padding:16px;text-align:center;margin-bottom:14px;box-shadow:0 4px 12px rgba(218,41,28,.35);background:linear-gradient(135deg,#DA291C,#6b0f08)}
 .inv-total .t{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px;opacity:.9}
 .inv-total .n{font-size:38px;font-weight:900;margin-top:4px;line-height:1}
@@ -203,7 +202,6 @@ main{padding:14px;max-width:640px;margin:0 auto}
 .inv-total .mini-stats div{text-align:center;padding:4px 8px;border-radius:20px;background:rgba(255,255,255,.15);display:flex;align-items:center;gap:5px}
 .inv-total .mini-stats b{font-size:16px;font-weight:900}
 .inv-total .mini-stats .punto{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
-
 .inv-estado{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;font-size:13px;font-weight:700;margin-bottom:14px}
 .inv-estado.abierto{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
 .inv-estado.bloqueado{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7}
@@ -211,15 +209,11 @@ main{padding:14px;max-width:640px;margin:0 auto}
 .inv-estado .txt{flex:1;line-height:1.35}
 .inv-estado .txt b{display:block;font-size:13.5px}
 .inv-estado .txt small{font-size:11.5px;opacity:.85;font-weight:500;display:block;margin-top:2px}
-
-/* Filtros por tienda (con color dinámico) */
 .tienda-filtros{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none}
 .tienda-filtros::-webkit-scrollbar{display:none}
 .tienda-filtro{flex:0 0 auto;padding:8px 14px;border:2px solid var(--line);border-radius:20px;background:#fff;color:var(--muted);font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;transition:.15s;display:flex;align-items:center;gap:6px}
 .tienda-filtro:active{transform:scale(.95)}
 .tienda-filtro .punto{width:12px;height:12px;border-radius:50%;flex:0 0 auto;border:2px solid rgba(0,0,0,.1)}
-
-/* Modal inventario */
 #invModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:700;display:none;align-items:center;justify-content:center;padding:16px}
 #invModal.ver{display:flex}
 #invModal .box{background:#fff;border-radius:20px;padding:22px;max-width:440px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out}
@@ -235,8 +229,6 @@ main{padding:14px;max-width:640px;margin:0 auto}
 #invModal .btns button{flex:1;padding:15px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
 #invModal .guardar{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
 #invModal .cancelar{background:#eef0f3;color:#374151}
-
-/* Modal colores */
 #colorModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:750;display:none;align-items:center;justify-content:center;padding:16px}
 #colorModal.ver{display:flex}
 #colorModal .box{background:#fff;border-radius:20px;padding:22px;max-width:400px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out}
@@ -249,8 +241,6 @@ main{padding:14px;max-width:640px;margin:0 auto}
 #colorModal .color-opt.activo::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:900;text-shadow:0 2px 6px rgba(0,0,0,.5)}
 #colorModal .btns{display:flex;gap:10px}
 #colorModal .btns button{flex:1;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;background:#eef0f3;color:#374151}
-
-/* ===== Gestión de tiendas ===== */
 .gestion-titulo{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px}
 .tienda-gestion-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border:2px solid var(--line);border-radius:12px;margin-bottom:8px;background:#fff}
 .tienda-gestion-item .punto{width:18px;height:18px;border-radius:50%;flex:0 0 auto;border:2px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.15)}
@@ -259,7 +249,6 @@ main{padding:14px;max-width:640px;margin:0 auto}
 .tienda-gestion-item .mini:active{transform:scale(.94)}
 .tienda-gestion-item .mini.del{background:#fdeceb}
 .tienda-gestion-vacio{text-align:center;color:#9aa3ad;font-size:13px;line-height:1.55;padding:14px 8px}
-
 #previewModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:650;display:none;align-items:center;justify-content:center;padding:16px}
 #previewModal.ver{display:flex}
 #previewModal .box{background:#fff;border-radius:20px;padding:20px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;animation:pop .2s ease-out}
@@ -279,6 +268,138 @@ main{padding:14px;max-width:640px;margin:0 auto}
 #previewModal .acciones button{flex:1;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
 #previewModal .prim{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
 #previewModal .seg{background:#eef0f3;color:#374151}
+
+/* =========================================================
+   BOTÓN DE TEMA
+   ========================================================= */
+.btn-tema{margin-left:auto;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.18);border:none;color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center;transition:.15s;font-family:inherit}
+.btn-tema:active{transform:scale(.9)}
+.btn-tema:hover{background:rgba(255,255,255,.28)}
+
+/* =========================================================
+   MODO OSCURO
+   ========================================================= */
+html[data-theme="dark"]{
+  --bg:#0f1115;--card:#1a1d23;--txt:#e8eaee;--muted:#9aa3ad;--line:#2b3038;
+  --rojo:#ff4438;--rojo2:#b01e14;
+}
+html[data-theme="dark"] body{background:var(--bg);color:var(--txt)}
+html[data-theme="dark"] header{background:linear-gradient(135deg,#8f170e,#4a0b06);box-shadow:0 2px 10px rgba(0,0,0,.5)}
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .item,
+html[data-theme="dark"] .stat,
+html[data-theme="dark"] .fecha-custom,
+html[data-theme="dark"] .inv-item,
+html[data-theme="dark"] #invModal .box,
+html[data-theme="dark"] #colorModal .box,
+html[data-theme="dark"] #previewModal .box,
+html[data-theme="dark"] #selectorModal .box,
+html[data-theme="dark"] .tienda-gestion-item{background:var(--card);color:var(--txt)}
+html[data-theme="dark"] .nav{background:#14171c;border-top-color:var(--line)}
+html[data-theme="dark"] .nav button{color:var(--muted)}
+html[data-theme="dark"] .nav button.activo{color:var(--rojo)}
+html[data-theme="dark"] .campo input,
+html[data-theme="dark"] .campo textarea,
+html[data-theme="dark"] .campo select,
+html[data-theme="dark"] .buscador input,
+html[data-theme="dark"] .fecha-custom input[type="date"],
+html[data-theme="dark"] .inv-cant,
+html[data-theme="dark"] #invModal .campo input{background:#0f1115;color:var(--txt);border-color:var(--line)}
+html[data-theme="dark"] .campo input::placeholder,
+html[data-theme="dark"] .buscador input::placeholder{color:#5a6470}
+html[data-theme="dark"] .foto-box{background:#0f1115;border-color:#2b3038;color:#5a6470}
+html[data-theme="dark"] .btn-galeria,
+html[data-theme="dark"] .filtro,
+html[data-theme="dark"] .tienda-filtro,
+html[data-theme="dark"] #invModal .tienda-chip,
+html[data-theme="dark"] #colorModal .btns button{background:var(--card);color:var(--txt);border-color:var(--line)}
+html[data-theme="dark"] .btn-gris,
+html[data-theme="dark"] #selectorModal .cerrar,
+html[data-theme="dark"] #invModal .cancelar,
+html[data-theme="dark"] .mini,
+html[data-theme="dark"] .inv-edit,
+html[data-theme="dark"] .lista-header .count,
+html[data-theme="dark"] #selectorModal .opc .tag{background:#262b33;color:#e8eaee}
+html[data-theme="dark"] .inv-item.bloqueado{background:#15181d}
+html[data-theme="dark"] .inv-cant:disabled,
+html[data-theme="dark"] .btn:disabled,
+html[data-theme="dark"] .btn-guardar:disabled{background:#262b33;color:#5a6470}
+html[data-theme="dark"] #previewModal thead th{color:var(--muted);border-color:var(--line)}
+html[data-theme="dark"] #previewModal tbody td{border-color:var(--line)}
+html[data-theme="dark"] .vacio{color:#5a6470}
+html[data-theme="dark"] #selectorModal .opc{background:var(--card);border-color:var(--line)}
+html[data-theme="dark"] #selectorModal .opc.recomendado{background:#0f2a1a;border-color:#16a34a}
+html[data-theme="dark"] .inv-estado.abierto{background:#3a2f0a;color:#fcd34d;border-color:#7a5a10}
+html[data-theme="dark"] .inv-estado.bloqueado{background:#0f2a1a;color:#6ee7b7;border-color:#16a34a}
+html[data-theme="dark"] .inv-grupo-header{box-shadow:0 2px 8px rgba(0,0,0,.5)}
+html[data-theme="dark"] .toast{background:#e8eaee;color:#17191c}
+html[data-theme="dark"] #overlay .box{background:#1a1d23;color:#e8eaee;border:1px solid var(--line)}
+html[data-theme="dark"] .dato{border-bottom-color:var(--line)}
+html[data-theme="dark"] #camModal .top,
+html[data-theme="dark"] #cropModal .top{background:rgba(0,0,0,.95)}
+html[data-theme="dark"] .btn-rojo-grad{background:linear-gradient(135deg,#b01e14,#6b0f08)}
+
+/* =========================================================
+   TARJETA DE META (chips + teléfonos)
+   ========================================================= */
+.meta-card{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:background .25s,color .25s;color:var(--txt)}
+html[data-theme="dark"] .meta-card{background:var(--card)}
+.meta-card.casi{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;box-shadow:0 4px 14px rgba(245,158,11,.4)}
+.meta-card.completada{background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;box-shadow:0 4px 16px rgba(22,163,74,.45)}
+.meta-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.meta-titulo{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;opacity:.85}
+.meta-config{background:none;border:none;font-size:18px;cursor:pointer;padding:4px 8px;border-radius:8px;opacity:.75;font-family:inherit;transition:.15s;color:inherit}
+.meta-config:hover{opacity:1;background:rgba(0,0,0,.06)}
+.meta-card.casi .meta-config,.meta-card.completada .meta-config{color:#fff;opacity:.9}
+.meta-card.casi .meta-config:hover,.meta-card.completada .meta-config:hover{background:rgba(255,255,255,.18)}
+.meta-grupo{margin-bottom:14px}
+.meta-grupo:last-child{margin-bottom:0}
+.meta-fila{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;margin-bottom:7px}
+.meta-fila .ico-g{font-size:16px}
+.meta-fila .lbl{flex:1}
+.meta-fila .val{font-family:monospace;font-size:14px;font-weight:900}
+.meta-fila .pct{font-size:12px;font-weight:900;padding:3px 9px;border-radius:20px;background:rgba(0,0,0,.07);min-width:44px;text-align:center}
+.meta-card.casi .meta-fila .pct,
+.meta-card.completada .meta-fila .pct{background:rgba(255,255,255,.25)}
+.meta-barra{height:9px;background:rgba(0,0,0,.08);border-radius:20px;overflow:hidden}
+.meta-card.casi .meta-barra,
+.meta-card.completada .meta-barra{background:rgba(255,255,255,.28)}
+.meta-barra > div{height:100%;background:linear-gradient(90deg,#DA291C,#ff6b5c);border-radius:20px;transition:width .5s ease}
+.meta-card.casi .meta-barra > div,
+.meta-card.completada .meta-barra > div{background:#fff}
+.meta-faltan{font-size:11px;font-weight:700;opacity:.8;margin-top:5px;text-align:right}
+.meta-sep{border-top:1px dashed rgba(0,0,0,.13);margin:12px 0 10px}
+.meta-card.casi .meta-sep,
+.meta-card.completada .meta-sep{border-top-color:rgba(255,255,255,.3)}
+.meta-hoy-titulo{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;opacity:.8;margin-bottom:6px}
+.meta-hoy-line{display:flex;gap:6px;font-size:12px;font-weight:700;flex-wrap:wrap}
+.meta-hoy-line span{background:rgba(0,0,0,.06);padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:4px}
+.meta-card.casi .meta-hoy-line span,
+.meta-card.completada .meta-hoy-line span{background:rgba(255,255,255,.22)}
+.meta-cta{text-align:center;font-size:13.5px;color:var(--muted);line-height:1.55;padding:4px 0}
+
+#metaModal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:750;display:none;align-items:center;justify-content:center;padding:16px}
+#metaModal.ver{display:flex}
+#metaModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
+html[data-theme="dark"] #metaModal .box{background:var(--card)}
+#metaModal h3{margin:0 0 6px;font-size:18px}
+#metaModal .sub{margin:0 0 16px;font-size:12.5px;color:var(--muted);line-height:1.45}
+#metaModal .mgrupo{margin-bottom:16px;padding:14px;background:#f7f8fa;border-radius:14px}
+html[data-theme="dark"] #metaModal .mgrupo{background:#0f1115}
+#metaModal .mtitulo{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+#metaModal .mfila{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+#metaModal .mfila:last-child{margin-bottom:0}
+#metaModal .mfila label{flex:1;font-size:14px;font-weight:700}
+#metaModal .mfila input{width:90px;padding:10px 12px;border:2px solid var(--line);border-radius:10px;font-size:16px;font-weight:800;font-family:monospace;text-align:center;background:#fff;color:var(--txt)}
+html[data-theme="dark"] #metaModal .mfila input{background:#0f1115;color:var(--txt);border-color:var(--line)}
+#metaModal .mfila input:focus{outline:none;border-color:var(--rojo)}
+#metaModal .nota{font-size:11.5px;color:var(--muted);margin:6px 0 0;line-height:1.4;font-style:italic}
+#metaModal .btns{display:flex;gap:10px;margin-top:6px}
+#metaModal .btns button{flex:1;padding:15px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
+#metaModal .cancelar{background:#eef0f3;color:#374151}
+html[data-theme="dark"] #metaModal .cancelar{background:#262b33;color:#e8eaee}
+#metaModal .guardar{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
+#metaModal .borrar{width:100%;padding:11px;border:none;border-radius:12px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;background:#fdeceb;color:#b91c1c;margin-top:10px}
 </style>
 </head>
 <body>
@@ -289,14 +410,12 @@ main{padding:14px;max-width:640px;margin:0 auto}
     <div class="h-t">Registro Claro</div>
     <div class="h-s">Chips, equipos e inventario</div>
   </div>
+  <button id="btnTema" class="btn-tema" onclick="toggleTema()" title="Cambiar tema">🌙</button>
 </header>
 
 <main>
   <section id="vista-home" class="vista activa">
-    <button class="btn-grande bg-inv" onclick="ir('inventario')">
-      <span class="ico">📦</span>
-      <span>Inventario de Teléfonos<span class="sub">Por tienda · colores personalizados</span></span>
-    </button>
+    <div class="meta-card" id="meta-card"></div>
     <button class="btn-grande bg-chip" onclick="abrirForm('chip')">
       <span class="ico">📶</span>
       <span>Registrar Chip<span class="sub">Foto + lectura de IMSI</span></span>
@@ -308,6 +427,10 @@ main{padding:14px;max-width:640px;margin:0 auto}
     <button class="btn-grande bg-fotos" onclick="ir('fotos')">
       <span class="ico">🖼️</span>
       <span>Galería de fotos<span class="sub">Todas las fotos guardadas</span></span>
+    </button>
+    <button class="btn-grande bg-inv" onclick="ir('inventario')">
+      <span class="ico">📦</span>
+      <span>Inventario de Teléfonos<span class="sub">Por tienda · colores personalizados</span></span>
     </button>
 
     <div class="filtros" id="filtros">
@@ -457,37 +580,338 @@ let tiendas = [];
 let inventarioBloqueado = false;
 let filtroTienda = 'todas';
 
-/* Tiendas por defecto: ninguna. El usuario las agrega desde el botón ➕ */
 const TIENDAS_DEFAULT = [];
 
-/* Paleta de colores disponibles para elegir */
 const PALETA_COLORES = [
-  { nombre: 'Rojo Claro',    valor: '#DA291C' },
-  { nombre: 'Amarillo',      valor: '#eab308' },
-  { nombre: 'Verde',         valor: '#16a34a' },
-  { nombre: 'Azul',          valor: '#2563eb' },
-  { nombre: 'Morado',        valor: '#7c3aed' },
-  { nombre: 'Naranja',       valor: '#f97316' },
-  { nombre: 'Rosa',          valor: '#ec4899' },
-  { nombre: 'Turquesa',      valor: '#06b6d4' },
-  { nombre: 'Índigo',        valor: '#4f46e5' },
-  { nombre: 'Vino',          valor: '#7f1d1d' },
-  { nombre: 'Café',          valor: '#92400e' },
-  { nombre: 'Gris',          valor: '#475569' },
+  { nombre: 'Rojo Claro', valor: '#DA291C' },
+  { nombre: 'Amarillo',   valor: '#eab308' },
+  { nombre: 'Verde',      valor: '#16a34a' },
+  { nombre: 'Azul',       valor: '#2563eb' },
+  { nombre: 'Morado',     valor: '#7c3aed' },
+  { nombre: 'Naranja',    valor: '#f97316' },
+  { nombre: 'Rosa',       valor: '#ec4899' },
+  { nombre: 'Turquesa',   valor: '#06b6d4' },
+  { nombre: 'Índigo',     valor: '#4f46e5' },
+  { nombre: 'Vino',       valor: '#7f1d1d' },
+  { nombre: 'Café',       valor: '#92400e' },
+  { nombre: 'Gris',       valor: '#475569' },
 ];
 
+/* =========================================================
+   TEMA CLARO / OSCURO
+   ========================================================= */
+const TEMA_KEY = 'claro_tema_v1';
+
+function aplicarTema(t){
+  document.documentElement.setAttribute('data-theme', t);
+  const b = document.getElementById('btnTema');
+  if (b) b.textContent = (t === 'dark') ? '☀️' : '🌙';
+  const meta = document.getElementById('metaTema');
+  if (meta) meta.setAttribute('content', (t === 'dark') ? '#14171c' : '#DA291C');
+}
+function toggleTema(){
+  const actual = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  try{ localStorage.setItem(TEMA_KEY, actual); }catch(e){}
+  aplicarTema(actual);
+  toast(actual === 'dark' ? '🌙 Modo oscuro activado' : '☀️ Modo claro activado', 1500);
+}
+function cargarTema(){
+  let t = null;
+  try{ t = localStorage.getItem(TEMA_KEY); }catch(e){}
+  if (!t){
+    t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  aplicarTema(t);
+}
+
+/* =========================================================
+   META: CHIPS + TELÉFONOS, MES + DÍA, AVANCE INICIAL
+   ========================================================= */
+const META_KEY = 'claro_meta_v2';
+
+let metaConfig = {
+  mes: { chips: 0, tels: 0 },
+  dia: { chips: 0, tels: 0 },
+  inicial: { mes: null, chips: 0, tels: 0 }
+};
+let _ultimoEstadoMeta = { mesChips: -1, mesTels: -1, diaChips: -1, diaTels: -1 };
+let _metaInicializada = false;
+
+function cargarMeta(){
+  try{
+    const g = JSON.parse(localStorage.getItem(META_KEY) || 'null');
+    if (!g || typeof g !== 'object') return;
+    if (typeof g.mes === 'number' || typeof g.dia === 'number'){
+      metaConfig.mes = { chips: parseInt(g.mes) || 0, tels: 0 };
+      metaConfig.dia = { chips: parseInt(g.dia) || 0, tels: 0 };
+      metaConfig.inicial = { mes: null, chips: 0, tels: 0 };
+      return;
+    }
+    if (g.mes && typeof g.mes === 'object'){
+      metaConfig.mes.chips = Math.max(0, parseInt(g.mes.chips) || 0);
+      metaConfig.mes.tels  = Math.max(0, parseInt(g.mes.tels)  || 0);
+    }
+    if (g.dia && typeof g.dia === 'object'){
+      metaConfig.dia.chips = Math.max(0, parseInt(g.dia.chips) || 0);
+      metaConfig.dia.tels  = Math.max(0, parseInt(g.dia.tels)  || 0);
+    }
+    if (g.inicial && typeof g.inicial === 'object'){
+      metaConfig.inicial.mes   = typeof g.inicial.mes === 'string' ? g.inicial.mes : null;
+      metaConfig.inicial.chips = Math.max(0, parseInt(g.inicial.chips) || 0);
+      metaConfig.inicial.tels  = Math.max(0, parseInt(g.inicial.tels)  || 0);
+    }
+  }catch(e){
+    metaConfig = { mes:{chips:0,tels:0}, dia:{chips:0,tels:0}, inicial:{mes:null,chips:0,tels:0} };
+  }
+}
+function guardarMeta(){
+  try{ localStorage.setItem(META_KEY, JSON.stringify(metaConfig)); }catch(e){}
+}
+function mesActualPrefijo(){ return fechaLocalHoy().slice(0, 7); }
+
+function contarMesPorTipo(tipo){
+  const prefijo = mesActualPrefijo() + '-';
+  return registros.filter(r => {
+    const f = r.fechaLocal || derivarFechaLocal(r.fecha);
+    return f.startsWith(prefijo) && r.tipo === tipo;
+  }).length;
+}
+function avanzarInicialSiAplica(tipo, base){
+  if (!metaConfig.inicial || metaConfig.inicial.mes !== mesActualPrefijo()) return base;
+  if (tipo === 'chip')     return base + (metaConfig.inicial.chips || 0);
+  if (tipo === 'telefono') return base + (metaConfig.inicial.tels  || 0);
+  return base;
+}
+function totalMesChips(){ return avanzarInicialSiAplica('chip',     contarMesPorTipo('chip')); }
+function totalMesTels(){  return avanzarInicialSiAplica('telefono', contarMesPorTipo('telefono')); }
+function totalHoyChips(){ return registros.filter(r => {
+  const f = r.fechaLocal || derivarFechaLocal(r.fecha);
+  return f === fechaLocalHoy() && r.tipo === 'chip';
+}).length; }
+function totalHoyTels(){ return registros.filter(r => {
+  const f = r.fechaLocal || derivarFechaLocal(r.fecha);
+  return f === fechaLocalHoy() && r.tipo === 'telefono';
+}).length; }
+function pct(hecho, meta){
+  if (!meta || meta <= 0) return 0;
+  return Math.min(100, Math.round((hecho / meta) * 100));
+}
+function detectarHitosMeta(pM, pT, dM, dT, mCh, mTel, dCh, dTel){
+  if (!_metaInicializada){
+    _ultimoEstadoMeta = { mesChips: pM, mesTels: pT, diaChips: dM, diaTels: dT };
+    _metaInicializada = true;
+    return;
+  }
+  const antes = _ultimoEstadoMeta;
+  if (mCh > 0 && antes.mesChips < 80 && pM >= 80 && pM < 100){
+    setTimeout(() => toast('🔥 ¡80% en chips del mes!', 3000), 400);
+    if (navigator.vibrate){ try{ navigator.vibrate([80,40,80]); }catch(e){} }
+  }
+  if (mCh > 0 && antes.mesChips < 100 && pM >= 100){
+    setTimeout(() => toast('🏆 ¡Meta de chips cumplida!', 3500), 400);
+    if (navigator.vibrate){ try{ navigator.vibrate([100,60,100,60,250]); }catch(e){} }
+  }
+  if (mTel > 0 && antes.mesTels < 80 && pT >= 80 && pT < 100){
+    setTimeout(() => toast('🔥 ¡80% en teléfonos del mes!', 3000), 500);
+    if (navigator.vibrate){ try{ navigator.vibrate([80,40,80]); }catch(e){} }
+  }
+  if (mTel > 0 && antes.mesTels < 100 && pT >= 100){
+    setTimeout(() => toast('🏆 ¡Meta de teléfonos cumplida!', 3500), 500);
+    if (navigator.vibrate){ try{ navigator.vibrate([100,60,100,60,250]); }catch(e){} }
+  }
+  if (dCh > 0 && antes.diaChips < 100 && dM >= 100){
+    setTimeout(() => toast('☀️ ¡Meta diaria de chips!', 2500), 600);
+    if (navigator.vibrate){ try{ navigator.vibrate([60,40,80]); }catch(e){} }
+  }
+  if (dTel > 0 && antes.diaTels < 100 && dT >= 100){
+    setTimeout(() => toast('☀️ ¡Meta diaria de teléfonos!', 2500), 700);
+    if (navigator.vibrate){ try{ navigator.vibrate([60,40,80]); }catch(e){} }
+  }
+  _ultimoEstadoMeta = { mesChips: pM, mesTels: pT, diaChips: dM, diaTels: dT };
+}
+function renderMeta(){
+  const cont = document.getElementById('meta-card');
+  if (!cont) return;
+  const mCh  = metaConfig.mes.chips || 0;
+  const mTel = metaConfig.mes.tels  || 0;
+  const dCh  = metaConfig.dia.chips || 0;
+  const dTel = metaConfig.dia.tels  || 0;
+  const hayAlgo = mCh || mTel || dCh || dTel;
+  if (!hayAlgo){
+    cont.className = 'meta-card';
+    cont.innerHTML = `
+      <div class="meta-header">
+        <span class="meta-titulo">🎯 Mi meta</span>
+        <button class="meta-config" onclick="abrirMetaModal()" title="Configurar">⚙️</button>
+      </div>
+      <div class="meta-cta">
+        Toca <b>⚙️</b> para poner tus metas del mes y diarias,<br>
+        separadas en <b>chips</b> y <b>teléfonos</b>.<br>
+        También puedes anotar las activaciones que ya llevabas antes de instalar la app.
+      </div>`;
+    return;
+  }
+  const hChMes = totalMesChips();
+  const hTelMes = totalMesTels();
+  const hChHoy = totalHoyChips();
+  const hTelHoy = totalHoyTels();
+  const pMCh  = pct(hChMes, mCh);
+  const pMTel = pct(hTelMes, mTel);
+  const pDCh  = pct(hChHoy, dCh);
+  const pDTel = pct(hTelHoy, dTel);
+  detectarHitosMeta(pMCh, pMTel, pDCh, pDTel, mCh, mTel, dCh, dTel);
+
+  let clase = '';
+  const metasMes = [];
+  if (mCh > 0)  metasMes.push(pMCh);
+  if (mTel > 0) metasMes.push(pMTel);
+  if (metasMes.length){
+    const todas100 = metasMes.every(p => p >= 100);
+    const alguna80 = metasMes.some(p => p >= 80);
+    if (todas100) clase = 'completada';
+    else if (alguna80) clase = 'casi';
+  }
+
+  const ahora = new Date();
+  const nombreMes = ahora.toLocaleDateString('es-MX', { month:'long', year:'numeric' });
+  const inicialActivo = metaConfig.inicial && metaConfig.inicial.mes === mesActualPrefijo();
+
+  let html = `
+    <div class="meta-header">
+      <span class="meta-titulo">🎯 Meta de ${esc(nombreMes)}</span>
+      <button class="meta-config" onclick="abrirMetaModal()" title="Configurar">⚙️</button>
+    </div>`;
+
+  if (mCh > 0){
+    const falta = Math.max(0, mCh - hChMes);
+    html += `
+      <div class="meta-grupo">
+        <div class="meta-fila">
+          <span class="ico-g">📶</span><span class="lbl">Chips</span>
+          <span class="val">${hChMes}/${mCh}</span><span class="pct">${pMCh}%</span>
+        </div>
+        <div class="meta-barra"><div style="width:${pMCh}%"></div></div>
+        <div class="meta-faltan">${falta === 0 ? '✅ Cumplida' : `Faltan ${falta}`}</div>
+      </div>`;
+  }
+  if (mTel > 0){
+    const falta = Math.max(0, mTel - hTelMes);
+    html += `
+      <div class="meta-grupo">
+        <div class="meta-fila">
+          <span class="ico-g">📱</span><span class="lbl">Teléfonos</span>
+          <span class="val">${hTelMes}/${mTel}</span><span class="pct">${pMTel}%</span>
+        </div>
+        <div class="meta-barra"><div style="width:${pMTel}%"></div></div>
+        <div class="meta-faltan">${falta === 0 ? '✅ Cumplida' : `Faltan ${falta}`}</div>
+      </div>`;
+  }
+  if (dCh > 0 || dTel > 0){
+    html += `<div class="meta-sep"></div>
+      <div class="meta-hoy-titulo">☀️ Hoy</div>
+      <div class="meta-hoy-line">`;
+    if (dCh > 0){
+      const falta = Math.max(0, dCh - hChHoy);
+      html += `<span>📶 ${hChHoy}/${dCh} <b style="opacity:.7">${pDCh}%</b>${falta===0?' ✅':` · faltan ${falta}`}</span>`;
+    }
+    if (dTel > 0){
+      const falta = Math.max(0, dTel - hTelHoy);
+      html += `<span>📱 ${hTelHoy}/${dTel} <b style="opacity:.7">${pDTel}%</b>${falta===0?' ✅':` · faltan ${falta}`}</span>`;
+    }
+    html += `</div>`;
+  }
+  if (inicialActivo && (metaConfig.inicial.chips > 0 || metaConfig.inicial.tels > 0)){
+    const partes = [];
+    if (metaConfig.inicial.chips > 0) partes.push(`+${metaConfig.inicial.chips} chips`);
+    if (metaConfig.inicial.tels  > 0) partes.push(`+${metaConfig.inicial.tels} tel.`);
+    html += `<div class="meta-cta" style="font-size:11.5px;margin-top:10px">📊 Incluye avance inicial (${partes.join(' · ')})</div>`;
+  }
+  cont.className = 'meta-card' + (clase ? ' ' + clase : '');
+  cont.innerHTML = html;
+}
+function abrirMetaModal(){
+  let modal = document.getElementById('metaModal');
+  if (!modal){
+    modal = document.createElement('div');
+    modal.id = 'metaModal';
+    document.body.appendChild(modal);
+  }
+  const tieneMeta = (metaConfig.mes.chips || metaConfig.mes.tels || metaConfig.dia.chips || metaConfig.dia.tels);
+  const iniActivo = metaConfig.inicial && metaConfig.inicial.mes === mesActualPrefijo();
+  const iniCh = iniActivo ? (metaConfig.inicial.chips || 0) : 0;
+  const iniTel = iniActivo ? (metaConfig.inicial.tels || 0) : 0;
+  modal.innerHTML = `
+    <div class="box">
+      <h3>🎯 Configurar metas</h3>
+      <p class="sub">Metas separadas por <b>chips</b> y <b>teléfonos</b>. Pon 0 donde no quieras meta.</p>
+      <div class="mgrupo">
+        <div class="mtitulo">📆 Meta del mes</div>
+        <div class="mfila"><label>📶 Chips</label><input id="meta-mes-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.chips || ''}"></div>
+        <div class="mfila"><label>📱 Teléfonos</label><input id="meta-mes-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.tels || ''}"></div>
+      </div>
+      <div class="mgrupo">
+        <div class="mtitulo">☀️ Meta diaria</div>
+        <div class="mfila"><label>📶 Chips</label><input id="meta-dia-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.dia.chips || ''}"></div>
+        <div class="mfila"><label>📱 Teléfonos</label><input id="meta-dia-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.dia.tels || ''}"></div>
+      </div>
+      <div class="mgrupo">
+        <div class="mtitulo">📊 Avance inicial</div>
+        <div class="mfila"><label>📶 Chips ya llevados</label><input id="meta-ini-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniCh || ''}"></div>
+        <div class="mfila"><label>📱 Teléfonos ya llevados</label><input id="meta-ini-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniTel || ''}"></div>
+        <p class="nota">Si ya llevabas activaciones antes de instalar la app, anótalas aquí. Solo cuentan para el mes en curso; al cambiar de mes se reinician solas.</p>
+      </div>
+      <div class="btns">
+        <button type="button" class="cancelar" onclick="cerrarMetaModal()">Cancelar</button>
+        <button type="button" class="guardar" onclick="guardarMetaModal()">Guardar</button>
+      </div>
+      ${tieneMeta ? `<button type="button" class="borrar" onclick="borrarMeta()">🗑️ Quitar todas las metas</button>` : ''}
+    </div>`;
+  modal.classList.add('ver');
+  setTimeout(() => { const i = document.getElementById('meta-mes-chips'); if (i) i.focus(); }, 100);
+}
+function cerrarMetaModal(){ const m = document.getElementById('metaModal'); if (m) m.classList.remove('ver'); }
+function guardarMetaModal(){
+  const mCh  = Math.max(0, parseInt(document.getElementById('meta-mes-chips').value) || 0);
+  const mTel = Math.max(0, parseInt(document.getElementById('meta-mes-tels').value)  || 0);
+  const dCh  = Math.max(0, parseInt(document.getElementById('meta-dia-chips').value) || 0);
+  const dTel = Math.max(0, parseInt(document.getElementById('meta-dia-tels').value)  || 0);
+  const iCh  = Math.max(0, parseInt(document.getElementById('meta-ini-chips').value) || 0);
+  const iTel = Math.max(0, parseInt(document.getElementById('meta-ini-tels').value)  || 0);
+  metaConfig.mes.chips = mCh; metaConfig.mes.tels = mTel;
+  metaConfig.dia.chips = dCh; metaConfig.dia.tels = dTel;
+  if (iCh > 0 || iTel > 0){
+    metaConfig.inicial = { mes: mesActualPrefijo(), chips: iCh, tels: iTel };
+  } else {
+    metaConfig.inicial = { mes: null, chips: 0, tels: 0 };
+  }
+  guardarMeta();
+  cerrarMetaModal();
+  _ultimoEstadoMeta = { mesChips: -1, mesTels: -1, diaChips: -1, diaTels: -1 };
+  _metaInicializada = false;
+  renderMeta();
+  toast('✅ Metas guardadas');
+}
+function borrarMeta(){
+  if (!confirm('¿Quitar todas las metas y el avance inicial?')) return;
+  metaConfig = { mes: { chips: 0, tels: 0 }, dia: { chips: 0, tels: 0 }, inicial: { mes: null, chips: 0, tels: 0 } };
+  guardarMeta();
+  cerrarMetaModal();
+  _ultimoEstadoMeta = { mesChips: -1, mesTels: -1, diaChips: -1, diaTels: -1 };
+  _metaInicializada = false;
+  renderMeta();
+  toast('🗑️ Metas eliminadas');
+}
+
+/* ========================================================= */
 let filtroFecha = 'hoy';
 let fechaCustom = null;
-
 const soloDigitos = s => String(s || '').replace(/\D/g, '');
 const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
-
 const fmt = iso => {
   const d = new Date(iso);
   return d.toLocaleString('es-MX', {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'});
 };
-
 function pad(n){ return String(n).padStart(2, '0'); }
 function fechaLocalHoy(){
   const d = new Date();
@@ -509,7 +933,6 @@ function nombreFechaCorta(fechaStr){
   const [y, m, d] = fechaStr.split('-').map(Number);
   return new Date(y, m-1, d).toLocaleDateString('es-MX', { day: '2-digit', month: 'short' });
 }
-
 function obtenerRangoFechas(){
   const hoy = fechaLocalHoy();
   switch(filtroFecha){
@@ -530,14 +953,12 @@ function obtenerRangoFechas(){
     default: return { desde: null, hasta: null };
   }
 }
-
 function registroEnRango(r, rango){
   const f = r.fechaLocal || derivarFechaLocal(r.fecha);
   if (rango.desde && f < rango.desde) return false;
   if (rango.hasta && f > rango.hasta) return false;
   return true;
 }
-
 function normalizarFechas(){
   let cambio = false;
   registros.forEach(r => {
@@ -545,7 +966,6 @@ function normalizarFechas(){
   });
   if (cambio) guardarLS();
 }
-
 let toastTimer;
 function toast(msg, ms=2000){
   const t = $('#toast');
@@ -554,7 +974,6 @@ function toast(msg, ms=2000){
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('ver'), ms);
 }
-
 function overlay(mostrar, txt, progreso, sub){
   const ov = $('#overlay');
   if (txt !== undefined) $('#overlayTxt').textContent = txt;
@@ -563,7 +982,6 @@ function overlay(mostrar, txt, progreso, sub){
   if (mostrar && progreso === undefined) $('#overlayBarra').style.width = '0%';
   ov.classList.toggle('ver', !!mostrar);
 }
-
 function copiar(txt){
   if(!txt) return;
   const ok = () => toast('✅ Copiado');
@@ -579,17 +997,13 @@ function copiar(txt){
   }
 }
 
-/* ============ TIENDAS CON COLORES ============ */
+/* ============ TIENDAS ============ */
 function cargarTiendas(){
   try{
     const guardadas = JSON.parse(localStorage.getItem(TIENDAS_STORE) || 'null');
     if (Array.isArray(guardadas) && guardadas.length){
-      // Formato viejo: array de strings → migrar a {nombre, color}
       if (typeof guardadas[0] === 'string'){
-        tiendas = guardadas.map((n, i) => ({
-          nombre: n,
-          color: PALETA_COLORES[i % PALETA_COLORES.length].valor
-        }));
+        tiendas = guardadas.map((n, i) => ({ nombre: n, color: PALETA_COLORES[i % PALETA_COLORES.length].valor }));
         guardarTiendas();
       } else {
         tiendas = guardadas;
@@ -599,21 +1013,15 @@ function cargarTiendas(){
     }
   }catch(e){ tiendas = TIENDAS_DEFAULT.slice(); }
 }
-
-/* Elimina una sola vez las tiendas por defecto antiguas (Tecno, Kiosko Máx)
-   siempre que NO tengan teléfonos registrados en el inventario. */
 const TIENDAS_LIMPIEZA_KEY = 'claro_tiendas_limpieza_v1';
 function limpiarTiendasAntiguas(){
   if (localStorage.getItem(TIENDAS_LIMPIEZA_KEY) === '1') return;
   localStorage.setItem(TIENDAS_LIMPIEZA_KEY, '1');
   const antiguas = ['Tecno', 'Kiosko Máx'];
   const antes = tiendas.length;
-  tiendas = tiendas.filter(t =>
-    !(antiguas.includes(t.nombre) && !inventario.some(m => m.tienda === t.nombre))
-  );
+  tiendas = tiendas.filter(t => !(antiguas.includes(t.nombre) && !inventario.some(m => m.tienda === t.nombre)));
   if (tiendas.length !== antes) guardarTiendas();
 }
-
 function guardarTiendas(){
   try{ localStorage.setItem(TIENDAS_STORE, JSON.stringify(tiendas)); }catch(e){}
 }
@@ -621,9 +1029,7 @@ function colorDeTienda(nombre){
   const t = tiendas.find(x => x.nombre === nombre);
   return t ? t.color : '#DA291C';
 }
-function nombreTiendas(){
-  return tiendas.map(t => t.nombre);
-}
+function nombreTiendas(){ return tiendas.map(t => t.nombre); }
 
 /* ============ INVENTARIO ============ */
 function cargarInventario(){
@@ -640,39 +1046,21 @@ function guardarEstadoBloqueo(){
   if (inventarioBloqueado) localStorage.setItem(INV_BLOQ_STORE, '1');
   else localStorage.removeItem(INV_BLOQ_STORE);
 }
-
 function renderEstadoInventario(){
   const cont = $('#inv-estado');
   if (!cont) return;
   const total = inventario.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
   const totalModelos = inventario.length;
-
   if (inventarioBloqueado){
-    cont.innerHTML = `
-      <div class="inv-estado bloqueado">
-        <span class="ico">🔒</span>
-        <div class="txt">
-          <b>Inventario guardado</b>
-          <small>${totalModelos} ${totalModelos === 1 ? 'modelo' : 'modelos'} · ${total} en stock. Toca "Desbloquear" para editar.</small>
-        </div>
-      </div>`;
+    cont.innerHTML = `<div class="inv-estado bloqueado"><span class="ico">🔒</span><div class="txt"><b>Inventario guardado</b><small>${totalModelos} ${totalModelos === 1 ? 'modelo' : 'modelos'} · ${total} en stock. Toca "Desbloquear" para editar.</small></div></div>`;
   } else {
-    cont.innerHTML = `
-      <div class="inv-estado abierto">
-        <span class="ico">✏️</span>
-        <div class="txt">
-          <b>Modo edición</b>
-          <small>Agrega o modifica teléfonos. Toca <b>💾 Guardar inventario</b> al terminar.</small>
-        </div>
-      </div>`;
+    cont.innerHTML = `<div class="inv-estado abierto"><span class="ico">✏️</span><div class="txt"><b>Modo edición</b><small>Agrega o modifica teléfonos. Toca <b>💾 Guardar inventario</b> al terminar.</small></div></div>`;
   }
 }
-
 function renderBotonesInv(){
   const btnAgregar = $('#btnAgregarInv');
   const btnGuardar = $('#btnGuardarInv');
   const btnDesbloquear = $('#btnDesbloquearInv');
-
   if (inventarioBloqueado){
     if (btnAgregar) btnAgregar.style.display = 'none';
     if (btnGuardar) btnGuardar.style.display = 'none';
@@ -683,7 +1071,6 @@ function renderBotonesInv(){
     if (btnDesbloquear) btnDesbloquear.style.display = 'none';
   }
 }
-
 function guardarInventarioBloqueado(){
   if (!inventario.length){ toast('⚠️ No hay teléfonos para guardar'); return; }
   if (!confirm('¿Guardar el inventario?\n\nNo podrás agregar más teléfonos hasta que lo desbloquees.')) return;
@@ -694,7 +1081,6 @@ function guardarInventarioBloqueado(){
   renderInventario();
   toast('✅ Inventario guardado y bloqueado', 2400);
 }
-
 function desbloquearInventario(){
   if (!confirm('¿Desbloquear el inventario para editarlo otra vez?')) return;
   inventarioBloqueado = false;
@@ -704,80 +1090,47 @@ function desbloquearInventario(){
   renderInventario();
   toast('🔓 Desbloqueado. Ya puedes editar.');
 }
-
 function renderTiendaFiltros(){
   const cont = $('#tienda-filtros');
   if (!cont) return;
-  if (!tiendas.length){
-    cont.innerHTML = '';
-    return;
-  }
+  if (!tiendas.length){ cont.innerHTML = ''; return; }
   const lista = ['todas'].concat(nombreTiendas());
   cont.innerHTML = lista.map(t => {
     const activo = filtroTienda === t;
     if (t === 'todas'){
       const bg = activo ? 'background:#DA291C;color:#fff;border-color:transparent' : '';
       const puntoBg = activo ? '#fff' : '#DA291C';
-      return `<button class="tienda-filtro" style="${bg}" onclick="cambiarFiltroTienda('todas')">
-        <span class="punto" style="background:${puntoBg}"></span>
-        Todas
-      </button>`;
+      return `<button class="tienda-filtro" style="${bg}" onclick="cambiarFiltroTienda('todas')"><span class="punto" style="background:${puntoBg}"></span>Todas</button>`;
     }
     const color = colorDeTienda(t);
     const bg = activo ? `background:${color};color:#fff;border-color:transparent` : '';
     const puntoBg = activo ? '#fff' : color;
-    return `<button class="tienda-filtro" style="${bg}" onclick="cambiarFiltroTienda('${esc(t)}')">
-      <span class="punto" style="background:${puntoBg}"></span>
-      ${esc(t)}
-    </button>`;
+    return `<button class="tienda-filtro" style="${bg}" onclick="cambiarFiltroTienda('${esc(t)}')"><span class="punto" style="background:${puntoBg}"></span>${esc(t)}</button>`;
   }).join('');
 }
-
-function cambiarFiltroTienda(t){
-  filtroTienda = t;
-  renderTiendaFiltros();
-  renderInventario();
-}
-
-/* ===== Panel de gestión de tiendas ===== */
+function cambiarFiltroTienda(t){ filtroTienda = t; renderTiendaFiltros(); renderInventario(); }
 function renderGestionTiendas(){
   const cont = document.getElementById('tiendas-gestion-lista');
   if (!cont) return;
-
   if (!tiendas.length){
-    cont.innerHTML = `<div class="tienda-gestion-vacio">
-      Aún no hay tiendas.<br>Toca <b>➕ Agregar tienda</b> para crear la primera.
-    </div>`;
+    cont.innerHTML = `<div class="tienda-gestion-vacio">Aún no hay tiendas.<br>Toca <b>➕ Agregar tienda</b> para crear la primera.</div>`;
     return;
   }
-
   cont.innerHTML = tiendas.map((t, i) => `
     <div class="tienda-gestion-item">
       <span class="punto" style="background:${t.color}"></span>
       <span class="nombre">${esc(t.nombre)}</span>
       <button class="mini" title="Cambiar color" onclick="abrirColorModalIdx(${i})">🎨</button>
       <button class="mini del" title="Eliminar tienda" onclick="eliminarTiendaIdx(${i})">🗑️</button>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
-
-function abrirColorModalIdx(i){
-  const t = tiendas[i];
-  if (t) abrirColorModal(t.nombre);
-}
-
-function eliminarTiendaIdx(i){
-  const t = tiendas[i];
-  if (t) eliminarTienda(t.nombre);
-}
-
+function abrirColorModalIdx(i){ const t = tiendas[i]; if (t) abrirColorModal(t.nombre); }
+function eliminarTiendaIdx(i){ const t = tiendas[i]; if (t) eliminarTienda(t.nombre); }
 function eliminarTienda(nombre){
   const t = tiendas.find(x => x.nombre === nombre);
   if (!t) return;
-
   const enTienda = inventario.filter(m => m.tienda === nombre);
   const totalEquipos = enTienda.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
-
   if (enTienda.length){
     if (!confirm(`"${nombre}" tiene ${enTienda.length} modelo(s) con ${totalEquipos} equipo(s) en stock.\n\nSi eliminas la tienda, también se eliminarán esos teléfonos del inventario.\n\n¿Continuar?`)) return;
     inventario = inventario.filter(m => m.tienda !== nombre);
@@ -785,22 +1138,17 @@ function eliminarTienda(nombre){
   } else {
     if (!confirm(`¿Eliminar la tienda "${nombre}"?`)) return;
   }
-
   tiendas = tiendas.filter(x => x.nombre !== nombre);
   guardarTiendas();
   if (filtroTienda === nombre) filtroTienda = 'todas';
   renderInventario();
   toast('🗑️ Tienda eliminada');
 }
-
 function renderInventario(){
   const cont = $('#inv-lista');
   if (!cont) return;
-
   const total = inventario.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
   $('#inv-total-num').textContent = total;
-
-  // Mini stats con colores
   const miniStats = $('#inv-mini-stats');
   if (miniStats){
     if (tiendas.length){
@@ -812,39 +1160,25 @@ function renderInventario(){
       miniStats.innerHTML = '';
     }
   }
-
   renderTiendaFiltros();
   renderGestionTiendas();
   renderEstadoInventario();
   renderBotonesInv();
-
   let lista = inventario.slice();
   if (filtroTienda !== 'todas') lista = lista.filter(m => m.tienda === filtroTienda);
-
   if (!lista.length){
     const sinTiendas = !tiendas.length;
-    cont.innerHTML = `
-      <div class="vacio">
-        <span class="em">📦</span>
-        ${sinTiendas
-          ? 'Aún no hay tiendas.<br>Crea una con <b>➕ Agregar tienda</b> y después agrega teléfonos.'
-          : (filtroTienda === 'todas'
-              ? 'No hay teléfonos en el inventario.<br>Toca <b>➕ Agregar teléfono</b>.'
-              : `No hay teléfonos en <b>${esc(filtroTienda)}</b>.`)}
-      </div>`;
+    cont.innerHTML = `<div class="vacio"><span class="em">📦</span>${sinTiendas ? 'Aún no hay tiendas.<br>Crea una con <b>➕ Agregar tienda</b> y después agrega teléfonos.' : (filtroTienda === 'todas' ? 'No hay teléfonos en el inventario.<br>Toca <b>➕ Agregar teléfono</b>.' : `No hay teléfonos en <b>${esc(filtroTienda)}</b>.`)}</div>`;
     return;
   }
-
   const grupos = {};
   lista.forEach(m => {
     const t = m.tienda || 'Sin tienda';
     if (!grupos[t]) grupos[t] = [];
     grupos[t].push(m);
   });
-
   const ordenTiendas = Object.keys(grupos).sort((a, b) => a.localeCompare(b, 'es'));
   const bloq = inventarioBloqueado;
-
   cont.innerHTML = ordenTiendas.map(t => {
     const items = grupos[t].sort((a, b) => a.modelo.localeCompare(b.modelo, 'es'));
     const sumaGrupo = items.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
@@ -852,10 +1186,7 @@ function renderInventario(){
     return `
       <div class="inv-grupo">
         <div class="inv-grupo-header" style="background:${color}">
-          <div class="lado-izq">
-            <span>🏪 ${esc(t)}</span>
-            <button class="btn-color" onclick="abrirColorModal('${esc(t)}')" title="Cambiar color">🎨</button>
-          </div>
+          <div class="lado-izq"><span>🏪 ${esc(t)}</span><button class="btn-color" onclick="abrirColorModal('${esc(t)}')" title="Cambiar color">🎨</button></div>
           <span class="n">${sumaGrupo}</span>
         </div>
         ${items.map(m => `
@@ -864,8 +1195,7 @@ function renderInventario(){
               <div class="inv-nombre">${esc(m.modelo)}</div>
               <div class="inv-controles">
                 <button class="inv-btn inv-menos" onclick="cambiarStock('${m.id}', -1)" ${bloq ? 'disabled' : ''}>−</button>
-                <input type="number" class="inv-cant" value="${Number(m.cantidad) || 0}" min="0"
-                       onchange="setStockDirecto('${m.id}', this.value)" onfocus="this.select()" ${bloq ? 'disabled' : ''}>
+                <input type="number" class="inv-cant" value="${Number(m.cantidad) || 0}" min="0" onchange="setStockDirecto('${m.id}', this.value)" onfocus="this.select()" ${bloq ? 'disabled' : ''}>
                 <button class="inv-btn inv-mas" onclick="cambiarStock('${m.id}', 1)" ${bloq ? 'disabled' : ''}>+</button>
               </div>
             </div>
@@ -876,11 +1206,9 @@ function renderInventario(){
             </div>
           </div>
         `).join('')}
-      </div>
-    `;
+      </div>`;
   }).join('');
 }
-
 function cambiarStock(id, delta){
   if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); return; }
   const m = inventario.find(x => x.id === id);
@@ -890,7 +1218,6 @@ function cambiarStock(id, delta){
   renderInventario();
   if (navigator.vibrate){ try{ navigator.vibrate(15); }catch(e){} }
 }
-
 function setStockDirecto(id, valor){
   if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); renderInventario(); return; }
   const m = inventario.find(x => x.id === id);
@@ -899,7 +1226,6 @@ function setStockDirecto(id, valor){
   guardarInventario();
   renderInventario();
 }
-
 function eliminarModeloInv(id){
   if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); return; }
   const m = inventario.find(x => x.id === id);
@@ -910,8 +1236,6 @@ function eliminarModeloInv(id){
   renderInventario();
   toast('🗑️ Eliminado');
 }
-
-/* ========== MODAL CAMBIAR COLOR ========== */
 let _tiendaColorActual = '';
 function abrirColorModal(nombreTienda){
   _tiendaColorActual = nombreTienda;
@@ -920,20 +1244,11 @@ function abrirColorModal(nombreTienda){
     <h3>🎨 Color de "${esc(nombreTienda)}"</h3>
     <p class="sub">Toca un color para asignarlo a esta tienda.</p>
     <div class="paleta">
-      ${PALETA_COLORES.map(c => `
-        <button class="color-opt ${c.valor.toLowerCase() === actual.toLowerCase() ? 'activo' : ''}"
-                style="background:${c.valor}"
-                onclick="setColorTienda('${c.valor}')"
-                title="${esc(c.nombre)}"></button>
-      `).join('')}
+      ${PALETA_COLORES.map(c => `<button class="color-opt ${c.valor.toLowerCase() === actual.toLowerCase() ? 'activo' : ''}" style="background:${c.valor}" onclick="setColorTienda('${c.valor}')" title="${esc(c.nombre)}"></button>`).join('')}
     </div>
-    <div class="btns">
-      <button onclick="cerrarColorModal()">Cerrar</button>
-    </div>
-  `;
+    <div class="btns"><button onclick="cerrarColorModal()">Cerrar</button></div>`;
   $('#colorModal').classList.add('ver');
 }
-
 function setColorTienda(color){
   const t = tiendas.find(x => x.nombre === _tiendaColorActual);
   if (!t) return;
@@ -943,12 +1258,8 @@ function setColorTienda(color){
   renderInventario();
   toast('✅ Color actualizado');
 }
+function cerrarColorModal(){ $('#colorModal').classList.remove('ver'); }
 
-function cerrarColorModal(){
-  $('#colorModal').classList.remove('ver');
-}
-
-/* ========== MODAL AGREGAR/EDITAR TELÉFONO ========== */
 function abrirInvModalNuevo(){
   if (inventarioBloqueado){ toast('🔒 Desbloquea primero el inventario'); return; }
   if (!tiendas.length){ toast('⚠️ Agrega una tienda primero', 2600); ir('inventario'); return; }
@@ -965,21 +1276,14 @@ function abrirInvModal(m){
   const modeloActual = m ? m.modelo : '';
   const tiendaActual = m ? m.tienda : (tiendas[0] ? tiendas[0].nombre : '');
   const cantActual = m ? (Number(m.cantidad) || 0) : 0;
-
   $('#invModalBox').innerHTML = `
     <h3>${editando ? '✏️ Editar teléfono' : '➕ Agregar teléfono'}</h3>
-
-    <div class="campo">
-      <label>Modelo</label>
-      <input id="inv-f-modelo" type="text" placeholder="Ej: Redmi 15, Samsung A05..." value="${esc(modeloActual)}" autocapitalize="words">
-    </div>
-
+    <div class="campo"><label>Modelo</label><input id="inv-f-modelo" type="text" placeholder="Ej: Redmi 15, Samsung A05..." value="${esc(modeloActual)}" autocapitalize="words"></div>
     <div class="campo">
       <label>Tienda</label>
       <div class="tiendas-lista" id="inv-tiendas-lista"></div>
       <button type="button" class="btn btn-gris" style="margin-top:10px;padding:12px;font-size:14px" onclick="agregarNuevaTienda()">➕ Agregar nueva tienda</button>
     </div>
-
     <div class="campo">
       <label>Cantidad</label>
       <div style="display:flex;align-items:center;gap:8px">
@@ -988,48 +1292,32 @@ function abrirInvModal(m){
         <button type="button" class="inv-btn inv-mas" onclick="invModalCant(1)">+</button>
       </div>
     </div>
-
     <div class="btns">
       <button class="cancelar" onclick="cerrarInvModal()">Cancelar</button>
-      <button class="guardar" onclick="guardarInvModal(${editando ? `'${m.id}'` : 'null'})">
-        ${editando ? '💾 Guardar' : '✅ Agregar'}
-      </button>
-    </div>
-  `;
-
+      <button class="guardar" onclick="guardarInvModal(${editando ? `'${m.id}'` : 'null'})">${editando ? '💾 Guardar' : '✅ Agregar'}</button>
+    </div>`;
   pintarTiendasModal(tiendaActual);
   $('#invModal').classList.add('ver');
   setTimeout(() => { const inp = $('#inv-f-modelo'); if (inp) inp.focus(); }, 100);
 }
-
 let _tiendaSeleccionada = '';
 function pintarTiendasModal(seleccionada){
   _tiendaSeleccionada = seleccionada || (tiendas[0] ? tiendas[0].nombre : '');
   const cont = $('#inv-tiendas-lista');
   if (!cont) return;
-
   if (!tiendas.length){
-    cont.innerHTML = `<div style="font-size:13px;color:#9aa3ad;padding:6px 2px;line-height:1.5">
-      No hay tiendas todavía. Toca <b>➕ Agregar nueva tienda</b> para crear una.
-    </div>`;
+    cont.innerHTML = `<div style="font-size:13px;color:#9aa3ad;padding:6px 2px;line-height:1.5">No hay tiendas todavía. Toca <b>➕ Agregar nueva tienda</b> para crear una.</div>`;
     return;
   }
-
   cont.innerHTML = tiendas.map(t => {
     const activo = t.nombre === _tiendaSeleccionada;
     const bg = activo ? t.color : '#fff';
     const colorTexto = activo ? '#fff' : '#17191c';
     const borde = activo ? 'transparent' : '#e6e8eb';
-    return `<button type="button" class="tienda-chip" style="background:${bg};color:${colorTexto};border-color:${borde}" onclick="seleccionarTienda('${esc(t.nombre)}')">
-      <span class="punto" style="background:${activo ? '#fff' : t.color}"></span>
-      ${esc(t.nombre)}
-    </button>`;
+    return `<button type="button" class="tienda-chip" style="background:${bg};color:${colorTexto};border-color:${borde}" onclick="seleccionarTienda('${esc(t.nombre)}')"><span class="punto" style="background:${activo ? '#fff' : t.color}"></span>${esc(t.nombre)}</button>`;
   }).join('');
 }
-function seleccionarTienda(t){
-  _tiendaSeleccionada = t;
-  pintarTiendasModal(t);
-}
+function seleccionarTienda(t){ _tiendaSeleccionada = t; pintarTiendasModal(t); }
 function agregarNuevaTienda(){
   const nueva = prompt('Nombre de la nueva tienda:');
   if (nueva === null) return;
@@ -1041,19 +1329,13 @@ function agregarNuevaTienda(){
     if (modal && modal.classList.contains('ver')) seleccionarTienda(limpio);
     return;
   }
-
-  // Asignar un color de la paleta que aún no esté en uso
   const usados = tiendas.map(t => t.color.toLowerCase());
   const disponible = PALETA_COLORES.find(c => !usados.includes(c.valor.toLowerCase()));
   const colorNuevo = disponible ? disponible.valor : PALETA_COLORES[0].valor;
-
   tiendas.push({ nombre: limpio, color: colorNuevo });
   guardarTiendas();
-
-  // Si el modal de teléfono está abierto, refrescar sus chips
   const modal = document.getElementById('invModal');
   if (modal && modal.classList.contains('ver')) pintarTiendasModal(limpio);
-
   renderInventario();
   toast('✅ Tienda agregada');
 }
@@ -1062,33 +1344,19 @@ function invModalCant(delta){
   if (!inp) return;
   inp.value = Math.max(0, (Number(inp.value) || 0) + delta);
 }
-function cerrarInvModal(){
-  $('#invModal').classList.remove('ver');
-}
+function cerrarInvModal(){ $('#invModal').classList.remove('ver'); }
 function guardarInvModal(id){
   const modelo = ($('#inv-f-modelo').value || '').trim();
   const cant = Math.max(0, Math.floor(Number($('#inv-f-cant').value) || 0));
   const tienda = _tiendaSeleccionada || (tiendas[0] ? tiendas[0].nombre : '');
-
   if (!modelo){ toast('⚠️ Escribe el modelo'); $('#inv-f-modelo').focus(); return; }
   if (!tienda){ toast('⚠️ Selecciona la tienda'); return; }
-
-  const dup = inventario.find(m =>
-    m.id !== id &&
-    m.tienda.toLowerCase() === tienda.toLowerCase() &&
-    m.modelo.toLowerCase() === modelo.toLowerCase()
-  );
-  if (dup){
-    toast(`⚠️ "${modelo}" ya existe en ${tienda}`, 3200);
-    return;
-  }
-
+  const dup = inventario.find(m => m.id !== id && m.tienda.toLowerCase() === tienda.toLowerCase() && m.modelo.toLowerCase() === modelo.toLowerCase());
+  if (dup){ toast(`⚠️ "${modelo}" ya existe en ${tienda}`, 3200); return; }
   if (id){
     const m = inventario.find(x => x.id === id);
     if (!m){ cerrarInvModal(); return; }
-    m.modelo = modelo;
-    m.tienda = tienda;
-    m.cantidad = cant;
+    m.modelo = modelo; m.tienda = tienda; m.cantidad = cant;
     guardarInventario();
     toast('✅ Actualizado');
   } else {
@@ -1099,29 +1367,19 @@ function guardarInvModal(id){
   cerrarInvModal();
   renderInventario();
 }
-
 function abrirInvModalMover(id){
   if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); return; }
   const m = inventario.find(x => x.id === id);
   if (!m) return;
   const otras = tiendas.filter(t => t.nombre !== m.tienda);
-  if (!otras.length){
-    toast('⚠️ Solo tienes una tienda. Agrega otra primero.');
-    return;
-  }
-  const msg = `Mover "${m.modelo}" de ${m.tienda} a:\n\n` +
-              otras.map((t, i) => `${i+1}. ${t.nombre}`).join('\n') +
-              `\n\nEscribe el número:`;
+  if (!otras.length){ toast('⚠️ Solo tienes una tienda. Agrega otra primero.'); return; }
+  const msg = `Mover "${m.modelo}" de ${m.tienda} a:\n\n` + otras.map((t, i) => `${i+1}. ${t.nombre}`).join('\n') + `\n\nEscribe el número:`;
   const r = prompt(msg);
   if (r === null) return;
   const idx = parseInt(r, 10) - 1;
   if (isNaN(idx) || idx < 0 || idx >= otras.length){ toast('⚠️ Opción inválida'); return; }
   const destino = otras[idx].nombre;
-  const dup = inventario.find(x =>
-    x.id !== m.id &&
-    x.tienda === destino &&
-    x.modelo.toLowerCase() === m.modelo.toLowerCase()
-  );
+  const dup = inventario.find(x => x.id !== m.id && x.tienda === destino && x.modelo.toLowerCase() === m.modelo.toLowerCase());
   if (dup){
     if (!confirm(`"${m.modelo}" ya existe en ${destino}. ¿Juntar las cantidades?`)) return;
     dup.cantidad = (Number(dup.cantidad) || 0) + (Number(m.cantidad) || 0);
@@ -1133,12 +1391,9 @@ function abrirInvModalMover(id){
   renderInventario();
   toast('✅ Movido a ' + destino);
 }
-
-/* Vista previa */
 function mostrarVistaPrevia(){
   const total = inventario.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
   const fecha = new Date().toLocaleString('es-MX', {day:'2-digit', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit'});
-
   let contenido = '';
   if (!inventario.length){
     contenido = `<tr><td colspan="2" style="text-align:center;color:#9aa3ad;padding:24px">Sin teléfonos registrados</td></tr>`;
@@ -1154,50 +1409,19 @@ function mostrarVistaPrevia(){
       const items = grupos[t].sort((a, b) => a.modelo.localeCompare(b.modelo, 'es'));
       const subtotal = items.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
       const color = colorDeTienda(t);
-      return `
-        <div class="grupo">
-          <div class="grupo-titulo" style="background:${color}">
-            <span>🏪 ${esc(t)}</span>
-            <span>${subtotal}</span>
-          </div>
-          <table>
-            <thead><tr><th>Modelo</th><th style="text-align:center;width:80px">Cant.</th></tr></thead>
-            <tbody>
-              ${items.map(m => `<tr><td>${esc(m.modelo)}</td><td class="cant">${Number(m.cantidad) || 0}</td></tr>`).join('')}
-            </tbody>
-          </table>
-        </div>
-      `;
+      return `<div class="grupo"><div class="grupo-titulo" style="background:${color}"><span>🏪 ${esc(t)}</span><span>${subtotal}</span></div><table><thead><tr><th>Modelo</th><th style="text-align:center;width:80px">Cant.</th></tr></thead><tbody>${items.map(m => `<tr><td>${esc(m.modelo)}</td><td class="cant">${Number(m.cantidad) || 0}</td></tr>`).join('')}</tbody></table></div>`;
     }).join('');
   }
-
-  const estado = inventarioBloqueado
-    ? `<div style="background:#d1fae5;color:#065f46;padding:8px 12px;border-radius:10px;text-align:center;font-size:12px;font-weight:800;margin-bottom:12px">🔒 INVENTARIO GUARDADO</div>`
-    : '';
-
+  const estado = inventarioBloqueado ? `<div style="background:#d1fae5;color:#065f46;padding:8px 12px;border-radius:10px;text-align:center;font-size:12px;font-weight:800;margin-bottom:12px">🔒 INVENTARIO GUARDADO</div>` : '';
   $('#previewBox').innerHTML = `
     <h3>📋 Inventario actual</h3>
     <div class="fecha">Actualizado: ${esc(fecha)}</div>
-    ${estado}
-    ${contenido}
-    ${inventario.length ? `
-      <div class="gran-total">
-        <div class="t">Total general</div>
-        <div class="n">${total}</div>
-      </div>
-    ` : ''}
-    <div class="acciones">
-      <button class="seg" onclick="cerrarPreview()">Cerrar</button>
-      <button class="prim" onclick="copiarInventarioTexto()">📋 Copiar</button>
-    </div>
-  `;
+    ${estado}${contenido}
+    ${inventario.length ? `<div class="gran-total"><div class="t">Total general</div><div class="n">${total}</div></div>` : ''}
+    <div class="acciones"><button class="seg" onclick="cerrarPreview()">Cerrar</button><button class="prim" onclick="copiarInventarioTexto()">📋 Copiar</button></div>`;
   $('#previewModal').classList.add('ver');
 }
-
-function cerrarPreview(){
-  $('#previewModal').classList.remove('ver');
-}
-
+function cerrarPreview(){ $('#previewModal').classList.remove('ver'); }
 function copiarInventarioTexto(){
   if (!inventario.length){ toast('Sin datos'); return; }
   const grupos = {};
@@ -1219,7 +1443,6 @@ function copiarInventarioTexto(){
   txt += `Total: ${total}`;
   copiar(txt);
 }
-
 function exportarInventarioCSV(){
   if (!inventario.length) return toast('Sin datos para exportar');
   const filas = [['Tienda','Modelo','Cantidad']];
@@ -1227,19 +1450,16 @@ function exportarInventarioCSV(){
     const t = (a.tienda || '').localeCompare(b.tienda || '', 'es');
     if (t !== 0) return t;
     return a.modelo.localeCompare(b.modelo, 'es');
-  }).forEach(m => {
-    filas.push([m.tienda || '', m.modelo, Number(m.cantidad) || 0]);
-  });
+  }).forEach(m => { filas.push([m.tienda || '', m.modelo, Number(m.cantidad) || 0]); });
   filas.push([]);
   const total = inventario.reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
   filas.push(['TOTAL', '', total]);
-
   const csv = filas.map(f => f.map(c => `"${String(c ?? '').replace(/"/g, '""')}"`).join(',')).join('\r\n');
   descargar(new Blob(['\ufeff' + csv], {type:'text/csv;charset=utf-8'}), 'inventario_claro.csv');
   toast('📊 Inventario exportado');
 }
 
-/* ============ STORAGE GENERAL ============ */
+/* ============ STORAGE ============ */
 function cargar(){
   try{ registros = JSON.parse(localStorage.getItem(STORE) || '[]'); }
   catch(e){ registros = []; }
@@ -1255,7 +1475,6 @@ function guardarLS(){
     return false;
   }
 }
-
 function cerrarTodo(){
   $('#overlay').classList.remove('ver');
   $('#overlayBarra').style.width = '0%';
@@ -1271,45 +1490,32 @@ function cerrarTodo(){
     const el = $(sel); if (el) el.value = '';
   });
 }
-
-function limpiarEstadoFormulario(){
-  editId = null;
-  fotoChipTemp = null;
-  fotoEquipoTemp = null;
-}
-
+function limpiarEstadoFormulario(){ editId = null; fotoChipTemp = null; fotoEquipoTemp = null; }
 function volverAlInicio(mensajeToast){
   cerrarTodo();
   limpiarEstadoFormulario();
   ir('home');
   if (mensajeToast) setTimeout(() => toast(mensajeToast), 60);
 }
-
 function ir(vista){
   $$('.vista').forEach(v => v.classList.remove('activa'));
   $('#vista-' + vista).classList.add('activa');
   $$('.nav button').forEach(b => b.classList.toggle('activo', b.dataset.v === vista));
   window.scrollTo(0, 0);
-  if(vista === 'home')        renderLista();
+  if(vista === 'home'){       renderLista(); renderMeta(); }
   if(vista === 'fotos')       renderFotos();
   if(vista === 'inventario')  renderInventario();
 }
 $$('.nav button').forEach(b => b.onclick = () => ir(b.dataset.v));
-
 $$('.filtro').forEach(btn => {
   btn.onclick = () => {
     $$('.filtro').forEach(b => b.classList.remove('activo'));
     btn.classList.add('activo');
     filtroFecha = btn.dataset.f;
-    if (filtroFecha !== 'custom'){
-      fechaCustom = null;
-      $('#fechaPicker').value = '';
-      $('#btnLimpiarFecha').style.display = 'none';
-    }
+    if (filtroFecha !== 'custom'){ fechaCustom = null; $('#fechaPicker').value = ''; $('#btnLimpiarFecha').style.display = 'none'; }
     renderLista();
   };
 });
-
 $('#fechaPicker').addEventListener('change', (e) => {
   const val = e.target.value;
   if (!val) return;
@@ -1319,7 +1525,6 @@ $('#fechaPicker').addEventListener('change', (e) => {
   $('#btnLimpiarFecha').style.display = 'block';
   renderLista();
 });
-
 $('#btnLimpiarFecha').addEventListener('click', () => {
   fechaCustom = null;
   $('#fechaPicker').value = '';
@@ -1329,7 +1534,6 @@ $('#btnLimpiarFecha').addEventListener('click', () => {
   renderLista();
 });
 
-/* ZXing worker */
 function precargarTodo(){
   if (!window.ZXing && !window._zxingPrecargado){
     window._zxingPrecargado = true;
@@ -1428,7 +1632,6 @@ function decodificarEnWorker(canvas, timeoutMs){
   });
 }
 
-/* Cámara */
 let _camStream = null, _camCallback = null, _camFacing = 'environment';
 function tomarFoto(titulo, callback){ _camCallback = callback; _camFacing = 'environment'; abrirCamaraModal(titulo || 'Tomar foto'); }
 async function abrirCamaraModal(titulo){
@@ -1437,11 +1640,7 @@ async function abrirCamaraModal(titulo){
   const modal = document.createElement('div');
   modal.id = 'camModal';
   modal.innerHTML = `
-    <div class="top">
-      <button onclick="cerrarCamara()">✕</button>
-      <div class="titulo">${esc(titulo)}</div>
-      <button onclick="cambiarCamara()">🔄</button>
-    </div>
+    <div class="top"><button onclick="cerrarCamara()">✕</button><div class="titulo">${esc(titulo)}</div><button onclick="cambiarCamara()">🔄</button></div>
     <div class="view" id="camView"><video id="camVideo" autoplay playsinline muted></video></div>
     <div class="bottom">
       <button class="btn-lado" onclick="cerrarCamara()">✕</button>
@@ -1507,7 +1706,6 @@ function cerrarCamara(){
   _camCallback = null;
 }
 
-/* Crop */
 let _cropRect = null, _cropDrag = false;
 function abrirCropIMEI(dataUrl){ abrirCropGenerico(dataUrl, 'Marca el código del IMEI', 'escanearCrop'); }
 function abrirCropChip(dataUrl){ abrirCropGenerico(dataUrl, 'Marca el código del chip', 'escanearCropChip'); }
@@ -1517,14 +1715,8 @@ function abrirCropGenerico(dataUrl, titulo, fn){
   modal.innerHTML = `
     <div class="top"><button onclick="cerrarCrop()">✕</button><div class="titulo">${esc(titulo)}</div></div>
     <div class="aviso">✏️ Arrastra el dedo sobre el código de barras</div>
-    <div class="view" id="cropView">
-      <img id="cropImg" src="${dataUrl}" draggable="false">
-      <div class="sel" id="cropSel"></div>
-    </div>
-    <div class="bottom">
-      <button class="sec" onclick="cerrarCrop()">✕</button>
-      <button class="prim" onclick="${fn}()">🔍 ESCANEAR</button>
-    </div>`;
+    <div class="view" id="cropView"><img id="cropImg" src="${dataUrl}" draggable="false"><div class="sel" id="cropSel"></div></div>
+    <div class="bottom"><button class="sec" onclick="cerrarCrop()">✕</button><button class="prim" onclick="${fn}()">🔍 ESCANEAR</button></div>`;
   document.body.appendChild(modal);
   configurarCropEvents();
 }
@@ -1599,7 +1791,6 @@ async function escanearCanvasRapido(canvas, campo){
   }catch(err){ console.error(err); overlay(false); toast('⚠️ Error'); }
 }
 
-/* Lecturas */
 async function procesarDataUrlIMEI(dataUrl){
   const img = await dataUrlAImagen(dataUrl);
   setTimeout(() => { try{ fotoEquipoTemp = comprimirImagen(img); pintarFotos(); }catch(e){} }, 0);
@@ -1624,7 +1815,6 @@ async function procesarDataUrlChip(dataUrl){
   }
   setTimeout(() => abrirCropChip(dataUrl), 50);
 }
-
 function clasificarCodigos(codigos){
   const r = [], v = new Set();
   const imeis = codigos.map(c => ({ ...c, num: soloDigitos(c.texto) })).filter(c => c.num.length === 15).sort((a,b) => (a.y||0) - (b.y||0));
@@ -1662,7 +1852,6 @@ function abrirSelector(codigos, tipo, callback){
   $('#selectorModal').classList.add('ver');
 }
 function elegirOpcion(i){ const m = $('#selectorModal'); const c = (m._codigos || [])[i]; if (!c) return; const v = c.num && c.num.length ? c.num : c.texto; if (_selectorCallback) _selectorCallback(v); cerrarSelector(); }
-
 async function procesarDataUrlEquipo(dataUrl){
   try{ const img = await dataUrlAImagen(dataUrl); fotoEquipoTemp = comprimirImagen(img); pintarFotos(); toast('📷 Foto guardada'); }catch(e){ toast('⚠️ Error'); }
 }
@@ -1670,7 +1859,6 @@ function dataUrlAImagen(dataUrl){ return new Promise((res, rej) => { const img =
 function comprimirImagen(img, max=1400, calidad=0.75){ let w = img.width, h = img.height; if(w>h && w>max){ h = Math.round(h*max/w); w = max; } else if(h>=w && h>max){ w = Math.round(w*max/h); h = max; } const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(img, 0, 0, w, h); return c.toDataURL('image/jpeg', calidad); }
 function leerArchivoYProcesar(file, tipo){ if (!file.type.startsWith('image/')) return toast('No es imagen'); const r = new FileReader(); r.onload = ev => { const d = ev.target.result; if (tipo==='chip') procesarDataUrlChip(d); else if (tipo==='imei') procesarDataUrlIMEI(d); else procesarDataUrlEquipo(d); }; r.readAsDataURL(file); }
 
-/* Formulario */
 function abrirForm(tipo, id = null){
   formTipo = tipo; editId = id;
   const r = id ? registros.find(x => x.id === id) : null;
@@ -1748,7 +1936,6 @@ function guardarRegistro(){
   if (!guardarLS()) return;
   volverAlInicio(msj);
 }
-
 function renderLista(){
   const rango = obtenerRangoFechas();
   const q = ($('#buscar').value || '').trim().toLowerCase();
@@ -1841,7 +2028,7 @@ function exportarCSV(){
   toast('📊 CSV exportado');
 }
 function exportarJSON(){
-  const data = { app:'Registro Claro', version:12, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado };
+  const data = { app:'Registro Claro', version:15, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado, metaConfig };
   descargar(new Blob([JSON.stringify(data)], {type:'application/json'}), 'respaldo_claro.json');
   toast('📦 Respaldo creado');
 }
@@ -1855,22 +2042,36 @@ $('#inpImport').onchange = e => {
       const inv = data.inventario || [];
       const tien = data.tiendas || [];
       const bloq = data.inventarioBloqueado;
+      const meta = data.metaConfig;
       if (!nuevos.length && !inv.length) return toast('Sin datos');
       const ex = new Set(registros.map(x => x.id));
       let ag = 0;
       nuevos.forEach(x => { if (x && x.id && !ex.has(x.id)){ if (x.tipo === 'chip' && x.foto && !x.fotoChip) x.fotoChip = x.foto; if (x.tipo === 'telefono' && x.foto && !x.fotoEquipo) x.fotoEquipo = x.foto; if (!x.fechaLocal) x.fechaLocal = derivarFechaLocal(x.fecha); registros.push(x); ag++; } });
       if (inv.length){ const exInv = new Set(inventario.map(x => x.id)); inv.forEach(x => { if (x && x.id && !exInv.has(x.id)){ inventario.push(x); } }); guardarInventario(); }
       if (tien.length){
-        // Migrar formato si es viejo
         if (typeof tien[0] === 'string'){
           tiendas = tien.map((n, i) => ({ nombre: n, color: PALETA_COLORES[i % PALETA_COLORES.length].valor }));
-        } else {
-          tiendas = tien;
-        }
+        } else { tiendas = tien; }
         guardarTiendas();
       }
       if (typeof bloq === 'boolean'){ inventarioBloqueado = bloq; guardarEstadoBloqueo(); }
-      if (guardarLS()){ toast(`📥 ${ag} registros restaurados`); renderLista(); renderFotos(); renderInventario(); }
+      if (meta && typeof meta === 'object'){
+        if (typeof meta.mes === 'number' || typeof meta.dia === 'number'){
+          metaConfig.mes = { chips: parseInt(meta.mes) || 0, tels: 0 };
+          metaConfig.dia = { chips: parseInt(meta.dia) || 0, tels: 0 };
+          metaConfig.inicial = { mes: null, chips: 0, tels: 0 };
+        } else {
+          metaConfig.mes = { chips: parseInt(meta.mes?.chips) || 0, tels: parseInt(meta.mes?.tels) || 0 };
+          metaConfig.dia = { chips: parseInt(meta.dia?.chips) || 0, tels: parseInt(meta.dia?.tels) || 0 };
+          metaConfig.inicial = {
+            mes: meta.inicial?.mes || null,
+            chips: parseInt(meta.inicial?.chips) || 0,
+            tels: parseInt(meta.inicial?.tels) || 0
+          };
+        }
+        guardarMeta();
+      }
+      if (guardarLS()){ toast(`📥 ${ag} registros restaurados`); renderLista(); renderFotos(); renderInventario(); renderMeta(); }
     }catch(err){ toast('⚠️ Archivo inválido'); }
   };
   r.readAsText(file); e.target.value = '';
@@ -1883,17 +2084,23 @@ function borrarTodo(){
   localStorage.removeItem(INV_STORE);
   localStorage.removeItem(INV_BLOQ_STORE);
   toast('🗑️ Todo borrado');
-  renderLista(); renderFotos(); renderInventario();
+  renderLista(); renderFotos(); renderInventario(); renderMeta();
 }
-
 let _diaActualGuardado = fechaLocalHoy();
 setInterval(() => {
   const h = fechaLocalHoy();
-  if (h !== _diaActualGuardado){ _diaActualGuardado = h; if (filtroFecha === 'hoy'){ renderLista(); toast('📅 Nuevo día', 2500); } }
+  if (h !== _diaActualGuardado){
+    _diaActualGuardado = h;
+    if (filtroFecha === 'hoy'){ renderLista(); }
+    renderMeta();
+    toast('📅 Nuevo día', 2500);
+  }
 }, 60000);
-
+cargarTema();
 cargar();
+cargarMeta();
 renderLista();
+renderMeta();
 renderInventario();
 setTimeout(() => { precargarTodo(); }, 50);
 </script>
