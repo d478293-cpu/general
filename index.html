@@ -377,7 +377,127 @@ html[data-theme="dark"] .meta-card{background:var(--card)}
 .meta-card.casi .meta-hoy-line span,
 .meta-card.completada .meta-hoy-line span{background:rgba(255,255,255,.22)}
 .meta-cta{text-align:center;font-size:13.5px;color:var(--muted);line-height:1.55;padding:4px 0}
+/* =========================================================
+   BARRAS DE PROGRESO RGB BRILLANTE (con glow neón)
+   ========================================================= */
+.meta-barra{
+  height:12px;background:rgba(0,0,0,.12);border-radius:20px;
+  overflow:hidden;position:relative;
+}
+.meta-card.casi .meta-barra,
+.meta-card.completada .meta-barra{background:rgba(255,255,255,.28)}
 
+.meta-barra > div{
+  height:100%;border-radius:20px;
+  position:relative;overflow:hidden;
+  transition:width .6s cubic-bezier(.25,.8,.25,1);
+  background:linear-gradient(90deg,
+    #ff0033, #ff6b00, #ffdd00, #00ff66,
+    #00ddff, #0066ff, #b400ff, #ff0033);
+  background-size:300% 100%;
+  animation:metaRGB 7s linear infinite,
+            metaGlow 2s ease-in-out infinite;
+  filter:saturate(1.6) brightness(1.15);
+  box-shadow:
+    0 0 8px rgba(255, 0, 51, .7),
+    0 0 16px rgba(0, 255, 102, .5),
+    0 0 24px rgba(0, 102, 255, .4),
+    inset 0 0 6px rgba(255, 255, 255, .35);
+}
+
+/* Brillo extra deslizante encima del RGB */
+.meta-barra > div::after{
+  content:"";
+  position:absolute;inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,.05) 30%,
+    rgba(255,255,255,.55) 50%,
+    rgba(255,255,255,.05) 70%,
+    transparent 100%);
+  background-size:200% 100%;
+  animation:metaShine 2.4s ease-in-out infinite;
+}
+
+.meta-card.casi .meta-barra > div{
+  filter:saturate(1.8) brightness(1.25);
+  box-shadow:
+    0 0 12px rgba(255, 200, 0, .85),
+    0 0 22px rgba(255, 100, 0, .6),
+    0 0 32px rgba(255, 200, 0, .4),
+    inset 0 0 8px rgba(255, 255, 255, .5);
+}
+.meta-card.completada .meta-barra > div{
+  filter:saturate(2) brightness(1.35);
+  animation:metaRGB 1.5s linear infinite,
+            metaGlow 1.2s ease-in-out infinite;
+  box-shadow:
+    0 0 14px rgba(0, 255, 102, .95),
+    0 0 28px rgba(0, 200, 255, .75),
+    0 0 42px rgba(0, 150, 255, .5),
+    inset 0 0 10px rgba(255, 255, 255, .7);
+}
+
+@keyframes metaRGB{
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+@keyframes metaGlow{
+  0%, 100%{ filter:saturate(1.6) brightness(1.1); }
+  50%     { filter:saturate(1.8) brightness(1.35); }
+}
+@keyframes metaShine{
+  0%   { background-position: 200% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* Barrita de HOY: mismo efecto, un poco más chica */
+.meta-hoy .mini-barra{
+  flex:1;height:8px;background:rgba(0,0,0,.12);
+  border-radius:20px;overflow:hidden;min-width:0;
+}
+.meta-card.casi .meta-hoy .mini-barra,
+.meta-card.completada .meta-hoy .mini-barra{background:rgba(255,255,255,.25)}
+.meta-hoy .mini-barra > div{
+  height:100%;border-radius:20px;position:relative;overflow:hidden;
+  transition:width .6s cubic-bezier(.25,.8,.25,1);
+  background:linear-gradient(90deg,
+    #ff0033, #ff6b00, #ffdd00, #00ff66,
+    #00ddff, #0066ff, #b400ff, #ff0033);
+  background-size:300% 100%;
+  animation:metaRGB 2.4s linear infinite,
+            metaGlow 1.6s ease-in-out infinite;
+  filter:saturate(1.6) brightness(1.15);
+  box-shadow:
+    0 0 6px rgba(255, 0, 51, .7),
+    0 0 12px rgba(0, 255, 102, .5),
+    0 0 18px rgba(0, 102, 255, .4);
+}
+.meta-hoy .mini-barra > div::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);
+  background-size:200% 100%;
+  animation:metaShine 2s ease-in-out infinite;
+}
+.meta-card.casi .meta-hoy .mini-barra > div{
+  filter:saturate(1.8) brightness(1.25);
+}
+.meta-card.completada .meta-hoy .mini-barra > div{
+  filter:saturate(2) brightness(1.35);
+  animation:metaRGB 1.5s linear infinite,
+            metaGlow 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .meta-barra > div,
+  .meta-hoy .mini-barra > div,
+  .meta-barra > div::after,
+  .meta-hoy .mini-barra > div::after{
+    animation:none !important;
+  }
+}
 #metaModal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:750;display:none;align-items:center;justify-content:center;padding:16px}
 #metaModal.ver{display:flex}
 #metaModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
