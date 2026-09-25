@@ -168,8 +168,6 @@ main{padding:14px;max-width:640px;margin:0 auto}
 #cropModal .bottom button{flex:1;padding:16px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
 #cropModal .bottom .prim{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff;box-shadow:0 4px 12px rgba(218,41,28,.5)}
 #cropModal .bottom .sec{background:#2b2f36;color:#fff;flex:0 0 100px}
-
-/* INVENTARIO */
 .inv-grupo{margin-bottom:16px}
 .inv-grupo-header{color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-weight:800;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
 .inv-grupo-header .lado-izq{display:flex;align-items:center;gap:8px}
@@ -268,13 +266,9 @@ main{padding:14px;max-width:640px;margin:0 auto}
 #previewModal .acciones button{flex:1;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
 #previewModal .prim{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
 #previewModal .seg{background:#eef0f3;color:#374151}
-
-/* TEMA */
 .btn-tema{margin-left:auto;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.18);border:none;color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center;transition:.15s;font-family:inherit}
 .btn-tema:active{transform:scale(.9)}
 .btn-tema:hover{background:rgba(255,255,255,.28)}
-
-/* MODO OSCURO */
 html[data-theme="dark"]{
   --bg:#0f1115;--card:#1a1d23;--txt:#e8eaee;--muted:#9aa3ad;--line:#2b3038;
   --rojo:#ff4438;--rojo2:#b01e14;
@@ -334,8 +328,6 @@ html[data-theme="dark"] .dato{border-bottom-color:var(--line)}
 html[data-theme="dark"] #camModal .top,
 html[data-theme="dark"] #cropModal .top{background:rgba(0,0,0,.95)}
 html[data-theme="dark"] .btn-rojo-grad{background:linear-gradient(135deg,#b01e14,#6b0f08)}
-
-/* TARJETA DE META */
 .meta-card{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:background .25s,color .25s;color:var(--txt)}
 html[data-theme="dark"] .meta-card{background:var(--card)}
 .meta-card.casi{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;box-shadow:0 4px 14px rgba(245,158,11,.4)}
@@ -365,8 +357,6 @@ html[data-theme="dark"] .meta-card{background:var(--card)}
 .meta-card.casi .meta-hoy-line span,
 .meta-card.completada .meta-hoy-line span{background:rgba(255,255,255,.22)}
 .meta-cta{text-align:center;font-size:13.5px;color:var(--muted);line-height:1.55;padding:4px 0}
-
-/* META: tipos compactos con 80% y 100% */
 .meta-tipo{margin-bottom:12px}
 .meta-tipo:last-child{margin-bottom:0}
 .meta-tipo-head{display:flex;align-items:center;gap:6px;margin-bottom:6px}
@@ -399,12 +389,10 @@ html[data-theme="dark"] .meta-pill-ok{background:#0f2a1a;color:#86efac;border-co
 .meta-card.casi .meta-mensaje,
 .meta-card.completada .meta-mensaje{border-top-color:rgba(255,255,255,.3)}
 .meta-mensaje small{display:block;font-weight:600;font-size:11.5px;opacity:.85;margin-top:3px}
-
-/* BARRAS RGB BRILLANTE */
 .meta-barra{height:12px;background:rgba(0,0,0,.12);border-radius:20px;overflow:hidden;position:relative}
 .meta-card.casi .meta-barra,
 .meta-card.completada .meta-barra{background:rgba(255,255,255,.28)}
-.meta-barra > div{height:100%;border-radius:20px;position:relative;overflow:hidden;transition:width .6s cubic-bezier(.25,.8,.25,1);background:linear-gradient(90deg,#ff0033,#ff6b00,#ffdd00,#00ff66,#00ddff,#0066ff,#b400ff,#ff0033);background-size:300% 100%;animation:metaRGB 8s linear infinite,metaGlow 2s ease-in-out infinite;filter:saturate(1.6) brightness(1.15);box-shadow:0 0 8px rgba(255,0,51,.7),0 0 16px rgba(0,255,102,.5),0 0 24px rgba(0,102,255,.4),inset 0 0 6px rgba(255,255,255,.35)}
+.meta-barra > div{height:100%;border-radius:20px;position:relative;overflow:hidden;transition:width .6s cubic-bezier(.25,.8,.25,1);background:linear-gradient(90deg,#ff0033,#ff6b00,#ffdd00,#00ff66,#00ddff,#0066ff,#b400ff,#ff0033);background-size:300% 100%;animation:metaRGB 3s linear infinite,metaGlow 2s ease-in-out infinite;filter:saturate(1.6) brightness(1.15);box-shadow:0 0 8px rgba(255,0,51,.7),0 0 16px rgba(0,255,102,.5),0 0 24px rgba(0,102,255,.4),inset 0 0 6px rgba(255,255,255,.35)}
 .meta-barra > div::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.05) 30%,rgba(255,255,255,.55) 50%,rgba(255,255,255,.05) 70%,transparent 100%);background-size:200% 100%;animation:metaShine 2.4s ease-in-out infinite}
 .meta-card.casi .meta-barra > div{filter:saturate(1.8) brightness(1.25);box-shadow:0 0 12px rgba(255,200,0,.85),0 0 22px rgba(255,100,0,.6),0 0 32px rgba(255,200,0,.4),inset 0 0 8px rgba(255,255,255,.5)}
 .meta-card.completada .meta-barra > div{filter:saturate(2) brightness(1.35);animation:metaRGB 1.5s linear infinite,metaGlow 1.2s ease-in-out infinite;box-shadow:0 0 14px rgba(0,255,102,.95),0 0 28px rgba(0,200,255,.75),0 0 42px rgba(0,150,255,.5),inset 0 0 10px rgba(255,255,255,.7)}
@@ -422,8 +410,6 @@ html[data-theme="dark"] .meta-pill-ok{background:#0f2a1a;color:#86efac;border-co
   .meta-barra > div,.meta-hoy .mini-barra > div,
   .meta-barra > div::after,.meta-hoy .mini-barra > div::after{animation:none !important}
 }
-
-/* MODAL META */
 #metaModal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:750;display:none;align-items:center;justify-content:center;padding:16px}
 #metaModal.ver{display:flex}
 #metaModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
@@ -451,6 +437,11 @@ html[data-theme="dark"] #metaModal .cancelar{background:#262b33;color:#e8eaee}
 html[data-theme="dark"] #metaModal .sugerencia{background:#3a2f0a;border-color:#7a5a10;color:#fcd34d}
 html[data-theme="dark"] #metaModal .sugerencia b{color:#fde68a}
 #metaModal .sugerencia:empty{display:none}
+.storage-info{font-size:12px;color:var(--muted);text-align:center;padding:10px;background:#f7f8fa;border-radius:12px;margin-bottom:12px;line-height:1.5}
+html[data-theme="dark"] .storage-info{background:#0f1115}
+.storage-info b{color:var(--txt);font-weight:800}
+.storage-info .uso{display:inline-block;padding:2px 8px;border-radius:20px;background:#dbeafe;color:#1e40af;font-weight:800;font-size:11px;margin-left:4px}
+html[data-theme="dark"] .storage-info .uso{background:#1e3a8a;color:#dbeafe}
 </style>
 </head>
 <body>
@@ -555,6 +546,9 @@ html[data-theme="dark"] #metaModal .sugerencia b{color:#fde68a}
 
   <section id="vista-respaldo" class="vista">
     <h2 class="titulo-vista">💾 Respaldo y datos</h2>
+
+    <div id="storage-info" class="storage-info"></div>
+
     <div class="card">
       <p style="margin:0 0 14px;font-size:13.5px;color:#6b7280;line-height:1.5">
         Exporta tus registros para no perder nada. El archivo <b>.json</b> sirve para restaurar todo
@@ -644,6 +638,91 @@ const PALETA_COLORES = [
   { nombre: 'Café',       valor: '#92400e' },
   { nombre: 'Gris',       valor: '#475569' },
 ];
+
+/* =========================================================
+   INDEXEDDB — Almacenamiento de alta capacidad
+   (~500 MB en vez de 5 MB de localStorage)
+   ========================================================= */
+const IDB_NAME = 'claro_registros_db';
+const IDB_STORE = 'registros';
+const IDB_KEY = 'registros';
+let _idb = null;
+
+function abrirIDB(){
+  return new Promise((resolve, reject) => {
+    if (_idb) return resolve(_idb);
+    if (!window.indexedDB) return reject(new Error('Sin IndexedDB'));
+    const req = indexedDB.open(IDB_NAME, 1);
+    req.onupgradeneeded = () => {
+      const db = req.result;
+      if (!db.objectStoreNames.contains(IDB_STORE)) {
+        db.createObjectStore(IDB_STORE);
+      }
+    };
+    req.onsuccess = () => { _idb = req.result; resolve(_idb); };
+    req.onerror = () => reject(req.error);
+  });
+}
+async function idbGet(key){
+  try{
+    const db = await abrirIDB();
+    return await new Promise((resolve, reject) => {
+      const tx = db.transaction(IDB_STORE, 'readonly');
+      const req = tx.objectStore(IDB_STORE).get(key);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }catch(e){ return undefined; }
+}
+async function idbSet(key, value){
+  try{
+    const db = await abrirIDB();
+    return await new Promise((resolve, reject) => {
+      const tx = db.transaction(IDB_STORE, 'readwrite');
+      const req = tx.objectStore(IDB_STORE).put(value, key);
+      req.onsuccess = () => resolve(true);
+      req.onerror = () => reject(req.error);
+    });
+  }catch(e){ return false; }
+}
+async function idbDel(key){
+  try{
+    const db = await abrirIDB();
+    return await new Promise((resolve, reject) => {
+      const tx = db.transaction(IDB_STORE, 'readwrite');
+      const req = tx.objectStore(IDB_STORE).delete(key);
+      req.onsuccess = () => resolve(true);
+      req.onerror = () => reject(req.error);
+    });
+  }catch(e){ return false; }
+}
+async function idbClear(){
+  try{
+    const db = await abrirIDB();
+    return await new Promise((resolve, reject) => {
+      const tx = db.transaction(IDB_STORE, 'readwrite');
+      const req = tx.objectStore(IDB_STORE).clear();
+      req.onsuccess = () => resolve(true);
+      req.onerror = () => reject(req.error);
+    });
+  }catch(e){ return false; }
+}
+async function estimarUso(){
+  try{
+    if (navigator.storage && navigator.storage.estimate){
+      const est = await navigator.storage.estimate();
+      return { uso: est.usage || 0, total: est.quota || 0 };
+    }
+  }catch(e){}
+  return null;
+}
+function fmtBytes(b){
+  if (!b || b <= 0) return '0 B';
+  if (b < 1024) return b + ' B';
+  if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+  if (b < 1024*1024*1024) return (b/1024/1024).toFixed(1) + ' MB';
+  return (b/1024/1024/1024).toFixed(2) + ' GB';
+}
 
 /* TEMA */
 const TEMA_KEY = 'claro_tema_v1';
@@ -874,7 +953,6 @@ function renderMeta(){
     html += `</div>`;
   }
 
-  // Mensaje compacto
   const faltaCh100 = Math.max(0, mCh - hChMes);
   const faltaTel100 = Math.max(0, mTel - hTelMes);
   const diasRes = diasRestantesMes();
@@ -955,12 +1033,10 @@ function actualizarSugerenciasMeta(){
   const sugCh = document.getElementById('sug-chips');
   const sugTel = document.getElementById('sug-tels');
   if (!elCh || !sugCh) return;
-
   const mesCh  = parseInt(elCh.value) || 0;
   const mesTel = parseInt(elTel.value) || 0;
   const iniCh  = parseInt(elIniCh.value) || 0;
   const iniTel = parseInt(elIniTel.value) || 0;
-
   const prefijo = mesActualPrefijo() + '-';
   const hechoCh = registros.filter(r => {
     const f = r.fechaLocal || derivarFechaLocal(r.fecha);
@@ -970,19 +1046,16 @@ function actualizarSugerenciasMeta(){
     const f = r.fechaLocal || derivarFechaLocal(r.fecha);
     return f.startsWith(prefijo) && r.tipo === 'telefono';
   }).length + iniTel;
-
   const faltaCh  = Math.max(0, mesCh - hechoCh);
   const faltaTel = Math.max(0, mesTel - hechoTel);
   const dias = diasRestantesMes();
   const porDiaCh  = faltaCh  === 0 ? 0 : Math.ceil(faltaCh / dias);
   const porDiaTel = faltaTel === 0 ? 0 : Math.ceil(faltaTel / dias);
   const txtDias = dias === 1 ? '1 día' : dias + ' días';
-
   sugCh.innerHTML = mesCh <= 0 ? '' :
     faltaCh === 0
       ? '✅ ¡Ya vas en la meta de chips este mes!'
       : `Faltan <b>${faltaCh}</b> en <b>${txtDias}</b> → <b>${porDiaCh}/día</b>`;
-
   sugTel.innerHTML = mesTel <= 0 ? '' :
     faltaTel === 0
       ? '✅ ¡Ya vas en la meta de teléfonos este mes!'
@@ -1116,7 +1189,7 @@ function copiar(txt){
   }
 }
 
-/* TIENDAS */
+/* TIENDAS (siguen en localStorage, son ligeras) */
 function cargarTiendas(){
   try{
     const guardadas = JSON.parse(localStorage.getItem(TIENDAS_STORE) || 'null');
@@ -1124,12 +1197,8 @@ function cargarTiendas(){
       if (typeof guardadas[0] === 'string'){
         tiendas = guardadas.map((n, i) => ({ nombre: n, color: PALETA_COLORES[i % PALETA_COLORES.length].valor }));
         guardarTiendas();
-      } else {
-        tiendas = guardadas;
-      }
-    } else {
-      tiendas = TIENDAS_DEFAULT.slice();
-    }
+      } else { tiendas = guardadas; }
+    } else { tiendas = TIENDAS_DEFAULT.slice(); }
   }catch(e){ tiendas = TIENDAS_DEFAULT.slice(); }
 }
 const TIENDAS_LIMPIEZA_KEY = 'claro_tiendas_limpieza_v1';
@@ -1150,7 +1219,7 @@ function colorDeTienda(nombre){
 }
 function nombreTiendas(){ return tiendas.map(t => t.nombre); }
 
-/* INVENTARIO */
+/* INVENTARIO (sigue en localStorage, es ligero) */
 function cargarInventario(){
   try{ inventario = JSON.parse(localStorage.getItem(INV_STORE) || '[]'); }
   catch(e){ inventario = []; }
@@ -1275,9 +1344,7 @@ function renderInventario(){
         const suma = inventario.filter(m => m.tienda === t.nombre).reduce((s, m) => s + (Number(m.cantidad) || 0), 0);
         return `<div><span class="punto" style="background:${t.color}"></span><b>${suma}</b>${esc(t.nombre)}</div>`;
       }).join('');
-    } else {
-      miniStats.innerHTML = '';
-    }
+    } else { miniStats.innerHTML = ''; }
   }
   renderTiendaFiltros();
   renderGestionTiendas();
@@ -1333,8 +1400,7 @@ function cambiarStock(id, delta){
   const m = inventario.find(x => x.id === id);
   if (!m) return;
   m.cantidad = Math.max(0, (Number(m.cantidad) || 0) + delta);
-  guardarInventario();
-  renderInventario();
+  guardarInventario(); renderInventario();
   if (navigator.vibrate){ try{ navigator.vibrate(15); }catch(e){} }
 }
 function setStockDirecto(id, valor){
@@ -1342,8 +1408,7 @@ function setStockDirecto(id, valor){
   const m = inventario.find(x => x.id === id);
   if (!m) return;
   m.cantidad = Math.max(0, Math.floor(Number(valor) || 0));
-  guardarInventario();
-  renderInventario();
+  guardarInventario(); renderInventario();
 }
 function eliminarModeloInv(id){
   if (inventarioBloqueado){ toast('🔒 Inventario bloqueado'); return; }
@@ -1351,8 +1416,7 @@ function eliminarModeloInv(id){
   if (!m) return;
   if (!confirm(`¿Eliminar "${m.modelo}" de ${m.tienda}?`)) return;
   inventario = inventario.filter(x => x.id !== id);
-  guardarInventario();
-  renderInventario();
+  guardarInventario(); renderInventario();
   toast('🗑️ Eliminado');
 }
 let _tiendaColorActual = '';
@@ -1476,12 +1540,10 @@ function guardarInvModal(id){
     const m = inventario.find(x => x.id === id);
     if (!m){ cerrarInvModal(); return; }
     m.modelo = modelo; m.tienda = tienda; m.cantidad = cant;
-    guardarInventario();
-    toast('✅ Actualizado');
+    guardarInventario(); toast('✅ Actualizado');
   } else {
     inventario.push({ id: uid(), modelo, tienda, cantidad: cant });
-    guardarInventario();
-    toast('✅ Agregado');
+    guardarInventario(); toast('✅ Agregado');
   }
   cerrarInvModal();
   renderInventario();
@@ -1503,11 +1565,8 @@ function abrirInvModalMover(id){
     if (!confirm(`"${m.modelo}" ya existe en ${destino}. ¿Juntar las cantidades?`)) return;
     dup.cantidad = (Number(dup.cantidad) || 0) + (Number(m.cantidad) || 0);
     inventario = inventario.filter(x => x.id !== m.id);
-  } else {
-    m.tienda = destino;
-  }
-  guardarInventario();
-  renderInventario();
+  } else { m.tienda = destino; }
+  guardarInventario(); renderInventario();
   toast('✅ Movido a ' + destino);
 }
 function mostrarVistaPrevia(){
@@ -1578,22 +1637,49 @@ function exportarInventarioCSV(){
   toast('📊 Inventario exportado');
 }
 
-/* STORAGE */
-function cargar(){
-  try{ registros = JSON.parse(localStorage.getItem(STORE) || '[]'); }
-  catch(e){ registros = []; }
+/* =========================================================
+   CARGA / GUARDADO — Registros en IndexedDB
+   ========================================================= */
+async function migrarDeLocalStorageSiHaceFalta(){
+  try{
+    const flag = await idbGet('_migrado_v1');
+    if (flag) return;
+    const viejo = localStorage.getItem(STORE);
+    if (viejo){
+      try {
+        const arr = JSON.parse(viejo);
+        if (Array.isArray(arr) && arr.length){
+          await idbSet(IDB_KEY, arr);
+          console.log('[Migración]', arr.length, 'registros movidos a IndexedDB');
+        }
+      }catch(e){}
+    }
+    await idbSet('_migrado_v1', true);
+  }catch(e){}
+}
+async function cargar(){
+  await migrarDeLocalStorageSiHaceFalta();
+  try{
+    const data = await idbGet(IDB_KEY);
+    registros = Array.isArray(data) ? data : [];
+  }catch(e){
+    registros = [];
+    toast('⚠️ Error leyendo IndexedDB');
+  }
   normalizarFechas();
   cargarInventario();
   cargarTiendas();
   limpiarTiendasAntiguas();
 }
 function guardarLS(){
-  try{ localStorage.setItem(STORE, JSON.stringify(registros)); return true; }
-  catch(e){
-    alert('⚠️ El almacenamiento del celular está lleno.\n\nVe a "Respaldo" y exporta tus datos, luego borra registros antiguos.');
-    return false;
-  }
+  idbSet(IDB_KEY, registros).then(ok => {
+    if (!ok) toast('⚠️ No se pudo guardar', 3000);
+  }).catch(() => {
+    toast('⚠️ Error guardando', 3000);
+  });
+  return true;
 }
+
 function cerrarTodo(){
   $('#overlay').classList.remove('ver');
   $('#overlayBarra').style.width = '0%';
@@ -1624,6 +1710,22 @@ function ir(vista){
   if(vista === 'home'){       renderLista(); renderMeta(); }
   if(vista === 'fotos')       renderFotos();
   if(vista === 'inventario')  renderInventario();
+  if(vista === 'respaldo')    actualizarStorageInfo();
+}
+async function actualizarStorageInfo(){
+  const cont = document.getElementById('storage-info');
+  if (!cont) return;
+  cont.innerHTML = '📊 Calculando…';
+  const est = await estimarUso();
+  if (!est){
+    cont.innerHTML = '📊 <b>IndexedDB activo</b> · Almacenamiento amplio disponible';
+    return;
+  }
+  const pctUsado = est.total ? Math.round((est.uso / est.total) * 100) : 0;
+  cont.innerHTML = `
+    📊 Espacio usado: <b>${fmtBytes(est.uso)}</b><span class="uso">${pctUsado}%</span><br>
+    <span style="font-size:11px;opacity:.8">Disponible total: ${fmtBytes(est.total)} · ${registros.length} registros guardados</span>
+  `;
 }
 $$('.nav button').forEach(b => b.onclick = () => ir(b.dataset.v));
 $$('.filtro').forEach(btn => {
@@ -1907,12 +2009,9 @@ async function escanearCanvasRapido(canvas, campo){
       escribirCampo(campo, num || texto);
       if (navigator.vibrate){ try{ navigator.vibrate([60,40,80]); }catch(e){} }
       toast('✅ ' + (num || texto), 2200);
-    } else {
-      toast('⚠️ No se pudo leer. Marca más ajustado.', 2800);
-    }
+    } else { toast('⚠️ No se pudo leer. Marca más ajustado.', 2800); }
   }catch(err){ console.error(err); overlay(false); toast('⚠️ Error'); }
 }
-
 async function procesarDataUrlIMEI(dataUrl){
   const img = await dataUrlAImagen(dataUrl);
   setTimeout(() => { try{ fotoEquipoTemp = comprimirImagen(img); pintarFotos(); }catch(e){} }, 0);
@@ -2056,7 +2155,7 @@ function guardarRegistro(){
   let msj = '';
   if (editId){ const r = registros.find(x => x.id === editId); Object.assign(r, { numero, imsi, imei, nota, fotoChip: fotoChipTemp, fotoEquipo: formTipo === 'telefono' ? fotoEquipoTemp : undefined, editado: new Date().toISOString() }); delete r.foto; msj = '✅ Actualizado'; }
   else { const n = { id: uid(), tipo: formTipo, numero, imsi, imei, nota, fotoChip: fotoChipTemp, fecha: new Date().toISOString(), fechaLocal: fechaLocalHoy() }; if (formTipo === 'telefono') n.fotoEquipo = fotoEquipoTemp; registros.push(n); msj = '✅ Guardado'; }
-  if (!guardarLS()) return;
+  guardarLS();
   volverAlInicio(msj);
 }
 function renderLista(){
@@ -2151,7 +2250,7 @@ function exportarCSV(){
   toast('📊 CSV exportado');
 }
 function exportarJSON(){
-  const data = { app:'Registro Claro', version:20, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado, metaConfig };
+  const data = { app:'Registro Claro', version:21, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado, metaConfig };
   descargar(new Blob([JSON.stringify(data)], {type:'application/json'}), 'respaldo_claro.json');
   toast('📦 Respaldo creado');
 }
@@ -2194,20 +2293,25 @@ $('#inpImport').onchange = e => {
         }
         guardarMeta();
       }
-      if (guardarLS()){ toast(`📥 ${ag} registros restaurados`); renderLista(); renderFotos(); renderInventario(); renderMeta(); }
+      guardarLS();
+      toast(`📥 ${ag} registros restaurados`);
+      renderLista(); renderFotos(); renderInventario(); renderMeta();
+      if (typeof actualizarStorageInfo === 'function') actualizarStorageInfo();
     }catch(err){ toast('⚠️ Archivo inválido'); }
   };
   r.readAsText(file); e.target.value = '';
 };
-function borrarTodo(){
+async function borrarTodo(){
   if (!confirm('¿Borrar TODOS los registros, fotos e inventario?\n\nRespalda antes.')) return;
   if (!confirm('Confirma de nuevo.')) return;
   registros = []; inventario = []; inventarioBloqueado = false;
+  try{ await idbClear(); }catch(e){}
   localStorage.removeItem(STORE);
   localStorage.removeItem(INV_STORE);
   localStorage.removeItem(INV_BLOQ_STORE);
   toast('🗑️ Todo borrado');
   renderLista(); renderFotos(); renderInventario(); renderMeta();
+  if (typeof actualizarStorageInfo === 'function') actualizarStorageInfo();
 }
 let _diaActualGuardado = fechaLocalHoy();
 setInterval(() => {
@@ -2220,13 +2324,21 @@ setInterval(() => {
   }
 }, 60000);
 
+/* INICIO */
 cargarTema();
-cargar();
 cargarMeta();
-renderLista();
-renderMeta();
-renderInventario();
-setTimeout(() => { precargarTodo(); }, 50);
+cargar().then(() => {
+  renderLista();
+  renderMeta();
+  renderInventario();
+  setTimeout(() => { precargarTodo(); }, 50);
+}).catch(err => {
+  console.error('Error al iniciar:', err);
+  renderLista();
+  renderMeta();
+  renderInventario();
+  setTimeout(() => { precargarTodo(); }, 50);
+});
 </script>
 </body>
 </html>
