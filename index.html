@@ -169,7 +169,7 @@ main{padding:14px;max-width:640px;margin:0 auto}
 #cropModal .bottom .prim{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff;box-shadow:0 4px 12px rgba(218,41,28,.5)}
 #cropModal .bottom .sec{background:#2b2f36;color:#fff;flex:0 0 100px}
 
-/* ============ INVENTARIO ============ */
+/* INVENTARIO */
 .inv-grupo{margin-bottom:16px}
 .inv-grupo-header{color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-weight:800;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
 .inv-grupo-header .lado-izq{display:flex;align-items:center;gap:8px}
@@ -269,16 +269,12 @@ main{padding:14px;max-width:640px;margin:0 auto}
 #previewModal .prim{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
 #previewModal .seg{background:#eef0f3;color:#374151}
 
-/* =========================================================
-   BOTÓN DE TEMA
-   ========================================================= */
+/* TEMA */
 .btn-tema{margin-left:auto;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.18);border:none;color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center;transition:.15s;font-family:inherit}
 .btn-tema:active{transform:scale(.9)}
 .btn-tema:hover{background:rgba(255,255,255,.28)}
 
-/* =========================================================
-   MODO OSCURO
-   ========================================================= */
+/* MODO OSCURO */
 html[data-theme="dark"]{
   --bg:#0f1115;--card:#1a1d23;--txt:#e8eaee;--muted:#9aa3ad;--line:#2b3038;
   --rojo:#ff4438;--rojo2:#b01e14;
@@ -339,9 +335,7 @@ html[data-theme="dark"] #camModal .top,
 html[data-theme="dark"] #cropModal .top{background:rgba(0,0,0,.95)}
 html[data-theme="dark"] .btn-rojo-grad{background:linear-gradient(135deg,#b01e14,#6b0f08)}
 
-/* =========================================================
-   TARJETA DE META
-   ========================================================= */
+/* TARJETA DE META */
 .meta-card{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:background .25s,color .25s;color:var(--txt)}
 html[data-theme="dark"] .meta-card{background:var(--card)}
 .meta-card.casi{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;box-shadow:0 4px 14px rgba(245,158,11,.4)}
@@ -372,127 +366,64 @@ html[data-theme="dark"] .meta-card{background:var(--card)}
 .meta-card.completada .meta-hoy-line span{background:rgba(255,255,255,.22)}
 .meta-cta{text-align:center;font-size:13.5px;color:var(--muted);line-height:1.55;padding:4px 0}
 
-/* =========================================================
-   BARRAS DE PROGRESO RGB BRILLANTE
-   ========================================================= */
-.meta-barra{
-  height:12px;background:rgba(0,0,0,.12);border-radius:20px;
-  overflow:hidden;position:relative;
-}
+/* META: tipos compactos con 80% y 100% */
+.meta-tipo{margin-bottom:12px}
+.meta-tipo:last-child{margin-bottom:0}
+.meta-tipo-head{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.meta-tipo-head .ico{font-size:15px}
+.meta-tipo-head .lbl{flex:1;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.4px}
+.meta-tipo-head .val{font-family:monospace;font-size:12.5px;font-weight:900;opacity:.7}
+.meta-tipo-head .pct{font-size:12px;font-weight:900;padding:3px 9px;border-radius:20px;background:rgba(0,0,0,.08);min-width:46px;text-align:center}
+.meta-card.casi .meta-tipo-head .pct,
+.meta-card.completada .meta-tipo-head .pct{background:rgba(255,255,255,.25)}
+.meta-metas{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.meta-pill{font-size:11px;font-weight:700;padding:7px 9px;border-radius:10px;line-height:1.3;display:flex;align-items:center;gap:5px}
+.meta-pill .em{font-size:13px;flex:0 0 auto}
+.meta-pill .txt{flex:1;min-width:0}
+.meta-pill .txt b{font-weight:900}
+.meta-pill-80{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+.meta-pill-100{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7}
+.meta-pill-ok{background:#dcfce7;color:#166534;border:1px solid #86efac}
+html[data-theme="dark"] .meta-pill-80{background:#3a2f0a;color:#fcd34d;border-color:#7a5a10}
+html[data-theme="dark"] .meta-pill-100{background:#0f2a1a;color:#6ee7b7;border-color:#16a34a}
+html[data-theme="dark"] .meta-pill-ok{background:#0f2a1a;color:#86efac;border-color:#16a34a}
+.meta-card.casi .meta-pill,
+.meta-card.completada .meta-pill{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.35);color:#fff}
+.meta-hoy-compact{font-size:12px;font-weight:700;padding:8px 10px;background:rgba(0,0,0,.05);border-radius:10px;margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.meta-card.casi .meta-hoy-compact,
+.meta-card.completada .meta-hoy-compact{background:rgba(255,255,255,.22)}
+.meta-hoy-compact .tag{background:rgba(255,255,255,.55);padding:3px 9px;border-radius:20px;display:inline-flex;gap:4px;align-items:center;font-weight:800}
+.meta-card.casi .meta-hoy-compact .tag,
+.meta-card.completada .meta-hoy-compact .tag{background:rgba(255,255,255,.28)}
+.meta-mensaje{margin-top:10px;padding-top:10px;border-top:1px dashed rgba(0,0,0,.13);font-size:13px;font-weight:800;text-align:center;line-height:1.35}
+.meta-card.casi .meta-mensaje,
+.meta-card.completada .meta-mensaje{border-top-color:rgba(255,255,255,.3)}
+.meta-mensaje small{display:block;font-weight:600;font-size:11.5px;opacity:.85;margin-top:3px}
+
+/* BARRAS RGB BRILLANTE */
+.meta-barra{height:12px;background:rgba(0,0,0,.12);border-radius:20px;overflow:hidden;position:relative}
 .meta-card.casi .meta-barra,
 .meta-card.completada .meta-barra{background:rgba(255,255,255,.28)}
-
-.meta-barra > div{
-  height:100%;border-radius:20px;
-  position:relative;overflow:hidden;
-  transition:width .6s cubic-bezier(.25,.8,.25,1);
-  background:linear-gradient(90deg,
-    #ff0033, #ff6b00, #ffdd00, #00ff66,
-    #00ddff, #0066ff, #b400ff, #ff0033);
-  background-size:300% 100%;
-  animation:metaRGB 8s linear infinite,
-            metaGlow 2s ease-in-out infinite;
-  filter:saturate(1.6) brightness(1.15);
-  box-shadow:
-    0 0 8px rgba(255, 0, 51, .7),
-    0 0 16px rgba(0, 255, 102, .5),
-    0 0 24px rgba(0, 102, 255, .4),
-    inset 0 0 6px rgba(255, 255, 255, .35);
-}
-
-.meta-barra > div::after{
-  content:"";
-  position:absolute;inset:0;
-  border-radius:inherit;
-  pointer-events:none;
-  background:linear-gradient(90deg,
-    transparent 0%,
-    rgba(255,255,255,.05) 30%,
-    rgba(255,255,255,.55) 50%,
-    rgba(255,255,255,.05) 70%,
-    transparent 100%);
-  background-size:200% 100%;
-  animation:metaShine 2.4s ease-in-out infinite;
-}
-
-.meta-card.casi .meta-barra > div{
-  filter:saturate(1.8) brightness(1.25);
-  box-shadow:
-    0 0 12px rgba(255, 200, 0, .85),
-    0 0 22px rgba(255, 100, 0, .6),
-    0 0 32px rgba(255, 200, 0, .4),
-    inset 0 0 8px rgba(255, 255, 255, .5);
-}
-.meta-card.completada .meta-barra > div{
-  filter:saturate(2) brightness(1.35);
-  animation:metaRGB 1.5s linear infinite,
-            metaGlow 1.2s ease-in-out infinite;
-  box-shadow:
-    0 0 14px rgba(0, 255, 102, .95),
-    0 0 28px rgba(0, 200, 255, .75),
-    0 0 42px rgba(0, 150, 255, .5),
-    inset 0 0 10px rgba(255, 255, 255, .7);
-}
-
-@keyframes metaRGB{
-  0%   { background-position: 0% 50%; }
-  100% { background-position: 300% 50%; }
-}
-@keyframes metaGlow{
-  0%, 100%{ filter:saturate(1.6) brightness(1.1); }
-  50%     { filter:saturate(1.8) brightness(1.35); }
-}
-@keyframes metaShine{
-  0%   { background-position: 200% 0; }
-  100% { background-position: -100% 0; }
-}
-
-.meta-hoy .mini-barra{
-  flex:1;height:8px;background:rgba(0,0,0,.12);
-  border-radius:20px;overflow:hidden;min-width:0;
-}
+.meta-barra > div{height:100%;border-radius:20px;position:relative;overflow:hidden;transition:width .6s cubic-bezier(.25,.8,.25,1);background:linear-gradient(90deg,#ff0033,#ff6b00,#ffdd00,#00ff66,#00ddff,#0066ff,#b400ff,#ff0033);background-size:300% 100%;animation:metaRGB 3s linear infinite,metaGlow 2s ease-in-out infinite;filter:saturate(1.6) brightness(1.15);box-shadow:0 0 8px rgba(255,0,51,.7),0 0 16px rgba(0,255,102,.5),0 0 24px rgba(0,102,255,.4),inset 0 0 6px rgba(255,255,255,.35)}
+.meta-barra > div::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.05) 30%,rgba(255,255,255,.55) 50%,rgba(255,255,255,.05) 70%,transparent 100%);background-size:200% 100%;animation:metaShine 2.4s ease-in-out infinite}
+.meta-card.casi .meta-barra > div{filter:saturate(1.8) brightness(1.25);box-shadow:0 0 12px rgba(255,200,0,.85),0 0 22px rgba(255,100,0,.6),0 0 32px rgba(255,200,0,.4),inset 0 0 8px rgba(255,255,255,.5)}
+.meta-card.completada .meta-barra > div{filter:saturate(2) brightness(1.35);animation:metaRGB 1.5s linear infinite,metaGlow 1.2s ease-in-out infinite;box-shadow:0 0 14px rgba(0,255,102,.95),0 0 28px rgba(0,200,255,.75),0 0 42px rgba(0,150,255,.5),inset 0 0 10px rgba(255,255,255,.7)}
+@keyframes metaRGB{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+@keyframes metaGlow{0%,100%{filter:saturate(1.6) brightness(1.1)}50%{filter:saturate(1.8) brightness(1.35)}}
+@keyframes metaShine{0%{background-position:200% 0}100%{background-position:-100% 0}}
+.meta-hoy .mini-barra{flex:1;height:8px;background:rgba(0,0,0,.12);border-radius:20px;overflow:hidden;min-width:0}
 .meta-card.casi .meta-hoy .mini-barra,
 .meta-card.completada .meta-hoy .mini-barra{background:rgba(255,255,255,.25)}
-.meta-hoy .mini-barra > div{
-  height:100%;border-radius:20px;position:relative;overflow:hidden;
-  transition:width .6s cubic-bezier(.25,.8,.25,1);
-  background:linear-gradient(90deg,
-    #ff0033, #ff6b00, #ffdd00, #00ff66,
-    #00ddff, #0066ff, #b400ff, #ff0033);
-  background-size:300% 100%;
-  animation:metaRGB 2.4s linear infinite,
-            metaGlow 1.6s ease-in-out infinite;
-  filter:saturate(1.6) brightness(1.15);
-  box-shadow:
-    0 0 6px rgba(255, 0, 51, .7),
-    0 0 12px rgba(0, 255, 102, .5),
-    0 0 18px rgba(0, 102, 255, .4);
-}
-.meta-hoy .mini-barra > div::after{
-  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);
-  background-size:200% 100%;
-  animation:metaShine 2s ease-in-out infinite;
-}
-.meta-card.casi .meta-hoy .mini-barra > div{
-  filter:saturate(1.8) brightness(1.25);
-}
-.meta-card.completada .meta-hoy .mini-barra > div{
-  filter:saturate(2) brightness(1.35);
-  animation:metaRGB 1.5s linear infinite,
-            metaGlow 1.2s ease-in-out infinite;
-}
-
+.meta-hoy .mini-barra > div{height:100%;border-radius:20px;position:relative;overflow:hidden;transition:width .6s cubic-bezier(.25,.8,.25,1);background:linear-gradient(90deg,#ff0033,#ff6b00,#ffdd00,#00ff66,#00ddff,#0066ff,#b400ff,#ff0033);background-size:300% 100%;animation:metaRGB 2.4s linear infinite,metaGlow 1.6s ease-in-out infinite;filter:saturate(1.6) brightness(1.15);box-shadow:0 0 6px rgba(255,0,51,.7),0 0 12px rgba(0,255,102,.5),0 0 18px rgba(0,102,255,.4)}
+.meta-hoy .mini-barra > div::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);background-size:200% 100%;animation:metaShine 2s ease-in-out infinite}
+.meta-card.casi .meta-hoy .mini-barra > div{filter:saturate(1.8) brightness(1.25)}
+.meta-card.completada .meta-hoy .mini-barra > div{filter:saturate(2) brightness(1.35);animation:metaRGB 1.5s linear infinite,metaGlow 1.2s ease-in-out infinite}
 @media (prefers-reduced-motion: reduce){
-  .meta-barra > div,
-  .meta-hoy .mini-barra > div,
-  .meta-barra > div::after,
-  .meta-hoy .mini-barra > div::after{
-    animation:none !important;
-  }
+  .meta-barra > div,.meta-hoy .mini-barra > div,
+  .meta-barra > div::after,.meta-hoy .mini-barra > div::after{animation:none !important}
 }
 
-/* ===== Modal meta ===== */
+/* MODAL META */
 #metaModal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:750;display:none;align-items:center;justify-content:center;padding:16px}
 #metaModal.ver{display:flex}
 #metaModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
@@ -872,6 +803,19 @@ function renderMeta(){
   const pDTel = pct(hTelHoy, dTel);
   detectarHitosMeta(pMCh, pMTel, pDCh, pDTel, mCh, mTel, dCh, dTel);
 
+  const dias = diasRestantesMes();
+
+  const meta80Ch = Math.ceil(mCh * 0.8);
+  const meta80Tel = Math.ceil(mTel * 0.8);
+  const falta80Ch = Math.max(0, meta80Ch - hChMes);
+  const falta100Ch = Math.max(0, mCh - hChMes);
+  const falta80Tel = Math.max(0, meta80Tel - hTelMes);
+  const falta100Tel = Math.max(0, mTel - hTelMes);
+  const dia80Ch = falta80Ch === 0 ? 0 : Math.ceil(falta80Ch / dias);
+  const dia100Ch = falta100Ch === 0 ? 0 : Math.ceil(falta100Ch / dias);
+  const dia80Tel = falta80Tel === 0 ? 0 : Math.ceil(falta80Tel / dias);
+  const dia100Tel = falta100Tel === 0 ? 0 : Math.ceil(falta100Tel / dias);
+
   let clase = '';
   const metasMes = [];
   if (mCh > 0)  metasMes.push(pMCh);
@@ -893,50 +837,62 @@ function renderMeta(){
       <button class="meta-config" onclick="abrirMetaModal()" title="Configurar">⚙️</button>
     </div>`;
 
-  if (mCh > 0){
-    const falta = Math.max(0, mCh - hChMes);
-    html += `
-      <div class="meta-grupo">
-        <div class="meta-fila">
-          <span class="ico-g">📶</span><span class="lbl">Chips</span>
-          <span class="val">${hChMes}/${mCh}</span><span class="pct">${pMCh}%</span>
+  function bloqueTipo(ico, nombre, hecho, meta, falt80, falt100, dia80, dia100){
+    if (meta <= 0) return '';
+    const p = pct(hecho, meta);
+    const p80Clase = falt80 === 0 ? 'meta-pill-ok' : 'meta-pill-80';
+    const p100Clase = falt100 === 0 ? 'meta-pill-ok' : 'meta-pill-100';
+    return `
+      <div class="meta-tipo">
+        <div class="meta-tipo-head">
+          <span class="ico">${ico}</span>
+          <span class="lbl">${nombre}</span>
+          <span class="val">${hecho}/${meta}</span>
+          <span class="pct">${p}%</span>
         </div>
-        <div class="meta-barra"><div style="width:${pMCh}%"></div></div>
-        <div class="meta-faltan">${falta === 0 ? '✅ Cumplida' : `Faltan ${falta}`}</div>
+        <div class="meta-barra"><div style="width:${p}%"></div></div>
+        <div class="meta-metas">
+          <div class="meta-pill ${p80Clase}">
+            <span class="em">${falt80 === 0 ? '✅' : '🎯'}</span>
+            <span class="txt"><b>80%</b> ${falt80 === 0 ? '¡alcanzado!' : `faltan <b>${falt80}</b> · <b>${dia80}</b>/día`}</span>
+          </div>
+          <div class="meta-pill ${p100Clase}">
+            <span class="em">🏆</span>
+            <span class="txt"><b>100%</b> ${falt100 === 0 ? '¡cumplida!' : `faltan <b>${falt100}</b> · <b>${dia100}</b>/día`}</span>
+          </div>
+        </div>
       </div>`;
   }
-  if (mTel > 0){
-    const falta = Math.max(0, mTel - hTelMes);
-    html += `
-      <div class="meta-grupo">
-        <div class="meta-fila">
-          <span class="ico-g">📱</span><span class="lbl">Teléfonos</span>
-          <span class="val">${hTelMes}/${mTel}</span><span class="pct">${pMTel}%</span>
-        </div>
-        <div class="meta-barra"><div style="width:${pMTel}%"></div></div>
-        <div class="meta-faltan">${falta === 0 ? '✅ Cumplida' : `Faltan ${falta}`}</div>
-      </div>`;
-  }
+
+  html += bloqueTipo('📶', 'Chips', hChMes, mCh, falta80Ch, falta100Ch, dia80Ch, dia100Ch);
+  html += bloqueTipo('📱', 'Teléfonos', hTelMes, mTel, falta80Tel, falta100Tel, dia80Tel, dia100Tel);
+
   if (dCh > 0 || dTel > 0){
-    html += `<div class="meta-sep"></div>
-      <div class="meta-hoy-titulo">☀️ Hoy</div>
-      <div class="meta-hoy-line">`;
-    if (dCh > 0){
-      const falta = Math.max(0, dCh - hChHoy);
-      html += `<span>📶 ${hChHoy}/${dCh} <b style="opacity:.7">${pDCh}%</b>${falta===0?' ✅':` · faltan ${falta}`}</span>`;
-    }
-    if (dTel > 0){
-      const falta = Math.max(0, dTel - hTelHoy);
-      html += `<span>📱 ${hTelHoy}/${dTel} <b style="opacity:.7">${pDTel}%</b>${falta===0?' ✅':` · faltan ${falta}`}</span>`;
-    }
+    html += `<div class="meta-hoy-compact">☀️ <b>Hoy</b>`;
+    if (dCh > 0) html += `<span class="tag">📶 ${hChHoy}/${dCh} · ${pDCh}%${pDCh >= 100 ? ' ✅' : ''}</span>`;
+    if (dTel > 0) html += `<span class="tag">📱 ${hTelHoy}/${dTel} · ${pDTel}%${pDTel >= 100 ? ' ✅' : ''}</span>`;
     html += `</div>`;
   }
+
+  // Mensaje compacto
+  const faltaCh100 = Math.max(0, mCh - hChMes);
+  const faltaTel100 = Math.max(0, mTel - hTelMes);
+  const diasRes = diasRestantesMes();
+  if (mCh > 0 || mTel > 0){
+    if (faltaCh100 === 0 && faltaTel100 === 0){
+      html += `<div class="meta-mensaje">🏆 ¡Meta del mes cumplida!<small>Quedan ${diasRes} ${diasRes === 1 ? 'día' : 'días'} del mes</small></div>`;
+    } else {
+      html += `<div class="meta-mensaje">📅 Quedan <b>${diasRes}</b> ${diasRes === 1 ? 'día' : 'días'} del mes</div>`;
+    }
+  }
+
   if (inicialActivo && (metaConfig.inicial.chips > 0 || metaConfig.inicial.tels > 0)){
     const partes = [];
     if (metaConfig.inicial.chips > 0) partes.push(`+${metaConfig.inicial.chips} chips`);
     if (metaConfig.inicial.tels  > 0) partes.push(`+${metaConfig.inicial.tels} tel.`);
-    html += `<div class="meta-cta" style="font-size:11.5px;margin-top:10px">📊 Incluye avance inicial (${partes.join(' · ')})</div>`;
+    html += `<div class="meta-cta" style="font-size:11px;margin-top:6px;padding:0">📊 Incluye avance inicial (${partes.join(' · ')})</div>`;
   }
+
   cont.className = 'meta-card' + (clase ? ' ' + clase : '');
   cont.innerHTML = html;
 }
@@ -2195,7 +2151,7 @@ function exportarCSV(){
   toast('📊 CSV exportado');
 }
 function exportarJSON(){
-  const data = { app:'Registro Claro', version:18, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado, metaConfig };
+  const data = { app:'Registro Claro', version:20, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado, metaConfig };
   descargar(new Blob([JSON.stringify(data)], {type:'application/json'}), 'respaldo_claro.json');
   toast('📦 Respaldo creado');
 }
