@@ -6,18 +6,6 @@
 <meta name="theme-color" content="#DA291C" id="metaTema">
 <title>Registro Claro</title>
 <style>
-#metaModal .sugerencia{
-  font-size:12px;color:var(--muted);font-weight:700;
-  margin:-2px 0 10px;padding:6px 10px;
-  background:#fef3c7;border:1px solid #fcd34d;
-  border-radius:8px;line-height:1.4;
-}
-#metaModal .sugerencia b{color:#92400e;font-weight:900}
-html[data-theme="dark"] #metaModal .sugerencia{
-  background:#3a2f0a;border-color:#7a5a10;color:#fcd34d;
-}
-html[data-theme="dark"] #metaModal .sugerencia b{color:#fde68a}
-#metaModal .sugerencia:empty{display:none}
 :root{--rojo:#DA291C;--rojo2:#a81c12;--bg:#f2f3f5;--card:#fff;--txt:#17191c;--muted:#6b7280;--line:#e6e8eb;--ok:#16a34a}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
@@ -352,7 +340,7 @@ html[data-theme="dark"] #cropModal .top{background:rgba(0,0,0,.95)}
 html[data-theme="dark"] .btn-rojo-grad{background:linear-gradient(135deg,#b01e14,#6b0f08)}
 
 /* =========================================================
-   TARJETA DE META (chips + teléfonos)
+   TARJETA DE META
    ========================================================= */
 .meta-card{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:background .25s,color .25s;color:var(--txt)}
 html[data-theme="dark"] .meta-card{background:var(--card)}
@@ -373,12 +361,6 @@ html[data-theme="dark"] .meta-card{background:var(--card)}
 .meta-fila .pct{font-size:12px;font-weight:900;padding:3px 9px;border-radius:20px;background:rgba(0,0,0,.07);min-width:44px;text-align:center}
 .meta-card.casi .meta-fila .pct,
 .meta-card.completada .meta-fila .pct{background:rgba(255,255,255,.25)}
-.meta-barra{height:9px;background:rgba(0,0,0,.08);border-radius:20px;overflow:hidden}
-.meta-card.casi .meta-barra,
-.meta-card.completada .meta-barra{background:rgba(255,255,255,.28)}
-.meta-barra > div{height:100%;background:linear-gradient(90deg,#DA291C,#ff6b5c);border-radius:20px;transition:width .5s ease}
-.meta-card.casi .meta-barra > div,
-.meta-card.completada .meta-barra > div{background:#fff}
 .meta-faltan{font-size:11px;font-weight:700;opacity:.8;margin-top:5px;text-align:right}
 .meta-sep{border-top:1px dashed rgba(0,0,0,.13);margin:12px 0 10px}
 .meta-card.casi .meta-sep,
@@ -389,8 +371,9 @@ html[data-theme="dark"] .meta-card{background:var(--card)}
 .meta-card.casi .meta-hoy-line span,
 .meta-card.completada .meta-hoy-line span{background:rgba(255,255,255,.22)}
 .meta-cta{text-align:center;font-size:13.5px;color:var(--muted);line-height:1.55;padding:4px 0}
+
 /* =========================================================
-   BARRAS DE PROGRESO RGB BRILLANTE (con glow neón)
+   BARRAS DE PROGRESO RGB BRILLANTE
    ========================================================= */
 .meta-barra{
   height:12px;background:rgba(0,0,0,.12);border-radius:20px;
@@ -407,7 +390,7 @@ html[data-theme="dark"] .meta-card{background:var(--card)}
     #ff0033, #ff6b00, #ffdd00, #00ff66,
     #00ddff, #0066ff, #b400ff, #ff0033);
   background-size:300% 100%;
-  animation:metaRGB 7s linear infinite,
+  animation:metaRGB 3s linear infinite,
             metaGlow 2s ease-in-out infinite;
   filter:saturate(1.6) brightness(1.15);
   box-shadow:
@@ -417,7 +400,6 @@ html[data-theme="dark"] .meta-card{background:var(--card)}
     inset 0 0 6px rgba(255, 255, 255, .35);
 }
 
-/* Brillo extra deslizante encima del RGB */
 .meta-barra > div::after{
   content:"";
   position:absolute;inset:0;
@@ -465,7 +447,6 @@ html[data-theme="dark"] .meta-card{background:var(--card)}
   100% { background-position: -100% 0; }
 }
 
-/* Barrita de HOY: mismo efecto, un poco más chica */
 .meta-hoy .mini-barra{
   flex:1;height:8px;background:rgba(0,0,0,.12);
   border-radius:20px;overflow:hidden;min-width:0;
@@ -510,6 +491,8 @@ html[data-theme="dark"] .meta-card{background:var(--card)}
     animation:none !important;
   }
 }
+
+/* ===== Modal meta ===== */
 #metaModal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:750;display:none;align-items:center;justify-content:center;padding:16px}
 #metaModal.ver{display:flex}
 #metaModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
@@ -532,6 +515,11 @@ html[data-theme="dark"] #metaModal .mfila input{background:#0f1115;color:var(--t
 html[data-theme="dark"] #metaModal .cancelar{background:#262b33;color:#e8eaee}
 #metaModal .guardar{background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff}
 #metaModal .borrar{width:100%;padding:11px;border:none;border-radius:12px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;background:#fdeceb;color:#b91c1c;margin-top:10px}
+#metaModal .sugerencia{font-size:12px;color:var(--muted);font-weight:700;margin:-2px 0 10px;padding:6px 10px;background:#fef3c7;border:1px solid #fcd34d;border-radius:8px;line-height:1.4}
+#metaModal .sugerencia b{color:#92400e;font-weight:900}
+html[data-theme="dark"] #metaModal .sugerencia{background:#3a2f0a;border-color:#7a5a10;color:#fcd34d}
+html[data-theme="dark"] #metaModal .sugerencia b{color:#fde68a}
+#metaModal .sugerencia:empty{display:none}
 </style>
 </head>
 <body>
@@ -692,9 +680,6 @@ html[data-theme="dark"] #metaModal .cancelar{background:#262b33;color:#e8eaee}
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js" defer></script>
 
 <script>
-/* =========================================================
-   REGISTRO CLARO
-   ========================================================= */
 const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const STORE = 'claro_registros_v1';
@@ -729,11 +714,8 @@ const PALETA_COLORES = [
   { nombre: 'Gris',       valor: '#475569' },
 ];
 
-/* =========================================================
-   TEMA CLARO / OSCURO
-   ========================================================= */
+/* TEMA */
 const TEMA_KEY = 'claro_tema_v1';
-
 function aplicarTema(t){
   document.documentElement.setAttribute('data-theme', t);
   const b = document.getElementById('btnTema');
@@ -756,11 +738,8 @@ function cargarTema(){
   aplicarTema(t);
 }
 
-/* =========================================================
-   META: CHIPS + TELÉFONOS, MES + DÍA, AVANCE INICIAL
-   ========================================================= */
+/* META */
 const META_KEY = 'claro_meta_v2';
-
 let metaConfig = {
   mes: { chips: 0, tels: 0 },
   dia: { chips: 0, tels: 0 },
@@ -978,8 +957,10 @@ function abrirMetaModal(){
       <p class="sub">Metas separadas por <b>chips</b> y <b>teléfonos</b>. Pon 0 donde no quieras meta.</p>
       <div class="mgrupo">
         <div class="mtitulo">📆 Meta del mes</div>
-        <div class="mfila"><label>📶 Chips</label><input id="meta-mes-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.chips || ''}"></div>
-        <div class="mfila"><label>📱 Teléfonos</label><input id="meta-mes-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.tels || ''}"></div>
+        <div class="mfila"><label>📶 Chips</label><input id="meta-mes-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.chips || ''}" oninput="actualizarSugerenciasMeta()"></div>
+        <div class="sugerencia" id="sug-chips"></div>
+        <div class="mfila"><label>📱 Teléfonos</label><input id="meta-mes-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.tels || ''}" oninput="actualizarSugerenciasMeta()"></div>
+        <div class="sugerencia" id="sug-tels"></div>
       </div>
       <div class="mgrupo">
         <div class="mtitulo">☀️ Meta diaria</div>
@@ -988,8 +969,8 @@ function abrirMetaModal(){
       </div>
       <div class="mgrupo">
         <div class="mtitulo">📊 Avance inicial</div>
-        <div class="mfila"><label>📶 Chips ya llevados</label><input id="meta-ini-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniCh || ''}"></div>
-        <div class="mfila"><label>📱 Teléfonos ya llevados</label><input id="meta-ini-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniTel || ''}"></div>
+        <div class="mfila"><label>📶 Chips ya llevados</label><input id="meta-ini-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniCh || ''}" oninput="actualizarSugerenciasMeta()"></div>
+        <div class="mfila"><label>📱 Teléfonos ya llevados</label><input id="meta-ini-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniTel || ''}" oninput="actualizarSugerenciasMeta()"></div>
         <p class="nota">Si ya llevabas activaciones antes de instalar la app, anótalas aquí. Solo cuentan para el mes en curso; al cambiar de mes se reinician solas.</p>
       </div>
       <div class="btns">
@@ -999,52 +980,17 @@ function abrirMetaModal(){
       ${tieneMeta ? `<button type="button" class="borrar" onclick="borrarMeta()">🗑️ Quitar todas las metas</button>` : ''}
     </div>`;
   modal.classList.add('ver');
-  setTimeout(() => { const i = document.getElementById('meta-mes-chips'); if (i) i.focus(); }, 100);function abrirMetaModal(){
-  let modal = document.getElementById('metaModal');
-  if (!modal){
-    modal = document.createElement('div');
-    modal.id = 'metaModal';
-    document.body.appendChild(modal);
-  }
-  const tieneMeta = (metaConfig.mes.chips || metaConfig.mes.tels || metaConfig.dia.chips || metaConfig.dia.tels);
-  const iniActivo = metaConfig.inicial && metaConfig.inicial.mes === mesActualPrefijo();
-  const iniCh = iniActivo ? (metaConfig.inicial.chips || 0) : 0;
-  const iniTel = iniActivo ? (metaConfig.inicial.tels || 0) : 0;
-  modal.innerHTML = `
-    <div class="box">
-      <h3>🎯 Configurar metas</h3>
-      <p class="sub">Metas separadas por <b>chips</b> y <b>teléfonos</b>. Pon 0 donde no quieras meta.</p>
-      <div class="mgrupo">
-        <div class="mtitulo">📆 Meta del mes</div>
-        <div class="mfila"><label>📶 Chips</label><input id="meta-mes-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.chips || ''}"></div>
-        <div class="mfila"><label>📱 Teléfonos</label><input id="meta-mes-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.tels || ''}"></div>
-      </div>
-      <div class="mgrupo">
-        <div class="mtitulo">☀️ Meta diaria</div>
-        <div class="mfila"><label>📶 Chips</label><input id="meta-dia-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.dia.chips || ''}"></div>
-        <div class="mfila"><label>📱 Teléfonos</label><input id="meta-dia-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.dia.tels || ''}"></div>
-      </div>
-      <div class="mgrupo">
-        <div class="mtitulo">📊 Avance inicial</div>
-        <div class="mfila"><label>📶 Chips ya llevados</label><input id="meta-ini-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniCh || ''}"></div>
-        <div class="mfila"><label>📱 Teléfonos ya llevados</label><input id="meta-ini-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniTel || ''}"></div>
-        <p class="nota">Si ya llevabas activaciones antes de instalar la app, anótalas aquí. Solo cuentan para el mes en curso; al cambiar de mes se reinician solas.</p>
-      </div>
-      <div class="btns">
-        <button type="button" class="cancelar" onclick="cerrarMetaModal()">Cancelar</button>
-        <button type="button" class="guardar" onclick="guardarMetaModal()">Guardar</button>
-      </div>
-      ${tieneMeta ? `<button type="button" class="borrar" onclick="borrarMeta()">🗑️ Quitar todas las metas</button>` : ''}
-    </div>`;
-  modal.classList.add('ver');
-  setTimeout(() => { const i = document.getElementById('meta-mes-chips'); if (i) i.focus(); }, 100);
+  setTimeout(() => {
+    const i = document.getElementById('meta-mes-chips');
+    if (i) i.focus();
+    actualizarSugerenciasMeta();
+  }, 100);
 }
 function diasRestantesMes(){
   const hoy = new Date();
   const ultimo = new Date(hoy.getFullYear(), hoy.getMonth()+1, 0).getDate();
   return Math.max(1, ultimo - hoy.getDate() + 1);
 }
-
 function actualizarSugerenciasMeta(){
   const elCh = document.getElementById('meta-mes-chips');
   const elTel = document.getElementById('meta-mes-tels');
@@ -1086,7 +1032,6 @@ function actualizarSugerenciasMeta(){
       ? '✅ ¡Ya vas en la meta de teléfonos este mes!'
       : `Faltan <b>${faltaTel}</b> en <b>${txtDias}</b> → <b>${porDiaTel}/día</b>`;
 }
-
 function cerrarMetaModal(){ const m = document.getElementById('metaModal'); if (m) m.classList.remove('ver'); }
 function guardarMetaModal(){
   const mCh  = Math.max(0, parseInt(document.getElementById('meta-mes-chips').value) || 0);
@@ -1120,7 +1065,7 @@ function borrarMeta(){
   toast('🗑️ Metas eliminadas');
 }
 
-/* ========================================================= */
+/* HELPERS */
 let filtroFecha = 'hoy';
 let fechaCustom = null;
 const soloDigitos = s => String(s || '').replace(/\D/g, '');
@@ -1215,7 +1160,7 @@ function copiar(txt){
   }
 }
 
-/* ============ TIENDAS ============ */
+/* TIENDAS */
 function cargarTiendas(){
   try{
     const guardadas = JSON.parse(localStorage.getItem(TIENDAS_STORE) || 'null');
@@ -1249,7 +1194,7 @@ function colorDeTienda(nombre){
 }
 function nombreTiendas(){ return tiendas.map(t => t.nombre); }
 
-/* ============ INVENTARIO ============ */
+/* INVENTARIO */
 function cargarInventario(){
   try{ inventario = JSON.parse(localStorage.getItem(INV_STORE) || '[]'); }
   catch(e){ inventario = []; }
@@ -1677,7 +1622,7 @@ function exportarInventarioCSV(){
   toast('📊 Inventario exportado');
 }
 
-/* ============ STORAGE ============ */
+/* STORAGE */
 function cargar(){
   try{ registros = JSON.parse(localStorage.getItem(STORE) || '[]'); }
   catch(e){ registros = []; }
@@ -1752,6 +1697,7 @@ $('#btnLimpiarFecha').addEventListener('click', () => {
   renderLista();
 });
 
+/* ZXING */
 function precargarTodo(){
   if (!window.ZXing && !window._zxingPrecargado){
     window._zxingPrecargado = true;
@@ -1850,6 +1796,7 @@ function decodificarEnWorker(canvas, timeoutMs){
   });
 }
 
+/* CÁMARA */
 let _camStream = null, _camCallback = null, _camFacing = 'environment';
 function tomarFoto(titulo, callback){ _camCallback = callback; _camFacing = 'environment'; abrirCamaraModal(titulo || 'Tomar foto'); }
 async function abrirCamaraModal(titulo){
@@ -1924,6 +1871,7 @@ function cerrarCamara(){
   _camCallback = null;
 }
 
+/* CROP */
 let _cropRect = null, _cropDrag = false;
 function abrirCropIMEI(dataUrl){ abrirCropGenerico(dataUrl, 'Marca el código del IMEI', 'escanearCrop'); }
 function abrirCropChip(dataUrl){ abrirCropGenerico(dataUrl, 'Marca el código del chip', 'escanearCropChip'); }
@@ -2077,6 +2025,7 @@ function dataUrlAImagen(dataUrl){ return new Promise((res, rej) => { const img =
 function comprimirImagen(img, max=1400, calidad=0.75){ let w = img.width, h = img.height; if(w>h && w>max){ h = Math.round(h*max/w); w = max; } else if(h>=w && h>max){ w = Math.round(w*max/h); h = max; } const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(img, 0, 0, w, h); return c.toDataURL('image/jpeg', calidad); }
 function leerArchivoYProcesar(file, tipo){ if (!file.type.startsWith('image/')) return toast('No es imagen'); const r = new FileReader(); r.onload = ev => { const d = ev.target.result; if (tipo==='chip') procesarDataUrlChip(d); else if (tipo==='imei') procesarDataUrlIMEI(d); else procesarDataUrlEquipo(d); }; r.readAsDataURL(file); }
 
+/* FORM */
 function abrirForm(tipo, id = null){
   formTipo = tipo; editId = id;
   const r = id ? registros.find(x => x.id === id) : null;
@@ -2246,7 +2195,7 @@ function exportarCSV(){
   toast('📊 CSV exportado');
 }
 function exportarJSON(){
-  const data = { app:'Registro Claro', version:15, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado, metaConfig };
+  const data = { app:'Registro Claro', version:18, exportado:new Date().toISOString(), registros, inventario, tiendas, inventarioBloqueado, metaConfig };
   descargar(new Blob([JSON.stringify(data)], {type:'application/json'}), 'respaldo_claro.json');
   toast('📦 Respaldo creado');
 }
@@ -2314,6 +2263,7 @@ setInterval(() => {
     toast('📅 Nuevo día', 2500);
   }
 }, 60000);
+
 cargarTema();
 cargar();
 cargarMeta();
