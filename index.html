@@ -6,6 +6,18 @@
 <meta name="theme-color" content="#DA291C" id="metaTema">
 <title>Registro Claro</title>
 <style>
+#metaModal .sugerencia{
+  font-size:12px;color:var(--muted);font-weight:700;
+  margin:-2px 0 10px;padding:6px 10px;
+  background:#fef3c7;border:1px solid #fcd34d;
+  border-radius:8px;line-height:1.4;
+}
+#metaModal .sugerencia b{color:#92400e;font-weight:900}
+html[data-theme="dark"] #metaModal .sugerencia{
+  background:#3a2f0a;border-color:#7a5a10;color:#fcd34d;
+}
+html[data-theme="dark"] #metaModal .sugerencia b{color:#fde68a}
+#metaModal .sugerencia:empty{display:none}
 :root{--rojo:#DA291C;--rojo2:#a81c12;--bg:#f2f3f5;--card:#fff;--txt:#17191c;--muted:#6b7280;--line:#e6e8eb;--ok:#16a34a}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
@@ -987,8 +999,94 @@ function abrirMetaModal(){
       ${tieneMeta ? `<button type="button" class="borrar" onclick="borrarMeta()">🗑️ Quitar todas las metas</button>` : ''}
     </div>`;
   modal.classList.add('ver');
+  setTimeout(() => { const i = document.getElementById('meta-mes-chips'); if (i) i.focus(); }, 100);function abrirMetaModal(){
+  let modal = document.getElementById('metaModal');
+  if (!modal){
+    modal = document.createElement('div');
+    modal.id = 'metaModal';
+    document.body.appendChild(modal);
+  }
+  const tieneMeta = (metaConfig.mes.chips || metaConfig.mes.tels || metaConfig.dia.chips || metaConfig.dia.tels);
+  const iniActivo = metaConfig.inicial && metaConfig.inicial.mes === mesActualPrefijo();
+  const iniCh = iniActivo ? (metaConfig.inicial.chips || 0) : 0;
+  const iniTel = iniActivo ? (metaConfig.inicial.tels || 0) : 0;
+  modal.innerHTML = `
+    <div class="box">
+      <h3>🎯 Configurar metas</h3>
+      <p class="sub">Metas separadas por <b>chips</b> y <b>teléfonos</b>. Pon 0 donde no quieras meta.</p>
+      <div class="mgrupo">
+        <div class="mtitulo">📆 Meta del mes</div>
+        <div class="mfila"><label>📶 Chips</label><input id="meta-mes-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.chips || ''}"></div>
+        <div class="mfila"><label>📱 Teléfonos</label><input id="meta-mes-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.tels || ''}"></div>
+      </div>
+      <div class="mgrupo">
+        <div class="mtitulo">☀️ Meta diaria</div>
+        <div class="mfila"><label>📶 Chips</label><input id="meta-dia-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.dia.chips || ''}"></div>
+        <div class="mfila"><label>📱 Teléfonos</label><input id="meta-dia-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.dia.tels || ''}"></div>
+      </div>
+      <div class="mgrupo">
+        <div class="mtitulo">📊 Avance inicial</div>
+        <div class="mfila"><label>📶 Chips ya llevados</label><input id="meta-ini-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniCh || ''}"></div>
+        <div class="mfila"><label>📱 Teléfonos ya llevados</label><input id="meta-ini-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniTel || ''}"></div>
+        <p class="nota">Si ya llevabas activaciones antes de instalar la app, anótalas aquí. Solo cuentan para el mes en curso; al cambiar de mes se reinician solas.</p>
+      </div>
+      <div class="btns">
+        <button type="button" class="cancelar" onclick="cerrarMetaModal()">Cancelar</button>
+        <button type="button" class="guardar" onclick="guardarMetaModal()">Guardar</button>
+      </div>
+      ${tieneMeta ? `<button type="button" class="borrar" onclick="borrarMeta()">🗑️ Quitar todas las metas</button>` : ''}
+    </div>`;
+  modal.classList.add('ver');
   setTimeout(() => { const i = document.getElementById('meta-mes-chips'); if (i) i.focus(); }, 100);
 }
+function diasRestantesMes(){
+  const hoy = new Date();
+  const ultimo = new Date(hoy.getFullYear(), hoy.getMonth()+1, 0).getDate();
+  return Math.max(1, ultimo - hoy.getDate() + 1);
+}
+
+function actualizarSugerenciasMeta(){
+  const elCh = document.getElementById('meta-mes-chips');
+  const elTel = document.getElementById('meta-mes-tels');
+  const elIniCh = document.getElementById('meta-ini-chips');
+  const elIniTel = document.getElementById('meta-ini-tels');
+  const sugCh = document.getElementById('sug-chips');
+  const sugTel = document.getElementById('sug-tels');
+  if (!elCh || !sugCh) return;
+
+  const mesCh  = parseInt(elCh.value) || 0;
+  const mesTel = parseInt(elTel.value) || 0;
+  const iniCh  = parseInt(elIniCh.value) || 0;
+  const iniTel = parseInt(elIniTel.value) || 0;
+
+  const prefijo = mesActualPrefijo() + '-';
+  const hechoCh = registros.filter(r => {
+    const f = r.fechaLocal || derivarFechaLocal(r.fecha);
+    return f.startsWith(prefijo) && r.tipo === 'chip';
+  }).length + iniCh;
+  const hechoTel = registros.filter(r => {
+    const f = r.fechaLocal || derivarFechaLocal(r.fecha);
+    return f.startsWith(prefijo) && r.tipo === 'telefono';
+  }).length + iniTel;
+
+  const faltaCh  = Math.max(0, mesCh - hechoCh);
+  const faltaTel = Math.max(0, mesTel - hechoTel);
+  const dias = diasRestantesMes();
+  const porDiaCh  = faltaCh  === 0 ? 0 : Math.ceil(faltaCh / dias);
+  const porDiaTel = faltaTel === 0 ? 0 : Math.ceil(faltaTel / dias);
+  const txtDias = dias === 1 ? '1 día' : dias + ' días';
+
+  sugCh.innerHTML = mesCh <= 0 ? '' :
+    faltaCh === 0
+      ? '✅ ¡Ya vas en la meta de chips este mes!'
+      : `Faltan <b>${faltaCh}</b> en <b>${txtDias}</b> → <b>${porDiaCh}/día</b>`;
+
+  sugTel.innerHTML = mesTel <= 0 ? '' :
+    faltaTel === 0
+      ? '✅ ¡Ya vas en la meta de teléfonos este mes!'
+      : `Faltan <b>${faltaTel}</b> en <b>${txtDias}</b> → <b>${porDiaTel}/día</b>`;
+}
+
 function cerrarMetaModal(){ const m = document.getElementById('metaModal'); if (m) m.classList.remove('ver'); }
 function guardarMetaModal(){
   const mCh  = Math.max(0, parseInt(document.getElementById('meta-mes-chips').value) || 0);
