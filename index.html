@@ -333,6 +333,8 @@ html[data-theme="dark"] .meta-pill-ok{background:#0f2a1a;color:#86efac;border-co
 .meta-card.casi .meta-mensaje,.meta-card.completada .meta-mensaje{border-top-color:rgba(255,255,255,.3)}
 .meta-mensaje small{display:block;font-weight:600;font-size:11.5px;opacity:.85;margin-top:3px}
 .meta-cta{text-align:center;font-size:13.5px;color:var(--muted);line-height:1.55;padding:4px 0}
+
+/* BARRAS RGB BRILLANTE — 8 segundos */
 .meta-barra{height:12px;background:rgba(0,0,0,.12);border-radius:20px;overflow:hidden;position:relative}
 .meta-card.casi .meta-barra,.meta-card.completada .meta-barra{background:rgba(255,255,255,.28)}
 .meta-barra > div{height:100%;border-radius:20px;position:relative;overflow:hidden;transition:width .6s cubic-bezier(.25,.8,.25,1);background:linear-gradient(90deg,#ff0033,#ff6b00,#ffdd00,#00ff66,#00ddff,#0066ff,#b400ff,#ff0033);background-size:300% 100%;animation:metaRGB 8s linear infinite,metaGlow 5s ease-in-out infinite;filter:saturate(1.6) brightness(1.15);box-shadow:0 0 8px rgba(255,0,51,.7),0 0 16px rgba(0,255,102,.5),0 0 24px rgba(0,102,255,.4),inset 0 0 6px rgba(255,255,255,.35)}
@@ -349,6 +351,7 @@ html[data-theme="dark"] .meta-pill-ok{background:#0f2a1a;color:#86efac;border-co
 .meta-card.casi .meta-hoy .mini-barra > div{filter:saturate(1.8) brightness(1.25)}
 .meta-card.completada .meta-hoy .mini-barra > div{filter:saturate(2) brightness(1.35);animation:metaRGB 4s linear infinite,metaGlow 3s ease-in-out infinite}
 @media (prefers-reduced-motion: reduce){.meta-barra > div,.meta-hoy .mini-barra > div,.meta-barra > div::after,.meta-hoy .mini-barra > div::after{animation:none !important}}
+
 #metaModal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:750;display:none;align-items:center;justify-content:center;padding:16px}
 #metaModal.ver{display:flex}
 #metaModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
@@ -384,104 +387,6 @@ html[data-theme="dark"] .storage-info .uso{background:#1e3a8a;color:#dbeafe}
 #avisoMesModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
 #avisoMesModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
 html[data-theme="dark"] #avisoMesModal .box{background:var(--card);color:var(--txt)}
-.btn-buscar-home{width:100%;display:flex;align-items:center;gap:14px;padding:16px 18px;border:none;border-radius:16px;background:#fff;color:var(--txt);margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer;text-align:left;font-family:inherit;transition:.15s;border:2px solid var(--line)}
-.btn-buscar-home:active{transform:scale(.98)}
-.btn-buscar-home .ico{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#4285F4,#1a73e8);color:#fff;display:grid;place-items:center;font-size:22px;flex:0 0 44px;box-shadow:0 3px 10px rgba(66,133,244,.35)}
-.btn-buscar-home .txt b{display:block;font-size:16px;font-weight:800;color:var(--txt)}
-.btn-buscar-home .txt small{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
-#buscadorModal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:800;display:none;align-items:flex-end;justify-content:center}
-#buscadorModal.ver{display:flex}
-.box-buscador{background:#fff;width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:18px 18px 24px;max-height:92vh;overflow-y:auto;animation:subir .2s ease-out}
-.bm-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
-.bm-header h3{margin:0;font-size:18px}
-.bm-cerrar{background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;padding:4px 10px;border-radius:10px;font-family:inherit;line-height:1}
-.bm-cerrar:hover{background:#f0f0f0}
-.bm-sub{margin:0 0 14px;font-size:12.5px;color:var(--muted);line-height:1.5}
-.bm-campo{display:flex;gap:8px;margin-bottom:12px}
-.bm-campo input{flex:1;padding:14px;border:2px solid var(--line);border-radius:12px;font-size:16px;font-family:inherit;min-width:0;background:#fff;color:var(--txt)}
-.bm-campo input:focus{outline:none;border-color:#DA291C}
-.bm-campo button{flex:0 0 52px;width:52px;border:none;border-radius:12px;background:linear-gradient(135deg,#4285F4,#1a73e8);color:#fff;font-size:22px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;transition:.15s;box-shadow:0 2px 6px rgba(66,133,244,.3)}
-.bm-campo button:active{transform:scale(.94)}
-.bm-campo button:disabled{opacity:.4;cursor:not-allowed;background:#9aa3ad;box-shadow:none}
-.bm-chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none}
-.bm-chips::-webkit-scrollbar{display:none}
-.bm-chip{flex:0 0 auto;padding:7px 12px;border:2px solid var(--line);border-radius:20px;background:#fff;color:var(--muted);font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;transition:.15s}
-.bm-chip.activo{background:#DA291C;color:#fff;border-color:transparent}
-.bm-sugerencias{max-height:280px;overflow-y:auto;border-radius:12px}
-.bm-sug{display:flex;align-items:center;gap:10px;padding:11px 12px;background:#f7f8fa;border-radius:10px;margin-bottom:6px;cursor:pointer;transition:.15s}
-.bm-sug:hover,.bm-sug:active{background:#eef4ff}
-.bm-sug .em{font-size:18px;flex:0 0 auto}
-.bm-sug .nombre{flex:1;font-weight:700;font-size:14px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bm-sug .red{font-size:10px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e5e7eb;color:#374151}
-.bm-sug .red.r5g{background:#dbeafe;color:#1e40af}
-.bm-specs{margin-top:12px;padding:14px;border-radius:12px;background:linear-gradient(135deg,#eef4ff,#dbeafe);border:2px solid #93c5fd;display:none;animation:fade .25s}
-.bm-specs.ver{display:block}
-.bm-specs-titulo{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:800;color:#1e40af;margin-bottom:10px}
-.bm-specs-titulo button{background:none;border:none;color:#1e40af;font-size:18px;cursor:pointer;padding:0 4px;font-family:inherit;line-height:1}
-.bm-specs .fila{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(30,64,175,.12);font-size:13px;gap:10px}
-.bm-specs .fila:last-child{border-bottom:none}
-.bm-specs .fila .k{font-weight:700;color:#1e40af;flex:0 0 auto}
-.bm-specs .fila .v{font-weight:800;color:#17191c;text-align:right}
-.bm-contador{text-align:center;font-size:11.5px;color:var(--muted);padding:10px;background:#f7f8fa;border-radius:10px;margin-top:12px}
-.bm-contador b{color:#DA291C;font-weight:900}
-html[data-theme="dark"] .btn-buscar-home{background:var(--card);border-color:var(--line);color:var(--txt)}
-html[data-theme="dark"] .btn-buscar-home .txt b{color:var(--txt)}
-html[data-theme="dark"] .box-buscador{background:var(--card);color:var(--txt)}
-html[data-theme="dark"] .bm-campo input{background:#0f1115;color:var(--txt);border-color:var(--line)}
-html[data-theme="dark"] .bm-chip{background:var(--card);color:var(--muted);border-color:var(--line)}
-html[data-theme="dark"] .bm-chip.activo{background:#DA291C;color:#fff;border-color:transparent}
-html[data-theme="dark"] .bm-sug{background:#0f1115}
-html[data-theme="dark"] .bm-sug:hover,.bm-sug:active{background:#1e3a8a}
-html[data-theme="dark"] .bm-specs{background:#0f172a;border-color:#1e40af}
-html[data-theme="dark"] .bm-specs-titulo,html[data-theme="dark"] .bm-specs .fila .k{color:#93c5fd}
-html[data-theme="dark"] .bm-specs .fila .v{color:#e8eaee}
-html[data-theme="dark"] .bm-specs .fila{border-bottom-color:rgba(147,197,253,.15)}
-html[data-theme="dark"] .bm-contador{background:#0f1115}
-html[data-theme="dark"] .bm-cerrar:hover{background:#262b33}
-/* ===== Brillo suave en modo oscuro al 80% y 100% ===== */
-html[data-theme="dark"] .meta-card.casi{
-  background:linear-gradient(135deg,#f59e0b,#d97706);
-  color:#fff;
-  box-shadow:0 4px 18px rgba(245,158,11,.35);
-}
-html[data-theme="dark"] .meta-card.completada{
-  background:linear-gradient(135deg,#16a34a,#15803d);
-  color:#fff;
-  box-shadow:0 4px 18px rgba(22,163,74,.4);
-}
-/* ===== Scrollbar visible en el buscador de modelos ===== */
-.bm-sugerencias{
-  max-height:340px;
-  overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
-  scroll-behavior:smooth;
-  padding-right:6px;
-  position:relative;
-}
-.bm-sugerencias::-webkit-scrollbar{
-  width:6px;
-}
-.bm-sugerencias::-webkit-scrollbar-track{
-  background:rgba(0,0,0,.05);
-  border-radius:20px;
-}
-.bm-sugerencias::-webkit-scrollbar-thumb{
-  background:linear-gradient(180deg,#DA291C,#8f170e);
-  border-radius:20px;
-}
-.bm-sugerencias::-webkit-scrollbar-thumb:hover{
-  background:linear-gradient(180deg,#ff4438,#b01e14);
-}
-.bm-sugerencias{
-  scrollbar-width:thin;
-  scrollbar-color:#DA291C rgba(0,0,0,.08);
-}
-html[data-theme="dark"] .bm-sugerencias::-webkit-scrollbar-track{
-  background:rgba(255,255,255,.06);
-}
-html[data-theme="dark"] .bm-sugerencias::-webkit-scrollbar-thumb{
-  background:linear-gradient(180deg,#ff4438,#8f170e);
-}
 </style>
 </head>
 <body>
@@ -498,15 +403,6 @@ html[data-theme="dark"] .bm-sugerencias::-webkit-scrollbar-thumb{
 <main>
   <section id="vista-home" class="vista activa">
     <div class="meta-card" id="meta-card"></div>
-
-    <button class="btn-buscar-home" onclick="abrirBuscadorModelos()">
-      <span class="ico">🔍</span>
-      <span class="txt">
-        <b>Buscar modelo</b>
-        <small>Samsung · Xiaomi · Motorola · iPhone…</small>
-      </span>
-    </button>
-
     <button class="btn-grande bg-chip" onclick="abrirForm('chip')"><span class="ico">📶</span><span>Registrar Chip<span class="sub">Foto + lectura de IMSI</span></span></button>
     <button class="btn-grande bg-tel" onclick="abrirForm('telefono')"><span class="ico">📱</span><span>Registrar Teléfono<span class="sub">Lectura de IMEI desde la caja</span></span></button>
     <button class="btn-grande bg-fotos" onclick="ir('fotos')"><span class="ico">🖼️</span><span>Galería de fotos<span class="sub">Todas las fotos guardadas</span></span></button>
@@ -598,41 +494,19 @@ html[data-theme="dark"] .bm-sugerencias::-webkit-scrollbar-thumb{
 </nav>
 
 <div class="toast" id="toast"></div>
+
 <div id="overlay"><div class="box"><div class="spinner"></div><div id="overlayTxt">Analizando…</div><div class="sub" id="overlaySub"></div><div class="barra"><div id="overlayBarra"></div></div></div></div>
+
 <div id="selectorModal"><div class="box"><h3 id="selTitulo">Códigos encontrados</h3><p class="sub" id="selSub">Toca el que quieras usar.</p><div id="selLista"></div><button class="cerrar" onclick="cerrarSelector()">Cancelar</button></div></div>
+
 <div id="invModal"><div class="box" id="invModalBox"></div></div>
 <div id="colorModal"><div class="box" id="colorModalBox"></div></div>
 <div id="previewModal"><div class="box" id="previewBox"></div></div>
 <div id="avisoMesModal"></div>
 
-<div id="buscadorModal">
-  <div class="box-buscador">
-    <div class="bm-header">
-      <h3>🔍 Buscar modelo</h3>
-      <button class="bm-cerrar" onclick="cerrarBuscadorModelos()">✕</button>
-    </div>
-    <p class="bm-sub">Escribe el modelo. Toca una sugerencia para ver sus specs. 🔍 abre Google.</p>
-    <div class="bm-campo">
-      <input id="bm-input" type="text" placeholder="Ej: Xiaomi Redmi 15, Samsung A55…" oninput="bmBuscar()" autocomplete="off">
-      <button id="bm-lupa-google" onclick="bmAbrirGoogle()" disabled>🔍</button>
-    </div>
-    <div class="bm-chips" id="bm-chips"></div>
-    <div class="bm-sugerencias" id="bm-sugerencias"></div>
-    <div class="bm-specs" id="bm-specs">
-      <div class="bm-specs-titulo">
-        <span>📱 <span id="bm-specs-nombre"></span></span>
-        <button onclick="bmCerrarSpecs()">✕</button>
-      </div>
-      <div id="bm-specs-body"></div>
-    </div>
-    <div class="bm-contador" id="bm-contador"></div>
-  </div>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js" defer></script>
 
 <script>
-/* ============ REGISTRO CLARO ============ */
 const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const STORE = 'claro_registros_v1';
@@ -662,363 +536,7 @@ const PALETA_COLORES = [
   { nombre:'Café', valor:'#92400e' },{ nombre:'Gris', valor:'#475569' },
 ];
 
-/* ============ BASE DE DATOS DE MODELOS ============ */
-const CATALOGO_MODELOS = [
-  /* SAMSUNG */
-  { nombre:'Samsung A04',    marca:'Samsung', red:'4G',  pantalla:'6.5" LCD',           ram:'3/4 GB',   alm:'32/64/128 GB',  bat:'5000 mAh', cam:'50+2 MP',         chip:'Helio P35' },
-  { nombre:'Samsung A04s',   marca:'Samsung', red:'4G',  pantalla:'6.5" LCD 90Hz',      ram:'3/4 GB',   alm:'32/64/128 GB',  bat:'5000 mAh', cam:'50+2+2 MP',       chip:'Exynos 850' },
-  { nombre:'Samsung A05',    marca:'Samsung', red:'4G',  pantalla:'6.7" LCD',           ram:'4/6 GB',   alm:'64/128 GB',     bat:'5000 mAh', cam:'50+2 MP',         chip:'Helio G85' },
-  { nombre:'Samsung A05s',   marca:'Samsung', red:'4G',  pantalla:'6.7" LCD 90Hz',      ram:'4/6 GB',   alm:'128 GB',        bat:'5000 mAh', cam:'50+2+2 MP',       chip:'Snapdragon 680' },
-  { nombre:'Samsung A06',    marca:'Samsung', red:'4G',  pantalla:'6.7" LCD 60Hz',      ram:'4/6 GB',   alm:'64/128 GB',     bat:'5000 mAh', cam:'50+2 MP',         chip:'Helio G85' },
-  { nombre:'Samsung A06 5G', marca:'Samsung', red:'5G',  pantalla:'6.7" LCD 90Hz',      ram:'4/6 GB',   alm:'128 GB',        bat:'5000 mAh', cam:'50+2 MP',         chip:'Dimensity 6300' },
-  { nombre:'Samsung A07',    marca:'Samsung', red:'4G',  pantalla:'6.7" PLS LCD 90Hz',  ram:'4/6 GB',   alm:'64/128 GB',     bat:'5000 mAh', cam:'50+2 MP',         chip:'MediaTek Helio G99' },
-  { nombre:'Samsung A07 5G', marca:'Samsung', red:'5G',  pantalla:'6.7" PLS LCD 120Hz', ram:'4/6 GB',   alm:'64/128 GB',     bat:'6000 mAh', cam:'50+2 MP',         chip:'MediaTek Helio G99' },
-  { nombre:'Samsung A14',    marca:'Samsung', red:'4G',  pantalla:'6.6" LCD 90Hz',      ram:'4/6 GB',   alm:'64/128 GB',     bat:'5000 mAh', cam:'50+5+2 MP',       chip:'Exynos 850' },
-  { nombre:'Samsung A14 5G', marca:'Samsung', red:'5G',  pantalla:'6.6" LCD 90Hz',      ram:'4/6 GB',   alm:'64/128 GB',     bat:'5000 mAh', cam:'50+2+2 MP',       chip:'Dimensity 700' },
-  { nombre:'Samsung A15',    marca:'Samsung', red:'4G',  pantalla:'6.5" AMOLED 90Hz',   ram:'4/6/8 GB', alm:'128/256 GB',    bat:'5000 mAh', cam:'50+5+2 MP',       chip:'Helio G99' },
-  { nombre:'Samsung A15 5G', marca:'Samsung', red:'5G',  pantalla:'6.5" AMOLED 90Hz',   ram:'4/6/8 GB', alm:'128/256 GB',    bat:'5000 mAh', cam:'50+5+2 MP',       chip:'Dimensity 6100+' },
-  { nombre:'Samsung A16',    marca:'Samsung', red:'4G',  pantalla:'6.7" AMOLED 90Hz',   ram:'4/6/8 GB', alm:'128/256 GB',    bat:'5000 mAh', cam:'50+5+2 MP',       chip:'Helio G99' },
-  { nombre:'Samsung A16 5G', marca:'Samsung', red:'5G',  pantalla:'6.7" AMOLED 90Hz',   ram:'4/6/8 GB', alm:'128/256 GB',    bat:'5000 mAh', cam:'50+5+2 MP',       chip:'Dimensity 6300 / Exynos 1330' },
-  { nombre:'Samsung A17 4G', marca:'Samsung', red:'4G',  pantalla:'6.7" Super AMOLED 90Hz', ram:'4/6 GB', alm:'128 GB',      bat:'5000 mAh', cam:'50+5+2 MP',       chip:'Helio G99' },
-  { nombre:'Samsung A17 5G', marca:'Samsung', red:'5G',  pantalla:'6.7" Super AMOLED 90Hz', ram:'4/6 GB', alm:'128/256 GB',  bat:'5000 mAh', cam:'50+5+2 MP',       chip:'Exynos 1330' },
-  { nombre:'Samsung A24',    marca:'Samsung', red:'4G',  pantalla:'6.5" AMOLED 90Hz',   ram:'6/8 GB',   alm:'128 GB',        bat:'5000 mAh', cam:'50+5+2 MP',       chip:'Helio G99' },
-  { nombre:'Samsung A25 5G', marca:'Samsung', red:'5G',  pantalla:'6.5" AMOLED 120Hz',  ram:'6/8 GB',   alm:'128/256 GB',    bat:'5000 mAh', cam:'50+8+2 MP',       chip:'Exynos 1280' },
-  { nombre:'Samsung A26 5G', marca:'Samsung', red:'5G',  pantalla:'6.7" AMOLED 120Hz',  ram:'8 GB',     alm:'128/256 GB',    bat:'5000 mAh', cam:'50+8+2 MP',       chip:'Exynos 1380' },
-  { nombre:'Samsung A34 5G', marca:'Samsung', red:'5G',  pantalla:'6.6" AMOLED 120Hz',  ram:'6/8 GB',   alm:'128/256 GB',    bat:'5000 mAh', cam:'48+8+5 MP',       chip:'Dimensity 1080' },
-  { nombre:'Samsung A35 5G', marca:'Samsung', red:'5G',  pantalla:'6.6" AMOLED 120Hz',  ram:'6/8 GB',   alm:'128/256 GB',    bat:'5000 mAh', cam:'50+8+5 MP',       chip:'Exynos 1380' },
-  { nombre:'Samsung A36 5G', marca:'Samsung', red:'5G',  pantalla:'6.7" AMOLED 120Hz',  ram:'6/8 GB',   alm:'128/256 GB',    bat:'5000 mAh', cam:'50+8+5 MP',       chip:'Snapdragon 6 Gen 3' },
-  { nombre:'Samsung A37 5G', marca:'Samsung', red:'5G',  pantalla:'6.7" AMOLED 120Hz',  ram:'6/8 GB',   alm:'128/256 GB',    bat:'5000 mAh', cam:'50+8+5 MP',       chip:'Exynos 1380' },
-  { nombre:'Samsung A54 5G', marca:'Samsung', red:'5G',  pantalla:'6.4" AMOLED 120Hz',  ram:'6/8 GB',   alm:'128/256 GB',    bat:'5000 mAh', cam:'50+12+5 MP',      chip:'Exynos 1380' },
-  { nombre:'Samsung A55 5G', marca:'Samsung', red:'5G',  pantalla:'6.6" AMOLED 120Hz',  ram:'8/12 GB',  alm:'128/256 GB',    bat:'5000 mAh', cam:'50+12+5 MP',      chip:'Exynos 1480' },
-  { nombre:'Samsung A56 5G', marca:'Samsung', red:'5G',  pantalla:'6.7" AMOLED 120Hz',  ram:'8 GB',     alm:'128/256 GB',    bat:'5000 mAh', cam:'50+12+5 MP',      chip:'Exynos 1580' },
-  { nombre:'Samsung A57 5G', marca:'Samsung', red:'5G',  pantalla:'6.7" AMOLED 120Hz',  ram:'8/12 GB',  alm:'256 GB',        bat:'5000 mAh', cam:'50+12+5 MP',      chip:'Exynos 1580' },
-  { nombre:'Samsung S21 FE',   marca:'Samsung', red:'5G', pantalla:'6.4" AMOLED 120Hz',  ram:'6/8 GB',  alm:'128/256 GB',     bat:'4500 mAh', cam:'12+12+8 MP',      chip:'Snapdragon 888' },
-  { nombre:'Samsung S22',      marca:'Samsung', red:'5G', pantalla:'6.1" AMOLED 120Hz',  ram:'8 GB',    alm:'128/256 GB',     bat:'3700 mAh', cam:'50+12+10 MP',     chip:'SD 8 Gen 1 / Exynos 2200' },
-  { nombre:'Samsung S22 Ultra',marca:'Samsung', red:'5G', pantalla:'6.8" AMOLED 120Hz',  ram:'8/12 GB', alm:'128/256/512GB/1TB', bat:'5000 mAh', cam:'108+10+10+12 MP', chip:'SD 8 Gen 1 / Exynos 2200' },
-  { nombre:'Samsung S23',      marca:'Samsung', red:'5G', pantalla:'6.1" AMOLED 120Hz',  ram:'8 GB',    alm:'128/256/512 GB', bat:'3900 mAh', cam:'50+12+10 MP',     chip:'Snapdragon 8 Gen 2' },
-  { nombre:'Samsung S23+',     marca:'Samsung', red:'5G', pantalla:'6.6" AMOLED 120Hz',  ram:'8 GB',    alm:'256/512 GB',     bat:'4700 mAh', cam:'50+12+10 MP',     chip:'Snapdragon 8 Gen 2' },
-  { nombre:'Samsung S23 Ultra',marca:'Samsung', red:'5G', pantalla:'6.8" AMOLED 120Hz',  ram:'8/12 GB', alm:'256/512GB/1TB',  bat:'5000 mAh', cam:'200+12+10+10 MP', chip:'Snapdragon 8 Gen 2' },
-  { nombre:'Samsung S24',      marca:'Samsung', red:'5G', pantalla:'6.2" AMOLED 120Hz',  ram:'8 GB',    alm:'128/256/512 GB', bat:'4000 mAh', cam:'50+12+10 MP',     chip:'Exynos 2400 / SD 8 Gen 3' },
-  { nombre:'Samsung S24+',     marca:'Samsung', red:'5G', pantalla:'6.7" AMOLED 120Hz',  ram:'12 GB',   alm:'256/512 GB',     bat:'4900 mAh', cam:'50+12+10 MP',     chip:'Exynos 2400 / SD 8 Gen 3' },
-  { nombre:'Samsung S24 Ultra',marca:'Samsung', red:'5G', pantalla:'6.8" AMOLED 120Hz',  ram:'12 GB',   alm:'256/512GB/1TB',  bat:'5000 mAh', cam:'200+50+12+10 MP', chip:'Snapdragon 8 Gen 3' },
-  { nombre:'Samsung S25',      marca:'Samsung', red:'5G', pantalla:'6.2" AMOLED 120Hz',  ram:'12 GB',   alm:'128/256/512 GB', bat:'4000 mAh', cam:'50+12+10 MP',     chip:'Snapdragon 8 Elite' },
-  { nombre:'Samsung S25+',     marca:'Samsung', red:'5G', pantalla:'6.7" AMOLED 120Hz',  ram:'12 GB',   alm:'256/512 GB',     bat:'4900 mAh', cam:'50+12+10 MP',     chip:'Snapdragon 8 Elite' },
-  { nombre:'Samsung S25 Edge', marca:'Samsung', red:'5G', pantalla:'6.7" AMOLED 120Hz',  ram:'12 GB',   alm:'256/512 GB',     bat:'3900 mAh', cam:'200+12 MP',       chip:'Snapdragon 8 Elite' },
-  { nombre:'Samsung S25 Ultra',marca:'Samsung', red:'5G', pantalla:'6.9" AMOLED 120Hz',  ram:'12 GB',   alm:'256/512GB/1TB',  bat:'5000 mAh', cam:'200+50+50+10 MP', chip:'Snapdragon 8 Elite' },
-  { nombre:'Samsung S26',      marca:'Samsung', red:'5G', pantalla:'6.3" AMOLED 120Hz',  ram:'12 GB',   alm:'256/512 GB',     bat:'4300 mAh', cam:'50+12+10 MP',     chip:'Exynos 2600' },
-  { nombre:'Samsung S26+',     marca:'Samsung', red:'5G', pantalla:'6.7" AMOLED 120Hz',  ram:'12 GB',   alm:'256/512 GB',     bat:'4900 mAh', cam:'50+12+10 MP',     chip:'Exynos 2600' },
-  { nombre:'Samsung S26 Ultra',marca:'Samsung', red:'5G', pantalla:'6.9" AMOLED 120Hz',  ram:'12/16 GB',alm:'256/512GB/1TB',  bat:'5000 mAh', cam:'200+50+50+10 MP', chip:'Snapdragon 8 Elite Gen 5' },
-  { nombre:'Samsung Z Flip 4', marca:'Samsung', red:'5G', pantalla:'6.7" AMOLED 120Hz', ram:'8 GB',    alm:'128/256/512 GB', bat:'3700 mAh', cam:'12+12 MP',        chip:'Snapdragon 8+ Gen 1' },
-  { nombre:'Samsung Z Fold 4', marca:'Samsung', red:'5G', pantalla:'7.6" AMOLED 120Hz', ram:'12 GB',   alm:'256/512GB/1TB',  bat:'4400 mAh', cam:'50+12+10 MP',     chip:'Snapdragon 8+ Gen 1' },
-  { nombre:'Samsung Z Flip 5', marca:'Samsung', red:'5G', pantalla:'6.7" AMOLED 120Hz', ram:'8 GB',    alm:'256/512 GB',     bat:'3700 mAh', cam:'12+12 MP',        chip:'Snapdragon 8 Gen 2' },
-  { nombre:'Samsung Z Fold 5', marca:'Samsung', red:'5G', pantalla:'7.6" AMOLED 120Hz', ram:'12 GB',   alm:'256/512GB/1TB',  bat:'4400 mAh', cam:'50+12+10 MP',     chip:'Snapdragon 8 Gen 2' },
-  { nombre:'Samsung Z Flip 6', marca:'Samsung', red:'5G', pantalla:'6.7" AMOLED 120Hz', ram:'12 GB',   alm:'256/512 GB',     bat:'4000 mAh', cam:'50+12 MP',        chip:'Snapdragon 8 Gen 3' },
-  { nombre:'Samsung Z Fold 6', marca:'Samsung', red:'5G', pantalla:'7.6" AMOLED 120Hz', ram:'12 GB',   alm:'256/512GB/1TB',  bat:'4400 mAh', cam:'50+12+10 MP',     chip:'Snapdragon 8 Gen 3' },
-  { nombre:'Samsung Z Flip 7', marca:'Samsung', red:'5G', pantalla:'6.9" AMOLED 120Hz', ram:'12 GB',   alm:'256/512 GB',     bat:'4300 mAh', cam:'50+12 MP',        chip:'Exynos 2500' },
-  { nombre:'Samsung Z Fold 7', marca:'Samsung', red:'5G', pantalla:'8.0" AMOLED 120Hz', ram:'12/16 GB',alm:'256/512GB/1TB',  bat:'4400 mAh', cam:'200+12+10 MP',    chip:'Snapdragon 8 Elite' },
-  { nombre:'Samsung Z Fold 8', marca:'Samsung', red:'5G', pantalla:'7.6" AMOLED 120Hz', ram:'12 GB',   alm:'256/512 GB',     bat:'4800 mAh', cam:'50+50 MP',        chip:'Snapdragon 8 Elite Gen 5' },
-  { nombre:'Samsung Z Fold 8 Ultra', marca:'Samsung', red:'5G', pantalla:'8.0" AMOLED 120Hz', ram:'16 GB', alm:'256/512GB/1TB', bat:'5000 mAh', cam:'200+50+12 MP', chip:'Snapdragon 8 Elite Gen 5' },
-
-  /* XIAOMI */
-  { nombre:'Xiaomi 12',       marca:'Xiaomi', red:'5G', pantalla:'6.28" AMOLED 120Hz', ram:'8/12 GB', alm:'128/256 GB',    bat:'4500 mAh', cam:'50+13+5 MP',      chip:'Snapdragon 8 Gen 1' },
-  { nombre:'Xiaomi 12 Pro',   marca:'Xiaomi', red:'5G', pantalla:'6.73" AMOLED 120Hz', ram:'8/12 GB', alm:'128/256 GB',    bat:'4600 mAh', cam:'50+50+50 MP',     chip:'Snapdragon 8 Gen 1' },
-  { nombre:'Xiaomi 13',       marca:'Xiaomi', red:'5G', pantalla:'6.36" AMOLED 120Hz', ram:'8/12 GB', alm:'128/256/512 GB',bat:'4500 mAh', cam:'50+10+12 MP',     chip:'Snapdragon 8 Gen 2' },
-  { nombre:'Xiaomi 13 Pro',   marca:'Xiaomi', red:'5G', pantalla:'6.73" AMOLED 120Hz', ram:'12 GB',   alm:'256/512 GB',    bat:'4820 mAh', cam:'50+50+50 MP',     chip:'Snapdragon 8 Gen 2' },
-  { nombre:'Xiaomi 13T',      marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 144Hz', ram:'8/12 GB', alm:'256 GB',        bat:'5000 mAh', cam:'50+50+12 MP',     chip:'Dimensity 8200 Ultra' },
-  { nombre:'Xiaomi 13T Pro',  marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 144Hz', ram:'12/16 GB',alm:'256/512GB/1TB', bat:'5000 mAh', cam:'50+50+12 MP',     chip:'Dimensity 9200+' },
-  { nombre:'Xiaomi 14',       marca:'Xiaomi', red:'5G', pantalla:'6.36" AMOLED 120Hz', ram:'8/12 GB', alm:'256/512 GB',    bat:'4610 mAh', cam:'50+50+50 MP',     chip:'Snapdragon 8 Gen 3' },
-  { nombre:'Xiaomi 14 Ultra', marca:'Xiaomi', red:'5G', pantalla:'6.73" AMOLED 120Hz', ram:'12/16 GB',alm:'256/512GB/1TB', bat:'5300 mAh', cam:'50+50+50+50 MP',  chip:'Snapdragon 8 Gen 3' },
-  { nombre:'Xiaomi 14T',      marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 144Hz', ram:'12 GB',   alm:'256/512 GB',    bat:'5000 mAh', cam:'50+50+12 MP',     chip:'Dimensity 8300 Ultra' },
-  { nombre:'Xiaomi 14T Pro',  marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 144Hz', ram:'12 GB',   alm:'256/512GB/1TB', bat:'5000 mAh', cam:'50+50+12 MP',     chip:'Dimensity 9300+' },
-  { nombre:'Xiaomi 15',       marca:'Xiaomi', red:'5G', pantalla:'6.36" AMOLED 120Hz', ram:'12 GB',   alm:'256/512 GB',    bat:'5400 mAh', cam:'50+50+50 MP',     chip:'Snapdragon 8 Elite' },
-  { nombre:'Xiaomi 15 Ultra', marca:'Xiaomi', red:'5G', pantalla:'6.73" AMOLED 120Hz', ram:'16 GB',   alm:'512GB/1TB',     bat:'6000 mAh', cam:'50+200+50+50 MP', chip:'Snapdragon 8 Elite' },
-  { nombre:'Xiaomi 15T',      marca:'Xiaomi', red:'5G', pantalla:'6.83" AMOLED 120Hz', ram:'12 GB',   alm:'256/512 GB',    bat:'5500 mAh', cam:'50+50+12 MP',     chip:'Dimensity 8400 Ultra' },
-  { nombre:'Xiaomi 15T Pro',  marca:'Xiaomi', red:'5G', pantalla:'6.83" AMOLED 144Hz', ram:'12/16 GB',alm:'512GB/1TB',     bat:'5500 mAh', cam:'50+50+12 MP',     chip:'Dimensity 9400+' },
-  { nombre:'Xiaomi 17',       marca:'Xiaomi', red:'5G', pantalla:'6.36" AMOLED 120Hz', ram:'12 GB',   alm:'256/512 GB',    bat:'5000 mAh', cam:'50+50+50 MP',     chip:'Snapdragon 8 Elite Gen 5' },
-  { nombre:'Xiaomi 17 Pro',   marca:'Xiaomi', red:'5G', pantalla:'6.3" AMOLED 120Hz',  ram:'12 GB',   alm:'256/512 GB',    bat:'6300 mAh', cam:'50+50+50 MP',     chip:'Snapdragon 8 Elite Gen 5' },
-  { nombre:'Xiaomi 17 Pro Max',marca:'Xiaomi',red:'5G', pantalla:'6.9" AMOLED 120Hz',  ram:'12/16 GB',alm:'512GB/1TB',     bat:'7500 mAh', cam:'50+50+50 MP',     chip:'Snapdragon 8 Elite Gen 5' },
-  { nombre:'Xiaomi 17 Ultra', marca:'Xiaomi', red:'5G', pantalla:'6.9" AMOLED 120Hz',  ram:'16 GB',   alm:'512GB/1TB',     bat:'6000 mAh', cam:'200+50+50 MP',    chip:'Snapdragon 8 Elite Gen 5' },
-  { nombre:'Redmi 10',      marca:'Xiaomi', red:'4G', pantalla:'6.5" LCD 90Hz',      ram:'4/6 GB',   alm:'64/128 GB',    bat:'5000 mAh', cam:'50+2+2 MP',    chip:'Helio G88' },
-  { nombre:'Redmi 12',      marca:'Xiaomi', red:'4G', pantalla:'6.79" LCD 90Hz',     ram:'4/6/8 GB', alm:'128/256 GB',   bat:'5000 mAh', cam:'50+8+2 MP',    chip:'Helio G88' },
-  { nombre:'Redmi 12 5G',   marca:'Xiaomi', red:'5G', pantalla:'6.79" LCD 90Hz',     ram:'4/6 GB',   alm:'128/256 GB',   bat:'5000 mAh', cam:'50+2 MP',      chip:'Snapdragon 4 Gen 2' },
-  { nombre:'Redmi 13',      marca:'Xiaomi', red:'4G', pantalla:'6.79" LCD 90Hz',     ram:'6/8 GB',   alm:'128/256 GB',   bat:'5030 mAh', cam:'108+2 MP',     chip:'Helio G91 Ultra' },
-  { nombre:'Redmi 13C',     marca:'Xiaomi', red:'4G', pantalla:'6.74" LCD 90Hz',     ram:'4/6/8 GB', alm:'128/256 GB',   bat:'5000 mAh', cam:'50+2 MP',      chip:'Helio G85' },
-  { nombre:'Redmi 13C 5G',  marca:'Xiaomi', red:'5G', pantalla:'6.74" LCD 90Hz',     ram:'4/6 GB',   alm:'128/256 GB',   bat:'5000 mAh', cam:'50+2 MP',      chip:'Dimensity 6100+' },
-  { nombre:'Redmi 14C',     marca:'Xiaomi', red:'4G', pantalla:'6.88" LCD 120Hz',    ram:'4/6/8 GB', alm:'128/256 GB',   bat:'5160 mAh', cam:'50+2 MP',      chip:'Helio G81 Ultra' },
-  { nombre:'Redmi 14C 5G',  marca:'Xiaomi', red:'5G', pantalla:'6.88" LCD 120Hz',    ram:'4/6 GB',   alm:'128 GB',       bat:'5160 mAh', cam:'50+2 MP',      chip:'Snapdragon 4 Gen 2' },
-  { nombre:'Redmi 15',      marca:'Xiaomi', red:'4G', pantalla:'6.9" LCD 120Hz',     ram:'6/8 GB',   alm:'128/256 GB',   bat:'7000 mAh', cam:'50+2 MP',      chip:'Snapdragon 685' },
-  { nombre:'Redmi 15 5G',   marca:'Xiaomi', red:'5G', pantalla:'6.9" LCD 120Hz',     ram:'6/8 GB',   alm:'128/256 GB',   bat:'7000 mAh', cam:'50+2 MP',      chip:'Snapdragon 6s Gen 3' },
-  { nombre:'Redmi Note 11', marca:'Xiaomi', red:'4G', pantalla:'6.43" AMOLED 90Hz',  ram:'4/6 GB',   alm:'64/128 GB',    bat:'5000 mAh', cam:'50+8+2+2 MP',  chip:'Snapdragon 680' },
-  { nombre:'Redmi Note 12', marca:'Xiaomi', red:'4G', pantalla:'6.67" AMOLED 120Hz', ram:'4/6/8 GB', alm:'64/128/256 GB',bat:'5000 mAh', cam:'50+8+2 MP',    chip:'Snapdragon 685' },
-  { nombre:'Redmi Note 12 5G',marca:'Xiaomi',red:'5G',pantalla:'6.67" AMOLED 120Hz', ram:'4/6/8 GB', alm:'128/256 GB',   bat:'5000 mAh', cam:'48+2 MP',      chip:'Snapdragon 4 Gen 1' },
-  { nombre:'Redmi Note 13', marca:'Xiaomi', red:'4G', pantalla:'6.67" AMOLED 120Hz', ram:'6/8 GB',   alm:'128/256 GB',   bat:'5000 mAh', cam:'108+8+2 MP',   chip:'Snapdragon 685' },
-  { nombre:'Redmi Note 13 5G',marca:'Xiaomi',red:'5G',pantalla:'6.67" AMOLED 120Hz', ram:'6/8 GB',   alm:'128/256 GB',   bat:'5000 mAh', cam:'108+8+2 MP',   chip:'Dimensity 6080' },
-  { nombre:'Redmi Note 13 Pro',marca:'Xiaomi',red:'4G',pantalla:'6.67" AMOLED 120Hz',ram:'8/12 GB',  alm:'128/256/512 GB',bat:'5100 mAh',cam:'200+8+2 MP',   chip:'Helio G99 Ultra' },
-  { nombre:'Redmi Note 13 Pro 5G',marca:'Xiaomi',red:'5G',pantalla:'6.67" AMOLED 120Hz',ram:'8/12 GB',alm:'256/512 GB',bat:'5100 mAh',cam:'200+8+2 MP',   chip:'Snapdragon 7s Gen 2' },
-  { nombre:'Redmi Note 13 Pro+ 5G',marca:'Xiaomi',red:'5G',pantalla:'6.67" AMOLED 120Hz',ram:'8/12 GB',alm:'256/512 GB',bat:'5000 mAh',cam:'200+8+2 MP',   chip:'Dimensity 7200 Ultra' },
-  { nombre:'Redmi Note 14', marca:'Xiaomi', red:'4G', pantalla:'6.67" AMOLED 120Hz', ram:'6/8 GB',   alm:'128/256 GB',   bat:'5500 mAh', cam:'108+2 MP',     chip:'Helio G99 Ultra' },
-  { nombre:'Redmi Note 14 5G',marca:'Xiaomi',red:'5G',pantalla:'6.67" AMOLED 120Hz', ram:'6/8/12 GB',alm:'128/256/512 GB',bat:'5110 mAh',cam:'108+8 MP',     chip:'Dimensity 7025 Ultra' },
-  { nombre:'Redmi Note 14 Pro',marca:'Xiaomi',red:'4G',pantalla:'6.67" AMOLED 120Hz',ram:'8/12 GB',  alm:'128/256/512 GB',bat:'5500 mAh',cam:'200+8+2 MP',   chip:'Helio G100 Ultra' },
-  { nombre:'Redmi Note 14 Pro 5G',marca:'Xiaomi',red:'5G',pantalla:'6.67" AMOLED 120Hz',ram:'8/12 GB',alm:'256/512 GB',bat:'5110 mAh',cam:'200+8+2 MP',   chip:'Dimensity 7300 Ultra' },
-  { nombre:'Redmi Note 14 Pro+ 5G',marca:'Xiaomi',red:'5G',pantalla:'6.67" AMOLED 120Hz',ram:'8/12 GB',alm:'256/512 GB',bat:'5110 mAh',cam:'200+8+2 MP',   chip:'Snapdragon 7s Gen 3' },
-  { nombre:'Redmi Note 17',           marca:'Xiaomi', red:'4G', pantalla:'6.99" AMOLED FHD+ 120Hz', ram:'4/6/8 GB', alm:'128/256 GB',      bat:'7700 mAh',  cam:'50 MP',        chip:'Snapdragon 6s 4G Gen 2' },
-  { nombre:'Redmi Note 17 5G',        marca:'Xiaomi', red:'5G', pantalla:'6.99" AMOLED FHD+ 120Hz', ram:'6/8 GB',   alm:'128/256 GB',      bat:'7700 mAh',  cam:'50 MP',        chip:'Snapdragon 4 Gen 4' },
-  { nombre:'Redmi Note 17 Pro 5G',    marca:'Xiaomi', red:'5G', pantalla:'6.83" AMOLED 1.5K 120Hz',  ram:'8/12 GB',  alm:'256/512 GB',      bat:'8340 mAh',  cam:'50 MP + OIS',  chip:'Snapdragon 6s Gen 4' },
-  { nombre:'Redmi Note 17 Pro Max 5G',marca:'Xiaomi', red:'5G', pantalla:'6.83" AMOLED 1.5K 120Hz',  ram:'8/12 GB',  alm:'256/512 GB',      bat:'10000 mAh', cam:'50 MP + OIS',  chip:'Snapdragon 6 Gen 5' },
-  { nombre:'POCO M5',        marca:'Xiaomi', red:'4G', pantalla:'6.58" LCD 90Hz',      ram:'4/6 GB',  alm:'64/128 GB',     bat:'5000 mAh', cam:'50+2+2 MP',    chip:'Helio G99' },
-  { nombre:'POCO M6 Pro',    marca:'Xiaomi', red:'4G', pantalla:'6.67" AMOLED 120Hz',  ram:'8/12 GB', alm:'256/512 GB',    bat:'5000 mAh', cam:'64+8+2 MP',    chip:'Helio G99 Ultra' },
-  { nombre:'POCO M6 Pro 5G', marca:'Xiaomi', red:'5G', pantalla:'6.79" LCD 90Hz',      ram:'4/6 GB',  alm:'128/256 GB',    bat:'5000 mAh', cam:'50+2 MP',      chip:'Snapdragon 4 Gen 2' },
-  { nombre:'POCO X5 Pro 5G', marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 120Hz',  ram:'6/8 GB',  alm:'128/256 GB',    bat:'5000 mAh', cam:'108+8+2 MP',   chip:'Snapdragon 778G' },
-  { nombre:'POCO X6',        marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 120Hz',  ram:'8/12 GB', alm:'256/512 GB',    bat:'5100 mAh', cam:'64+8+2 MP',    chip:'Snapdragon 7s Gen 2' },
-  { nombre:'POCO X6 Pro',    marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 120Hz',  ram:'8/12 GB', alm:'256/512 GB',    bat:'5000 mAh', cam:'64+8+2 MP',    chip:'Dimensity 8300 Ultra' },
-  { nombre:'POCO X7',        marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 120Hz',  ram:'8/12 GB', alm:'256/512 GB',    bat:'5110 mAh', cam:'50+8 MP',      chip:'Dimensity 7300 Ultra' },
-  { nombre:'POCO X7 Pro',    marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 120Hz',  ram:'8/12 GB', alm:'256/512 GB',    bat:'6000 mAh', cam:'50+8 MP',      chip:'Dimensity 8400 Ultra' },
-  { nombre:'POCO F5',        marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 120Hz',  ram:'8/12 GB', alm:'256 GB',        bat:'5000 mAh', cam:'64+8+2 MP',    chip:'Snapdragon 7+ Gen 2' },
-  { nombre:'POCO F5 Pro',    marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 120Hz',  ram:'8/12 GB', alm:'256/512 GB',    bat:'5160 mAh', cam:'64+8+2 MP',    chip:'Snapdragon 8+ Gen 1' },
-  { nombre:'POCO F6',        marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 120Hz',  ram:'8/12 GB', alm:'256/512 GB',    bat:'5000 mAh', cam:'50+8 MP',      chip:'Snapdragon 8s Gen 3' },
-  { nombre:'POCO F6 Pro',    marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 120Hz',  ram:'12/16 GB',alm:'256/512GB/1TB', bat:'5000 mAh', cam:'50+8+2 MP',    chip:'Snapdragon 8 Gen 2' },
-  { nombre:'POCO F7',        marca:'Xiaomi', red:'5G', pantalla:'6.83" AMOLED 120Hz',  ram:'12 GB',   alm:'256/512 GB',    bat:'6500 mAh', cam:'50+8 MP',      chip:'Snapdragon 8s Gen 4' },
-  { nombre:'POCO F7 Pro',    marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 120Hz',  ram:'12 GB',   alm:'256/512 GB',    bat:'6000 mAh', cam:'50+8 MP',      chip:'Snapdragon 8 Gen 3' },
-  { nombre:'POCO F7 Ultra',  marca:'Xiaomi', red:'5G', pantalla:'6.67" AMOLED 120Hz',  ram:'16 GB',   alm:'512GB/1TB',     bat:'5300 mAh', cam:'50+50+32 MP',  chip:'Snapdragon 8 Elite' },
-  { nombre:'POCO F9 Pro',    marca:'Xiaomi', red:'5G', pantalla:'6.83" AMOLED 185Hz',  ram:'12/16 GB',alm:'256/512 GB',    bat:'6000 mAh', cam:'200+8 MP',     chip:'Snapdragon 8 Elite Gen 5' },
-  { nombre:'POCO F9 Ultra',  marca:'Xiaomi', red:'5G', pantalla:'6.9" AMOLED 185Hz',   ram:'16 GB',   alm:'512GB/1TB',     bat:'8050 mAh', cam:'200+50 MP',    chip:'Snapdragon 8 Elite Gen 5' },
-
-  /* MOTOROLA */
-  { nombre:'Moto G13',        marca:'Motorola', red:'4G', pantalla:'6.5" LCD 90Hz',      ram:'4 GB',    alm:'64/128 GB',     bat:'5000 mAh', cam:'50+2+2 MP',    chip:'Helio G85' },
-  { nombre:'Moto G14',        marca:'Motorola', red:'4G', pantalla:'6.5" LCD 90Hz',      ram:'4/8 GB',  alm:'128/256 GB',    bat:'5000 mAh', cam:'50+2 MP',      chip:'Unisoc T616' },
-  { nombre:'Moto G23',        marca:'Motorola', red:'4G', pantalla:'6.5" LCD 90Hz',      ram:'4/8 GB',  alm:'128 GB',        bat:'5000 mAh', cam:'50+5+2 MP',    chip:'Helio G85' },
-  { nombre:'Moto G24',        marca:'Motorola', red:'4G', pantalla:'6.56" LCD 90Hz',     ram:'4/8 GB',  alm:'128 GB',        bat:'5000 mAh', cam:'50+2 MP',      chip:'Helio G85' },
-  { nombre:'Moto G24 Power',  marca:'Motorola', red:'4G', pantalla:'6.56" LCD 90Hz',     ram:'4/8 GB',  alm:'128/256 GB',    bat:'6000 mAh', cam:'50+2 MP',      chip:'Helio G85' },
-  { nombre:'Moto G34 5G',     marca:'Motorola', red:'5G', pantalla:'6.5" LCD 120Hz',     ram:'4/8 GB',  alm:'128 GB',        bat:'5000 mAh', cam:'50+2 MP',      chip:'Snapdragon 695' },
-  { nombre:'Moto G54 5G',     marca:'Motorola', red:'5G', pantalla:'6.5" LCD 120Hz',     ram:'8/12 GB', alm:'128/256 GB',    bat:'6000 mAh', cam:'50+8 MP',      chip:'Dimensity 7020' },
-  { nombre:'Moto G64 5G',     marca:'Motorola', red:'5G', pantalla:'6.5" LCD 120Hz',     ram:'8/12 GB', alm:'128/256 GB',    bat:'6000 mAh', cam:'50+8 MP',      chip:'Dimensity 7025' },
-  { nombre:'Moto G84 5G',     marca:'Motorola', red:'5G', pantalla:'6.55" pOLED 120Hz',  ram:'8/12 GB', alm:'256 GB',        bat:'5000 mAh', cam:'50+8 MP',      chip:'Snapdragon 695' },
-  { nombre:'Moto G85 5G',     marca:'Motorola', red:'5G', pantalla:'6.67" pOLED 120Hz',  ram:'8/12 GB', alm:'256 GB',        bat:'5000 mAh', cam:'50+8 MP',      chip:'Snapdragon 6s Gen 3' },
-  { nombre:'Moto G Stylus 5G (2023)', marca:'Motorola', red:'5G', pantalla:'6.6" LCD 120Hz', ram:'6/8 GB', alm:'256 GB',  bat:'5000 mAh', cam:'50+8 MP',     chip:'Snapdragon 6 Gen 1' },
-  { nombre:'Moto G Stylus 5G (2024)', marca:'Motorola', red:'5G', pantalla:'6.7" pOLED 120Hz',ram:'8 GB',  alm:'256 GB',   bat:'5000 mAh', cam:'50+13 MP',    chip:'Snapdragon 6 Gen 1' },
-  { nombre:'Moto G Stylus 5G (2025)', marca:'Motorola', red:'5G', pantalla:'6.7" pOLED 120Hz',ram:'8 GB',  alm:'256 GB',   bat:'5000 mAh', cam:'50+13 MP',    chip:'Snapdragon 6 Gen 3' },
-  { nombre:'Moto G Power 5G (2023)',  marca:'Motorola', red:'5G', pantalla:'6.5" LCD 120Hz', ram:'6 GB',   alm:'256 GB',   bat:'5000 mAh', cam:'50+2+2 MP',   chip:'Dimensity 930' },
-  { nombre:'Moto G Power 5G (2024)',  marca:'Motorola', red:'5G', pantalla:'6.7" LCD 120Hz', ram:'8 GB',   alm:'128 GB',   bat:'5000 mAh', cam:'50+2 MP',     chip:'Dimensity 7020' },
-  { nombre:'Moto G Power 5G (2025)',  marca:'Motorola', red:'5G', pantalla:'6.8" LCD 120Hz', ram:'8 GB',   alm:'256 GB',   bat:'5000 mAh', cam:'50+2 MP',     chip:'Dimensity 7025' },
-  { nombre:'Moto G 5G (2023)',        marca:'Motorola', red:'5G', pantalla:'6.5" LCD 120Hz', ram:'4/6 GB', alm:'128 GB',   bat:'5000 mAh', cam:'48+2 MP',     chip:'Snapdragon 480+' },
-  { nombre:'Moto G 5G (2024)',        marca:'Motorola', red:'5G', pantalla:'6.6" LCD 120Hz', ram:'4/8 GB', alm:'128 GB',   bat:'5000 mAh', cam:'50+2 MP',     chip:'Snapdragon 4 Gen 1' },
-  { nombre:'Moto G 5G (2025)',        marca:'Motorola', red:'5G', pantalla:'6.7" LCD 120Hz', ram:'4/8 GB', alm:'128 GB',   bat:'5200 mAh', cam:'50+2 MP',     chip:'Dimensity 6300' },
-  { nombre:'Moto G56 5G',             marca:'Motorola', red:'5G', pantalla:'6.72" LCD 120Hz',ram:'8/12 GB',alm:'256 GB',   bat:'5200 mAh', cam:'50+8 MP',     chip:'Dimensity 7060' },
-  { nombre:'Moto G75 5G',             marca:'Motorola', red:'5G', pantalla:'6.78" LCD 120Hz',ram:'8 GB',   alm:'256 GB',   bat:'5000 mAh', cam:'50+8 MP',     chip:'Snapdragon 6 Gen 3' },
-  { nombre:'Moto E13', marca:'Motorola', red:'4G', pantalla:'6.5" LCD 60Hz',  ram:'2/4 GB', alm:'64 GB', bat:'5000 mAh', cam:'13 MP',    chip:'Unisoc T606' },
-  { nombre:'Moto E14', marca:'Motorola', red:'4G', pantalla:'6.56" LCD 90Hz', ram:'2/4 GB', alm:'64 GB', bat:'5000 mAh', cam:'13 MP',    chip:'Unisoc T606' },
-  { nombre:'Moto E15', marca:'Motorola', red:'4G', pantalla:'6.67" LCD 90Hz', ram:'2 GB',   alm:'64 GB', bat:'5200 mAh', cam:'32 MP',    chip:'Helio G81 Extreme' },
-  { nombre:'Moto E22', marca:'Motorola', red:'4G', pantalla:'6.5" LCD 90Hz',  ram:'3/4 GB', alm:'32/64 GB',bat:'4020 mAh',cam:'16+2 MP', chip:'Helio G37' },
-  { nombre:'Moto E22s',marca:'Motorola', red:'4G', pantalla:'6.5" LCD 90Hz',  ram:'4 GB',   alm:'64 GB', bat:'5000 mAh', cam:'16+2 MP',  chip:'Helio G37' },
-  { nombre:'Motorola Edge 30 Neo',    marca:'Motorola', red:'5G', pantalla:'6.28" pOLED 120Hz', ram:'6/8 GB',  alm:'128/256 GB',   bat:'4020 mAh', cam:'64+13 MP',       chip:'Snapdragon 695' },
-  { nombre:'Motorola Edge 30 Fusion', marca:'Motorola', red:'5G', pantalla:'6.55" pOLED 144Hz', ram:'8/12 GB', alm:'128/256/512 GB',bat:'4400 mAh', cam:'50+13 MP',       chip:'Snapdragon 888+' },
-  { nombre:'Motorola Edge 40',        marca:'Motorola', red:'5G', pantalla:'6.55" pOLED 144Hz', ram:'8/12 GB', alm:'256 GB',        bat:'4400 mAh', cam:'50+13 MP',       chip:'Dimensity 8020' },
-  { nombre:'Motorola Edge 40 Neo',    marca:'Motorola', red:'5G', pantalla:'6.55" pOLED 144Hz', ram:'8/12 GB', alm:'128/256 GB',    bat:'5000 mAh', cam:'50+13 MP',       chip:'Dimensity 7030' },
-  { nombre:'Motorola Edge 40 Pro',    marca:'Motorola', red:'5G', pantalla:'6.67" pOLED 165Hz', ram:'12 GB',   alm:'256/512 GB',    bat:'4600 mAh', cam:'50+50+12 MP',    chip:'Snapdragon 8 Gen 2' },
-  { nombre:'Motorola Edge 50',        marca:'Motorola', red:'5G', pantalla:'6.7" pOLED 120Hz',  ram:'8/12 GB', alm:'256 GB',        bat:'5000 mAh', cam:'50+10+13 MP',    chip:'Snapdragon 7 Gen 1' },
-  { nombre:'Motorola Edge 50 Fusion', marca:'Motorola', red:'5G', pantalla:'6.7" pOLED 144Hz',  ram:'8/12 GB', alm:'256 GB',        bat:'5000 mAh', cam:'50+13 MP',       chip:'Snapdragon 7s Gen 2' },
-  { nombre:'Motorola Edge 50 Neo',    marca:'Motorola', red:'5G', pantalla:'6.36" pOLED 120Hz', ram:'8/12 GB', alm:'256/512 GB',    bat:'4310 mAh', cam:'50+10+13 MP',    chip:'Dimensity 7300' },
-  { nombre:'Motorola Edge 50 Pro',    marca:'Motorola', red:'5G', pantalla:'6.7" pOLED 144Hz',  ram:'12 GB',   alm:'256/512 GB',    bat:'4500 mAh', cam:'50+10+13 MP',    chip:'Snapdragon 7 Gen 3' },
-  { nombre:'Motorola Edge 50 Ultra',  marca:'Motorola', red:'5G', pantalla:'6.7" pOLED 144Hz',  ram:'12/16 GB',alm:'512GB/1TB',     bat:'4500 mAh', cam:'50+50+64 MP',    chip:'Snapdragon 8s Gen 3' },
-  { nombre:'Motorola Edge 60',        marca:'Motorola', red:'5G', pantalla:'6.7" pOLED 120Hz',  ram:'8/12 GB', alm:'256 GB',        bat:'5500 mAh', cam:'50+50+10 MP',    chip:'Dimensity 7400' },
-  { nombre:'Motorola Edge 60 Pro',    marca:'Motorola', red:'5G', pantalla:'6.7" pOLED 120Hz',  ram:'12 GB',   alm:'256/512 GB',    bat:'6000 mAh', cam:'50+10+50 MP',    chip:'Dimensity 8350 Extreme' },
-  { nombre:'Motorola Edge 60 Fusion', marca:'Motorola', red:'5G', pantalla:'6.7" pOLED 120Hz',  ram:'8/12 GB', alm:'256 GB',        bat:'5000 mAh', cam:'50+13 MP',       chip:'Dimensity 7300' },
-  { nombre:'Motorola Razr 40',       marca:'Motorola', red:'5G', pantalla:'6.9" pOLED 144Hz', ram:'8/12 GB', alm:'128/256 GB',  bat:'4200 mAh', cam:'64+13 MP',      chip:'Snapdragon 7 Gen 1' },
-  { nombre:'Motorola Razr 40 Ultra', marca:'Motorola', red:'5G', pantalla:'6.9" pOLED 165Hz', ram:'8/12 GB', alm:'256/512 GB',  bat:'3800 mAh', cam:'12+13 MP',      chip:'Snapdragon 8+ Gen 1' },
-  { nombre:'Motorola Razr 50',       marca:'Motorola', red:'5G', pantalla:'6.9" pOLED 120Hz', ram:'8/12 GB', alm:'256/512 GB',  bat:'4200 mAh', cam:'50+13 MP',      chip:'Dimensity 7300X' },
-  { nombre:'Motorola Razr 50 Ultra', marca:'Motorola', red:'5G', pantalla:'6.9" pOLED 165Hz', ram:'12 GB',   alm:'256/512 GB',  bat:'4000 mAh', cam:'50+50 MP',      chip:'Snapdragon 8s Gen 3' },
-  { nombre:'Motorola Razr 60 Ultra', marca:'Motorola', red:'5G', pantalla:'7.0" pOLED 165Hz', ram:'16 GB',   alm:'512GB/1TB',   bat:'4500 mAh', cam:'50+50 MP',      chip:'Snapdragon 8 Elite' },
-
-  /* iPHONE */
-  { nombre:'iPhone 12',        marca:'Apple', red:'5G', pantalla:'6.1" OLED 60Hz',  ram:'4 GB',  alm:'64/128/256 GB',        bat:'2815 mAh', cam:'12+12 MP',     chip:'A14 Bionic' },
-  { nombre:'iPhone 12 Pro Max',marca:'Apple', red:'5G', pantalla:'6.7" OLED 60Hz',  ram:'6 GB',  alm:'128/256/512 GB',       bat:'3687 mAh', cam:'12+12+12 MP',  chip:'A14 Bionic' },
-  { nombre:'iPhone 13',        marca:'Apple', red:'5G', pantalla:'6.1" OLED 60Hz',  ram:'4 GB',  alm:'128/256/512 GB',       bat:'3240 mAh', cam:'12+12 MP',     chip:'A15 Bionic' },
-  { nombre:'iPhone 13 Pro Max',marca:'Apple', red:'5G', pantalla:'6.7" OLED 120Hz', ram:'6 GB',  alm:'128/256/512GB/1TB',    bat:'4352 mAh', cam:'12+12+12 MP',  chip:'A15 Bionic' },
-  { nombre:'iPhone 14',        marca:'Apple', red:'5G', pantalla:'6.1" OLED 60Hz',  ram:'6 GB',  alm:'128/256/512 GB',       bat:'3279 mAh', cam:'12+12 MP',     chip:'A15 Bionic' },
-  { nombre:'iPhone 14 Pro Max',marca:'Apple', red:'5G', pantalla:'6.7" OLED 120Hz', ram:'6 GB',  alm:'128/256/512GB/1TB',    bat:'4323 mAh', cam:'48+12+12 MP',  chip:'A16 Bionic' },
-  { nombre:'iPhone 15',        marca:'Apple', red:'5G', pantalla:'6.1" OLED 60Hz',  ram:'6 GB',  alm:'128/256/512 GB',       bat:'3349 mAh', cam:'48+12 MP',     chip:'A16 Bionic' },
-  { nombre:'iPhone 15 Plus',   marca:'Apple', red:'5G', pantalla:'6.7" OLED 60Hz',  ram:'6 GB',  alm:'128/256/512 GB',       bat:'4383 mAh', cam:'48+12 MP',     chip:'A16 Bionic' },
-  { nombre:'iPhone 15 Pro',    marca:'Apple', red:'5G', pantalla:'6.1" OLED 120Hz', ram:'8 GB',  alm:'128/256/512GB/1TB',    bat:'3274 mAh', cam:'48+12+12 MP',  chip:'A17 Pro' },
-  { nombre:'iPhone 15 Pro Max',marca:'Apple', red:'5G', pantalla:'6.7" OLED 120Hz', ram:'8 GB',  alm:'256/512GB/1TB',        bat:'4441 mAh', cam:'48+12+12 MP',  chip:'A17 Pro' },
-  { nombre:'iPhone 16',        marca:'Apple', red:'5G', pantalla:'6.1" OLED 60Hz',  ram:'8 GB',  alm:'128/256/512 GB',       bat:'3561 mAh', cam:'48+12 MP',     chip:'A18' },
-  { nombre:'iPhone 16 Plus',   marca:'Apple', red:'5G', pantalla:'6.7" OLED 60Hz',  ram:'8 GB',  alm:'128/256/512 GB',       bat:'4674 mAh', cam:'48+12 MP',     chip:'A18' },
-  { nombre:'iPhone 16 Pro',    marca:'Apple', red:'5G', pantalla:'6.3" OLED 120Hz', ram:'8 GB',  alm:'128/256/512GB/1TB',    bat:'3582 mAh', cam:'48+48+12 MP',  chip:'A18 Pro' },
-  { nombre:'iPhone 16 Pro Max',marca:'Apple', red:'5G', pantalla:'6.9" OLED 120Hz', ram:'8 GB',  alm:'256/512GB/1TB',        bat:'4685 mAh', cam:'48+48+12 MP',  chip:'A18 Pro' },
-  { nombre:'iPhone 16e',       marca:'Apple', red:'5G', pantalla:'6.1" OLED 60Hz',  ram:'8 GB',  alm:'128/256/512 GB',       bat:'4005 mAh', cam:'48 MP',        chip:'A18' },
-  { nombre:'iPhone 17',        marca:'Apple', red:'5G', pantalla:'6.3" OLED 120Hz', ram:'8 GB',  alm:'256/512 GB',           bat:'3692 mAh', cam:'48+48 MP',     chip:'A19' },
-  { nombre:'iPhone 17 Air',    marca:'Apple', red:'5G', pantalla:'6.6" OLED 120Hz', ram:'12 GB', alm:'256/512GB/1TB',        bat:'3149 mAh', cam:'48 MP',        chip:'A19 Pro' },
-  { nombre:'iPhone 17 Pro',    marca:'Apple', red:'5G', pantalla:'6.3" OLED 120Hz', ram:'12 GB', alm:'256/512GB/1TB',        bat:'3988 mAh', cam:'48+48+48 MP',  chip:'A19 Pro' },
-  { nombre:'iPhone 17 Pro Max',marca:'Apple', red:'5G', pantalla:'6.9" OLED 120Hz', ram:'12 GB', alm:'256/512GB/1TB/2TB',    bat:'4700 mAh', cam:'48+48+48 MP',  chip:'A19 Pro' },
-
-  /* HONOR */
-  { nombre:'Honor X6b',        marca:'Honor', red:'4G', pantalla:'6.56" LCD 90Hz',  ram:'4/6 GB', alm:'128/256 GB',   bat:'5200 mAh', cam:'50+2 MP',    chip:'Helio G85' },
-  { nombre:'Honor X7c',        marca:'Honor', red:'4G', pantalla:'6.77" LCD 120Hz', ram:'6/8 GB', alm:'128/256 GB',   bat:'6000 mAh', cam:'108+2 MP',   chip:'Snapdragon 685' },
-  { nombre:'Honor X8b',        marca:'Honor', red:'4G', pantalla:'6.7" AMOLED 120Hz',ram:'8 GB',   alm:'128/256/512 GB',bat:'4500 mAh', cam:'108+5+2 MP', chip:'Snapdragon 680' },
-  { nombre:'Honor X9b',        marca:'Honor', red:'5G', pantalla:'6.78" AMOLED 120Hz',ram:'8/12 GB',alm:'256 GB',        bat:'5800 mAh', cam:'108+5+2 MP', chip:'Snapdragon 6 Gen 1' },
-  { nombre:'Honor X9c',        marca:'Honor', red:'5G', pantalla:'6.78" AMOLED 120Hz',ram:'8/12 GB',alm:'256/512 GB',    bat:'6600 mAh', cam:'108+5 MP',   chip:'Snapdragon 6 Gen 1' },
-  { nombre:'Honor 90',         marca:'Honor', red:'5G', pantalla:'6.7" AMOLED 120Hz', ram:'8/12 GB',alm:'256/512 GB',    bat:'5000 mAh', cam:'200+12+2 MP',chip:'Snapdragon 7 Gen 1' },
-  { nombre:'Honor 200',        marca:'Honor', red:'5G', pantalla:'6.7" AMOLED 120Hz', ram:'8/12 GB',alm:'256/512 GB',    bat:'5200 mAh', cam:'50+12+50 MP',chip:'Snapdragon 7 Gen 3' },
-  { nombre:'Honor 200 Pro',    marca:'Honor', red:'5G', pantalla:'6.78" AMOLED 120Hz',ram:'12 GB',  alm:'256/512 GB',    bat:'5200 mAh', cam:'50+12+50 MP',chip:'Snapdragon 8s Gen 3' },
-  { nombre:'Honor Magic 6 Pro',marca:'Honor', red:'5G', pantalla:'6.8" AMOLED 120Hz', ram:'12 GB',  alm:'256/512 GB',    bat:'5600 mAh', cam:'50+180+50 MP',chip:'Snapdragon 8 Gen 3' },
-  { nombre:'Honor X80 Pro Max',marca:'Honor', red:'5G', pantalla:'6.8" AMOLED 120Hz', ram:'8/12 GB',alm:'128/256/512 GB',bat:'11000 mAh',cam:'50+2 MP',    chip:'Snapdragon 6 Gen 5' },
-
-  /* OPPO */
-  { nombre:'Oppo A18',    marca:'Oppo', red:'4G', pantalla:'6.56" LCD 90Hz',  ram:'4 GB',   alm:'128 GB',      bat:'5000 mAh', cam:'8+2 MP',      chip:'Helio G85' },
-  { nombre:'Oppo A38',    marca:'Oppo', red:'4G', pantalla:'6.56" LCD 90Hz',  ram:'4/6 GB', alm:'128 GB',      bat:'5000 mAh', cam:'50+2 MP',     chip:'Helio G85' },
-  { nombre:'Oppo A58',    marca:'Oppo', red:'4G', pantalla:'6.72" LCD 90Hz',  ram:'6/8 GB', alm:'128/256 GB',  bat:'5000 mAh', cam:'50+2 MP',     chip:'Helio G85' },
-  { nombre:'Oppo A60',    marca:'Oppo', red:'4G', pantalla:'6.67" LCD 90Hz',  ram:'6/8 GB', alm:'128/256 GB',  bat:'5000 mAh', cam:'50+2 MP',     chip:'Snapdragon 680' },
-  { nombre:'Oppo A79 5G', marca:'Oppo', red:'5G', pantalla:'6.72" LCD 90Hz',  ram:'4/8 GB', alm:'128/256 GB',  bat:'5000 mAh', cam:'50+2 MP',     chip:'Dimensity 6020' },
-  { nombre:'Oppo A5 Pro 5G',marca:'Oppo',red:'5G', pantalla:'6.67" LCD 120Hz', ram:'8 GB',   alm:'256 GB',      bat:'5800 mAh', cam:'50+2 MP',     chip:'Dimensity 6300' },
-  { nombre:'Oppo Reno 11',   marca:'Oppo', red:'5G', pantalla:'6.7" AMOLED 120Hz', ram:'8/12 GB', alm:'256 GB',   bat:'5000 mAh', cam:'50+32+8 MP',  chip:'Dimensity 7050' },
-  { nombre:'Oppo Reno 12',   marca:'Oppo', red:'5G', pantalla:'6.7" AMOLED 120Hz', ram:'12 GB',   alm:'256/512 GB',bat:'5000 mAh', cam:'50+8+2 MP',   chip:'Dimensity 7300' },
-  { nombre:'Oppo Reno 12 Pro',marca:'Oppo',red:'5G', pantalla:'6.7" AMOLED 120Hz', ram:'12 GB',   alm:'256/512 GB',bat:'5000 mAh', cam:'50+50+8 MP',  chip:'Dimensity 7300' },
-  { nombre:'Oppo Reno 16 Pro',marca:'Oppo',red:'5G', pantalla:'6.78" AMOLED 120Hz',ram:'12 GB',   alm:'256/512 GB',bat:'6000 mAh', cam:'200+8+2 MP',  chip:'Dimensity 8550 Super' },
-
-  /* REALME */
-  { nombre:'Realme C53',    marca:'Realme', red:'4G', pantalla:'6.74" LCD 90Hz', ram:'6 GB',   alm:'128 GB',     bat:'5000 mAh', cam:'108 MP',   chip:'Unisoc T612' },
-  { nombre:'Realme C61',    marca:'Realme', red:'4G', pantalla:'6.74" LCD 90Hz', ram:'6 GB',   alm:'128 GB',     bat:'5000 mAh', cam:'32 MP',    chip:'Unisoc T612' },
-  { nombre:'Realme C67',    marca:'Realme', red:'4G', pantalla:'6.72" LCD 90Hz', ram:'6/8 GB', alm:'128/256 GB', bat:'5000 mAh', cam:'108+2 MP', chip:'Snapdragon 685' },
-  { nombre:'Realme C75',    marca:'Realme', red:'4G', pantalla:'6.72" LCD 90Hz', ram:'6/8 GB', alm:'128/256 GB', bat:'5828 mAh', cam:'50 MP',    chip:'Snapdragon 685' },
-  { nombre:'Realme Note 60',marca:'Realme', red:'4G', pantalla:'6.74" LCD 90Hz', ram:'3/4 GB', alm:'64/128 GB',  bat:'5000 mAh', cam:'32 MP',    chip:'Unisoc T612' },
-  { nombre:'Realme 12',     marca:'Realme', red:'5G', pantalla:'6.67" AMOLED 120Hz',ram:'6/8 GB',alm:'128/256 GB',bat:'5000 mAh',cam:'108+2 MP', chip:'Dimensity 6100+' },
-  { nombre:'Realme 12 Pro', marca:'Realme', red:'5G', pantalla:'6.7" AMOLED 120Hz', ram:'8/12 GB',alm:'256 GB',   bat:'5000 mAh', cam:'50+32+8 MP',chip:'Snapdragon 6 Gen 1' },
-  { nombre:'Realme 13',     marca:'Realme', red:'5G', pantalla:'6.72" AMOLED 120Hz',ram:'8/12 GB',alm:'256/512 GB',bat:'5000 mAh',cam:'50+2 MP',  chip:'Dimensity 6300' },
-  { nombre:'Realme P1',     marca:'Realme', red:'5G', pantalla:'6.67" AMOLED 120Hz',ram:'6/8 GB',alm:'128/256 GB',bat:'5000 mAh',cam:'50+2 MP',   chip:'Dimensity 7050' },
-  { nombre:'Realme P4x 5G', marca:'Realme', red:'5G', pantalla:'6.72" LCD 144Hz',  ram:'6/8 GB', alm:'128 GB',     bat:'7000 mAh', cam:'50+2 MP',   chip:'Dimensity 7400 Ultra' },
-
-  /* TECNO */
-  { nombre:'Tecno Spark 20',      marca:'Tecno', red:'4G', pantalla:'6.6" LCD 90Hz',    ram:'4/8 GB', alm:'128/256 GB', bat:'5000 mAh', cam:'50 MP',        chip:'Helio G85' },
-  { nombre:'Tecno Spark 20 Pro',  marca:'Tecno', red:'4G', pantalla:'6.78" LCD 120Hz',  ram:'8 GB',   alm:'256 GB',     bat:'5000 mAh', cam:'108 MP',       chip:'Helio G99' },
-  { nombre:'Tecno Camon 30',      marca:'Tecno', red:'4G', pantalla:'6.78" AMOLED 120Hz',ram:'8/12 GB',alm:'256 GB',    bat:'5000 mAh', cam:'50+50+2 MP',   chip:'Helio G99 Ultra' },
-  { nombre:'Tecno Camon Slim',    marca:'Tecno', red:'4G', pantalla:'6.78" AMOLED 144Hz',ram:'8 GB',   alm:'256 GB',    bat:'5600 mAh', cam:'50+2 MP',      chip:'Helio G200 Ultimate' },
-  { nombre:'Tecno Pova 6 Pro',    marca:'Tecno', red:'5G', pantalla:'6.78" AMOLED 120Hz',ram:'8/12 GB',alm:'256 GB',    bat:'6000 mAh', cam:'108+2 MP',     chip:'Dimensity 6080' },
-
-  /* INFINIX */
-  { nombre:'Infinix Hot 40i',   marca:'Infinix', red:'4G', pantalla:'6.6" LCD 90Hz',    ram:'4/8 GB', alm:'128/256 GB', bat:'5000 mAh', cam:'50 MP',         chip:'Unisoc T606' },
-  { nombre:'Infinix Note 40',   marca:'Infinix', red:'4G', pantalla:'6.78" AMOLED 120Hz',ram:'8 GB',   alm:'256 GB',     bat:'5000 mAh', cam:'108+2+2 MP',   chip:'Helio G99' },
-  { nombre:'Infinix Zero 30',   marca:'Infinix', red:'5G', pantalla:'6.78" AMOLED 144Hz',ram:'12 GB',  alm:'256 GB',     bat:'5000 mAh', cam:'108+13+2 MP',  chip:'Dimensity 8020' },
-
-  /* ITEL */
-  { nombre:'itel A70',  marca:'itel', red:'4G', pantalla:'6.6" LCD 90Hz',     ram:'3/4 GB', alm:'64/128 GB', bat:'5000 mAh', cam:'13 MP', chip:'Unisoc T603' },
-  { nombre:'itel S23+', marca:'itel', red:'4G', pantalla:'6.78" AMOLED 120Hz',ram:'8 GB',   alm:'256 GB',    bat:'5000 mAh', cam:'50 MP', chip:'Unisoc T616' },
-
-  /* ZTE */
-  { nombre:'ZTE Blade A54',        marca:'ZTE', red:'4G', pantalla:'6.6" LCD 90Hz',   ram:'4 GB',   alm:'128 GB', bat:'5000 mAh', cam:'13 MP', chip:'Unisoc SC9863A' },
-  { nombre:'ZTE Blade V50 Design', marca:'ZTE', red:'4G', pantalla:'6.6" LCD 120Hz',  ram:'6/8 GB', alm:'256 GB', bat:'5000 mAh', cam:'50 MP', chip:'Unisoc T606' },
-  { nombre:'ZTE Axon 50 Lite',     marca:'ZTE', red:'5G', pantalla:'6.52" LCD 120Hz', ram:'6/8 GB', alm:'256 GB', bat:'5000 mAh', cam:'50 MP', chip:'Dimensity 700' }
-];
-
-/* ============ BUSCADOR DE MODELOS ============ */
-let bmFiltroMarca = 'todas';
-
-function bmNorm(txt){
-  return String(txt || '').toLowerCase().trim()
-    .replace(/\s+/g, ' ')
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
-function bmEmoji(m){
-  const map = { 'Samsung':'📱','Xiaomi':'🔴','Motorola':'🟣','Apple':'🍎','Honor':'🟢','Oppo':'🟩','Realme':'🟡','Tecno':'🔵','Infinix':'⚫','itel':'⚪','ZTE':'🟠' };
-  return map[m] || '📱';
-}
-function abrirBuscadorModelos(){
-  const modal = document.getElementById('buscadorModal');
-  if (!modal) return;
-  modal.classList.add('ver');
-  document.body.style.overflow = 'hidden';
-  setTimeout(() => { const i = document.getElementById('bm-input'); if (i) i.focus(); }, 100);
-  bmPintarChips();
-  bmContar();
-  bmBuscar();
-}
-function cerrarBuscadorModelos(){
-  const modal = document.getElementById('buscadorModal');
-  if (!modal) return;
-  modal.classList.remove('ver');
-  document.body.style.overflow = '';
-  document.getElementById('bm-input').value = '';
-  document.getElementById('bm-sugerencias').innerHTML = '';
-  bmCerrarSpecs();
-}
-function bmPintarChips(){
-  const chips = document.getElementById('bm-chips');
-  if (!chips) return;
-  const marcas = ['todas','Samsung','Xiaomi','Motorola','Apple','Honor','Oppo','Realme','Tecno','Infinix','itel','ZTE'];
-  chips.innerHTML = marcas.map(m => {
-    const label = m === 'todas' ? 'Todas' : (m === 'Apple' ? 'iPhone' : m);
-    return `<button class="bm-chip ${bmFiltroMarca===m?'activo':''}" onclick="bmSetMarca('${m}')">${label}</button>`;
-  }).join('');
-}
-function bmSetMarca(m){
-  bmFiltroMarca = m;
-  bmPintarChips();
-  bmBuscar();
-}
-function bmContar(){
-  const c = document.getElementById('bm-contador');
-  if (!c) return;
-  const total = CATALOGO_MODELOS.length;
-  const samsung = CATALOGO_MODELOS.filter(m=>m.marca==='Samsung').length;
-  const xiaomi = CATALOGO_MODELOS.filter(m=>m.marca==='Xiaomi').length;
-  const motorola = CATALOGO_MODELOS.filter(m=>m.marca==='Motorola').length;
-  const apple = CATALOGO_MODELOS.filter(m=>m.marca==='Apple').length;
-  const otras = total - samsung - xiaomi - motorola - apple;
-  c.innerHTML = `📊 Base con <b>${total}</b> modelos · Samsung ${samsung} · Xiaomi ${xiaomi} · Motorola ${motorola} · iPhone ${apple} · Otras ${otras}`;
-}
-function bmBuscar(){
-  const inp = document.getElementById('bm-input');
-  const sugs = document.getElementById('bm-sugerencias');
-  const btn = document.getElementById('bm-lupa-google');
-  if (!inp || !sugs) return;
-  const q = bmNorm(inp.value);
-  if (btn) btn.disabled = q.length < 2;
-  bmCerrarSpecs();
-  if (q.length < 2){ sugs.innerHTML = ''; return; }
-  const base = bmFiltroMarca === 'todas' ? CATALOGO_MODELOS : CATALOGO_MODELOS.filter(m => m.marca === bmFiltroMarca);
-  // ✨ FIX: corrige typo "xiomi" y busca también por marca
-  const qFixed = q === 'xiomi' ? 'xiaomi' : q;
-  const matches = base.filter(m =>
-    bmNorm(m.nombre).includes(qFixed) || bmNorm(m.marca).includes(qFixed)
-  ).slice(0, 20);
-  if (!matches.length){
-    sugs.innerHTML = `<div style="text-align:center;padding:24px 12px;color:#9aa3ad;font-size:13.5px;line-height:1.5">⚠️ No está en la base local.<br>Toca el botón 🔍 para buscarlo en Google.</div>`;
-    return;
-  }
-  sugs.innerHTML = matches.map(m => {
-    const idx = CATALOGO_MODELOS.indexOf(m);
-    return `<div class="bm-sug" onclick="bmElegir(${idx})"><span class="em">${bmEmoji(m.marca)}</span><span class="nombre">${esc(m.nombre)}</span><span class="red ${m.red==='5G'?'r5g':''}">${m.red}</span></div>`;
-  }).join('');
-}
-function bmElegir(idx){
-  const m = CATALOGO_MODELOS[idx];
-  if (!m) return;
-  document.getElementById('bm-input').value = m.nombre;
-  document.getElementById('bm-sugerencias').innerHTML = '';
-  bmMostrarSpecs(m);
-  if (navigator.vibrate){ try{ navigator.vibrate(15); }catch(e){} }
-}
-function bmMostrarSpecs(m){
-  const c = document.getElementById('bm-specs');
-  if (!c) return;
-  document.getElementById('bm-specs-nombre').textContent = m.nombre;
-  const specs = [['Marca', m.marca],['Red', m.red],['Pantalla', m.pantalla],['RAM', m.ram],['Almacenamiento', m.alm],['Batería', m.bat],['Cámara', m.cam],['Procesador', m.chip]];
-  document.getElementById('bm-specs-body').innerHTML = specs.map(([k, v]) => `<div class="fila"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('');
-  c.classList.add('ver');
-}
-function bmCerrarSpecs(){ const c = document.getElementById('bm-specs'); if (c) c.classList.remove('ver'); }
-function bmAbrirGoogle(){
-  const inp = document.getElementById('bm-input');
-  const q = (inp && inp.value || '').trim();
-  if (q.length < 2){ toast('⚠️ Escribe el modelo primero'); return; }
-  const url = 'https://www.google.com/search?q=' + encodeURIComponent(q + ' especificaciones técnicas');
-  window.open(url, '_blank');
-  if (navigator.vibrate){ try{ navigator.vibrate(20); }catch(e){} }
-}
-document.addEventListener('click', (e) => {
-  const m = document.getElementById('buscadorModal');
-  if (m && m.classList.contains('ver') && e.target === m){ cerrarBuscadorModelos(); }
-});
-
-/* ============ INDEXEDDB ============ */
+/* INDEXEDDB */
 const IDB_NAME='claro_registros_db',IDB_STORE='registros',IDB_KEY='registros';
 let _idb=null;
 function abrirIDB(){return new Promise((res,rej)=>{if(_idb)return res(_idb);if(!window.indexedDB)return rej(new Error('Sin IDB'));const r=indexedDB.open(IDB_NAME,1);r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains(IDB_STORE))db.createObjectStore(IDB_STORE)};r.onsuccess=()=>{_idb=r.result;res(_idb)};r.onerror=()=>rej(r.error)})}
@@ -1028,13 +546,13 @@ async function idbClear(){try{const db=await abrirIDB();return await new Promise
 async function estimarUso(){try{if(navigator.storage&&navigator.storage.estimate){const e=await navigator.storage.estimate();return{uso:e.usage||0,total:e.quota||0}}}catch(e){}return null}
 function fmtBytes(b){if(!b||b<=0)return'0 B';if(b<1024)return b+' B';if(b<1048576)return(b/1024).toFixed(1)+' KB';if(b<1073741824)return(b/1048576).toFixed(1)+' MB';return(b/1073741824).toFixed(2)+' GB'}
 
-/* ============ TEMA ============ */
+/* TEMA */
 const TEMA_KEY='claro_tema_v1';
 function aplicarTema(t){document.documentElement.setAttribute('data-theme',t);const b=document.getElementById('btnTema');if(b)b.textContent=(t==='dark')?'☀️':'🌙';const m=document.getElementById('metaTema');if(m)m.setAttribute('content',(t==='dark')?'#14171c':'#DA291C')}
 function toggleTema(){const a=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';try{localStorage.setItem(TEMA_KEY,a)}catch(e){}aplicarTema(a);toast(a==='dark'?'🌙 Modo oscuro activado':'☀️ Modo claro activado',1500)}
 function cargarTema(){let t=null;try{t=localStorage.getItem(TEMA_KEY)}catch(e){}if(!t)t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';aplicarTema(t)}
 
-/* ============ META ============ */
+/* META */
 const META_KEY='claro_meta_v2';
 let metaConfig={mes:{chips:0,tels:0},dia:{chips:0,tels:0},inicial:{mes:null,chips:0,tels:0}};
 let _ultimoEstadoMeta={mesChips:-1,mesTels:-1,diaChips:-1,diaTels:-1},_metaInicializada=false;
@@ -1079,7 +597,34 @@ function renderMeta(){
   cont.className='meta-card'+(clase?' '+clase:'');cont.innerHTML=html;
 }
 function abrirMetaModal(){let modal=document.getElementById('metaModal');if(!modal){modal=document.createElement('div');modal.id='metaModal';document.body.appendChild(modal)}const tieneMeta=(metaConfig.mes.chips||metaConfig.mes.tels||metaConfig.dia.chips||metaConfig.dia.tels);const iniActivo=metaConfig.inicial&&metaConfig.inicial.mes===mesActualPrefijo();const iniCh=iniActivo?(metaConfig.inicial.chips||0):0;const iniTel=iniActivo?(metaConfig.inicial.tels||0):0;
-modal.innerHTML=`<div class="box"><h3>🎯 Configurar metas</h3><p class="sub">Metas separadas por <b>chips</b> y <b>teléfonos</b>. Pon 0 donde no quieras meta.</p><div class="mgrupo"><div class="mtitulo">📆 Meta del mes</div><div class="mfila"><label>📶 Chips</label><input id="meta-mes-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.chips||''}" oninput="actualizarSugerenciasMeta()"></div><div class="sugerencia" id="sug-chips"></div><div class="mfila"><label>📱 Teléfonos</label><input id="meta-mes-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.tels||''}" oninput="actualizarSugerenciasMeta()"></div><div class="sugerencia" id="sug-tels"></div></div><div class="mgrupo"><div class="mtitulo">☀️ Meta diaria</div><div class="mfila"><label>📶 Chips</label><input id="meta-dia-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.dia.chips||''}"></div><div class="mfila"><label>📱 Teléfonos</label><input id="meta-dia-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.dia.tels||''}"></div></div><div class="mgrupo"><div class="mtitulo">📊 Avance inicial</div><div class="mfila"><label>📶 Chips ya llevados</label><input id="meta-ini-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniCh||''}" oninput="actualizarSugerenciasMeta()"></div><div class="mfila"><label>📱 Teléfonos ya llevados</label><input id="meta-ini-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniTel||''}" oninput="actualizarSugerenciasMeta()"></div><p class="nota">Si ya llevabas activaciones antes de instalar la app, anótalas aquí. Solo cuentan para el mes en curso; al cambiar de mes se reinician solas.</p></div><div class="btns"><button type="button" class="cancelar" onclick="cerrarMetaModal()">Cancelar</button><button type="button" class="guardar" onclick="guardarMetaModal()">Guardar</button></div>${tieneMeta?'<button type="button" class="borrar" onclick="borrarMeta()">🗑️ Quitar todas las metas</button>':''}</div>`;
+modal.innerHTML=`
+<div class="box">
+<h3>🎯 Configurar metas</h3>
+<p class="sub">Metas separadas por <b>chips</b> y <b>teléfonos</b>. Pon 0 donde no quieras meta.</p>
+<div class="mgrupo">
+<div class="mtitulo">📆 Meta del mes</div>
+<div class="mfila"><label>📶 Chips</label><input id="meta-mes-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.chips||''}" oninput="actualizarSugerenciasMeta()"></div>
+<div class="sugerencia" id="sug-chips"></div>
+<div class="mfila"><label>📱 Teléfonos</label><input id="meta-mes-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.mes.tels||''}" oninput="actualizarSugerenciasMeta()"></div>
+<div class="sugerencia" id="sug-tels"></div>
+</div>
+<div class="mgrupo">
+<div class="mtitulo">☀️ Meta diaria</div>
+<div class="mfila"><label>📶 Chips</label><input id="meta-dia-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.dia.chips||''}"></div>
+<div class="mfila"><label>📱 Teléfonos</label><input id="meta-dia-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${metaConfig.dia.tels||''}"></div>
+</div>
+<div class="mgrupo">
+<div class="mtitulo">📊 Avance inicial</div>
+<div class="mfila"><label>📶 Chips ya llevados</label><input id="meta-ini-chips" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniCh||''}" oninput="actualizarSugerenciasMeta()"></div>
+<div class="mfila"><label>📱 Teléfonos ya llevados</label><input id="meta-ini-tels" type="number" min="0" inputmode="numeric" placeholder="0" value="${iniTel||''}" oninput="actualizarSugerenciasMeta()"></div>
+<p class="nota">Si ya llevabas activaciones antes de instalar la app, anótalas aquí. Solo cuentan para el mes en curso; al cambiar de mes se reinician solas.</p>
+</div>
+<div class="btns">
+<button type="button" class="cancelar" onclick="cerrarMetaModal()">Cancelar</button>
+<button type="button" class="guardar" onclick="guardarMetaModal()">Guardar</button>
+</div>
+${tieneMeta?'<button type="button" class="borrar" onclick="borrarMeta()">🗑️ Quitar todas las metas</button>':''}
+</div>`;
 modal.classList.add('ver');setTimeout(()=>{const i=document.getElementById('meta-mes-chips');if(i)i.focus();actualizarSugerenciasMeta()},100)}
 function diasRestantesMes(){const h=new Date();const u=new Date(h.getFullYear(),h.getMonth()+1,0).getDate();return Math.max(1,u-h.getDate()+1)}
 function actualizarSugerenciasMeta(){const eCh=document.getElementById('meta-mes-chips'),eTel=document.getElementById('meta-mes-tels'),eICh=document.getElementById('meta-ini-chips'),eITel=document.getElementById('meta-ini-tels'),sCh=document.getElementById('sug-chips'),sTel=document.getElementById('sug-tels');if(!eCh||!sCh)return;const mCh=parseInt(eCh.value)||0,mTel=parseInt(eTel.value)||0,iCh=parseInt(eICh.value)||0,iTel=parseInt(eITel.value)||0;const pre=mesActualPrefijo()+'-';const hCh=registros.filter(r=>{const f=r.fechaLocal||derivarFechaLocal(r.fecha);return f.startsWith(pre)&&r.tipo==='chip'}).length+iCh;const hTel=registros.filter(r=>{const f=r.fechaLocal||derivarFechaLocal(r.fecha);return f.startsWith(pre)&&r.tipo==='telefono'}).length+iTel;const fCh=Math.max(0,mCh-hCh),fTel=Math.max(0,mTel-hTel);const d=diasRestantesMes();const pCh=fCh===0?0:Math.ceil(fCh/d),pTel=fTel===0?0:Math.ceil(fTel/d);const tD=d===1?'1 día':d+' días';sCh.innerHTML=mCh<=0?'':(fCh===0?'✅ ¡Ya vas en la meta de chips este mes!':`Faltan <b>${fCh}</b> en <b>${tD}</b> → <b>${pCh}/día</b>`);sTel.innerHTML=mTel<=0?'':(fTel===0?'✅ ¡Ya vas en la meta de teléfonos este mes!':`Faltan <b>${fTel}</b> en <b>${tD}</b> → <b>${pTel}/día</b>`)}
@@ -1087,7 +632,7 @@ function cerrarMetaModal(){const m=document.getElementById('metaModal');if(m)m.c
 function guardarMetaModal(){const mCh=Math.max(0,parseInt(document.getElementById('meta-mes-chips').value)||0);const mTel=Math.max(0,parseInt(document.getElementById('meta-mes-tels').value)||0);const dCh=Math.max(0,parseInt(document.getElementById('meta-dia-chips').value)||0);const dTel=Math.max(0,parseInt(document.getElementById('meta-dia-tels').value)||0);const iCh=Math.max(0,parseInt(document.getElementById('meta-ini-chips').value)||0);const iTel=Math.max(0,parseInt(document.getElementById('meta-ini-tels').value)||0);metaConfig.mes.chips=mCh;metaConfig.mes.tels=mTel;metaConfig.dia.chips=dCh;metaConfig.dia.tels=dTel;if(iCh>0||iTel>0){metaConfig.inicial={mes:mesActualPrefijo(),chips:iCh,tels:iTel}}else{metaConfig.inicial={mes:null,chips:0,tels:0}}guardarMeta();cerrarMetaModal();_ultimoEstadoMeta={mesChips:-1,mesTels:-1,diaChips:-1,diaTels:-1};_metaInicializada=false;renderMeta();toast('✅ Metas guardadas')}
 function borrarMeta(){if(!confirm('¿Quitar todas las metas y el avance inicial?'))return;metaConfig={mes:{chips:0,tels:0},dia:{chips:0,tels:0},inicial:{mes:null,chips:0,tels:0}};guardarMeta();cerrarMetaModal();_ultimoEstadoMeta={mesChips:-1,mesTels:-1,diaChips:-1,diaTels:-1};_metaInicializada=false;renderMeta();toast('🗑️ Metas eliminadas')}
 
-/* ============ HELPERS ============ */
+/* HELPERS */
 let filtroFecha='hoy',fechaCustom=null;
 const soloDigitos=s=>String(s||'').replace(/\D/g,'');
 const esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1106,7 +651,7 @@ function toast(msg,ms=2000){const t=$('#toast');t.textContent=msg;t.classList.ad
 function overlay(m,txt,p,sub){const ov=$('#overlay');if(txt!==undefined)$('#overlayTxt').textContent=txt;if(sub!==undefined)$('#overlaySub').textContent=sub;if(p!==undefined)$('#overlayBarra').style.width=p+'%';if(m&&p===undefined)$('#overlayBarra').style.width='0%';ov.classList.toggle('ver',!!m)}
 function copiar(txt){if(!txt)return;const ok=()=>toast('✅ Copiado');if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok).catch(fallback)}else fallback();function fallback(){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok()}catch(e){toast('No se pudo copiar')}ta.remove()}}
 
-/* ============ TIENDAS ============ */
+/* TIENDAS */
 function cargarTiendas(){try{const g=JSON.parse(localStorage.getItem(TIENDAS_STORE)||'null');if(Array.isArray(g)&&g.length){if(typeof g[0]==='string'){tiendas=g.map((n,i)=>({nombre:n,color:PALETA_COLORES[i%PALETA_COLORES.length].valor}));guardarTiendas()}else{tiendas=g}}else{tiendas=TIENDAS_DEFAULT.slice()}}catch(e){tiendas=TIENDAS_DEFAULT.slice()}}
 const TIENDAS_LIMPIEZA_KEY='claro_tiendas_limpieza_v1';
 function limpiarTiendasAntiguas(){if(localStorage.getItem(TIENDAS_LIMPIEZA_KEY)==='1')return;localStorage.setItem(TIENDAS_LIMPIEZA_KEY,'1');const a=['Tecno','Kiosko Máx'];const b=tiendas.length;tiendas=tiendas.filter(t=>!(a.includes(t.nombre)&&!inventario.some(m=>m.tienda===t.nombre)));if(tiendas.length!==b)guardarTiendas()}
@@ -1114,7 +659,7 @@ function guardarTiendas(){try{localStorage.setItem(TIENDAS_STORE,JSON.stringify(
 function colorDeTienda(n){const t=tiendas.find(x=>x.nombre===n);return t?t.color:'#DA291C'}
 function nombreTiendas(){return tiendas.map(t=>t.nombre)}
 
-/* ============ INVENTARIO ============ */
+/* INVENTARIO */
 function cargarInventario(){try{inventario=JSON.parse(localStorage.getItem(INV_STORE)||'[]')}catch(e){inventario=[]}if(!Array.isArray(inventario))inventario=[];inventarioBloqueado=localStorage.getItem(INV_BLOQ_STORE)==='1'}
 function guardarInventario(){try{localStorage.setItem(INV_STORE,JSON.stringify(inventario));return true}catch(e){toast('⚠️ No se pudo guardar');return false}}
 function guardarEstadoBloqueo(){if(inventarioBloqueado)localStorage.setItem(INV_BLOQ_STORE,'1');else localStorage.removeItem(INV_BLOQ_STORE)}
@@ -1152,7 +697,7 @@ function cerrarPreview(){$('#previewModal').classList.remove('ver')}
 function copiarInventarioTexto(){if(!inventario.length){toast('Sin datos');return}const g={};inventario.forEach(m=>{const t=m.tienda||'Sin tienda';if(!g[t])g[t]=[];g[t].push(m)});const o=Object.keys(g).sort((a,b)=>a.localeCompare(b,'es'));const t=inventario.reduce((s,m)=>s+(Number(m.cantidad)||0),0);let txt='📦 INVENTARIO\n\n';o.forEach(ti=>{const it=g[ti].sort((a,b)=>a.modelo.localeCompare(b.modelo,'es'));const st=it.reduce((s,m)=>s+(Number(m.cantidad)||0),0);txt+=`🏪 ${ti}\n`;it.forEach(m=>{txt+=`  ${m.modelo}: ${Number(m.cantidad)||0}\n`});txt+=`  Subtotal: ${st}\n\n`});txt+=`Total: ${t}`;copiar(txt)}
 function exportarInventarioCSV(){if(!inventario.length)return toast('Sin datos para exportar');const f=[['Tienda','Modelo','Cantidad']];inventario.slice().sort((a,b)=>{const t=(a.tienda||'').localeCompare(b.tienda||'','es');if(t!==0)return t;return a.modelo.localeCompare(b.modelo,'es')}).forEach(m=>{f.push([m.tienda||'',m.modelo,Number(m.cantidad)||0])});f.push([]);const t=inventario.reduce((s,m)=>s+(Number(m.cantidad)||0),0);f.push(['TOTAL','',t]);const csv=f.map(x=>x.map(c=>`"${String(c??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');descargar(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),'inventario_claro.csv');toast('📊 Inventario exportado')}
 
-/* ============ STORAGE ============ */
+/* STORAGE */
 async function migrarDeLocalStorageSiHaceFalta(){try{const f=await idbGet('_migrado_v1');if(f)return;const v=localStorage.getItem(STORE);if(v){try{const a=JSON.parse(v);if(Array.isArray(a)&&a.length){await idbSet(IDB_KEY,a)}}catch(e){}}await idbSet('_migrado_v1',true)}catch(e){}}
 async function cargar(){await migrarDeLocalStorageSiHaceFalta();try{const d=await idbGet(IDB_KEY);registros=Array.isArray(d)?d:[]}catch(e){registros=[];toast('⚠️ Error leyendo IndexedDB')}normalizarFechas();cargarInventario();cargarTiendas();limpiarTiendasAntiguas()}
 function guardarLS(){idbSet(IDB_KEY,registros).then(ok=>{if(!ok)toast('⚠️ No se pudo guardar',3000)}).catch(()=>toast('⚠️ Error guardando',3000));return true}
@@ -1166,16 +711,16 @@ $$('.filtro').forEach(btn=>{btn.onclick=()=>{$$('.filtro').forEach(b=>b.classLis
 $('#fechaPicker').addEventListener('change',e=>{const v=e.target.value;if(!v)return;fechaCustom=v;filtroFecha='custom';$$('.filtro').forEach(b=>b.classList.remove('activo'));$('#btnLimpiarFecha').style.display='block';renderLista()});
 $('#btnLimpiarFecha').addEventListener('click',()=>{fechaCustom=null;$('#fechaPicker').value='';$('#btnLimpiarFecha').style.display='none';filtroFecha='hoy';$$('.filtro').forEach(b=>b.classList.toggle('activo',b.dataset.f==='hoy'));renderLista()});
 
-/* ============ CIERRE DE MES ============ */
+/* CIERRE DE MES */
 function verificarCambioDeMes(){if(_avisoMesMostrado)return;const ma=mesActualPrefijo();let mg=null;try{mg=localStorage.getItem(ULTIMO_MES_VISTO_KEY)}catch(e){}if(mg&&mg!==ma){_avisoMesMostrado=true;mostrarAvisoCambioMes(mg,ma)}try{localStorage.setItem(ULTIMO_MES_VISTO_KEY,ma)}catch(e){}}
 function nombreMesBonito(pre){const[y,m]=pre.split('-').map(Number);return new Date(y,m-1,1).toLocaleDateString('es-MX',{month:'long',year:'numeric'})}
 function contarRegistrosDeMes(pre){const p=pre+'-';return registros.filter(r=>{const f=r.fechaLocal||derivarFechaLocal(r.fecha);return f.startsWith(p)}).length}
 function mostrarAvisoCambioMes(mv,mn){const tv=contarRegistrosDeMes(mv);if(tv===0)return;let modal=document.getElementById('avisoMesModal');if(!modal){modal=document.createElement('div');modal.id='avisoMesModal';document.body.appendChild(modal)}modal.innerHTML=`<div class="box"><h3 style="margin:0 0 8px;font-size:18px">🗓️ ¡Empezó un mes nuevo!</h3><p style="margin:0 0 14px;font-size:13px;color:var(--muted);line-height:1.5">Terminó <b>${nombreMesBonito(mv)}</b>. Tienes <b>${tv}</b> ${tv===1?'registro':'registros'} del mes pasado.</p><p style="margin:0 0 18px;font-size:13px;line-height:1.5">¿Quieres <b>archivarlos</b> (descargar un respaldo) y luego <b>limpiar</b> la app para empezar <b>${nombreMesBonito(mn)}</b> desde cero?</p><div style="display:flex;flex-direction:column;gap:8px"><button style="width:100%;padding:15px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff" onclick="archivarYLimpiarMes('${mv}')">📦 Archivar y limpiar</button><button style="width:100%;padding:15px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;background:#eef0f3;color:#374151" onclick="cerrarAvisoMes()">Después</button></div></div>`;modal.classList.add('ver');modal.style.display='flex'}
 function cerrarAvisoMes(){const m=document.getElementById('avisoMesModal');if(m){m.style.display='none';m.classList.remove('ver')}}
-function archivarYLimpiarMes(pre){const p=pre+'-';const delMes=registros.filter(r=>{const f=r.fechaLocal||derivarFechaLocal(r.fecha);return f.startsWith(p)});if(!delMes.length){toast('⚠️ No hay registros de ese mes');cerrarAvisoMes();return}const data={app:'Registro Claro',version:24,tipo:'archivo_mensual',mes:pre,exportado:new Date().toISOString(),registros:delMes,metaConfig};const nom=`registro_claro_${pre}.json`;descargar(new Blob([JSON.stringify(data)],{type:'application/json'}),nom);setTimeout(()=>{if(!confirm(`Se descargó el archivo:\n\n${nom}\n\nGuárdalo o envíalo por WhatsApp antes de continuar.\n\n¿BORRAR los ${delMes.length} registros del mes pasado de la app?`)){cerrarAvisoMes();toast('Archivo descargado. Registros conservados.');return}registros=registros.filter(r=>{const f=r.fechaLocal||derivarFechaLocal(r.fecha);return !f.startsWith(p)});guardarLS();metaConfig.inicial={mes:null,chips:0,tels:0};guardarMeta();cerrarAvisoMes();renderLista();renderMeta();renderFotos();renderInventario();if(typeof actualizarStorageInfo==='function')actualizarStorageInfo();toast(`✅ Mes archivado y limpiado. ¡Bienvenido ${nombreMesBonito(mesActualPrefijo())}!`,4000)},800)}
+function archivarYLimpiarMes(pre){const p=pre+'-';const delMes=registros.filter(r=>{const f=r.fechaLocal||derivarFechaLocal(r.fecha);return f.startsWith(p)});if(!delMes.length){toast('⚠️ No hay registros de ese mes');cerrarAvisoMes();return}const data={app:'Registro Claro',version:23,tipo:'archivo_mensual',mes:pre,exportado:new Date().toISOString(),registros:delMes,metaConfig};const nom=`registro_claro_${pre}.json`;descargar(new Blob([JSON.stringify(data)],{type:'application/json'}),nom);setTimeout(()=>{if(!confirm(`Se descargó el archivo:\n\n${nom}\n\nGuárdalo o envíalo por WhatsApp antes de continuar.\n\n¿BORRAR los ${delMes.length} registros del mes pasado de la app?`)){cerrarAvisoMes();toast('Archivo descargado. Registros conservados.');return}registros=registros.filter(r=>{const f=r.fechaLocal||derivarFechaLocal(r.fecha);return !f.startsWith(p)});guardarLS();metaConfig.inicial={mes:null,chips:0,tels:0};guardarMeta();cerrarAvisoMes();renderLista();renderMeta();renderFotos();renderInventario();if(typeof actualizarStorageInfo==='function')actualizarStorageInfo();toast(`✅ Mes archivado y limpiado. ¡Bienvenido ${nombreMesBonito(mesActualPrefijo())}!`,4000)},800)}
 function cerrarMesManual(){const pa=mesActualPrefijo();const[y,m]=pa.split('-').map(Number);const man=new Date(y,m-2,1);const pan=`${man.getFullYear()}-${pad(man.getMonth()+1)}`;const ca=contarRegistrosDeMes(pa);const cn=contarRegistrosDeMes(pan);const msg=`¿Qué mes quieres archivar y limpiar?\n\n1. Mes actual (${nombreMesBonito(pa)}) — ${ca} registros\n2. Mes anterior (${nombreMesBonito(pan)}) — ${cn} registros\n\nEscribe 1 o 2:`;const r=prompt(msg);if(r===null)return;let pre=null;if(r.trim()==='1')pre=pa;else if(r.trim()==='2')pre=pan;else{toast('⚠️ Opción inválida');return}archivarYLimpiarMes(pre)}
 
-/* ============ ZXING ============ */
+/* ZXING */
 function precargarTodo(){if(!window.ZXing&&!window._zxingPrecargado){window._zxingPrecargado=true;const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js';document.head.appendChild(s)}initZXingWorker();getBarcodeDetector();setTimeout(()=>{try{if(window.ZXing)new ZXing.MultiFormatReader()}catch(e){}},400)}
 let _barcodeDetector=null,_barcodeDetectorIntentado=false;
 function getBarcodeDetector(){if(_barcodeDetectorIntentado)return _barcodeDetector;_barcodeDetectorIntentado=true;if(!('BarcodeDetector' in window))return null;try{const f=['code_128','code_39','code_93','itf','ean_13','ean_8','upc_a','upc_e','codabar','qr_code'];try{_barcodeDetector=new BarcodeDetector({formats:f})}catch(e){_barcodeDetector=new BarcodeDetector()}}catch(e){_barcodeDetector=null}return _barcodeDetector}
@@ -1184,7 +729,7 @@ let _zxingWorker=null,_zxingWorkerIntentado=false,_zxingMsgId=0;const _zxingPend
 function initZXingWorker(){if(_zxingWorker||_zxingWorkerIntentado)return _zxingWorker;_zxingWorkerIntentado=true;try{if(!window.Worker||!window.Blob||!window.URL)return null;const b=new Blob([ZXING_WORKER_CODE],{type:'application/javascript'});_zxingWorker=new Worker(URL.createObjectURL(b));_zxingWorker.onmessage=e=>{const{id,texto,error}=e.data||{};const cb=_zxingPendientes.get(id);if(cb){_zxingPendientes.delete(id);cb(texto||null,error||null)}};_zxingWorker.onerror=()=>{_zxingPendientes.forEach(cb=>cb(null,'worker_error'));_zxingPendientes.clear();_zxingWorker=null};return _zxingWorker}catch(e){_zxingWorker=null;return null}}
 function decodificarEnWorker(c,t){return new Promise(res=>{const w=initZXingWorker();if(!w)return res(null);let img;try{img=c.getContext('2d').getImageData(0,0,c.width,c.height)}catch(e){return res(null)}const id=++_zxingMsgId;let re=false;const to=setTimeout(()=>{if(!re){re=true;_zxingPendientes.delete(id);res(null)}},t);_zxingPendientes.set(id,texto=>{if(re)return;re=true;clearTimeout(to);res(texto)});try{const buf=img.data.buffer;w.postMessage({id,imageData:buf,width:c.width,height:c.height},[buf])}catch(e){if(!re){re=true;clearTimeout(to);_zxingPendientes.delete(id);res(null)}}})}
 
-/* ============ CÁMARA ============ */
+/* CÁMARA */
 let _camStream=null,_camCallback=null,_camFacing='environment';
 function tomarFoto(t,cb){_camCallback=cb;_camFacing='environment';abrirCamaraModal(t||'Tomar foto')}
 async function abrirCamaraModal(t){const p=document.getElementById('camModal');if(p)p.remove();const m=document.createElement('div');m.id='camModal';m.innerHTML=`<div class="top"><button onclick="cerrarCamara()">✕</button><div class="titulo">${esc(t)}</div><button onclick="cambiarCamara()">🔄</button></div><div class="view" id="camView"><video id="camVideo" autoplay playsinline muted></video></div><div class="bottom"><button class="btn-lado" onclick="cerrarCamara()">✕</button><button class="shutter" onclick="capturarCamara()">CAPTURAR</button><button class="btn-lado" onclick="cambiarCamara()">🔄</button></div>`;document.body.appendChild(m);try{await abrirStreamCamara(_camFacing)}catch(err){mostrarErrorCamara(explicarErrorCamara(err))}}
@@ -1195,7 +740,7 @@ function mostrarErrorCamara(m){const v=document.getElementById('camView');if(!v)
 function explicarErrorCamara(e){const n=e&&e.name?e.name:'';if(n==='NotAllowedError'||n==='PermissionDeniedError')return'Permiso denegado.';if(n==='NotFoundError')return'No hay cámara.';if(n==='NotReadableError')return'Cámara en uso.';return(e&&e.message)||'Error.'}
 function cerrarCamara(){if(_camStream){_camStream.getTracks().forEach(t=>t.stop());_camStream=null}const m=document.getElementById('camModal');if(m)m.remove();_camCallback=null}
 
-/* ============ CROP ============ */
+/* CROP */
 let _cropRect=null,_cropDrag=false;
 function abrirCropIMEI(d){abrirCropGenerico(d,'Marca el código del IMEI','escanearCrop')}
 function abrirCropChip(d){abrirCropGenerico(d,'Marca el código del chip','escanearCropChip')}
@@ -1221,7 +766,7 @@ function dataUrlAImagen(d){return new Promise((res,rej)=>{const img=new Image();
 function comprimirImagen(img,max=1400,cal=0.75){let w=img.width,h=img.height;if(w>h&&w>max){h=Math.round(h*max/w);w=max}else if(h>=w&&h>max){w=Math.round(w*max/h);h=max}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);return c.toDataURL('image/jpeg',cal)}
 function leerArchivoYProcesar(f,t){if(!f.type.startsWith('image/'))return toast('No es imagen');const r=new FileReader();r.onload=ev=>{const d=ev.target.result;if(t==='chip')procesarDataUrlChip(d);else if(t==='imei')procesarDataUrlIMEI(d);else procesarDataUrlEquipo(d)};r.readAsDataURL(f)}
 
-/* ============ FORM ============ */
+/* FORM */
 function abrirForm(t,id=null){formTipo=t;editId=id;const r=id?registros.find(x=>x.id===id):null;if(t==='chip'){fotoChipTemp=r?(r.fotoChip||r.foto):null;fotoEquipoTemp=null}else{fotoEquipoTemp=r?(r.fotoEquipo||r.foto):null;fotoChipTemp=r?r.fotoChip:null}const esTel=t==='telefono';$('#vista-form').innerHTML=`
 <button class="btn-volver" onclick="volverAlInicio()">← Volver al inicio</button>
 <h2 class="titulo-vista">${esTel?'📱 Registrar Teléfono':'📶 Registrar Chip'}</h2>
@@ -1289,7 +834,7 @@ function eliminar(id){const r=registros.find(x=>x.id===id);if(!r)return;if(!conf
 function renderFotos(){let fotos=[];registros.forEach(r=>{const c=r.fotoChip||(r.tipo==='chip'?r.foto:null);if(c)fotos.push({src:c,id:r.id,label:'CHIP'});const e=r.fotoEquipo||(r.tipo==='telefono'?r.foto:null);if(e)fotos.push({src:e,id:r.id,label:'EQUIPO'})});fotos.sort((a,b)=>{const ra=registros.find(x=>x.id===a.id),rb=registros.find(x=>x.id===b.id);return new Date(rb.fecha)-new Date(ra.fecha)});const cont=$('#grid-fotos');if(!fotos.length){cont.innerHTML=`<div class="vacio"><span class="em">🖼️</span>Sin fotos.</div>`;return}cont.className='grid-fotos';cont.innerHTML=fotos.map(f=>`<div class="f" onclick="abrirDetalle('${f.id}')"><img src="${f.src}" loading="lazy"><span class="tag">${f.label}</span></div>`).join('')}
 function descargar(b,n){const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000)}
 function exportarCSV(){if(!registros.length)return toast('Sin registros');const f=[['Tipo','Numero','IMSI','IMEI','Nota','Fecha','Dia','Foto chip','Foto equipo']];registros.slice().sort((a,b)=>new Date(b.fecha)-new Date(a.fecha)).forEach(r=>{const c=r.fotoChip||(r.tipo==='chip'?r.foto:null);const e=r.fotoEquipo||(r.tipo==='telefono'?r.foto:null);f.push([r.tipo==='chip'?'Chip':'Telefono',r.numero,r.imsi||'',r.imei||'',r.nota||'',fmt(r.fecha),r.fechaLocal||derivarFechaLocal(r.fecha),c?'Si':'No',e?'Si':'No'])});const csv=f.map(x=>x.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\r\n');descargar(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),'registros_claro.csv');toast('📊 CSV exportado')}
-function exportarJSON(){const data={app:'Registro Claro',version:24,exportado:new Date().toISOString(),registros,inventario,tiendas,inventarioBloqueado,metaConfig};descargar(new Blob([JSON.stringify(data)],{type:'application/json'}),'respaldo_claro.json');toast('📦 Respaldo creado')}
+function exportarJSON(){const data={app:'Registro Claro',version:23,exportado:new Date().toISOString(),registros, inventario,tiendas,inventarioBloqueado,metaConfig};descargar(new Blob([JSON.stringify(data)],{type:'application/json'}),'respaldo_claro.json');toast('📦 Respaldo creado')}
 $('#inpImport').onchange=e=>{const file=e.target.files[0];if(!file)return;const r=new FileReader();r.onload=ev=>{try{const data=JSON.parse(ev.target.result);const nuevos=Array.isArray(data)?data:(data.registros||[]);const inv=data.inventario||[];const tien=data.tiendas||[];const bloq=data.inventarioBloqueado;const meta=data.metaConfig;if(!nuevos.length&&!inv.length)return toast('Sin datos');const ex=new Set(registros.map(x=>x.id));let ag=0;nuevos.forEach(x=>{if(x&&x.id&&!ex.has(x.id)){if(x.tipo==='chip'&&x.foto&&!x.fotoChip)x.fotoChip=x.foto;if(x.tipo==='telefono'&&x.foto&&!x.fotoEquipo)x.fotoEquipo=x.foto;if(!x.fechaLocal)x.fechaLocal=derivarFechaLocal(x.fecha);registros.push(x);ag++}});if(inv.length){const exInv=new Set(inventario.map(x=>x.id));inv.forEach(x=>{if(x&&x.id&&!exInv.has(x.id))inventario.push(x)});guardarInventario()}if(tien.length){if(typeof tien[0]==='string')tiendas=tien.map((n,i)=>({nombre:n,color:PALETA_COLORES[i%PALETA_COLORES.length].valor}));else tiendas=tien;guardarTiendas()}if(typeof bloq==='boolean'){inventarioBloqueado=bloq;guardarEstadoBloqueo()}if(meta&&typeof meta==='object'){if(typeof meta.mes==='number'||typeof meta.dia==='number'){metaConfig.mes={chips:parseInt(meta.mes)||0,tels:0};metaConfig.dia={chips:parseInt(meta.dia)||0,tels:0};metaConfig.inicial={mes:null,chips:0,tels:0}}else{metaConfig.mes={chips:parseInt(meta.mes?.chips)||0,tels:parseInt(meta.mes?.tels)||0};metaConfig.dia={chips:parseInt(meta.dia?.chips)||0,tels:parseInt(meta.dia?.tels)||0};metaConfig.inicial={mes:meta.inicial?.mes||null,chips:parseInt(meta.inicial?.chips)||0,tels:parseInt(meta.inicial?.tels)||0}}guardarMeta()}guardarLS();toast(`📥 ${ag} registros restaurados`);renderLista();renderFotos();renderInventario();renderMeta();if(typeof actualizarStorageInfo==='function')actualizarStorageInfo()}catch(err){toast('⚠️ Archivo inválido')}};r.readAsText(file);e.target.value=''};
 async function borrarTodo(){if(!confirm('¿Borrar TODOS los registros, fotos e inventario?\n\nRespalda antes.'))return;if(!confirm('Confirma de nuevo.'))return;registros=[];inventario=[];inventarioBloqueado=false;try{await idbClear()}catch(e){}localStorage.removeItem(STORE);localStorage.removeItem(INV_STORE);localStorage.removeItem(INV_BLOQ_STORE);toast('🗑️ Todo borrado');renderLista();renderFotos();renderInventario();renderMeta();if(typeof actualizarStorageInfo==='function')actualizarStorageInfo()}
 let _diaActualGuardado=fechaLocalHoy();
