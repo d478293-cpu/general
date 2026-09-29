@@ -384,13 +384,11 @@ html[data-theme="dark"] .storage-info .uso{background:#1e3a8a;color:#dbeafe}
 #avisoMesModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
 #avisoMesModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
 html[data-theme="dark"] #avisoMesModal .box{background:var(--card);color:var(--txt)}
-/* BOTÓN BUSCAR HOME */
 .btn-buscar-home{width:100%;display:flex;align-items:center;gap:14px;padding:16px 18px;border:none;border-radius:16px;background:#fff;color:var(--txt);margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer;text-align:left;font-family:inherit;transition:.15s;border:2px solid var(--line)}
 .btn-buscar-home:active{transform:scale(.98)}
 .btn-buscar-home .ico{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#4285F4,#1a73e8);color:#fff;display:grid;place-items:center;font-size:22px;flex:0 0 44px;box-shadow:0 3px 10px rgba(66,133,244,.35)}
 .btn-buscar-home .txt b{display:block;font-size:16px;font-weight:800;color:var(--txt)}
 .btn-buscar-home .txt small{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
-/* MODAL BUSCADOR */
 #buscadorModal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:800;display:none;align-items:flex-end;justify-content:center}
 #buscadorModal.ver{display:flex}
 .box-buscador{background:#fff;width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:18px 18px 24px;max-height:92vh;overflow-y:auto;animation:subir .2s ease-out}
@@ -571,7 +569,7 @@ html[data-theme="dark"] .bm-cerrar:hover{background:#262b33}
     </div>
     <p class="bm-sub">Escribe el modelo. Toca una sugerencia para ver sus specs. 🔍 abre Google.</p>
     <div class="bm-campo">
-      <input id="bm-input" type="text" placeholder="Ej: Samsung A55, Redmi Note 17…" oninput="bmBuscar()" autocomplete="off">
+      <input id="bm-input" type="text" placeholder="Ej: Xiaomi Redmi 15, Samsung A55…" oninput="bmBuscar()" autocomplete="off">
       <button id="bm-lupa-google" onclick="bmAbrirGoogle()" disabled>🔍</button>
     </div>
     <div class="bm-chips" id="bm-chips"></div>
@@ -863,7 +861,7 @@ const CATALOGO_MODELOS = [
   /* ZTE */
   { nombre:'ZTE Blade A54',        marca:'ZTE', red:'4G', pantalla:'6.6" LCD 90Hz',   ram:'4 GB',   alm:'128 GB', bat:'5000 mAh', cam:'13 MP', chip:'Unisoc SC9863A' },
   { nombre:'ZTE Blade V50 Design', marca:'ZTE', red:'4G', pantalla:'6.6" LCD 120Hz',  ram:'6/8 GB', alm:'256 GB', bat:'5000 mAh', cam:'50 MP', chip:'Unisoc T606' },
-  { nombre:'ZTE Axon 50 Lite',     marca:'ZTE', red:'5G', pantalla:'6.52" LCD 120Hz', ram:'6/8 GB', alm:'256 GB', bat:'5000 mAh', cam:'Dimensity 700', chip:'Dimensity 700' }
+  { nombre:'ZTE Axon 50 Lite',     marca:'ZTE', red:'5G', pantalla:'6.52" LCD 120Hz', ram:'6/8 GB', alm:'256 GB', bat:'5000 mAh', cam:'50 MP', chip:'Dimensity 700' }
 ];
 
 /* ============ BUSCADOR DE MODELOS ============ */
@@ -932,7 +930,11 @@ function bmBuscar(){
   bmCerrarSpecs();
   if (q.length < 2){ sugs.innerHTML = ''; return; }
   const base = bmFiltroMarca === 'todas' ? CATALOGO_MODELOS : CATALOGO_MODELOS.filter(m => m.marca === bmFiltroMarca);
-  const matches = base.filter(m => bmNorm(m.nombre).includes(q)).slice(0, 15);
+  // ✨ FIX: corrige typo "xiomi" y busca también por marca
+  const qFixed = q === 'xiomi' ? 'xiaomi' : q;
+  const matches = base.filter(m =>
+    bmNorm(m.nombre).includes(qFixed) || bmNorm(m.marca).includes(qFixed)
+  ).slice(0, 20);
   if (!matches.length){
     sugs.innerHTML = `<div style="text-align:center;padding:24px 12px;color:#9aa3ad;font-size:13.5px;line-height:1.5">⚠️ No está en la base local.<br>Toca el botón 🔍 para buscarlo en Google.</div>`;
     return;
