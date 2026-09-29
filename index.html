@@ -449,6 +449,39 @@ html[data-theme="dark"] .meta-card.completada{
   color:#fff;
   box-shadow:0 4px 18px rgba(22,163,74,.4);
 }
+/* ===== Scrollbar visible en el buscador de modelos ===== */
+.bm-sugerencias{
+  max-height:340px;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  scroll-behavior:smooth;
+  padding-right:6px;
+  position:relative;
+}
+.bm-sugerencias::-webkit-scrollbar{
+  width:6px;
+}
+.bm-sugerencias::-webkit-scrollbar-track{
+  background:rgba(0,0,0,.05);
+  border-radius:20px;
+}
+.bm-sugerencias::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,#DA291C,#8f170e);
+  border-radius:20px;
+}
+.bm-sugerencias::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg,#ff4438,#b01e14);
+}
+.bm-sugerencias{
+  scrollbar-width:thin;
+  scrollbar-color:#DA291C rgba(0,0,0,.08);
+}
+html[data-theme="dark"] .bm-sugerencias::-webkit-scrollbar-track{
+  background:rgba(255,255,255,.06);
+}
+html[data-theme="dark"] .bm-sugerencias::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,#ff4438,#8f170e);
+}
 </style>
 </head>
 <body>
