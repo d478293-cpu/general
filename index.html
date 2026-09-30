@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -387,48 +388,60 @@ html[data-theme="dark"] .storage-info .uso{background:#1e3a8a;color:#dbeafe}
 #avisoMesModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
 #avisoMesModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
 html[data-theme="dark"] #avisoMesModal .box{background:var(--card);color:var(--txt)}
-/* 🔥 LUZ QUE RECORRE LA ORILLA — modo oscuro, tarjeta al 80% */
+/* 🔥 LUZ QUE RECORRE LA ORILLA — tarjeta al 80% en modo oscuro */
 html[data-theme="dark"] .meta-card.casi{
   position:relative;
-  isolation:isolate;
-  background:var(--card) !important;      /* fondo normal del card */
-  color:var(--txt) !important;            /* texto normal */
+  overflow:hidden;
   border-radius:16px;
-  box-shadow:
-    0 0 14px rgba(251,191,36,.55),
-    0 0 30px rgba(245,158,11,.35) !important;
+  background:transparent !important;     /* el fondo lo pone el ::after */
+  color:var(--txt) !important;
+  box-shadow:none !important;
+  isolation:isolate;
 }
 
-/* El aro de luz que recorre el borde */
+/* El gradiente que gira */
 html[data-theme="dark"] .meta-card.casi::before{
   content:"";
   position:absolute;
-  inset:-2px;                              /* grosor del aro: 2px */
-  border-radius:18px;
-  padding:2px;                             /* debe coincidir con el inset */
+  inset:-150%;                           /* grande para que al girar no deje huecos */
   background:conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 270deg,                    /* zona oscura (3/4 del aro) */
-    #fde047 310deg,                        /* amarillo claro */
-    #fbbf24 340deg,                        /* amarillo */
+    transparent 270deg,                  /* 3/4 del aro apagado */
+    #fde047 300deg,                      /* amarillo claro */
+    #fbbf24 330deg,                      /* amarillo */
     #fde047 355deg,
     transparent 360deg
   );
-  /* ✨ Máscara que deja solo el borde visible */
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-          mask-composite:exclude;
-  z-index:-1;
-  pointer-events:none;
   animation:neonSpin 3s linear infinite;
-  filter:drop-shadow(0 0 4px #fde047) drop-shadow(0 0 10px rgba(251,191,36,.7));
+  z-index:0;
+}
+
+/* Tapa el centro y deja solo el borde de 2px */
+html[data-theme="dark"] .meta-card.casi::after{
+  content:"";
+  position:absolute;
+  inset:2px;                             /* grosor del borde */
+  border-radius:14px;
+  background:var(--card);
+  z-index:1;
+}
+
+/* El contenido va encima */
+html[data-theme="dark"] .meta-card.casi > *{
+  position:relative;
+  z-index:2;
 }
 
 @keyframes neonSpin{
   to{ transform:rotate(360deg); }
+}
+
+/* Brillo suave hacia afuera */
+html[data-theme="dark"] .meta-card.casi{
+  box-shadow:
+    0 0 10px rgba(253,224,71,.55),
+    0 0 22px rgba(251,191,36,.35) !important;
 }
 
 @media (prefers-reduced-motion: reduce){
