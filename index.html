@@ -387,53 +387,6 @@ html[data-theme="dark"] .storage-info .uso{background:#1e3a8a;color:#dbeafe}
 #avisoMesModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
 #avisoMesModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
 html[data-theme="dark"] #avisoMesModal .box{background:var(--card);color:var(--txt)}
-/* 🔥 NEÓN SOLO EN LA ORILLA — modo oscuro, tarjeta al 80% */
-html[data-theme="dark"] .meta-card.casi{
-  background:var(--card) !important;      /* quita el amarillo del fondo */
-  color:var(--txt) !important;            /* texto normal otra vez */
-  box-shadow:none !important;             /* quita el glow viejo del card */
-  position:relative;
-  isolation:isolate;
-  border-radius:16px;
-  overflow:visible;
-}
-
-/* El aro neón que gira */
-html[data-theme="dark"] .meta-card.casi::before{
-  content:"";
-  position:absolute;
-  inset:-2px;                              /* grosor del aro: 2px */
-  border-radius:18px;
-  background:conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 40deg,
-    #fde047 90deg,      /* amarillo claro */
-    #fbbf24 140deg,     /* amarillo */
-    #f59e0b 190deg,     /* ámbar */
-    #fde047 240deg,
-    transparent 290deg,
-    transparent 360deg
-  );
-  z-index:-1;                              /* queda DETRÁS de la tarjeta */
-  animation:neonSpin 3s linear infinite;
-  filter:blur(4px);                        /* glow suave hacia afuera */
-}
-
-@keyframes neonSpin{
-  to{ transform:rotate(360deg); }
-}
-
-/* Extra: que también brille hacia afuera */
-html[data-theme="dark"] .meta-card.casi{
-  box-shadow:
-    0 0 12px rgba(251,191,36,.55),
-    0 0 26px rgba(245,158,11,.35) !important;
-}
-
-@media (prefers-reduced-motion: reduce){
-  html[data-theme="dark"] .meta-card.casi::before{ animation:none; }
-}
 </style>
 </head>
 <body>
