@@ -957,5 +957,27 @@ cargarTema();
 cargarMeta();
 cargar().then(()=>{renderLista();renderMeta();renderInventario();setTimeout(()=>{precargarTodo()},50);setTimeout(()=>{verificarCambioDeMes()},800)}).catch(err=>{console.error('Error al iniciar:',err);renderLista();renderMeta();renderInventario();setTimeout(()=>{precargarTodo()},50)});
 </script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').then(reg => {
+    setInterval(() => reg.update(), 30000);
+    reg.addEventListener('updatefound', () => {
+      const nuevo = reg.installing;
+      if (!nuevo) return;
+      nuevo.addEventListener('statechange', () => {
+        if (nuevo.state === 'installed' && navigator.serviceWorker.controller) {
+          if (typeof toast === 'function') {
+            toast('🔄 Nueva versión disponible. Cierra y abre la app.', 5000);
+          }
+          if (navigator.vibrate) { try { navigator.vibrate([60,40,60]); } catch(e){} }
+        }
+      });
+    });
+  });
+}
+</script>
+
+
 </body>
 </html>
