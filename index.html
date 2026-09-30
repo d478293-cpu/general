@@ -499,6 +499,33 @@ html[data-theme="dark"] .meta-card.completada{
 @media (prefers-reduced-motion: reduce){
   html[data-theme="dark"] .meta-card.completada::before{ animation:none; }
 }
+  /* ✨ Animación de éxito al guardar */
+#successAnim{
+  position:fixed;inset:0;z-index:900;display:none;
+  align-items:center;justify-content:center;
+  background:rgba(0,0,0,.65);backdrop-filter:blur(4px);
+}
+#successAnim.ver{display:flex}
+#successAnim .circulo{
+  width:140px;height:140px;border-radius:50%;
+  background:linear-gradient(135deg,#16a34a,#15803d);
+  display:grid;place-items:center;color:#fff;font-size:72px;font-weight:900;
+  box-shadow:0 0 40px rgba(22,163,74,.7),0 0 80px rgba(22,163,74,.4);
+  animation:popCheck .5s cubic-bezier(.18,1.2,.4,1);
+}
+@keyframes popCheck{
+  0%{transform:scale(0);opacity:0}
+  60%{transform:scale(1.15);opacity:1}
+  100%{transform:scale(1)}
+}
+#successAnim .texto{
+  position:absolute;bottom:35%;color:#fff;font-size:16px;font-weight:800;
+  text-shadow:0 2px 8px rgba(0,0,0,.5);animation:subirTxt .5s .2s both;
+}
+@keyframes subirTxt{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
@@ -765,6 +792,15 @@ function copiar(txt){if(!txt)return;const ok=()=>toast('✅ Copiado');if(navigat
 
 /* TIENDAS */
 function cargarTiendas(){try{const g=JSON.parse(localStorage.getItem(TIENDAS_STORE)||'null');if(Array.isArray(g)&&g.length){if(typeof g[0]==='string'){tiendas=g.map((n,i)=>({nombre:n,color:PALETA_COLORES[i%PALETA_COLORES.length].valor}));guardarTiendas()}else{tiendas=g}}else{tiendas=TIENDAS_DEFAULT.slice()}}catch(e){tiendas=TIENDAS_DEFAULT.slice()}}
+  function mostrarExito(msg){
+  const a = document.getElementById('successAnim');
+  const t = document.getElementById('successTxt');
+  if (!a || !t) return;
+  t.textContent = msg || '¡Guardado!';
+  a.classList.add('ver');
+  if (navigator.vibrate) { try { navigator.vibrate([40,30,100]); } catch(e){} }
+  setTimeout(() => a.classList.remove('ver'), 1400);
+  }
 const TIENDAS_LIMPIEZA_KEY='claro_tiendas_limpieza_v1';
 function limpiarTiendasAntiguas(){if(localStorage.getItem(TIENDAS_LIMPIEZA_KEY)==='1')return;localStorage.setItem(TIENDAS_LIMPIEZA_KEY,'1');const a=['Tecno','Kiosko Máx'];const b=tiendas.length;tiendas=tiendas.filter(t=>!(a.includes(t.nombre)&&!inventario.some(m=>m.tienda===t.nombre)));if(tiendas.length!==b)guardarTiendas()}
 function guardarTiendas(){try{localStorage.setItem(TIENDAS_STORE,JSON.stringify(tiendas))}catch(e){}}
@@ -921,7 +957,7 @@ function tomarFotoIMEI(){tomarFoto('Foto de la etiqueta',d=>procesarDataUrlIMEI(
 function tomarFotoEquipo(){tomarFoto('Foto del Teléfono',d=>procesarDataUrlEquipo(d))}
 function pintarFotos(){const cb=$('#fotoChipBox');if(cb){if(fotoChipTemp){cb.innerHTML=`<img src="${fotoChipTemp}">`;const b=$('#btnQuitarFotoChip');if(b)b.style.display='flex'}else{cb.innerHTML=`<div class="ph">📷<br>Sin foto</div>`;const b=$('#btnQuitarFotoChip');if(b)b.style.display='none'}}const eb=$('#fotoEquipoBox');if(eb){if(fotoEquipoTemp){eb.innerHTML=`<img src="${fotoEquipoTemp}">`;const b=$('#btnQuitarFotoEquipo');if(b)b.style.display='flex'}else{eb.innerHTML=`<div class="ph">📷<br>Sin foto</div>`;const b=$('#btnQuitarFotoEquipo');if(b)b.style.display='none'}}}
 function quitarFoto(t){if(t==='chip')fotoChipTemp=null;else fotoEquipoTemp=null;pintarFotos()}
-function guardarRegistro(){const num=soloDigitos($('#f-numero').value);const imsi=soloDigitos($('#f-imsi').value);const imei=formTipo==='telefono'?soloDigitos($('#f-imei').value):'';const nota=$('#f-nota').value.trim();if(num.length<7)return toast('⚠️ Número inválido');if(imsi.length<10)return toast('⚠️ IMSI incompleto');if(formTipo==='telefono'&&imei.length<10)return toast('⚠️ IMEI incompleto');const d=registros.find(r=>r.id!==editId&&((imsi&&r.imsi===imsi)||(imei&&r.imei&&r.imei===imei)));if(d){const c=(d.imsi===imsi)?'IMSI':'IMEI';if(!confirm(`Ya existe con ese ${c} (${d.numero}).\n\n¿Guardar?`))return}let msj='';if(editId){const r=registros.find(x=>x.id===editId);Object.assign(r,{numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fotoEquipo:formTipo==='telefono'?fotoEquipoTemp:undefined,editado:new Date().toISOString()});delete r.foto;msj='✅ Actualizado'}else{const n={id:uid(),tipo:formTipo,numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fecha:new Date().toISOString(),fechaLocal:fechaLocalHoy()};if(formTipo==='telefono')n.fotoEquipo=fotoEquipoTemp;registros.push(n);msj='✅ Guardado'}guardarLS();volverAlInicio(msj)}
+function guardarRegistro(){const num=soloDigitos($('#f-numero').value);const imsi=soloDigitos($('#f-imsi').value);const imei=formTipo==='telefono'?soloDigitos($('#f-imei').value):'';const nota=$('#f-nota').value.trim();if(num.length<7)return toast('⚠️ Número inválido');if(imsi.length<10)return toast('⚠️ IMSI incompleto');if(formTipo==='telefono'&&imei.length<10)return toast('⚠️ IMEI incompleto');const d=registros.find(r=>r.id!==editId&&((imsi&&r.imsi===imsi)||(imei&&r.imei&&r.imei===imei)));if(d){const c=(d.imsi===imsi)?'IMSI':'IMEI';if(!confirm(`Ya existe con ese ${c} (${d.numero}).\n\n¿Guardar?`))return}let msj='';if(editId){const r=registros.find(x=>x.id===editId);Object.assign(r,{numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fotoEquipo:formTipo==='telefono'?fotoEquipoTemp:undefined,editado:new Date().toISOString()});delete r.foto;msj='✅ Actualizado'}else{const n={id:uid(),tipo:formTipo,numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fecha:new Date().toISOString(),fechaLocal:fechaLocalHoy()};if(formTipo==='telefono')n.fotoEquipo=fotoEquipoTemp;registros.push(n);msj='✅ Guardado'}guardarLS();volverAlInicio();mostrarExito(msj)}
 function renderLista(){const rango=obtenerRangoFechas();const q=($('#buscar').value||'').trim().toLowerCase();let lista=registros.filter(r=>registroEnRango(r,rango));if(q)lista=lista.filter(r=>[r.numero,r.imsi,r.imei,r.nota].join(' ').toLowerCase().includes(q));lista.sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));const lr=registros.filter(r=>registroEnRango(r,rango));const chips=lr.filter(r=>r.tipo==='chip').length;$('#st-total').textContent=lr.length;$('#st-chips').textContent=chips;$('#st-tels').textContent=lr.length-chips;const info=$('#filtroInfo');if(filtroFecha==='todo')info.innerHTML=`📊 <b>Todos</b>`;else if(filtroFecha==='custom')info.innerHTML=`📅 <b>${esc(nombreFechaCorta(fechaCustom))}</b>`;else if(filtroFecha==='hoy')info.innerHTML=`📅 Hoy · <b>${esc(nombreFechaCorta(fechaLocalHoy()))}</b>`;else if(filtroFecha==='ayer'){const a=sumarDias(fechaLocalHoy(),-1);info.innerHTML=`📅 Ayer · <b>${esc(nombreFechaCorta(a))}</b>`}else if(filtroFecha==='semana')info.innerHTML=`📅 <b>Esta semana</b>`;else if(filtroFecha==='mes')info.innerHTML=`📅 <b>Este mes</b>`;const cont=$('#lista');if(!lista.length){cont.innerHTML=`<div class="vacio"><span class="em">${q?'🔍':'📋'}</span>${q?'Sin resultados.':'Sin registros.'}</div>`;return}const conteo=lista.length;const headerHTML=`<div class="lista-header"><span>${filtroFecha==='hoy'?'📅 HOY':filtroFecha==='ayer'?'📅 AYER':filtroFecha==='custom'?'📅 '+nombreFechaCorta(fechaCustom).toUpperCase():filtroFecha==='semana'?'📅 SEMANA':filtroFecha==='mes'?'📅 MES':'📋 TODOS'}</span><span class="count">${conteo} ${conteo===1?'venta':'ventas'}</span></div>`;const items=lista.map(r=>{let src=null;if(r.tipo==='chip')src=r.fotoChip||r.foto;else src=r.fotoEquipo||r.fotoChip||r.foto;const mh=filtroFecha==='todo'||filtroFecha==='semana'||filtroFecha==='mes';const fm=mh?fmt(r.fecha):nombreFechaCorta(r.fechaLocal||derivarFechaLocal(r.fecha))+' · '+new Date(r.fecha).toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});return`<div class="item" onclick="abrirDetalle('${r.id}')"><div class="thumb">${src?`<img src="${src}" loading="lazy">`:(r.tipo==='chip'?'📶':'📱')}</div><div class="info"><div class="t1">${esc(r.numero)}<span class="pill ${r.tipo==='chip'?'pill-chip':'pill-tel'}">${r.tipo==='chip'?'CHIP':'EQUIPO'}</span></div><div class="t2">IMSI: ${esc(r.imsi||'—')}</div>${r.imei?`<div class="t2">IMEI: ${esc(r.imei)}</div>`:''}<div class="t3">${esc(fm)}</div></div><div style="color:#c3c8cf;font-size:20px">›</div></div>`}).join('');cont.innerHTML=headerHTML+items}
 function abrirDetalle(id){const r=registros.find(x=>x.id===id);if(!r)return;const fc=r.fotoChip||(r.tipo==='chip'?r.foto:null);const fe=r.fotoEquipo||(r.tipo==='telefono'?r.foto:null);$('#vista-detalle').innerHTML=`
 <button class="btn-volver" onclick="ir('home')">← Volver</button>
@@ -931,7 +967,7 @@ ${fc?`<div class="det-foto-label">📶 Foto del Chip</div><img class="det-foto" 
 <div class="card">
 <div class="dato"><span class="k">Número</span><span class="v">${esc(r.numero)}<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.numero)}')">Copiar</button></span></div>
 <div class="dato"><span class="k">IMSI</span><span class="v">${esc(r.imsi||'—')}${r.imsi?`<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.imsi)}')">Copiar</button>`:''}</span></div>
-${r.imei?`<div class="dato"><span class="k">IMEI</span><span class="v">${esc(r.imei)}<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.imei)}')">Copiar</button></span></div>`:''}
+${r.imei?`<div class="dato"><span class="k">IMEI</spfunction guardarRegistro(){an><span class="v">${esc(r.imei)}<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.imei)}')">Copiar</button></span></div>`:''}
 <div class="dato"><span class="k">Fecha</span><span class="v" style="font-size:13px;font-weight:600">${fmt(r.fecha)}</span></div>
 ${r.nota?`<div class="dato" style="display:block"><span class="k">Nota</span><div style="margin-top:6px;font-size:14px;line-height:1.5">${esc(r.nota)}</div></div>`:''}
 </div>
@@ -977,7 +1013,13 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
-
+  <!-- ✨ Animación de éxito -->
+<div id="successAnim">
+  <div class="circulo">✓</div>
+  <div class="texto" id="successTxt">¡Guardado!</div>
+</div>
+</body>
+</html>
 
 </body>
 </html>
