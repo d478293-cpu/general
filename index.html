@@ -676,9 +676,13 @@ html[data-theme="dark"] .ritmo-card.fuera{background:#1a1d23;color:var(--muted)}
 <div id="avisoMesModal"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js" defer></script>
-
-<script>
-const $  = s => document.querySelector(s);
+  
+  <script>
+window.onerror = function(msg, src, line, col) {
+  alert('ERROR: ' + msg + '\nLínea: ' + line + ':' + col);
+  return false;
+};
+    const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const STORE = 'claro_registros_v1';
 const INV_STORE = 'claro_inventario_v3';
