@@ -16,10 +16,7 @@ header{position:sticky;top:0;z-index:30;background:linear-gradient(135deg,var(--
 .h-s{font-size:12px;opacity:.85}
 main{padding:14px;max-width:640px;margin:0 auto}
 .vista{display:none}
-.vista.activa{display:block;animation:entrarVista .28s cubic-bezier(.2,.9,.3,1)}
-@keyframes entrarVista{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
-.nav button.activo i{animation:rebote .4s cubic-bezier(.2,1.4,.4,1)}
-@keyframes rebote{0%{transform:scale(1)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
+.vista.activa{display:block;animation:fade .18s ease}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .btn-grande{width:100%;display:flex;align-items:center;gap:14px;padding:18px 20px;border:none;border-radius:16px;font-size:17px;font-weight:700;color:#fff;margin-bottom:12px;box-shadow:0 4px 14px rgba(0,0,0,.13);cursor:pointer;text-align:left}
 .btn-grande .ico{font-size:26px}
@@ -390,173 +387,6 @@ html[data-theme="dark"] .storage-info .uso{background:#1e3a8a;color:#dbeafe}
 #avisoMesModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
 #avisoMesModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
 html[data-theme="dark"] #avisoMesModal .box{background:var(--card);color:var(--txt)}
-/* 🔥 LUZ QUE RECORRE LA ORILLA — tarjeta al 80% en modo oscuro */
-html[data-theme="dark"] .meta-card.casi{
-  position:relative;
-  overflow:hidden;
-  border-radius:16px;
-  background:transparent !important;     /* el fondo lo pone el ::after */
-  color:var(--txt) !important;
-  box-shadow:none !important;
-  isolation:isolate;
-}
-
-/* El gradiente que gira */
-html[data-theme="dark"] .meta-card.casi::before{
-  content:"";
-  position:absolute;
-  inset:-150%;                           /* grande para que al girar no deje huecos */
-  background:conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 270deg,                  /* 3/4 del aro apagado */
-    #fde047 300deg,                      /* amarillo claro */
-    #fbbf24 330deg,                      /* amarillo */
-    #fde047 355deg,
-    transparent 360deg
-  );
-  animation:neonSpin 7s linear infinite;
-  z-index:0;
-}
-
-/* Tapa el centro y deja solo el borde de 2px */
-html[data-theme="dark"] .meta-card.casi::after{
-  content:"";
-  position:absolute;
-  inset:2px;                             /* grosor del borde */
-  border-radius:14px;
-  background:var(--card);
-  z-index:1;
-}
-
-/* El contenido va encima */
-html[data-theme="dark"] .meta-card.casi > *{
-  position:relative;
-  z-index:2;
-}
-
-@keyframes neonSpin{
-  to{ transform:rotate(360deg); }
-}
-
-/* Brillo suave hacia afuera */
-html[data-theme="dark"] .meta-card.casi{
-  box-shadow:
-    0 0 10px rgba(253,224,71,.55),
-    0 0 22px rgba(251,191,36,.35) !important;
-}
-
-@media (prefers-reduced-motion: reduce){
-  html[data-theme="dark"] .meta-card.casi::before{ animation:none; }
-}
-/* 🏆 LUZ VERDE QUE RECORRE LA ORILLA — tarjeta al 100% en modo oscuro */
-html[data-theme="dark"] .meta-card.completada{
-  position:relative;
-  overflow:hidden;
-  border-radius:16px;
-  background:transparent !important;
-  color:var(--txt) !important;
-  box-shadow:none !important;
-  isolation:isolate;
-}
-
-html[data-theme="dark"] .meta-card.completada::before{
-  content:"";
-  position:absolute;
-  inset:-150%;
-  background:conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 270deg,                  /* 3/4 del aro apagado */
-    #86efac 300deg,                      /* verde claro */
-    #22c55e 330deg,                      /* verde */
-    #4ade80 355deg,
-    transparent 360deg
-  );
-  animation:neonSpin 7s linear infinite;
-  z-index:0;
-}
-
-html[data-theme="dark"] .meta-card.completada::after{
-  content:"";
-  position:absolute;
-  inset:2px;
-  border-radius:14px;
-  background:var(--card);
-  z-index:1;
-}
-
-html[data-theme="dark"] .meta-card.completada > *{
-  position:relative;
-  z-index:2;
-}
-
-/* Brillo verde suave hacia afuera */
-html[data-theme="dark"] .meta-card.completada{
-  box-shadow:
-    0 0 10px rgba(74,222,128,.55),
-    0 0 22px rgba(34,197,94,.35) !important;
-}
-
-@media (prefers-reduced-motion: reduce){
-  html[data-theme="dark"] .meta-card.completada::before{ animation:none; }
-}
-  /* ✨ Animación de éxito al guardar */
-#successAnim{
-  position:fixed;inset:0;z-index:900;display:none;
-  align-items:center;justify-content:center;
-  background:rgba(0,0,0,.65);backdrop-filter:blur(4px);
-}
-#successAnim.ver{display:flex}
-#successAnim .circulo{
-  width:140px;height:140px;border-radius:50%;
-  background:linear-gradient(135deg,#16a34a,#15803d);
-  display:grid;place-items:center;color:#fff;font-size:72px;font-weight:900;
-  box-shadow:0 0 40px rgba(22,163,74,.7),0 0 80px rgba(22,163,74,.4);
-  animation:popCheck .5s cubic-bezier(.18,1.2,.4,1);
-}
-@keyframes popCheck{
-  0%{transform:scale(0);opacity:0}
-  60%{transform:scale(1.15);opacity:1}
-  100%{transform:scale(1)}
-}
-#successAnim .texto{
-  position:absolute;bottom:35%;color:#fff;font-size:16px;font-weight:800;
-  text-shadow:0 2px 8px rgba(0,0,0,.5);animation:subirTxt .5s .2s both;
-}
-@keyframes subirTxt{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:none}
-}
-/* 🕐 Ritmo del día */
-.ritmo-card{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:.25s}
-html[data-theme="dark"] .ritmo-card{background:var(--card);color:var(--txt)}
-.ritmo-card.adelantado{background:linear-gradient(135deg,#16a34a,#15803d);color:#fff}
-.ritmo-card.al-dia{background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff}
-.ritmo-card.atrasado{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
-.ritmo-card.muy-atrasado{background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff}
-.ritmo-card.fuera{background:#eef0f3;color:var(--muted)}
-html[data-theme="dark"] .ritmo-card.fuera{background:#1a1d23;color:var(--muted)}
-.ritmo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.ritmo-titulo{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;opacity:.9}
-.ritmo-config{background:none;border:none;font-size:16px;cursor:pointer;padding:4px 8px;border-radius:8px;color:inherit;opacity:.75}
-.ritmo-hora{font-size:26px;font-weight:900;font-family:monospace;letter-spacing:1px;line-height:1}
-.ritmo-sub{font-size:12px;opacity:.85;margin-top:4px;font-weight:600}
-.ritmo-barras{display:flex;gap:8px;margin-top:14px}
-.ritmo-barra{flex:1}
-.ritmo-barra .lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;opacity:.85;margin-bottom:5px;display:flex;justify-content:space-between}
-.ritmo-barra .base{height:10px;background:rgba(0,0,0,.15);border-radius:20px;overflow:hidden;position:relative}
-.ritmo-card.adelantado .ritmo-barra .base,
-.ritmo-card.al-dia .ritmo-barra .base,
-.ritmo-card.atrasado .ritmo-barra .base,
-.ritmo-card.muy-atrasado .ritmo-barra .base{background:rgba(255,255,255,.25)}
-.ritmo-barra .fill{height:100%;border-radius:20px;transition:width .6s ease;background:#fff}
-.ritmo-card.fuera .ritmo-barra .fill{background:var(--rojo)}
-.ritmo-mensaje{margin-top:14px;font-size:13px;font-weight:800;text-align:center;line-height:1.4;padding-top:12px;border-top:1px dashed rgba(0,0,0,.15)}
-.ritmo-card.adelantado .ritmo-mensaje,
-.ritmo-card.al-dia .ritmo-mensaje,
-.ritmo-card.atrasado .ritmo-mensaje,
-.ritmo-card.muy-atrasado .ritmo-mensaje{border-top-color:rgba(255,255,255,.3)}
 </style>
 </head>
 <body>
@@ -572,7 +402,6 @@ html[data-theme="dark"] .ritmo-card.fuera{background:#1a1d23;color:var(--muted)}
 
 <main>
   <section id="vista-home" class="vista activa">
-    <div class="ritmo-card" id="ritmo-card"></div>
     <div class="meta-card" id="meta-card"></div>
     <button class="btn-grande bg-chip" onclick="abrirForm('chip')"><span class="ico">📶</span><span>Registrar Chip<span class="sub">Foto + lectura de IMSI</span></span></button>
     <button class="btn-grande bg-tel" onclick="abrirForm('telefono')"><span class="ico">📱</span><span>Registrar Teléfono<span class="sub">Lectura de IMEI desde la caja</span></span></button>
@@ -676,13 +505,9 @@ html[data-theme="dark"] .ritmo-card.fuera{background:#1a1d23;color:var(--muted)}
 <div id="avisoMesModal"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js" defer></script>
-  
-  <script>
-window.onerror = function(msg, src, line, col) {
-  alert('ERROR: ' + msg + '\nLínea: ' + line + ':' + col);
-  return false;
-};
-    const $  = s => document.querySelector(s);
+
+<script>
+const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const STORE = 'claro_registros_v1';
 const INV_STORE = 'claro_inventario_v3';
@@ -828,109 +653,6 @@ function copiar(txt){if(!txt)return;const ok=()=>toast('✅ Copiado');if(navigat
 
 /* TIENDAS */
 function cargarTiendas(){try{const g=JSON.parse(localStorage.getItem(TIENDAS_STORE)||'null');if(Array.isArray(g)&&g.length){if(typeof g[0]==='string'){tiendas=g.map((n,i)=>({nombre:n,color:PALETA_COLORES[i%PALETA_COLORES.length].valor}));guardarTiendas()}else{tiendas=g}}else{tiendas=TIENDAS_DEFAULT.slice()}}catch(e){tiendas=TIENDAS_DEFAULT.slice()}}
-  function mostrarExito(msg){
-  const a = document.getElementById('successAnim');
-  const t = document.getElementById('successTxt');
-  if (!a || !t) return;
-  t.textContent = msg || '¡Guardado!';
-  a.classList.add('ver');
-  if (navigator.vibrate) { try { navigator.vibrate([40,30,100]); } catch(e){} }
-  setTimeout(() => a.classList.remove('ver'), 1400);
-  }
-/* 🕐 RITMO DEL DÍA */
-const HORARIO_KEY = 'claro_horario_v1';
-let horario = { inicio: 11, fin: 19 };
-
-function cargarHorario() {
-  try {
-    const g = localStorage.getItem(HORARIO_KEY);
-    if (g) horario = JSON.parse(g);
-  } catch(e) {}
-}
-function guardarHorario() {
-  try { localStorage.setItem(HORARIO_KEY, JSON.stringify(horario)); } catch(e) {}
-}
-
-function renderRitmo() {
-  const c = document.getElementById('ritmo-card');
-  if (!c) return;
-  const ahora = new Date();
-  const hora = ahora.getHours() + ahora.getMinutes() / 60;
-  const horaTxt = ahora.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
-  const { inicio, fin } = horario;
-
-  if (hora < inicio) {
-    c.className = 'ritmo-card fuera';
-    c.innerHTML = `<div class="ritmo-header"><span class="ritmo-titulo">🕐 Ritmo del día</span><button class="ritmo-config" onclick="abrirHorarioModal()">⚙️</button></div><div class="ritmo-hora">${horaTxt}</div><div class="ritmo-sub">Tu turno empieza a las ${inicio}:00</div><div class="ritmo-mensaje">⏰ Aún no empiezas. Descansa. 😴</div>`;
-    return;
-  }
-  if (hora >= fin) {
-    c.className = 'ritmo-card fuera';
-    const hCh = totalHoyChips(), hTel = totalHoyTels();
-    c.innerHTML = `<div class="ritmo-header"><span class="ritmo-titulo">🕐 Ritmo del día</span><button class="ritmo-config" onclick="abrirHorarioModal()">⚙️</button></div><div class="ritmo-hora">${horaTxt}</div><div class="ritmo-sub">Turno terminado</div><div class="ritmo-mensaje">🌙 Fin del turno · Hoy: ${hCh} chips · ${hTel} tel.</div>`;
-    return;
-  }
-
-  const totalHoras = fin - inicio;
-  const transcurridas = hora - inicio;
-  const pctTiempo = Math.round((transcurridas / totalHoras) * 100);
-
-  const dCh = metaConfig.dia.chips || 0;
-  const dTel = metaConfig.dia.tels || 0;
-  const hCh = totalHoyChips();
-  const hTel = totalHoyTels();
-  const totalMeta = dCh + dTel;
-  const totalHecho = hCh + hTel;
-
-  if (totalMeta === 0) {
-    c.className = 'ritmo-card fuera';
-    c.innerHTML = `<div class="ritmo-header"><span class="ritmo-titulo">🕐 Ritmo del día</span><button class="ritmo-config" onclick="abrirHorarioModal()">⚙️</button></div><div class="ritmo-hora">${horaTxt}</div><div class="ritmo-sub">Turno: ${inicio}:00 a ${fin}:00</div><div class="ritmo-mensaje">⚙️ Configura tu meta diaria para ver tu ritmo</div>`;
-    return;
-  }
-
-  const pctHecho = Math.round((totalHecho / totalMeta) * 100);
-  const dif = pctHecho - pctTiempo;
-  let clase, mensaje;
-  if (dif >= 15) { clase = 'adelantado'; mensaje = '🚀 ¡Vas muy adelantado! Sigue así.'; }
-  else if (dif >= -10) { clase = 'al-dia'; mensaje = '✅ Vas al día. Buen ritmo.'; }
-                      else if (dif >= -25) { clase = 'atrasado'; mensaje = '⚠️ Vas un poco atrasado. Échale ganas.'; }
-                      else { clase = 'muy-atrasado'; mensaje = '🔥 ¡Vas bajo! Necesitas apurarte.'; }
-
-  const horasRestantes = fin - hora;
-                            const faltanTotal = totalMeta - totalHecho;
-                            const porHora = horasRestantes > 0 ? Math.ceil(faltanTotal / horasRestantes) : faltanTotal;  
-
-  c.className = 'ritmo-card ' + clase;
-  c.innerHTML = `<div class="ritmo-header"><span class="ritmo-titulo">🕐 Ritmo del día</span><button class="ritmo-config" onclick="abrirHorarioModal()">⚙️</button></div><div class="ritmo-hora">${horaTxt}</div><div class="ritmo-sub">${inicio}:00 a ${fin}:00 · quedan ${horasRestantes.toFixed(1)} h</div><div class="ritmo-barras"><div class="ritmo-barra"><div class="lbl"><span>Tiempo</span><span>${pctTiempo}%</span></div><div class="base"><div class="fill" style="width:${pctTiempo}%;opacity:.5"></div></div></div><div class="ritmo-barra"><div class="lbl"><span>Avance</span><span>${pctHecho}%</span></div><div class="base"><div class="fill" style="width:${pctHecho}%"></div></div></div></div><div class="ritmo-mensaje">${mensaje}<br><span style="font-size:12px;opacity:.9">Te faltan ${faltanTotal} · necesitas ${porHora}/hora</span></div>`;
-}
-
-function abrirHorarioModal() {
-  let m = document.getElementById('horarioModal');
-  if (!m) {
-    m = document.createElement('div');
-    m.id = 'horarioModal';
-    m.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:750;display:none;align-items:center;justify-content:center;padding:16px';
-    document.body.appendChild(m);
-  }
-  m.innerHTML = `<div style="background:var(--card);color:var(--txt);border-radius:20px;padding:22px;max-width:400px;width:100%"><h3 style="margin:0 0 6px;font-size:18px">🕐 Mi horario</h3><p style="margin:0 0 16px;font-size:13px;color:var(--muted);line-height:1.4">Configura tu turno para que la app sepa si vas al día.</p><div style="margin-bottom:12px"><label style="font-size:12px;font-weight:800;color:var(--muted);display:block;margin-bottom:6px">Hora de entrada</label><input id="h-inicio" type="number" min="0" max="23" value="${horario.inicio}" style="width:100%;padding:12px;border:2px solid var(--line);border-radius:12px;font-size:16px;font-family:inherit;background:var(--bg);color:var(--txt)"></div><div style="margin-bottom:18px"><label style="font-size:12px;font-weight:800;color:var(--muted);display:block;margin-bottom:6px">Hora de salida</label><input id="h-fin" type="number" min="0" max="23" value="${horario.fin}" style="width:100%;padding:12px;border:2px solid var(--line);border-radius:12px;font-size:16px;font-family:inherit;background:var(--bg);color:var(--txt)"></div><div style="display:flex;gap:10px"><button onclick="cerrarHorarioModal()" style="flex:1;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;background:#eef0f3;color:#374151;font-family:inherit;cursor:pointer">Cancelar</button><button onclick="guardarHorarioModal()" style="flex:1;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff;font-family:inherit;cursor:pointer">Guardar</button></div></div>`;
-  m.style.display = 'flex';
-}
-function cerrarHorarioModal() {
-  const m = document.getElementById('horarioModal');
-  if (m) m.style.display = 'none';
-}
-function guardarHorarioModal() {
-  const ini = parseInt(document.getElementById('h-inicio').value);
-  const fin = parseInt(document.getElementById('h-fin').value);
-  if (isNaN(ini) || isNaN(fin) || ini < 0 || ini > 23 || fin < 0 || fin > 23) { toast('⚠️ Pon horas válidas (0-23)'); return; }
-  if (fin <= ini) { toast('⚠️ La salida debe ser después de la entrada'); return; }
-  horario = { inicio: ini, fin: fin };
-  guardarHorario();
-  cerrarHorarioModal();
-  renderRitmo();
-  toast('✅ Horario guardado');
-}
-  
 const TIENDAS_LIMPIEZA_KEY='claro_tiendas_limpieza_v1';
 function limpiarTiendasAntiguas(){if(localStorage.getItem(TIENDAS_LIMPIEZA_KEY)==='1')return;localStorage.setItem(TIENDAS_LIMPIEZA_KEY,'1');const a=['Tecno','Kiosko Máx'];const b=tiendas.length;tiendas=tiendas.filter(t=>!(a.includes(t.nombre)&&!inventario.some(m=>m.tienda===t.nombre)));if(tiendas.length!==b)guardarTiendas()}
 function guardarTiendas(){try{localStorage.setItem(TIENDAS_STORE,JSON.stringify(tiendas))}catch(e){}}
@@ -963,11 +685,11 @@ function abrirInvModalNuevo(){if(inventarioBloqueado){toast('🔒 Desbloquea pri
 function abrirInvModalEditar(id){if(inventarioBloqueado){toast('🔒 Inventario bloqueado');return}const m=inventario.find(x=>x.id===id);if(!m)return;abrirInvModal(m)}
 function abrirInvModal(m){const e=!!m;const ma=m?m.modelo:'';const ta=m?m.tienda:(tiendas[0]?tiendas[0].nombre:'');const ca=m?(Number(m.cantidad)||0):0;$('#invModalBox').innerHTML=`<h3>${e?'✏️ Editar teléfono':'➕ Agregar teléfono'}</h3><div class="campo"><label>Modelo</label><input id="inv-f-modelo" type="text" placeholder="Ej: Redmi 15, Samsung A05..." value="${esc(ma)}" autocapitalize="words"></div><div class="campo"><label>Tienda</label><div class="tiendas-lista" id="inv-tiendas-lista"></div><button type="button" class="btn btn-gris" style="margin-top:10px;padding:12px;font-size:14px" onclick="agregarNuevaTienda()">➕ Agregar nueva tienda</button></div><div class="campo"><label>Cantidad</label><div style="display:flex;align-items:center;gap:8px"><button type="button" class="inv-btn inv-menos" onclick="invModalCant(-1)">−</button><input id="inv-f-cant" type="number" min="0" value="${ca}" style="flex:1;text-align:center;font-size:20px;font-weight:900;font-family:monospace;padding:14px;border:2px solid var(--line);border-radius:12px"><button type="button" class="inv-btn inv-mas" onclick="invModalCant(1)">+</button></div></div><div class="btns"><button class="cancelar" onclick="cerrarInvModal()">Cancelar</button><button class="guardar" onclick="guardarInvModal(${e?`'${m.id}'`:'null'})">${e?'💾 Guardar':'✅ Agregar'}</button></div>`;pintarTiendasModal(ta);$('#invModal').classList.add('ver');setTimeout(()=>{const i=$('#inv-f-modelo');if(i)i.focus()},100)}
 let _tiendaSeleccionada='';
-function pintarTiendasModal(s){_tiendaSeleccionada=s||(tiendas[0]?tiendas[0].nombre:'');const c=$('#inv-tiendas-lista');if(ad;padding:6px 2px;line-height:1.5">No hay tiendas todavía. Toca <b>➕ Agregar nueva tienda</b> para crear una.</div>`;return}c.innerHTML=tiendas.map(t=>{const a=t.nombre===_tiendaSeleccionada;const bg=a?t.color:'#fff';const ct=a?'#fff':'#17191c';const b=a?'transparent':'#e6e8eb';return`<button type="button" class="tienda-chip" style="background:${bg};color:${ct};border-color:${b}" onclick="seleccionarTienda('${esc(t.nombre)}')"><span class="punto" style="background:${a?'#fff':t.color}"></span>${esc(t.nombre)}</button>`}).join('')}
+function pintarTiendasModal(s){_tiendaSeleccionada=s||(tiendas[0]?tiendas[0].nombre:'');const c=$('#inv-tiendas-lista');if(!c)return;if(!tiendas.length){c.innerHTML=`<div style="font-size:13px;color:#9aa3ad;padding:6px 2px;line-height:1.5">No hay tiendas todavía. Toca <b>➕ Agregar nueva tienda</b> para crear una.</div>`;return}c.innerHTML=tiendas.map(t=>{const a=t.nombre===_tiendaSeleccionada;const bg=a?t.color:'#fff';const ct=a?'#fff':'#17191c';const b=a?'transparent':'#e6e8eb';return`<button type="button" class="tienda-chip" style="background:${bg};color:${ct};border-color:${b}" onclick="seleccionarTienda('${esc(t.nombre)}')"><span class="punto" style="background:${a?'#fff':t.color}"></span>${esc(t.nombre)}</button>`}).join('')}
 function seleccionarTienda(t){_tiendaSeleccionada=t;pintarTiendasModal(t)}
 function agregarNuevaTienda(){const n=prompt('Nombre de la nueva tienda:');if(n===null)return;const l=n.trim();if(!l){toast('⚠️ Nombre vacío');return}if(tiendas.some(t=>t.nombre.toLowerCase()===l.toLowerCase())){toast('⚠️ Ya existe esa tienda');const m=document.getElementById('invModal');if(m&&m.classList.contains('ver'))seleccionarTienda(l);return}const u=tiendas.map(t=>t.color.toLowerCase());const d=PALETA_COLORES.find(c=>!u.includes(c.valor.toLowerCase()));const cn=d?d.valor:PALETA_COLORES[0].valor;tiendas.push({nombre:l,color:cn});guardarTiendas();const m=document.getElementById('invModal');if(m&&m.classList.contains('ver'))pintarTiendasModal(l);renderInventario();toast('✅ Tienda agregada')}
 function invModalCant(d){const i=$('#inv-f-cant');if(!i)return;i.value=Math.max(0,(Number(i.value)||0)+d)}
-function cerrarInvModal(){$('#invModal').classList.remove('ver')}!c)return;if(!tiendas.length){c.innerHTML=`<div style="font-size:13px;color:#9aa3
+function cerrarInvModal(){$('#invModal').classList.remove('ver')}
 function guardarInvModal(id){const mo=($('#inv-f-modelo').value||'').trim();const ca=Math.max(0,Math.floor(Number($('#inv-f-cant').value)||0));const ti=_tiendaSeleccionada||(tiendas[0]?tiendas[0].nombre:'');if(!mo){toast('⚠️ Escribe el modelo');$('#inv-f-modelo').focus();return}if(!ti){toast('⚠️ Selecciona la tienda');return}const d=inventario.find(m=>m.id!==id&&m.tienda.toLowerCase()===ti.toLowerCase()&&m.modelo.toLowerCase()===mo.toLowerCase());if(d){toast(`⚠️ "${mo}" ya existe en ${ti}`,3200);return}if(id){const m=inventario.find(x=>x.id===id);if(!m){cerrarInvModal();return}m.modelo=mo;m.tienda=ti;m.cantidad=ca;guardarInventario();toast('✅ Actualizado')}else{inventario.push({id:uid(),modelo:mo,tienda:ti,cantidad:ca});guardarInventario();toast('✅ Agregado')}cerrarInvModal();renderInventario()}
 function abrirInvModalMover(id){if(inventarioBloqueado){toast('🔒 Inventario bloqueado');return}const m=inventario.find(x=>x.id===id);if(!m)return;const o=tiendas.filter(t=>t.nombre!==m.tienda);if(!o.length){toast('⚠️ Solo tienes una tienda. Agrega otra primero.');return}const msg=`Mover "${m.modelo}" de ${m.tienda} a:\n\n`+o.map((t,i)=>`${i+1}. ${t.nombre}`).join('\n')+`\n\nEscribe el número:`;const r=prompt(msg);if(r===null)return;const idx=parseInt(r,10)-1;if(isNaN(idx)||idx<0||idx>=o.length){toast('⚠️ Opción inválida');return}const d=o[idx].nombre;const dup=inventario.find(x=>x.id!==m.id&&x.tienda===d&&x.modelo.toLowerCase()===m.modelo.toLowerCase());if(dup){if(!confirm(`"${m.modelo}" ya existe en ${d}. ¿Juntar las cantidades?`))return;dup.cantidad=(Number(dup.cantidad)||0)+(Number(m.cantidad)||0);inventario=inventario.filter(x=>x.id!==m.id)}else{m.tienda=d}guardarInventario();renderInventario();toast('✅ Movido a '+d)}
 function mostrarVistaPrevia(){const t=inventario.reduce((s,m)=>s+(Number(m.cantidad)||0),0);const f=new Date().toLocaleString('es-MX',{day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});let c='';if(!inventario.length){c=`<tr><td colspan="2" style="text-align:center;color:#9aa3ad;padding:24px">Sin teléfonos registrados</td></tr>`}else{const g={};inventario.forEach(m=>{const t=m.tienda||'Sin tienda';if(!g[t])g[t]=[];g[t].push(m)});const o=Object.keys(g).sort((a,b)=>a.localeCompare(b,'es'));c=o.map(t=>{const it=g[t].sort((a,b)=>a.modelo.localeCompare(b.modelo,'es'));const st=it.reduce((s,m)=>s+(Number(m.cantidad)||0),0);const col=colorDeTienda(t);return`<div class="grupo"><div class="grupo-titulo" style="background:${col}"><span>🏪 ${esc(t)}</span><span>${st}</span></div><table><thead><tr><th>Modelo</th><th style="text-align:center;width:80px">Cant.</th></tr></thead><tbody>${it.map(m=>`<tr><td>${esc(m.modelo)}</td><td class="cant">${Number(m.cantidad)||0}</td></tr>`).join('')}</tbody></table></div>`}).join('')}const e=inventarioBloqueado?`<div style="background:#d1fae5;color:#065f46;padding:8px 12px;border-radius:10px;text-align:center;font-size:12px;font-weight:800;margin-bottom:12px">🔒 INVENTARIO GUARDADO</div>`:'';$('#previewBox').innerHTML=`<h3>📋 Inventario actual</h3><div class="fecha">Actualizado: ${esc(f)}</div>${e}${c}${inventario.length?`<div class="gran-total"><div class="t">Total general</div><div class="n">${t}</div></div>`:''}<div class="acciones"><button class="seg" onclick="cerrarPreview()">Cerrar</button><button class="prim" onclick="copiarInventarioTexto()">📋 Copiar</button></div>`;$('#previewModal').classList.add('ver')}
@@ -982,7 +704,7 @@ function guardarLS(){idbSet(IDB_KEY,registros).then(ok=>{if(!ok)toast('⚠️ No
 function cerrarTodo(){$('#overlay').classList.remove('ver');$('#overlayBarra').style.width='0%';$('#selectorModal').classList.remove('ver');$('#previewModal').classList.remove('ver');$('#invModal').classList.remove('ver');$('#colorModal').classList.remove('ver');const c=document.getElementById('cropModal');if(c)c.remove();_selectorCallback=null;cerrarCamara();['#inpGaleriaChip','#inpGaleriaIMEI','#inpGaleriaEquipo'].forEach(s=>{const e=$(s);if(e)e.value=''})}
 function limpiarEstadoFormulario(){editId=null;fotoChipTemp=null;fotoEquipoTemp=null}
 function volverAlInicio(m){cerrarTodo();limpiarEstadoFormulario();ir('home');if(m)setTimeout(()=>toast(m),60)}
-function ir(v){$$('.vista').forEach(x=>x.classList.remove('activa'));$('#vista-'+v).classList.add('activa');$$('.nav button').forEach(b=>b.classList.toggle('activo',b.dataset.v===v));window.scrollTo(0,0);if(v==='home'){renderLista();renderMeta();renderRitmo()}if(v==='fotos')renderFotos();if(v==='inventario')renderInventario();if(v==='respaldo')actualizarStorageInfo()}
+function ir(v){$$('.vista').forEach(x=>x.classList.remove('activa'));$('#vista-'+v).classList.add('activa');$$('.nav button').forEach(b=>b.classList.toggle('activo',b.dataset.v===v));window.scrollTo(0,0);if(v==='home'){renderLista();renderMeta()}if(v==='fotos')renderFotos();if(v==='inventario')renderInventario();if(v==='respaldo')actualizarStorageInfo()}
 async function actualizarStorageInfo(){const c=document.getElementById('storage-info');if(!c)return;c.innerHTML='📊 Calculando…';const e=await estimarUso();if(!e){c.innerHTML='📊 <b>IndexedDB activo</b> · Almacenamiento amplio disponible';return}const p=e.total?Math.round((e.uso/e.total)*100):0;c.innerHTML=`📊 Espacio usado: <b>${fmtBytes(e.uso)}</b><span class="uso">${p}%</span><br><span style="font-size:11px;opacity:.8">Disponible total: ${fmtBytes(e.total)} · ${registros.length} registros guardados</span>`}
 $$('.nav button').forEach(b=>b.onclick=()=>ir(b.dataset.v));
 $$('.filtro').forEach(btn=>{btn.onclick=()=>{$$('.filtro').forEach(b=>b.classList.remove('activo'));btn.classList.add('activo');filtroFecha=btn.dataset.f;if(filtroFecha!=='custom'){fechaCustom=null;$('#fechaPicker').value='';$('#btnLimpiarFecha').style.display='none'}renderLista()}});
@@ -1087,7 +809,7 @@ function tomarFotoIMEI(){tomarFoto('Foto de la etiqueta',d=>procesarDataUrlIMEI(
 function tomarFotoEquipo(){tomarFoto('Foto del Teléfono',d=>procesarDataUrlEquipo(d))}
 function pintarFotos(){const cb=$('#fotoChipBox');if(cb){if(fotoChipTemp){cb.innerHTML=`<img src="${fotoChipTemp}">`;const b=$('#btnQuitarFotoChip');if(b)b.style.display='flex'}else{cb.innerHTML=`<div class="ph">📷<br>Sin foto</div>`;const b=$('#btnQuitarFotoChip');if(b)b.style.display='none'}}const eb=$('#fotoEquipoBox');if(eb){if(fotoEquipoTemp){eb.innerHTML=`<img src="${fotoEquipoTemp}">`;const b=$('#btnQuitarFotoEquipo');if(b)b.style.display='flex'}else{eb.innerHTML=`<div class="ph">📷<br>Sin foto</div>`;const b=$('#btnQuitarFotoEquipo');if(b)b.style.display='none'}}}
 function quitarFoto(t){if(t==='chip')fotoChipTemp=null;else fotoEquipoTemp=null;pintarFotos()}
-function guardarRegistro(){const num=soloDigitos($('#f-numero').value);const imsi=soloDigitos($('#f-imsi').value);const imei=formTipo==='telefono'?soloDigitos($('#f-imei').value):'';const nota=$('#f-nota').value.trim();if(num.length<7)return toast('⚠️ Número inválido');if(imsi.length<10)return toast('⚠️ IMSI incompleto');if(formTipo==='telefono'&&imei.length<10)return toast('⚠️ IMEI incompleto');const d=registros.find(r=>r.id!==editId&&((imsi&&r.imsi===imsi)||(imei&&r.imei&&r.imei===imei)));if(d){const c=(d.imsi===imsi)?'IMSI':'IMEI';if(!confirm(`Ya existe con ese ${c} (${d.numero}).\n\n¿Guardar?`))return}let msj='';if(editId){const r=registros.find(x=>x.id===editId);Object.assign(r,{numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fotoEquipo:formTipo==='telefono'?fotoEquipoTemp:undefined,editado:new Date().toISOString()});delete r.foto;msj='✅ Actualizado'}else{const n={id:uid(),tipo:formTipo,numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fecha:new Date().toISOString(),fechaLocal:fechaLocalHoy()};if(formTipo==='telefono')n.fotoEquipo=fotoEquipoTemp;registros.push(n);msj='✅ Guardado'}guardarLS();volverAlInicio();mostrarExito(msj)}
+function guardarRegistro(){const num=soloDigitos($('#f-numero').value);const imsi=soloDigitos($('#f-imsi').value);const imei=formTipo==='telefono'?soloDigitos($('#f-imei').value):'';const nota=$('#f-nota').value.trim();if(num.length<7)return toast('⚠️ Número inválido');if(imsi.length<10)return toast('⚠️ IMSI incompleto');if(formTipo==='telefono'&&imei.length<10)return toast('⚠️ IMEI incompleto');const d=registros.find(r=>r.id!==editId&&((imsi&&r.imsi===imsi)||(imei&&r.imei&&r.imei===imei)));if(d){const c=(d.imsi===imsi)?'IMSI':'IMEI';if(!confirm(`Ya existe con ese ${c} (${d.numero}).\n\n¿Guardar?`))return}let msj='';if(editId){const r=registros.find(x=>x.id===editId);Object.assign(r,{numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fotoEquipo:formTipo==='telefono'?fotoEquipoTemp:undefined,editado:new Date().toISOString()});delete r.foto;msj='✅ Actualizado'}else{const n={id:uid(),tipo:formTipo,numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fecha:new Date().toISOString(),fechaLocal:fechaLocalHoy()};if(formTipo==='telefono')n.fotoEquipo=fotoEquipoTemp;registros.push(n);msj='✅ Guardado'}guardarLS();volverAlInicio(msj)}
 function renderLista(){const rango=obtenerRangoFechas();const q=($('#buscar').value||'').trim().toLowerCase();let lista=registros.filter(r=>registroEnRango(r,rango));if(q)lista=lista.filter(r=>[r.numero,r.imsi,r.imei,r.nota].join(' ').toLowerCase().includes(q));lista.sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));const lr=registros.filter(r=>registroEnRango(r,rango));const chips=lr.filter(r=>r.tipo==='chip').length;$('#st-total').textContent=lr.length;$('#st-chips').textContent=chips;$('#st-tels').textContent=lr.length-chips;const info=$('#filtroInfo');if(filtroFecha==='todo')info.innerHTML=`📊 <b>Todos</b>`;else if(filtroFecha==='custom')info.innerHTML=`📅 <b>${esc(nombreFechaCorta(fechaCustom))}</b>`;else if(filtroFecha==='hoy')info.innerHTML=`📅 Hoy · <b>${esc(nombreFechaCorta(fechaLocalHoy()))}</b>`;else if(filtroFecha==='ayer'){const a=sumarDias(fechaLocalHoy(),-1);info.innerHTML=`📅 Ayer · <b>${esc(nombreFechaCorta(a))}</b>`}else if(filtroFecha==='semana')info.innerHTML=`📅 <b>Esta semana</b>`;else if(filtroFecha==='mes')info.innerHTML=`📅 <b>Este mes</b>`;const cont=$('#lista');if(!lista.length){cont.innerHTML=`<div class="vacio"><span class="em">${q?'🔍':'📋'}</span>${q?'Sin resultados.':'Sin registros.'}</div>`;return}const conteo=lista.length;const headerHTML=`<div class="lista-header"><span>${filtroFecha==='hoy'?'📅 HOY':filtroFecha==='ayer'?'📅 AYER':filtroFecha==='custom'?'📅 '+nombreFechaCorta(fechaCustom).toUpperCase():filtroFecha==='semana'?'📅 SEMANA':filtroFecha==='mes'?'📅 MES':'📋 TODOS'}</span><span class="count">${conteo} ${conteo===1?'venta':'ventas'}</span></div>`;const items=lista.map(r=>{let src=null;if(r.tipo==='chip')src=r.fotoChip||r.foto;else src=r.fotoEquipo||r.fotoChip||r.foto;const mh=filtroFecha==='todo'||filtroFecha==='semana'||filtroFecha==='mes';const fm=mh?fmt(r.fecha):nombreFechaCorta(r.fechaLocal||derivarFechaLocal(r.fecha))+' · '+new Date(r.fecha).toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});return`<div class="item" onclick="abrirDetalle('${r.id}')"><div class="thumb">${src?`<img src="${src}" loading="lazy">`:(r.tipo==='chip'?'📶':'📱')}</div><div class="info"><div class="t1">${esc(r.numero)}<span class="pill ${r.tipo==='chip'?'pill-chip':'pill-tel'}">${r.tipo==='chip'?'CHIP':'EQUIPO'}</span></div><div class="t2">IMSI: ${esc(r.imsi||'—')}</div>${r.imei?`<div class="t2">IMEI: ${esc(r.imei)}</div>`:''}<div class="t3">${esc(fm)}</div></div><div style="color:#c3c8cf;font-size:20px">›</div></div>`}).join('');cont.innerHTML=headerHTML+items}
 function abrirDetalle(id){const r=registros.find(x=>x.id===id);if(!r)return;const fc=r.fotoChip||(r.tipo==='chip'?r.foto:null);const fe=r.fotoEquipo||(r.tipo==='telefono'?r.foto:null);$('#vista-detalle').innerHTML=`
 <button class="btn-volver" onclick="ir('home')">← Volver</button>
@@ -1097,7 +819,7 @@ ${fc?`<div class="det-foto-label">📶 Foto del Chip</div><img class="det-foto" 
 <div class="card">
 <div class="dato"><span class="k">Número</span><span class="v">${esc(r.numero)}<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.numero)}')">Copiar</button></span></div>
 <div class="dato"><span class="k">IMSI</span><span class="v">${esc(r.imsi||'—')}${r.imsi?`<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.imsi)}')">Copiar</button>`:''}</span></div>
-${r.imei?`<div class="dato"><span class="k">IMEI</spfunction guardarRegistro(){an><span class="v">${esc(r.imei)}<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.imei)}')">Copiar</button></span></div>`:''}
+${r.imei?`<div class="dato"><span class="k">IMEI</span><span class="v">${esc(r.imei)}<button class="mini" onclick="event.stopPropagation();copiar('${esc(r.imei)}')">Copiar</button></span></div>`:''}
 <div class="dato"><span class="k">Fecha</span><span class="v" style="font-size:13px;font-weight:600">${fmt(r.fecha)}</span></div>
 ${r.nota?`<div class="dato" style="display:block"><span class="k">Nota</span><div style="margin-top:6px;font-size:14px;line-height:1.5">${esc(r.nota)}</div></div>`:''}
 </div>
@@ -1116,41 +838,12 @@ function exportarJSON(){const data={app:'Registro Claro',version:23,exportado:ne
 $('#inpImport').onchange=e=>{const file=e.target.files[0];if(!file)return;const r=new FileReader();r.onload=ev=>{try{const data=JSON.parse(ev.target.result);const nuevos=Array.isArray(data)?data:(data.registros||[]);const inv=data.inventario||[];const tien=data.tiendas||[];const bloq=data.inventarioBloqueado;const meta=data.metaConfig;if(!nuevos.length&&!inv.length)return toast('Sin datos');const ex=new Set(registros.map(x=>x.id));let ag=0;nuevos.forEach(x=>{if(x&&x.id&&!ex.has(x.id)){if(x.tipo==='chip'&&x.foto&&!x.fotoChip)x.fotoChip=x.foto;if(x.tipo==='telefono'&&x.foto&&!x.fotoEquipo)x.fotoEquipo=x.foto;if(!x.fechaLocal)x.fechaLocal=derivarFechaLocal(x.fecha);registros.push(x);ag++}});if(inv.length){const exInv=new Set(inventario.map(x=>x.id));inv.forEach(x=>{if(x&&x.id&&!exInv.has(x.id))inventario.push(x)});guardarInventario()}if(tien.length){if(typeof tien[0]==='string')tiendas=tien.map((n,i)=>({nombre:n,color:PALETA_COLORES[i%PALETA_COLORES.length].valor}));else tiendas=tien;guardarTiendas()}if(typeof bloq==='boolean'){inventarioBloqueado=bloq;guardarEstadoBloqueo()}if(meta&&typeof meta==='object'){if(typeof meta.mes==='number'||typeof meta.dia==='number'){metaConfig.mes={chips:parseInt(meta.mes)||0,tels:0};metaConfig.dia={chips:parseInt(meta.dia)||0,tels:0};metaConfig.inicial={mes:null,chips:0,tels:0}}else{metaConfig.mes={chips:parseInt(meta.mes?.chips)||0,tels:parseInt(meta.mes?.tels)||0};metaConfig.dia={chips:parseInt(meta.dia?.chips)||0,tels:parseInt(meta.dia?.tels)||0};metaConfig.inicial={mes:meta.inicial?.mes||null,chips:parseInt(meta.inicial?.chips)||0,tels:parseInt(meta.inicial?.tels)||0}}guardarMeta()}guardarLS();toast(`📥 ${ag} registros restaurados`);renderLista();renderFotos();renderInventario();renderMeta();if(typeof actualizarStorageInfo==='function')actualizarStorageInfo()}catch(err){toast('⚠️ Archivo inválido')}};r.readAsText(file);e.target.value=''};
 async function borrarTodo(){if(!confirm('¿Borrar TODOS los registros, fotos e inventario?\n\nRespalda antes.'))return;if(!confirm('Confirma de nuevo.'))return;registros=[];inventario=[];inventarioBloqueado=false;try{await idbClear()}catch(e){}localStorage.removeItem(STORE);localStorage.removeItem(INV_STORE);localStorage.removeItem(INV_BLOQ_STORE);toast('🗑️ Todo borrado');renderLista();renderFotos();renderInventario();renderMeta();if(typeof actualizarStorageInfo==='function')actualizarStorageInfo()}
 let _diaActualGuardado=fechaLocalHoy();
-setInterval(()=>{const h=fechaLocalHoy();if(h!==_diaActualGuardado){_diaActualGuardado=h;if(filtroFecha==='hoy')renderLista();renderMeta();toast('📅 Nuevo día',2500)}renderRitmo()},60000);
+setInterval(()=>{const h=fechaLocalHoy();if(h!==_diaActualGuardado){_diaActualGuardado=h;if(filtroFecha==='hoy')renderLista();renderMeta();toast('📅 Nuevo día',2500)}},60000);
 
 /* INICIO */
 cargarTema();
 cargarMeta();
-cargarHorario();
-cargar.then(()=>{renderRitmo();renderLista();renderMeta();renderInventario();setTimeout(()=>{precargarTodo()},50);setTimeout(()=>{verificarCambioDeMes()},800)}).catch(err=>{console.error('Error al iniciar:',err);renderRitmo();renderLista();renderMeta();renderInventario();setTimeout(()=>{precargarTodo()},50)});
+cargar().then(()=>{renderLista();renderMeta();renderInventario();setTimeout(()=>{precargarTodo()},50);setTimeout(()=>{verificarCambioDeMes()},800)}).catch(err=>{console.error('Error al iniciar:',err);renderLista();renderMeta();renderInventario();setTimeout(()=>{precargarTodo()},50)});
 </script>
-
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js').then(reg => {
-    setInterval(() => reg.update(), 30000);
-    reg.addEventListener('updatefound', () => {
-      const nuevo = reg.installing;
-      if (!nuevo) return;
-      nuevo.addEventListener('statechange', () => {
-        if (nuevo.state === 'installed' && navigator.serviceWorker.controller) {
-          if (typeof toast === 'function') {
-            toast('🔄 Nueva versión disponible. Cierra y abre la app.', 5000);
-          }
-          if (navigator.vibrate) { try { navigator.vibrate([60,40,60]); } catch(e){} }
-        }
-      });
-    });
-  });
-}
-</script>
-  <!-- ✨ Animación de éxito -->
-<div id="successAnim">
-  <div class="circulo">✓</div>
-  <div class="texto" id="successTxt">¡Guardado!</div>
-</div>
-</body>
-</html>
-
 </body>
 </html>
