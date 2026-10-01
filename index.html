@@ -384,6 +384,79 @@ html[data-theme="dark"] .storage-info .uso{background:#1e3a8a;color:#dbeafe}
 #avisoMesModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
 #avisoMesModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
 html[data-theme="dark"] #avisoMesModal .box{background:var(--card);color:var(--txt)}
+/* 🔥 NEÓN AMARILLO AL 80% — modo oscuro */
+html[data-theme="dark"] .meta-card.casi{
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+  background:transparent !important;
+  color:var(--txt) !important;
+  box-shadow:none !important;
+  isolation:isolate;
+}
+html[data-theme="dark"] .meta-card.casi::before{
+  content:"";
+  position:absolute;
+  inset:-150%;
+  background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#fde047 300deg,#fbbf24 330deg,#fde047 355deg,transparent 360deg);
+  animation:neonSpin 3s linear infinite;
+  z-index:0;
+}
+html[data-theme="dark"] .meta-card.casi::after{
+  content:"";
+  position:absolute;
+  inset:2px;
+  border-radius:14px;
+  background:var(--card);
+  z-index:1;
+}
+html[data-theme="dark"] .meta-card.casi > *{
+  position:relative;
+  z-index:2;
+}
+html[data-theme="dark"] .meta-card.casi{
+  box-shadow:0 0 10px rgba(253,224,71,.55),0 0 22px rgba(251,191,36,.35) !important;
+}
+
+/* 🏆 NEÓN VERDE AL 100% — modo oscuro */
+html[data-theme="dark"] .meta-card.completada{
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+  background:transparent !important;
+  color:var(--txt) !important;
+  box-shadow:none !important;
+  isolation:isolate;
+}
+html[data-theme="dark"] .meta-card.completada::before{
+  content:"";
+  position:absolute;
+  inset:-150%;
+  background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#86efac 300deg,#22c55e 330deg,#4ade80 355deg,transparent 360deg);
+  animation:neonSpin 3s linear infinite;
+  z-index:0;
+}
+html[data-theme="dark"] .meta-card.completada::after{
+  content:"";
+  position:absolute;
+  inset:2px;
+  border-radius:14px;
+  background:var(--card);
+  z-index:1;
+}
+html[data-theme="dark"] .meta-card.completada > *{
+  position:relative;
+  z-index:2;
+}
+html[data-theme="dark"] .meta-card.completada{
+  box-shadow:0 0 10px rgba(74,222,128,.55),0 0 22px rgba(34,197,94,.35) !important;
+}
+
+@keyframes neonSpin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){
+  html[data-theme="dark"] .meta-card.casi::before,
+  html[data-theme="dark"] .meta-card.completada::before{animation:none}
+}
 </style>
 </head>
 <body>
