@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -333,6 +334,8 @@ html[data-theme="dark"] .meta-pill-ok{background:#0f2a1a;color:#86efac;border-co
 .meta-card.casi .meta-mensaje,.meta-card.completada .meta-mensaje{border-top-color:rgba(255,255,255,.3)}
 .meta-mensaje small{display:block;font-weight:600;font-size:11.5px;opacity:.85;margin-top:3px}
 .meta-cta{text-align:center;font-size:13.5px;color:var(--muted);line-height:1.55;padding:4px 0}
+
+/* 🌈 Barra de progreso RGB original */
 .meta-barra{height:12px;background:rgba(0,0,0,.12);border-radius:20px;overflow:hidden;position:relative}
 .meta-card.casi .meta-barra,.meta-card.completada .meta-barra{background:rgba(255,255,255,.28)}
 .meta-barra > div{height:100%;border-radius:20px;position:relative;overflow:hidden;transition:width .6s cubic-bezier(.25,.8,.25,1);background:linear-gradient(90deg,#ff0033,#ff6b00,#ffdd00,#00ff66,#00ddff,#0066ff,#b400ff,#ff0033);background-size:300% 100%;animation:metaRGB 8s linear infinite,metaGlow 5s ease-in-out infinite;filter:saturate(1.6) brightness(1.15);box-shadow:0 0 8px rgba(255,0,51,.7),0 0 16px rgba(0,255,102,.5),0 0 24px rgba(0,102,255,.4),inset 0 0 6px rgba(255,255,255,.35)}
@@ -349,6 +352,7 @@ html[data-theme="dark"] .meta-pill-ok{background:#0f2a1a;color:#86efac;border-co
 .meta-card.casi .meta-hoy .mini-barra > div{filter:saturate(1.8) brightness(1.25)}
 .meta-card.completada .meta-hoy .mini-barra > div{filter:saturate(2) brightness(1.35);animation:metaRGB 4s linear infinite,metaGlow 3s ease-in-out infinite}
 @media (prefers-reduced-motion: reduce){.meta-barra > div,.meta-hoy .mini-barra > div,.meta-barra > div::after,.meta-hoy .mini-barra > div::after{animation:none !important}}
+
 #metaModal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:750;display:none;align-items:center;justify-content:center;padding:16px}
 #metaModal.ver{display:flex}
 #metaModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
@@ -385,130 +389,73 @@ html[data-theme="dark"] .storage-info .uso{background:#1e3a8a;color:#dbeafe}
 #avisoMesModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
 html[data-theme="dark"] #avisoMesModal .box{background:var(--card);color:var(--txt)}
 
-/* 🔥 NEÓN AMARILLO AL 80% — modo oscuro */
-html[data-theme="dark"] .meta-card.casi{
-  position:relative;overflow:hidden;border-radius:16px;
-  background:transparent !important;color:var(--txt) !important;
-  box-shadow:none !important;isolation:isolate;
-}
-html[data-theme="dark"] .meta-card.casi::before{
-  content:"";position:absolute;inset:-150%;
-  background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#fde047 300deg,#fbbf24 330deg,#fde047 355deg,transparent 360deg);
-  animation:neonSpin 10s linear infinite;z-index:0;
-}
-html[data-theme="dark"] .meta-card.casi::after{
-  content:"";position:absolute;inset:2px;border-radius:14px;
-  background:var(--card);z-index:1;
-}
-html[data-theme="dark"] .meta-card.casi > *{position:relative;z-index:2;}
-html[data-theme="dark"] .meta-card.casi{
-  box-shadow:0 0 10px rgba(253,224,71,.55),0 0 22px rgba(251,191,36,.35) !important;
-}
+/* ⚪ NEÓN BLANCO 0-79% · 🟡 AMARILLO 80-99% · 🟢 VERDE 100% — todos a 7s, solo modo oscuro */
+html[data-theme="dark"] .meta-card:not(.casi):not(.completada){position:relative;overflow:hidden;border-radius:16px;background:transparent !important;color:var(--txt) !important;box-shadow:none !important;isolation:isolate}
+html[data-theme="dark"] .meta-card:not(.casi):not(.completada)::before{content:"";position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#f5f5f5 300deg,#ffffff 330deg,#f5f5f5 355deg,transparent 360deg);animation:neonSpin 7s linear infinite;z-index:0}
+html[data-theme="dark"] .meta-card:not(.casi):not(.completada)::after{content:"";position:absolute;inset:2px;border-radius:14px;background:var(--card);z-index:1}
+html[data-theme="dark"] .meta-card:not(.casi):not(.completada) > *{position:relative;z-index:2}
+html[data-theme="dark"] .meta-card:not(.casi):not(.completada){box-shadow:0 0 10px rgba(255,255,255,.5),0 0 22px rgba(255,255,255,.3) !important}
 
-/* 🏆 NEÓN VERDE AL 100% — modo oscuro */
-html[data-theme="dark"] .meta-card.completada{
-  position:relative;overflow:hidden;border-radius:16px;
-  background:transparent !important;color:var(--txt) !important;
-  box-shadow:none !important;isolation:isolate;
-}
-html[data-theme="dark"] .meta-card.completada::before{
-  content:"";position:absolute;inset:-150%;
-  background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#86efac 300deg,#22c55e 330deg,#4ade80 355deg,transparent 360deg);
-  animation:neonSpin 10s linear infinite;z-index:0;
-}
-html[data-theme="dark"] .meta-card.completada::after{
-  content:"";position:absolute;inset:2px;border-radius:14px;
-  background:var(--card);z-index:1;
-}
-html[data-theme="dark"] .meta-card.completada > *{position:relative;z-index:2;}
-html[data-theme="dark"] .meta-card.completada{
-  box-shadow:0 0 10px rgba(74,222,128,.55),0 0 22px rgba(34,197,94,.35) !important;
-}
+html[data-theme="dark"] .meta-card.casi{position:relative;overflow:hidden;border-radius:16px;background:transparent !important;color:var(--txt) !important;box-shadow:none !important;isolation:isolate}
+html[data-theme="dark"] .meta-card.casi::before{content:"";position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#fde047 300deg,#fbbf24 330deg,#fde047 355deg,transparent 360deg);animation:neonSpin 7s linear infinite;z-index:0}
+html[data-theme="dark"] .meta-card.casi::after{content:"";position:absolute;inset:2px;border-radius:14px;background:var(--card);z-index:1}
+html[data-theme="dark"] .meta-card.casi > *{position:relative;z-index:2}
+html[data-theme="dark"] .meta-card.casi{box-shadow:0 0 10px rgba(253,224,71,.55),0 0 22px rgba(251,191,36,.35) !important}
+
+html[data-theme="dark"] .meta-card.completada{position:relative;overflow:hidden;border-radius:16px;background:transparent !important;color:var(--txt) !important;box-shadow:none !important;isolation:isolate}
+html[data-theme="dark"] .meta-card.completada::before{content:"";position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#86efac 300deg,#22c55e 330deg,#4ade80 355deg,transparent 360deg);animation:neonSpin 7s linear infinite;z-index:0}
+html[data-theme="dark"] .meta-card.completada::after{content:"";position:absolute;inset:2px;border-radius:14px;background:var(--card);z-index:1}
+html[data-theme="dark"] .meta-card.completada > *{position:relative;z-index:2}
+html[data-theme="dark"] .meta-card.completada{box-shadow:0 0 10px rgba(74,222,128,.55),0 0 22px rgba(34,197,94,.35) !important}
 @keyframes neonSpin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion: reduce){
+  html[data-theme="dark"] .meta-card:not(.casi):not(.completada)::before,
   html[data-theme="dark"] .meta-card.casi::before,
   html[data-theme="dark"] .meta-card.completada::before{animation:none}
 }
 
-/* 👋 Pantalla de bienvenida */
-#bienvenida{
-  position:fixed;inset:0;z-index:9000;
-  background:linear-gradient(135deg,#DA291C,#6b0f08);
-  color:#fff;display:none;flex-direction:column;align-items:center;justify-content:center;
-  padding:30px 24px;text-align:center;overflow-y:auto;
-  animation:fadeIn .4s ease;
-}
+/* 👋 Bienvenida */
+#bienvenida{position:fixed;inset:0;z-index:9000;background:linear-gradient(135deg,#DA291C,#6b0f08);color:#fff;display:none;flex-direction:column;align-items:center;justify-content:center;padding:30px 24px;text-align:center;overflow-y:auto;animation:fadeIn .4s ease}
 #bienvenida.ver{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-#bienvenida .logo-big{
-  width:100px;height:100px;border-radius:24px;background:#fff;color:#DA291C;
-  display:grid;place-items:center;font-weight:900;font-size:52px;
-  margin-bottom:20px;box-shadow:0 10px 40px rgba(0,0,0,.4);flex:0 0 auto;
-  animation:popLogo .6s cubic-bezier(.2,1.4,.4,1);
-}
+#bienvenida .logo-big{width:100px;height:100px;border-radius:24px;background:#fff;color:#DA291C;display:grid;place-items:center;font-weight:900;font-size:52px;margin-bottom:20px;box-shadow:0 10px 40px rgba(0,0,0,.4);flex:0 0 auto;animation:popLogo .6s cubic-bezier(.2,1.4,.4,1)}
 @keyframes popLogo{0%{transform:scale(0)}100%{transform:scale(1)}}
 #bienvenida h1{margin:0 0 6px;font-size:26px;font-weight:900}
 #bienvenida .subt{font-size:14px;opacity:.9;margin-bottom:24px;line-height:1.5}
 #bienvenida .pasos{text-align:left;max-width:340px;width:100%;margin-bottom:22px}
-#bienvenida .paso{
-  display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;
-  background:rgba(255,255,255,.12);padding:11px 13px;border-radius:14px;
-  line-height:1.4;font-size:14px;
-}
+#bienvenida .paso{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;background:rgba(255,255,255,.12);padding:11px 13px;border-radius:14px;line-height:1.4;font-size:14px}
 #bienvenida .paso .em{font-size:22px;flex:0 0 auto}
 #bienvenida .paso b{display:block;font-size:14px;margin-bottom:2px}
 #bienvenida .paso small{opacity:.9;font-size:12.5px}
-#bienvenida .btn-empezar{
-  width:100%;max-width:340px;padding:18px;border:none;border-radius:14px;
-  font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;
-  background:#fff;color:#DA291C;box-shadow:0 8px 24px rgba(0,0,0,.3);
-  transition:.15s;
-}
+#bienvenida .btn-empezar{width:100%;max-width:340px;padding:18px;border:none;border-radius:14px;font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;background:#fff;color:#DA291C;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:.15s}
 #bienvenida .btn-empezar:active{transform:scale(.97)}
 #bienvenida .version{font-size:11px;opacity:.7;margin-top:14px}
-/* ⚪ NEÓN BLANCO DEL 0% AL 80% — modo oscuro */
-html[data-theme="dark"] .meta-card:not(.casi):not(.completada){
-  position:relative;
-  overflow:hidden;
-  border-radius:16px;
-  background:transparent !important;
-  color:var(--txt) !important;
-  box-shadow:none !important;
-  isolation:isolate;
-}
-html[data-theme="dark"] .meta-card:not(.casi):not(.completada)::before{
-  content:"";
-  position:absolute;
-  inset:-150%;
-  background:conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 270deg,
-    #f5f5f5 300deg,
-    #ffffff 330deg,
-    #f5f5f5 355deg,
-    transparent 360deg
-  );
-  animation:neonSpin 7s linear infinite;
-  z-index:0;
-}
-html[data-theme="dark"] .meta-card:not(.casi):not(.completada)::after{
-  content:"";
-  position:absolute;
-  inset:2px;
-  border-radius:14px;
-  background:var(--card);
-  z-index:1;
-}
-html[data-theme="dark"] .meta-card:not(.casi):not(.completada) > *{
-  position:relative;
-  z-index:2;
-}
-html[data-theme="dark"] .meta-card:not(.casi):not(.completada){
-  box-shadow:
-    0 0 10px rgba(255,255,255,.5),
-    0 0 22px rgba(255,255,255,.3) !important;
-}
+
+/* 🎉 Celebración */
+#celebracion{position:fixed;inset:0;z-index:9500;background:radial-gradient(circle at 50% 40%,rgba(22,163,74,.95),rgba(0,0,0,.97));display:none;align-items:center;justify-content:center;padding:30px 24px;text-align:center;overflow:hidden}
+#celebracion.ver{display:flex;animation:fadeIn .4s ease}
+#celebracion .contenido{position:relative;z-index:2;color:#fff;max-width:400px;width:100%;animation:subirContenido .8s cubic-bezier(.2,1.4,.4,1)}
+@keyframes subirContenido{0%{transform:translateY(40px) scale(.8);opacity:0}60%{transform:translateY(-10px) scale(1.05);opacity:1}100%{transform:none;opacity:1}}
+#celebracion .trofeo{font-size:120px;line-height:1;filter:drop-shadow(0 0 30px #fde047) drop-shadow(0 0 60px #fbbf24);animation:trofeoPulse 1.6s ease-in-out infinite}
+@keyframes trofeoPulse{0%,100%{transform:scale(1) rotate(-5deg)}50%{transform:scale(1.15) rotate(5deg)}}
+#celebracion h1{margin:16px 0 10px;font-size:38px;font-weight:900;letter-spacing:-1px;line-height:1;background:linear-gradient(135deg,#fde047,#fff,#fbbf24);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:brillo 2s ease-in-out infinite}
+@keyframes brillo{0%,100%{filter:brightness(1)}50%{filter:brightness(1.4)}}
+#celebracion h2{margin:0 0 16px;font-size:22px;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+#celebracion .subt{font-size:15px;line-height:1.5;opacity:.95;margin-bottom:24px;font-weight:600}
+#celebracion .stats-cel{display:flex;gap:10px;margin-bottom:24px;justify-content:center}
+#celebracion .stat-cel{background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 18px;min-width:80px;animation:statPop .6s .3s both}
+#celebracion .stat-cel:nth-child(2){animation-delay:.45s}
+#celebracion .stat-cel:nth-child(3){animation-delay:.6s}
+@keyframes statPop{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+#celebracion .stat-cel b{display:block;font-size:26px;font-weight:900;color:#fde047;font-family:monospace}
+#celebracion .stat-cel span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;opacity:.9}
+#celebracion .btn-cerrar{width:100%;max-width:280px;padding:18px;border:none;border-radius:16px;font-size:17px;font-weight:900;cursor:pointer;font-family:inherit;color:#16a34a;background:linear-gradient(135deg,#fde047,#fff);box-shadow:0 10px 30px rgba(253,224,71,.5);letter-spacing:.5px;animation:btnPulse 2s ease-in-out infinite}
+@keyframes btnPulse{0%,100%{transform:scale(1);box-shadow:0 10px 30px rgba(253,224,71,.5)}50%{transform:scale(1.03);box-shadow:0 15px 40px rgba(253,224,71,.8)}}
+#celebracion .btn-cerrar:active{transform:scale(.97)}
+.confeti-pieza{position:fixed;top:-20px;width:10px;height:20px;z-index:9501;pointer-events:none;animation:caerConfeti linear forwards}
+@keyframes caerConfeti{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+.estrella-rayo{position:fixed;top:40%;left:50%;font-size:24px;pointer-events:none;z-index:9501;animation:rayo ease-out forwards}
+@keyframes rayo{0%{transform:translate(-50%,-50%) scale(0);opacity:1}100%{transform:translate(var(--tx),var(--ty)) scale(1.2);opacity:0}}
 </style>
 </head>
 <body>
@@ -626,33 +573,35 @@ html[data-theme="dark"] .meta-card:not(.casi):not(.completada){
 <div id="previewModal"><div class="box" id="previewBox"></div></div>
 <div id="avisoMesModal"></div>
 
-<!-- 👋 Pantalla de bienvenida (solo primera vez) -->
+<!-- 👋 Bienvenida -->
 <div id="bienvenida">
   <div class="logo-big">C</div>
   <h1>¡Bienvenido!</h1>
   <div class="subt">Registro Claro<br>Chips, equipos e inventario</div>
-
   <div class="pasos">
-    <div class="paso">
-      <span class="em">📶</span>
-      <div><b>Registra Chips</b><small>Toma foto del chip y lee el IMSI automáticamente</small></div>
-    </div>
-    <div class="paso">
-      <span class="em">📱</span>
-      <div><b>Registra Teléfonos</b><small>Escanea el IMEI desde la caja del equipo</small></div>
-    </div>
-    <div class="paso">
-      <span class="em">📦</span>
-      <div><b>Controla tu inventario</b><small>Por tienda, con colores personalizados</small></div>
-    </div>
-    <div class="paso">
-      <span class="em">🎯</span>
-      <div><b>Pon tus metas</b><small>Toca el ⚙️ en Mi Meta para configurarlas</small></div>
-    </div>
+    <div class="paso"><span class="em">📶</span><div><b>Registra Chips</b><small>Toma foto del chip y lee el IMSI automáticamente</small></div></div>
+    <div class="paso"><span class="em">📱</span><div><b>Registra Teléfonos</b><small>Escanea el IMEI desde la caja del equipo</small></div></div>
+    <div class="paso"><span class="em">📦</span><div><b>Controla tu inventario</b><small>Por tienda, con colores personalizados</small></div></div>
+    <div class="paso"><span class="em">🎯</span><div><b>Pon tus metas</b><small>Toca el ⚙️ en Mi Meta para configurarlas</small></div></div>
   </div>
-
   <button class="btn-empezar" onclick="cerrarBienvenida()">¡Empezar! 🚀</button>
   <div class="version">Registro Claro · v1.0</div>
+</div>
+
+<!-- 🎉 Celebración -->
+<div id="celebracion">
+  <div class="contenido">
+    <div class="trofeo">🏆</div>
+    <h1>¡META CUMPLIDA!</h1>
+    <h2 id="celebracion-titulo">¡Eres una máquina!</h2>
+    <div class="subt" id="celebracion-sub">Lo lograste. Cerraste el mes que muchos no cierran.</div>
+    <div class="stats-cel">
+      <div class="stat-cel"><b id="cele-chips">0</b><span>Chips</span></div>
+      <div class="stat-cel"><b id="cele-tels">0</b><span>Equipos</span></div>
+      <div class="stat-cel"><b id="cele-pct">100%</b><span>Meta</span></div>
+    </div>
+    <button class="btn-cerrar" onclick="cerrarCelebracion()">¡SEGUIR ROMPIÉNDOLA! 🔥</button>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js" defer></script>
@@ -727,6 +676,7 @@ function renderMeta(){
   const hChMes=totalMesChips(),hTelMes=totalMesTels(),hChHoy=totalHoyChips(),hTelHoy=totalHoyTels();
   const pMCh=pct(hChMes,mCh),pMTel=pct(hTelMes,mTel),pDCh=pct(hChHoy,dCh),pDTel=pct(hTelHoy,dTel);
   detectarHitosMeta(pMCh,pMTel,pDCh,pDTel,mCh,mTel,dCh,dTel);
+  setTimeout(()=>{verificarMeta100()},200);
   const dias=diasRestantesMes();
   const meta80Ch=Math.ceil(mCh*0.8),meta80Tel=Math.ceil(mTel*0.8);
   const f80Ch=Math.max(0,meta80Ch-hChMes),f100Ch=Math.max(0,mCh-hChMes);
@@ -802,21 +752,18 @@ function toast(msg,ms=2000){const t=$('#toast');t.textContent=msg;t.classList.ad
 
 /* 👋 BIENVENIDA */
 const BIENVENIDA_KEY = 'claro_bienvenida_v1';
-function verificarBienvenida() {
-  try {
-    if (!localStorage.getItem(BIENVENIDA_KEY)) {
-      const b = document.getElementById('bienvenida');
-      if (b) b.classList.add('ver');
-      if (navigator.vibrate) { try { navigator.vibrate([60,40,100]); } catch(e){} }
-    }
-  } catch(e) {}
-}
-function cerrarBienvenida() {
-  const b = document.getElementById('bienvenida');
-  if (b) b.classList.remove('ver');
-  try { localStorage.setItem(BIENVENIDA_KEY, '1'); } catch(e) {}
-  toast('¡Bienvenido a Registro Claro! 🎉', 2500);
-}
+function verificarBienvenida(){try{if(!localStorage.getItem(BIENVENIDA_KEY)){const b=document.getElementById('bienvenida');if(b)b.classList.add('ver');if(navigator.vibrate){try{navigator.vibrate([60,40,100])}catch(e){}}}}catch(e){}}
+function cerrarBienvenida(){const b=document.getElementById('bienvenida');if(b)b.classList.remove('ver');try{localStorage.setItem(BIENVENIDA_KEY,'1')}catch(e){}toast('¡Bienvenido a Registro Claro! 🎉',2500)}
+
+/* 🎉 CELEBRACIÓN */
+const CELEBRADO_KEY = 'claro_celebra_mes';
+const FRASES_TITULO = ['¡Eres una máquina! 🔥','¡Imparable! 🚀','¡Crack total! 💪','¡Nivel DIOS! 👑','¡Ventas de élite! 🏆','¡Puro poder! ⚡','¡Estás en racha! 🎯','¡Modo bestia! 🦁'];
+const FRASES_SUB = ['Lo lograste. Pocos llegan hasta aquí.','El esfuerzo siempre paga. ¡Disfrútalo!','Cada venta fue un paso. ¡Y lo cerraste!','Así se trabaja. Nada te detiene.','Esta meta es tuya. ¡Nadie te la quita!','El hustle es real. Sigue así, campeón.','Tu disciplina venció. Orgullo total.'];
+function lanzarCelebracion(){const c=document.getElementById('celebracion');if(!c)return;document.getElementById('celebracion-titulo').textContent=FRASES_TITULO[Math.floor(Math.random()*FRASES_TITULO.length)];document.getElementById('celebracion-sub').textContent=FRASES_SUB[Math.floor(Math.random()*FRASES_SUB.length)];document.getElementById('cele-chips').textContent=totalMesChips();document.getElementById('cele-tels').textContent=totalMesTels();document.getElementById('cele-pct').textContent='100%';c.classList.add('ver');if(navigator.vibrate){try{navigator.vibrate([100,60,100,60,100,60,400])}catch(e){}}lanzarConfeti();lanzarRayos();try{const ctx=new (window.AudioContext||window.webkitAudioContext)();const notas=[523,659,784,1046];notas.forEach((freq,i)=>{const osc=ctx.createOscillator();const gain=ctx.createGain();osc.connect(gain);gain.connect(ctx.destination);osc.frequency.value=freq;osc.type='triangle';gain.gain.setValueAtTime(0.15,ctx.currentTime+i*0.15);gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.15+0.4);osc.start(ctx.currentTime+i*0.15);osc.stop(ctx.currentTime+i*0.15+0.4)})}catch(e){}}
+function lanzarConfeti(){const colores=['#fde047','#fbbf24','#22c55e','#4ade80','#fff','#DA291C'];for(let i=0;i<80;i++){setTimeout(()=>{const c=document.createElement('div');c.className='confeti-pieza';c.style.left=Math.random()*100+'%';c.style.background=colores[Math.floor(Math.random()*colores.length)];c.style.animationDuration=(2+Math.random()*2)+'s';c.style.borderRadius=Math.random()>0.5?'50%':'2px';c.style.width=(6+Math.random()*8)+'px';c.style.height=(10+Math.random()*15)+'px';document.body.appendChild(c);setTimeout(()=>c.remove(),4500)},i*30)}}
+function lanzarRayos(){const emojis=['✨','⭐','🌟','💫','🎉','🎊'];for(let i=0;i<16;i++){setTimeout(()=>{const s=document.createElement('div');s.className='estrella-rayo';s.textContent=emojis[Math.floor(Math.random()*emojis.length)];const angulo=(i/16)*Math.PI*2;const dist=200+Math.random()*150;s.style.setProperty('--tx',Math.cos(angulo)*dist+'px');s.style.setProperty('--ty',Math.sin(angulo)*dist+'px');s.style.animationDuration=(1.2+Math.random()*0.8)+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),2500)},i*40)}}
+function cerrarCelebracion(){const c=document.getElementById('celebracion');if(c)c.classList.remove('ver')}
+function verificarMeta100(){const mCh=metaConfig.mes.chips||0;const mTel=metaConfig.mes.tels||0;if(mCh===0&&mTel===0)return;const hCh=totalMesChips();const hTel=totalMesTels();const chipsOK=mCh===0||hCh>=mCh;const telsOK=mTel===0||hTel>=mTel;if(!chipsOK||!telsOK)return;const mesActual=mesActualPrefijo();const yaCelebrado=localStorage.getItem(CELEBRADO_KEY);if(yaCelebrado===mesActual)return;try{localStorage.setItem(CELEBRADO_KEY,mesActual)}catch(e){}setTimeout(()=>lanzarCelebracion(),900)}
 
 function overlay(m,txt,p,sub){const ov=$('#overlay');if(txt!==undefined)$('#overlayTxt').textContent=txt;if(sub!==undefined)$('#overlaySub').textContent=sub;if(p!==undefined)$('#overlayBarra').style.width=p+'%';if(m&&p===undefined)$('#overlayBarra').style.width='0%';ov.classList.toggle('ver',!!m)}
 function copiar(txt){if(!txt)return;const ok=()=>toast('✅ Copiado');if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok).catch(fallback)}else fallback();function fallback(){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok()}catch(e){toast('No se pudo copiar')}ta.remove()}}
