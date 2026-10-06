@@ -447,6 +447,9 @@ html[data-theme="dark"] .meta-card.completada{box-shadow:0 0 10px rgba(74,222,12
 #camModal .btn-torch{background:rgba(255,255,255,.15);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;padding:0;opacity:.6;color:#fff;border:none;cursor:pointer;font-family:inherit}
 #camModal .btn-torch.on{opacity:1;background:rgba(218,41,28,.6)}
 #camModal .scan-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:rgba(0,0,0,.65);color:#fff;font-size:12px;font-weight:700;padding:8px 14px;border-radius:20px;z-index:9;pointer-events:none;letter-spacing:.3px}
+/* 🎯 Línea roja de escaneo (solo IMEI) */
+#camModal .scan-line{position:absolute;left:0;right:0;top:50%;height:3px;background:linear-gradient(90deg,transparent 0%,#ff2020 15%,#ff2020 85%,transparent 100%);box-shadow:0 0 14px #ff2020,0 0 28px rgba(255,32,32,.7);z-index:8;pointer-events:none;transform:translateY(-50%)}
+#camModal .scan-line::after{content:"Alinea el código con la línea";position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);color:#fff;font-size:12px;font-weight:700;white-space:nowrap;padding:6px 14px;background:rgba(0,0,0,.6);border-radius:20px;letter-spacing:.2px}
 /* 🔔 Modal de actualización */
 #updateModal{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:9600;display:none;align-items:center;justify-content:center;padding:16px}
 #updateModal.ver{display:flex}
@@ -618,31 +621,25 @@ const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 
 /* ╔══════════════════════════════════════════════════════════════╗
-   ║                                                              ║
    ║   📝  INFORMACIÓN DE LA ACTUALIZACIÓN                        ║
-   ║                                                              ║
-   ║   ⚠️  EDITA AQUÍ lo que aparece cuando la app detecta una    ║
-   ║      nueva versión. Es el único bloque que necesitas tocar.  ║
-   ║                                                              ║
+   ║   ⚠️  EDITA AQUÍ lo que aparece cuando la app se actualiza.  ║
    ╚══════════════════════════════════════════════════════════════╝ */
 const INFO_ACTUALIZACION = {
   emoji: '🎉',
   titulo: '¡Nueva versión disponible!',
-  version: 'v1.1',                          // ← cambia el número aquí
+  version: 'v1.1',
   descripcion: 'Esto es lo nuevo en esta actualización:',
   novedades: [
     'Lectura de cámara más rápida',
+    'Línea roja para alinear el IMEI',
     'Escaneo automático de chip e IMEI',
     'Botón de linterna en la cámara',
-    'Mejoras en el rendimiento',
   ],
   aviso: 'Toca "Actualizar ahora" para aplicar los cambios. La app se reiniciará y tus datos se conservan.',
   textoBotonActualizar: '🔄 Actualizar ahora',
   textoBotonCerrar: 'Más tarde',
 };
-/* ╔══════════════════════════════════════════════════════════════╗
-   ║   FIN DE LA INFORMACIÓN DE ACTUALIZACIÓN                     ║
-   ╚══════════════════════════════════════════════════════════════╝ */
+/* ╚══════════════════════════════════════════════════════════════╝ */
 
 const STORE = 'claro_registros_v1';
 const INV_STORE = 'claro_inventario_v3';
@@ -942,7 +939,15 @@ function iniciarEscaneoVivo(onDetectado){
   const c=document.createElement('canvas');c.width=640;c.height=480;
   const ctx=c.getContext('2d',{willReadFrequently:true});
   const view=document.getElementById('camView');
-  if(view&&!view.querySelector('.scan-hint')){const h=document.createElement('div');h.className='scan-hint';h.textContent='🔍 Apunta al código…';view.appendChild(h)}
+
+  /* 🎯 Línea roja solo para IMEI */
+  const usarLinea = (_camTipo === 'imei');
+  if(view && usarLinea && !view.querySelector('.scan-line')){
+    const line = document.createElement('div');
+    line.className = 'scan-line';
+    view.appendChild(line);
+  }
+
   _scanLoop={activo:true};let ultimo=0;
   async function tick(){
     if(!_scanLoop||!_scanLoop.activo)return;
@@ -953,8 +958,33 @@ function iniciarEscaneoVivo(onDetectado){
         ctx.drawImage(v,0,0,c.width,c.height);
         const codes=await det.detect(c);
         if(codes&&codes.length){
-          const texto=codes[0].rawValue;const num=soloDigitos(texto);
-          if(num.length>=13){detenerEscaneoVivo();if(navigator.vibrate){try{navigator.vibrate([60,40,100])}catch(e){}}onDetectado(texto,num);return}
+          let elegido = null;
+          if(usarLinea){
+            /* La línea está al 50% del canvas */
+            const lineY = c.height * 0.5;
+            const margen = 60;
+            for(const code of codes){
+              const bb = code.boundingBox;
+              if(!bb){ elegido = code; break; }
+              const cy = bb.y + bb.height / 2;
+              if(Math.abs(cy - lineY) <= margen){
+                elegido = code;
+                break;
+              }
+            }
+          } else {
+            elegido = codes[0];
+          }
+          if(elegido){
+            const texto = elegido.rawValue;
+            const num = soloDigitos(texto);
+            if(num.length >= 13){
+              detenerEscaneoVivo();
+              if(navigator.vibrate){try{navigator.vibrate([60,40,100])}catch(e){}}
+              onDetectado(texto,num);
+              return;
+            }
+          }
         }
       }catch(e){}
     }
@@ -985,23 +1015,13 @@ async function abrirCamaraModal(t){
   if(_camTipo==='chip'||_camTipo==='imei'){
     iniciarEscaneoVivo((texto,num)=>{
       const tipoDet=_camTipo;
-
-      /* 1️⃣ PRIMERO: escribir el número en el campo */
       if(tipoDet==='chip') escribirCampo('#f-imsi',num);
       else if(tipoDet==='imei') escribirCampo('#f-imei',num);
-
-      /* 2️⃣ LUEGO: el toast */
       toast('✅ '+(tipoDet==='chip'?'IMSI':'IMEI')+': '+num,2200);
-
-      /* 3️⃣ Capturar el frame de la cámara */
       const v=document.getElementById('camVideo');
       let frameUrl=null;
       try{const c=document.createElement('canvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);frameUrl=c.toDataURL('image/jpeg',0.85)}catch(e){}
-
-      /* 4️⃣ Cerrar la cámara */
       cerrarCamara();
-
-      /* 5️⃣ Al final: procesar la foto de fondo */
       setTimeout(async()=>{
         if(tipoDet==='chip'){
           if(frameUrl){try{const img=await dataUrlAImagen(frameUrl);fotoChipTemp=comprimirImagen(img);pintarFotos()}catch(e){}}
@@ -1087,7 +1107,7 @@ function abrirForm(t,id=null){formTipo=t;editId=id;const r=id?registros.find(x=>
 <div class="card">
 <div class="campo"><label>Número de línea</label><input id="f-numero" type="tel" inputmode="numeric" placeholder="Ej. 5512345678" value="${r?esc(r.numero):''}"></div>
 <div class="campo"><label>IMSI</label><input id="f-imsi" type="tel" inputmode="numeric" placeholder="Se llena al leer el chip" value="${r?esc(r.imsi):''}"><div class="ayuda">Toca el botón rojo 👇</div></div>
-${esTel?`<div class="campo"><label>IMEI</label><input id="f-imei" type="tel" inputmode="numeric" placeholder="Se llena al leer la etiqueta" value="${r?esc(r.imei||''):''}"><div class="ayuda">Toca el botón oscuro 👇</div></div>`:''}
+${esTel?`<div class="campo"><label>IMEI</label><input id="f-imei" type="tel" inputmode="numeric" placeholder="Se llena al leer la etiqueta" value="${r?esc(r.imei||''):''}"><div class="ayuda">Alinea el código con la línea roja 👇</div></div>`:''}
 <div class="campo"><label>Nota (opcional)</label><textarea id="f-nota" rows="2" placeholder="Cliente, sucursal…">${r?esc(r.nota||''):''}</textarea></div>
 </div>
 <div class="card">
@@ -1101,7 +1121,7 @@ ${esTel?`<div class="campo"><label>IMEI</label><input id="f-imei" type="tel" inp
 ${esTel?`
 <div class="card" style="border:2px solid #2b2f36">
 <div class="campo" style="margin-bottom:6px"><label>🔎 Leer IMEI de la etiqueta</label></div>
-<div class="ayuda" style="margin-bottom:12px">Si no lee automático, <b>marca el código con el dedo</b>.</div>
+<div class="ayuda" style="margin-bottom:12px">Alinea el código con la línea roja. Si no lee automático, <b>marca el código con el dedo</b>.</div>
 <button class="btn-foto-chip btn-foto-imei" onclick="tomarFotoIMEI()"><span class="em">🔎</span> Tomar foto y leer IMEI</button>
 <button class="btn-galeria" onclick="$('#inpGaleriaIMEI').click()">🖼️ Elegir de galería (IMEI)</button>
 <input type="file" id="inpGaleriaIMEI" accept="image/*" hidden>
@@ -1170,7 +1190,6 @@ if ('serviceWorker' in navigator) {
       if (!nuevo) return;
       nuevo.addEventListener('statechange', () => {
         if (nuevo.state === 'installed' && navigator.serviceWorker.controller) {
-          /* 🔔 Muestra el modal bonito con la info de actualización */
           if (typeof mostrarAvisoActualizacion === 'function') {
             mostrarAvisoActualizacion();
           } else if (typeof toast === 'function') {
