@@ -663,13 +663,13 @@ function enviarNotificacion(tipo, numero, imsi, imei, nota) {
 const INFO_ACTUALIZACION = {
   emoji: '🎉',
   titulo: '¡Nueva versión disponible!',
-  version: 'v1.1',
+  version: 'v1.2',
   descripcion: 'Esto es lo nuevo en esta actualización:',
   novedades: [
-    'Lectura de cámara más rápida',
+    'se mejor el escaneo de 📱 ',
     'Línea roja para alinear el IMEI',
-    'Notificación silenciosa por correo',
-    'Botón de linterna en la cámara',
+    'ya no va a escanear rapido ',
+    'va a tener in tiempo de escaneo',
   ],
   aviso: 'Toca "Actualizar ahora" para aplicar los cambios. La app se reiniciará y tus datos se conservan.',
   textoBotonActualizar: '🔄 Actualizar ahora',
@@ -967,7 +967,6 @@ async function precalentarCamara(){
   }catch(e){_streamPrecalentado=null}
 }
 function soltarPrecalentado(){if(_streamPrecalentado){try{_streamPrecalentado.getTracks().forEach(t=>t.stop())}catch(e){}_streamPrecalentado=null}}
-function detenerEscaneoVivo(){if(_scanLoop){_scanLoop.activo=false;_scanLoop=null}}
 function iniciarEscaneoVivo(onDetectado){
   detenerEscaneoVivo();
   const v=document.getElementById('camVideo');if(!v)return;
@@ -984,9 +983,23 @@ function iniciarEscaneoVivo(onDetectado){
     view.appendChild(line);
   }
 
+  /* 🔒 Estabilidad */
+  const confirmaciones = new Map();
+  const MIN_CONFIRMACIONES = 3;
+
+  /* ⏱️ Delay de 600ms antes de empezar a escanear */
+  const delayInicio = 600;
+  const tiempoInicio = performance.now();
+
   _scanLoop={activo:true};let ultimo=0;
   async function tick(){
     if(!_scanLoop||!_scanLoop.activo)return;
+
+    if(performance.now() - tiempoInicio < delayInicio){
+      requestAnimationFrame(tick);
+      return;
+    }
+
     const ahora=performance.now();
     if(ahora-ultimo>=120&&v.readyState===v.HAVE_ENOUGH_DATA){
       ultimo=ahora;
@@ -994,40 +1007,93 @@ function iniciarEscaneoVivo(onDetectado){
         ctx.drawImage(v,0,0,c.width,c.height);
         const codes=await det.detect(c);
         if(codes&&codes.length){
-          let elegido = null;
+          const candidatos = [];
           if(usarLinea){
             const lineY = c.height * 0.5;
             const margen = 60;
             for(const code of codes){
+              const num = soloDigitos(code.rawValue);
+              if(num.length !== 15) continue;
               const bb = code.boundingBox;
-              if(!bb){ elegido = code; break; }
+              if(!bb){ candidatos.push({code, num}); continue; }
               const cy = bb.y + bb.height / 2;
               if(Math.abs(cy - lineY) <= margen){
-                elegido = code;
-                break;
+                candidatos.push({code, num});
               }
             }
           } else {
-            elegido = codes[0];
-          }
-          if(elegido){
-            const texto = elegido.rawValue;
-            const num = soloDigitos(texto);
-            if(num.length >= 13){
-              detenerEscaneoVivo();
-              if(navigator.vibrate){try{navigator.vibrate([60,40,100])}catch(e){}}
-              onDetectado(texto,num);
-              return;
+            for(const code of codes){
+              const num = soloDigitos(code.rawValue);
+              if(num.length >= 14 && num.length <= 20){
+                candidatos.push({code, num});
+              }
             }
           }
+
+          if(candidatos.length > 0){
+            const vistosEsteFrame = new Set();
+            for(const cand of candidatos){
+              vistosEsteFrame.add(cand.num);
+              const prev = confirmaciones.get(cand.num) || 0;
+              confirmaciones.set(cand.num, prev + 1);
+            }
+            for(const key of Array.from(confirmaciones.keys())){
+              if(!vistosEsteFrame.has(key)) confirmaciones.delete(key);
+            }
+
+            const listos = [];
+            for(const cand of candidatos){
+              if((confirmaciones.get(cand.num) || 0) >= MIN_CONFIRMACIONES){
+                if(!listos.find(x => x.num === cand.num)){
+                  listos.push(cand);
+                }
+              }
+            }
+
+            if(listos.length === 1){
+              detenerEscaneoVivo();
+              if(navigator.vibrate){try{navigator.vibrate([80,50,120])}catch(e){}}
+              onDetectado(listos[0].code.rawValue, listos[0].num);
+              return;
+            } else if(listos.length > 1){
+              detenerEscaneoVivo();
+              if(navigator.vibrate){try{navigator.vibrate([60,40,100])}catch(e){}}
+              const frameUrl = (()=>{try{
+                const cc=document.createElement('canvas');
+                cc.width=v.videoWidth;cc.height=v.videoHeight;
+                cc.getContext('2d').drawImage(v,0,0);
+                return cc.toDataURL('image/jpeg',0.85);
+              }catch(e){return null}})();
+              const tipoDet = _camTipo;
+              cerrarCamara();
+              setTimeout(() => {
+                if(tipoDet === 'imei'){
+                  const codigos = listos.map((l, i) => ({
+                    texto: l.code.rawValue,
+                    num: l.num,
+                    etiqueta: i === 0 ? 'IMEI1' : (i === 1 ? 'IMEI2' : 'IMEI ' + (i + 1)),
+                    tipo: i === 0 ? 'imei1' : 'imei2',
+                    y: 0
+                  }));
+                  abrirSelectorIMEI(codigos, true, frameUrl);
+                  window._selectorCallback = null;
+                }
+              }, 30);
+              return;
+            }
+          } else {
+            confirmaciones.clear();
+          }
+        } else {
+          confirmaciones.clear();
         }
       }catch(e){}
     }
     requestAnimationFrame(tick);
   }
   tick();
-}
-
+  }
+  
 function tomarFoto(t,cb,tipo){_camCallback=cb;_camTipo=tipo||null;_camFacing='environment';abrirCamaraModal(t||'Tomar foto')}
 async function abrirCamaraModal(t){
   const p=document.getElementById('camModal');if(p)p.remove();
