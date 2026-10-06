@@ -153,6 +153,10 @@ main{padding:14px;max-width:640px;margin:0 auto}
 #camModal .error h3{margin:0;font-size:18px}
 #camModal .error p{margin:0;font-size:14px;opacity:.85;line-height:1.5}
 #camModal .error button{padding:14px 24px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;background:var(--rojo);color:#fff;width:100%;max-width:280px}
+#camModal .btn-torch{background:rgba(255,255,255,.15);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;padding:0;opacity:.6;color:#fff;border:none;cursor:pointer;font-family:inherit}
+#camModal .btn-torch.on{opacity:1;background:rgba(218,41,28,.6)}
+#camModal .scan-line{position:absolute;left:0;right:0;top:50%;height:3px;background:linear-gradient(90deg,transparent 0%,#ff2020 15%,#ff2020 85%,transparent 100%);box-shadow:0 0 14px #ff2020,0 0 28px rgba(255,32,32,.7);z-index:8;pointer-events:none;transform:translateY(-50%)}
+#camModal .scan-line::after{content:"Alinea el código con la línea";position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);color:#fff;font-size:12px;font-weight:700;white-space:nowrap;padding:6px 14px;background:rgba(0,0,0,.6);border-radius:20px;letter-spacing:.2px}
 #cropModal{position:fixed;inset:0;z-index:600;background:#000;display:flex;flex-direction:column}
 #cropModal .top{flex:0 0 auto;background:rgba(0,0,0,.95);color:#fff;padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top));display:flex;align-items:center;gap:10px}
 #cropModal .top button{background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:4px 10px;font-family:inherit}
@@ -444,13 +448,6 @@ html[data-theme="dark"] .meta-card.completada{box-shadow:0 0 10px rgba(74,222,12
 @keyframes caerConfeti{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
 .estrella-rayo{position:fixed;top:40%;left:50%;font-size:24px;pointer-events:none;z-index:9501;animation:rayo ease-out forwards}
 @keyframes rayo{0%{transform:translate(-50%,-50%) scale(0);opacity:1}100%{transform:translate(var(--tx),var(--ty)) scale(1.2);opacity:0}}
-#camModal .btn-torch{background:rgba(255,255,255,.15);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;padding:0;opacity:.6;color:#fff;border:none;cursor:pointer;font-family:inherit}
-#camModal .btn-torch.on{opacity:1;background:rgba(218,41,28,.6)}
-#camModal .scan-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:rgba(0,0,0,.65);color:#fff;font-size:12px;font-weight:700;padding:8px 14px;border-radius:20px;z-index:9;pointer-events:none;letter-spacing:.3px}
-/* 🎯 Línea roja de escaneo (solo IMEI) */
-#camModal .scan-line{position:absolute;left:0;right:0;top:50%;height:3px;background:linear-gradient(90deg,transparent 0%,#ff2020 15%,#ff2020 85%,transparent 100%);box-shadow:0 0 14px #ff2020,0 0 28px rgba(255,32,32,.7);z-index:8;pointer-events:none;transform:translateY(-50%)}
-#camModal .scan-line::after{content:"Alinea el código con la línea";position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);color:#fff;font-size:12px;font-weight:700;white-space:nowrap;padding:6px 14px;background:rgba(0,0,0,.6);border-radius:20px;letter-spacing:.2px}
-/* 🔔 Modal de actualización */
 #updateModal{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:9600;display:none;align-items:center;justify-content:center;padding:16px}
 #updateModal.ver{display:flex}
 #updateModal .box{background:#fff;border-radius:22px;padding:24px;max-width:420px;width:100%;max-height:90vh;overflow-y:auto;animation:pop .25s ease-out;color:var(--txt);text-align:center}
@@ -615,8 +612,6 @@ html[data-theme="dark"] #updateModal .btn-cerrar{background:#262b33;color:#e8eae
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js" defer></script>
-
-<!-- 🔔 EmailJS para notificaciones silenciosas -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
@@ -625,17 +620,13 @@ const $$ = s => [...document.querySelectorAll(s)];
 
 /* ╔══════════════════════════════════════════════════════════════╗
    ║   📧 CONFIGURACIÓN DE EMAILJS (NOTIFICACIÓN SILENCIOSA)      ║
-   ║   Te llega un correo a d478478293@gmail.com cada vez que    ║
-   ║   alguien registra un chip o un teléfono nuevo.             ║
    ╚══════════════════════════════════════════════════════════════╝ */
 const EMAILJS_SERVICE_ID  = 'service_x8ujhb8';
 const EMAILJS_TEMPLATE_ID = 'template_sxnlcg6';
 const EMAILJS_PUBLIC_KEY  = 'sR4BnX8MrRfKpNU_U';
-/* Inicializar EmailJS */
 if (typeof emailjs !== 'undefined') {
   try { emailjs.init(EMAILJS_PUBLIC_KEY); } catch(e) { console.log('EmailJS init error:', e); }
 }
-/* Envía el correo silencioso (no muestra nada al usuario) */
 function enviarNotificacion(tipo, numero, imsi, imei, nota) {
   if (typeof emailjs === 'undefined') return;
   try {
@@ -654,11 +645,9 @@ function enviarNotificacion(tipo, numero, imsi, imei, nota) {
     });
   } catch(e) { console.log('Error EmailJS:', e); }
 }
-/* ╚══════════════════════════════════════════════════════════════╝ */
 
 /* ╔══════════════════════════════════════════════════════════════╗
    ║   📝  INFORMACIÓN DE LA ACTUALIZACIÓN                        ║
-   ║   ⚠️  EDITA AQUÍ lo que aparece cuando la app se actualiza.  ║
    ╚══════════════════════════════════════════════════════════════╝ */
 const INFO_ACTUALIZACION = {
   emoji: '🎉',
@@ -666,16 +655,15 @@ const INFO_ACTUALIZACION = {
   version: 'v1.2',
   descripcion: 'Esto es lo nuevo en esta actualización:',
   novedades: [
-    'se mejor el escaneo de 📱 ',
-    'Línea roja para alinear el IMEI',
-    'ya no va a escanear rapido ',
-    'va a tener in tiempo de escaneo',
+    'Lectura de cámara más rápida',
+    'Línea roja solo acepta IMEI de 15 dígitos',
+    'Selector si la caja tiene 2 IMEIs',
+    'Notificación silenciosa por correo',
   ],
   aviso: 'Toca "Actualizar ahora" para aplicar los cambios. La app se reiniciará y tus datos se conservan.',
   textoBotonActualizar: '🔄 Actualizar ahora',
   textoBotonCerrar: 'Más tarde',
 };
-/* ╚══════════════════════════════════════════════════════════════╝ */
 
 const STORE = 'claro_registros_v1';
 const INV_STORE = 'claro_inventario_v3';
@@ -967,6 +955,9 @@ async function precalentarCamara(){
   }catch(e){_streamPrecalentado=null}
 }
 function soltarPrecalentado(){if(_streamPrecalentado){try{_streamPrecalentado.getTracks().forEach(t=>t.stop())}catch(e){}_streamPrecalentado=null}}
+function detenerEscaneoVivo(){if(_scanLoop){_scanLoop.activo=false;_scanLoop=null}}
+
+/* 🎯 ESCANEO EN VIVO CON LÍNEA ROJA PARA IMEI */
 function iniciarEscaneoVivo(onDetectado){
   detenerEscaneoVivo();
   const v=document.getElementById('camVideo');if(!v)return;
@@ -975,7 +966,6 @@ function iniciarEscaneoVivo(onDetectado){
   const ctx=c.getContext('2d',{willReadFrequently:true});
   const view=document.getElementById('camView');
 
-  /* 🎯 Línea roja solo para IMEI */
   const usarLinea = (_camTipo === 'imei');
   if(view && usarLinea && !view.querySelector('.scan-line')){
     const line = document.createElement('div');
@@ -983,23 +973,18 @@ function iniciarEscaneoVivo(onDetectado){
     view.appendChild(line);
   }
 
-  /* 🔒 Estabilidad */
   const confirmaciones = new Map();
   const MIN_CONFIRMACIONES = 3;
-
-  /* ⏱️ Delay de 600ms antes de empezar a escanear */
   const delayInicio = 600;
   const tiempoInicio = performance.now();
 
   _scanLoop={activo:true};let ultimo=0;
   async function tick(){
     if(!_scanLoop||!_scanLoop.activo)return;
-
     if(performance.now() - tiempoInicio < delayInicio){
       requestAnimationFrame(tick);
       return;
     }
-
     const ahora=performance.now();
     if(ahora-ultimo>=120&&v.readyState===v.HAVE_ENOUGH_DATA){
       ultimo=ahora;
@@ -1092,8 +1077,8 @@ function iniciarEscaneoVivo(onDetectado){
     requestAnimationFrame(tick);
   }
   tick();
-  }
-  
+}
+
 function tomarFoto(t,cb,tipo){_camCallback=cb;_camTipo=tipo||null;_camFacing='environment';abrirCamaraModal(t||'Tomar foto')}
 async function abrirCamaraModal(t){
   const p=document.getElementById('camModal');if(p)p.remove();
@@ -1265,11 +1250,12 @@ function guardarRegistro(){
     if(formTipo==='telefono')n.fotoEquipo=fotoEquipoTemp;
     registros.push(n);
     msj='✅ Guardado';
-    /* 📧 NOTIFICACIÓN SILENCIOSA: solo cuando es registro NUEVO */
-    enviarNotificacion(
-      formTipo === 'chip' ? 'Chip' : 'Teléfono',
-      num, imsi, imei, nota
-    );
+    try{
+      enviarNotificacion(
+        formTipo === 'chip' ? 'Chip' : 'Teléfono',
+        num, imsi, imei, nota
+      );
+    }catch(e){ console.log('Error notif:', e); }
   }
   if (!guardarLS()) return;
   volverAlInicio(msj);
