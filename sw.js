@@ -1,4 +1,4 @@
-const VERSION = 15;
+const VERSION = 16;
 
 const CACHE = 'claro-v' + VERSION;
 
