@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -334,8 +333,6 @@ html[data-theme="dark"] .meta-pill-ok{background:#0f2a1a;color:#86efac;border-co
 .meta-card.casi .meta-mensaje,.meta-card.completada .meta-mensaje{border-top-color:rgba(255,255,255,.3)}
 .meta-mensaje small{display:block;font-weight:600;font-size:11.5px;opacity:.85;margin-top:3px}
 .meta-cta{text-align:center;font-size:13.5px;color:var(--muted);line-height:1.55;padding:4px 0}
-
-/* 🌈 Barra de progreso RGB original */
 .meta-barra{height:12px;background:rgba(0,0,0,.12);border-radius:20px;overflow:hidden;position:relative}
 .meta-card.casi .meta-barra,.meta-card.completada .meta-barra{background:rgba(255,255,255,.28)}
 .meta-barra > div{height:100%;border-radius:20px;position:relative;overflow:hidden;transition:width .6s cubic-bezier(.25,.8,.25,1);background:linear-gradient(90deg,#ff0033,#ff6b00,#ffdd00,#00ff66,#00ddff,#0066ff,#b400ff,#ff0033);background-size:300% 100%;animation:metaRGB 8s linear infinite,metaGlow 5s ease-in-out infinite;filter:saturate(1.6) brightness(1.15);box-shadow:0 0 8px rgba(255,0,51,.7),0 0 16px rgba(0,255,102,.5),0 0 24px rgba(0,102,255,.4),inset 0 0 6px rgba(255,255,255,.35)}
@@ -352,7 +349,6 @@ html[data-theme="dark"] .meta-pill-ok{background:#0f2a1a;color:#86efac;border-co
 .meta-card.casi .meta-hoy .mini-barra > div{filter:saturate(1.8) brightness(1.25)}
 .meta-card.completada .meta-hoy .mini-barra > div{filter:saturate(2) brightness(1.35);animation:metaRGB 4s linear infinite,metaGlow 3s ease-in-out infinite}
 @media (prefers-reduced-motion: reduce){.meta-barra > div,.meta-hoy .mini-barra > div,.meta-barra > div::after,.meta-hoy .mini-barra > div::after{animation:none !important}}
-
 #metaModal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:750;display:none;align-items:center;justify-content:center;padding:16px}
 #metaModal.ver{display:flex}
 #metaModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
@@ -388,20 +384,16 @@ html[data-theme="dark"] .storage-info .uso{background:#1e3a8a;color:#dbeafe}
 #avisoMesModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
 #avisoMesModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
 html[data-theme="dark"] #avisoMesModal .box{background:var(--card);color:var(--txt)}
-
-/* ⚪ NEÓN BLANCO 0-79% · 🟡 AMARILLO 80-99% · 🟢 VERDE 100% — todos a 7s, solo modo oscuro */
 html[data-theme="dark"] .meta-card:not(.casi):not(.completada){position:relative;overflow:hidden;border-radius:16px;background:transparent !important;color:var(--txt) !important;box-shadow:none !important;isolation:isolate}
 html[data-theme="dark"] .meta-card:not(.casi):not(.completada)::before{content:"";position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#f5f5f5 300deg,#ffffff 330deg,#f5f5f5 355deg,transparent 360deg);animation:neonSpin 7s linear infinite;z-index:0}
 html[data-theme="dark"] .meta-card:not(.casi):not(.completada)::after{content:"";position:absolute;inset:2px;border-radius:14px;background:var(--card);z-index:1}
 html[data-theme="dark"] .meta-card:not(.casi):not(.completada) > *{position:relative;z-index:2}
 html[data-theme="dark"] .meta-card:not(.casi):not(.completada){box-shadow:0 0 10px rgba(255,255,255,.5),0 0 22px rgba(255,255,255,.3) !important}
-
 html[data-theme="dark"] .meta-card.casi{position:relative;overflow:hidden;border-radius:16px;background:transparent !important;color:var(--txt) !important;box-shadow:none !important;isolation:isolate}
 html[data-theme="dark"] .meta-card.casi::before{content:"";position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#fde047 300deg,#fbbf24 330deg,#fde047 355deg,transparent 360deg);animation:neonSpin 7s linear infinite;z-index:0}
 html[data-theme="dark"] .meta-card.casi::after{content:"";position:absolute;inset:2px;border-radius:14px;background:var(--card);z-index:1}
 html[data-theme="dark"] .meta-card.casi > *{position:relative;z-index:2}
 html[data-theme="dark"] .meta-card.casi{box-shadow:0 0 10px rgba(253,224,71,.55),0 0 22px rgba(251,191,36,.35) !important}
-
 html[data-theme="dark"] .meta-card.completada{position:relative;overflow:hidden;border-radius:16px;background:transparent !important;color:var(--txt) !important;box-shadow:none !important;isolation:isolate}
 html[data-theme="dark"] .meta-card.completada::before{content:"";position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#86efac 300deg,#22c55e 330deg,#4ade80 355deg,transparent 360deg);animation:neonSpin 7s linear infinite;z-index:0}
 html[data-theme="dark"] .meta-card.completada::after{content:"";position:absolute;inset:2px;border-radius:14px;background:var(--card);z-index:1}
@@ -413,8 +405,6 @@ html[data-theme="dark"] .meta-card.completada{box-shadow:0 0 10px rgba(74,222,12
   html[data-theme="dark"] .meta-card.casi::before,
   html[data-theme="dark"] .meta-card.completada::before{animation:none}
 }
-
-/* 👋 Bienvenida */
 #bienvenida{position:fixed;inset:0;z-index:9000;background:linear-gradient(135deg,#DA291C,#6b0f08);color:#fff;display:none;flex-direction:column;align-items:center;justify-content:center;padding:30px 24px;text-align:center;overflow-y:auto;animation:fadeIn .4s ease}
 #bienvenida.ver{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -430,8 +420,6 @@ html[data-theme="dark"] .meta-card.completada{box-shadow:0 0 10px rgba(74,222,12
 #bienvenida .btn-empezar{width:100%;max-width:340px;padding:18px;border:none;border-radius:14px;font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;background:#fff;color:#DA291C;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:.15s}
 #bienvenida .btn-empezar:active{transform:scale(.97)}
 #bienvenida .version{font-size:11px;opacity:.7;margin-top:14px}
-
-/* 🎉 Celebración */
 #celebracion{position:fixed;inset:0;z-index:9500;background:radial-gradient(circle at 50% 40%,rgba(22,163,74,.95),rgba(0,0,0,.97));display:none;align-items:center;justify-content:center;padding:30px 24px;text-align:center;overflow:hidden}
 #celebracion.ver{display:flex;animation:fadeIn .4s ease}
 #celebracion .contenido{position:relative;z-index:2;color:#fff;max-width:400px;width:100%;animation:subirContenido .8s cubic-bezier(.2,1.4,.4,1)}
@@ -456,6 +444,10 @@ html[data-theme="dark"] .meta-card.completada{box-shadow:0 0 10px rgba(74,222,12
 @keyframes caerConfeti{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
 .estrella-rayo{position:fixed;top:40%;left:50%;font-size:24px;pointer-events:none;z-index:9501;animation:rayo ease-out forwards}
 @keyframes rayo{0%{transform:translate(-50%,-50%) scale(0);opacity:1}100%{transform:translate(var(--tx),var(--ty)) scale(1.2);opacity:0}}
+/* ⚡ CÁMARA: linterna y pista de escaneo */
+#camModal .btn-torch{background:rgba(255,255,255,.15);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;padding:0;opacity:.6;color:#fff;border:none;cursor:pointer;font-family:inherit}
+#camModal .btn-torch.on{opacity:1;background:rgba(218,41,28,.6)}
+#camModal .scan-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:rgba(0,0,0,.65);color:#fff;font-size:12px;font-weight:700;padding:8px 14px;border-radius:20px;z-index:9;pointer-events:none;letter-spacing:.3px}
 </style>
 </head>
 <body>
@@ -573,7 +565,6 @@ html[data-theme="dark"] .meta-card.completada{box-shadow:0 0 10px rgba(74,222,12
 <div id="previewModal"><div class="box" id="previewBox"></div></div>
 <div id="avisoMesModal"></div>
 
-<!-- 👋 Bienvenida -->
 <div id="bienvenida">
   <div class="logo-big">C</div>
   <h1>¡Bienvenido!</h1>
@@ -588,7 +579,6 @@ html[data-theme="dark"] .meta-card.completada{box-shadow:0 0 10px rgba(74,222,12
   <div class="version">Registro Claro · v1.0</div>
 </div>
 
-<!-- 🎉 Celebración -->
 <div id="celebracion">
   <div class="contenido">
     <div class="trofeo">🏆</div>
@@ -838,24 +828,137 @@ function archivarYLimpiarMes(pre){const p=pre+'-';const delMes=registros.filter(
 function cerrarMesManual(){const pa=mesActualPrefijo();const[y,m]=pa.split('-').map(Number);const man=new Date(y,m-2,1);const pan=`${man.getFullYear()}-${pad(man.getMonth()+1)}`;const ca=contarRegistrosDeMes(pa);const cn=contarRegistrosDeMes(pan);const msg=`¿Qué mes quieres archivar y limpiar?\n\n1. Mes actual (${nombreMesBonito(pa)}) — ${ca} registros\n2. Mes anterior (${nombreMesBonito(pan)}) — ${cn} registros\n\nEscribe 1 o 2:`;const r=prompt(msg);if(r===null)return;let pre=null;if(r.trim()==='1')pre=pa;else if(r.trim()==='2')pre=pan;else{toast('⚠️ Opción inválida');return}archivarYLimpiarMes(pre)}
 
 /* ZXING */
-function precargarTodo(){if(!window.ZXing&&!window._zxingPrecargado){window._zxingPrecargado=true;const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js';document.head.appendChild(s)}initZXingWorker();getBarcodeDetector();setTimeout(()=>{try{if(window.ZXing)new ZXing.MultiFormatReader()}catch(e){}},400)}
+function precargarTodo(){if(!window.ZXing&&!window._zxingPrecargado){window._zxingPrecargado=true;const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js';document.head.appendChild(s)}initZXingWorker();getBarcodeDetector();setTimeout(()=>{try{if(window.ZXing)new ZXing.MultiFormatReader()}catch(e){}},400);/* ⚡ CÁMARA: calentar worker */setTimeout(()=>{const w=initZXingWorker();if(w){try{const d=new Uint8ClampedArray(8*8*4);w.postMessage({id:-1,imageData:d,width:8,height:8})}catch(e){}}},600)}
 let _barcodeDetector=null,_barcodeDetectorIntentado=false;
-function getBarcodeDetector(){if(_barcodeDetectorIntentado)return _barcodeDetector;_barcodeDetectorIntentado=true;if(!('BarcodeDetector' in window))return null;try{const f=['code_128','code_39','code_93','itf','ean_13','ean_8','upc_a','upc_e','codabar','qr_code'];try{_barcodeDetector=new BarcodeDetector({formats:f})}catch(e){_barcodeDetector=new BarcodeDetector()}}catch(e){_barcodeDetector=null}return _barcodeDetector}
+/* ⚡ CÁMARA: agregados data_matrix y pdf417 */
+function getBarcodeDetector(){if(_barcodeDetectorIntentado)return _barcodeDetector;_barcodeDetectorIntentado=true;if(!('BarcodeDetector' in window))return null;try{const f=['code_128','code_39','code_93','itf','ean_13','ean_8','upc_a','upc_e','codabar','qr_code','data_matrix','pdf417'];try{_barcodeDetector=new BarcodeDetector({formats:f})}catch(e){_barcodeDetector=new BarcodeDetector()}}catch(e){_barcodeDetector=null}return _barcodeDetector}
 const ZXING_WORKER_CODE=`self.importScripts('https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js');self.onmessage=function(e){const{id,imageData,width,height}=e.data;try{const data=new Uint8ClampedArray(imageData);const rgb=new Int32Array(width*height);for(let i=0,j=0;i<rgb.length;i++,j+=4){rgb[i]=(data[j]<<16)|(data[j+1]<<8)|data[j+2]}const source=new self.ZXing.RGBLuminanceSource(rgb,width,height);const reader=new self.ZXing.MultiFormatReader();const hints=new Map();hints.set(self.ZXing.DecodeHintType.POSSIBLE_FORMATS,[self.ZXing.BarcodeFormat.CODE_128,self.ZXing.BarcodeFormat.CODE_39,self.ZXing.BarcodeFormat.CODE_93,self.ZXing.BarcodeFormat.ITF,self.ZXing.BarcodeFormat.EAN_13,self.ZXing.BarcodeFormat.EAN_8,self.ZXing.BarcodeFormat.CODABAR,self.ZXing.BarcodeFormat.UPC_A,self.ZXing.BarcodeFormat.UPC_E]);hints.set(self.ZXing.DecodeHintType.TRY_HARDER,true);let texto=null;try{const bitmap=new self.ZXing.BinaryBitmap(new self.ZXing.HybridBinarizer(source));texto=reader.decode(bitmap,hints).getText()}catch(err){}self.postMessage({id,texto})}catch(err){self.postMessage({id,error:String(err&&err.message||err)})}};`;
 let _zxingWorker=null,_zxingWorkerIntentado=false,_zxingMsgId=0;const _zxingPendientes=new Map();
 function initZXingWorker(){if(_zxingWorker||_zxingWorkerIntentado)return _zxingWorker;_zxingWorkerIntentado=true;try{if(!window.Worker||!window.Blob||!window.URL)return null;const b=new Blob([ZXING_WORKER_CODE],{type:'application/javascript'});_zxingWorker=new Worker(URL.createObjectURL(b));_zxingWorker.onmessage=e=>{const{id,texto,error}=e.data||{};const cb=_zxingPendientes.get(id);if(cb){_zxingPendientes.delete(id);cb(texto||null,error||null)}};_zxingWorker.onerror=()=>{_zxingPendientes.forEach(cb=>cb(null,'worker_error'));_zxingPendientes.clear();_zxingWorker=null};return _zxingWorker}catch(e){_zxingWorker=null;return null}}
 function decodificarEnWorker(c,t){return new Promise(res=>{const w=initZXingWorker();if(!w)return res(null);let img;try{img=c.getContext('2d').getImageData(0,0,c.width,c.height)}catch(e){return res(null)}const id=++_zxingMsgId;let re=false;const to=setTimeout(()=>{if(!re){re=true;_zxingPendientes.delete(id);res(null)}},t);_zxingPendientes.set(id,texto=>{if(re)return;re=true;clearTimeout(to);res(texto)});try{const buf=img.data.buffer;w.postMessage({id,imageData:buf,width:c.width,height:c.height},[buf])}catch(e){if(!re){re=true;clearTimeout(to);_zxingPendientes.delete(id);res(null)}}})}
 
-/* CÁMARA */
+/* ⚡ CÁMARA: sección optimizada (precalentado + escaneo en vivo + linterna) */
 let _camStream=null,_camCallback=null,_camFacing='environment';
-function tomarFoto(t,cb){_camCallback=cb;_camFacing='environment';abrirCamaraModal(t||'Tomar foto')}
-async function abrirCamaraModal(t){const p=document.getElementById('camModal');if(p)p.remove();const m=document.createElement('div');m.id='camModal';m.innerHTML=`<div class="top"><button onclick="cerrarCamara()">✕</button><div class="titulo">${esc(t)}</div><button onclick="cambiarCamara()">🔄</button></div><div class="view" id="camView"><video id="camVideo" autoplay playsinline muted></video></div><div class="bottom"><button class="btn-lado" onclick="cerrarCamara()">✕</button><button class="shutter" onclick="capturarCamara()">CAPTURAR</button><button class="btn-lado" onclick="cambiarCamara()">🔄</button></div>`;document.body.appendChild(m);try{await abrirStreamCamara(_camFacing)}catch(err){mostrarErrorCamara(explicarErrorCamara(err))}}
-async function abrirStreamCamara(f){if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw new Error('Sin soporte de cámara.');if(_camStream){_camStream.getTracks().forEach(t=>t.stop());_camStream=null}_camStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:f},width:{ideal:1920},height:{ideal:1080}}});const v=document.getElementById('camVideo');if(!v)return;v.srcObject=_camStream;await v.play().catch(()=>{})}
+let _camTipo=null,_streamPrecalentado=null,_scanLoop=null;
+
+async function precalentarCamara(){
+  if(_streamPrecalentado)return;
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)return;
+  try{
+    _streamPrecalentado=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}}});
+  }catch(e){_streamPrecalentado=null}
+}
+function soltarPrecalentado(){if(_streamPrecalentado){try{_streamPrecalentado.getTracks().forEach(t=>t.stop())}catch(e){}_streamPrecalentado=null}}
+function detenerEscaneoVivo(){if(_scanLoop){_scanLoop.activo=false;_scanLoop=null}}
+function iniciarEscaneoVivo(onDetectado){
+  detenerEscaneoVivo();
+  const v=document.getElementById('camVideo');if(!v)return;
+  const det=getBarcodeDetector();if(!det)return;
+  const c=document.createElement('canvas');c.width=640;c.height=480;
+  const ctx=c.getContext('2d',{willReadFrequently:true});
+  const view=document.getElementById('camView');
+  if(view&&!view.querySelector('.scan-hint')){const h=document.createElement('div');h.className='scan-hint';h.textContent='🔍 Apunta al código…';view.appendChild(h)}
+  _scanLoop={activo:true};let ultimo=0;
+  async function tick(){
+    if(!_scanLoop||!_scanLoop.activo)return;
+    const ahora=performance.now();
+    if(ahora-ultimo>=120&&v.readyState===v.HAVE_ENOUGH_DATA){
+      ultimo=ahora;
+      try{
+        ctx.drawImage(v,0,0,c.width,c.height);
+        const codes=await det.detect(c);
+        if(codes&&codes.length){
+          const texto=codes[0].rawValue;const num=soloDigitos(texto);
+          if(num.length>=13){detenerEscaneoVivo();if(navigator.vibrate){try{navigator.vibrate([60,40,100])}catch(e){}}onDetectado(texto,num);return}
+        }
+      }catch(e){}
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+}
+
+function tomarFoto(t,cb,tipo){_camCallback=cb;_camTipo=tipo||null;_camFacing='environment';abrirCamaraModal(t||'Tomar foto')}
+async function abrirCamaraModal(t){
+  const p=document.getElementById('camModal');if(p)p.remove();
+  const m=document.createElement('div');m.id='camModal';
+  m.innerHTML=`<div class="top"><button onclick="cerrarCamara()">✕</button><div class="titulo">${esc(t)}</div><button onclick="cambiarCamara()">🔄</button></div><div class="view" id="camView"><video id="camVideo" autoplay playsinline muted></video></div><div class="bottom"><button class="btn-lado" onclick="cerrarCamara()">✕</button><button class="shutter" onclick="capturarCamara()">CAPTURAR</button><button class="btn-lado" onclick="cambiarCamara()">🔄</button></div>`;
+  document.body.appendChild(m);
+  try{await abrirStreamCamara(_camFacing)}catch(err){mostrarErrorCamara(explicarErrorCamara(err));return}
+  try{
+    const track=_camStream&&_camStream.getVideoTracks()[0];
+    const caps=track&&track.getCapabilities?track.getCapabilities():{};
+    if(caps&&caps.torch){
+      const top=m.querySelector('.top');
+      const btn=document.createElement('button');
+      btn.className='btn-torch';btn.textContent='🔦';
+      let on=false;
+      btn.onclick=async()=>{on=!on;try{await track.applyConstraints({advanced:[{torch:on}]})}catch(e){}btn.classList.toggle('on',on)};
+      top.appendChild(btn);
+    }
+  }catch(e){}
+  if(_camTipo==='chip'||_camTipo==='imei'){
+    iniciarEscaneoVivo((texto,num)=>{
+      const v=document.getElementById('camVideo');
+      let frameUrl=null;
+      try{const c=document.createElement('canvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);frameUrl=c.toDataURL('image/jpeg',0.85)}catch(e){}
+      const tipoDet=_camTipo;
+      cerrarCamara();
+      setTimeout(async()=>{
+        if(tipoDet==='chip'){
+          escribirCampo('#f-imsi',num);
+          if(frameUrl){try{const img=await dataUrlAImagen(frameUrl);fotoChipTemp=comprimirImagen(img);pintarFotos()}catch(e){}}
+          toast('✅ IMSI: '+num,2200);
+        }else if(tipoDet==='imei'){
+          escribirCampo('#f-imei',num);
+          if(frameUrl){try{const img=await dataUrlAImagen(frameUrl);fotoEquipoTemp=comprimirImagen(img);pintarFotos()}catch(e){}}
+          toast('✅ IMEI: '+num,2200);
+        }
+      },30);
+    });
+  }
+}
+async function abrirStreamCamara(f){
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw new Error('Sin soporte de cámara.');
+  if(f==='environment'&&_streamPrecalentado){
+    const t=_streamPrecalentado.getVideoTracks()[0];
+    if(t&&t.readyState==='live'){
+      if(_camStream){try{_camStream.getTracks().forEach(x=>x.stop())}catch(e){}}
+      _camStream=_streamPrecalentado;_streamPrecalentado=null;
+      const v=document.getElementById('camVideo');
+      if(v){v.srcObject=_camStream;await v.play().catch(()=>{})}
+      return;
+    }else{soltarPrecalentado()}
+  }
+  if(_camStream){_camStream.getTracks().forEach(t=>t.stop());_camStream=null}
+  _camStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:f},width:{ideal:1280},height:{ideal:720},focusMode:'continuous',advanced:[{focusMode:'continuous'}]}});
+  const v=document.getElementById('camVideo');if(!v)return;
+  v.srcObject=_camStream;await v.play().catch(()=>{});
+}
 async function cambiarCamara(){_camFacing=(_camFacing==='environment')?'user':'environment';try{await abrirStreamCamara(_camFacing)}catch(e){toast('⚠️ No se pudo')}}
-function capturarCamara(){const v=document.getElementById('camVideo');if(!v)return;const w=v.videoWidth,h=v.videoHeight;if(!w||!h){toast('⚠️ Cámara no lista');return}const view=document.getElementById('camView');if(view){const f=document.createElement('div');f.className='flash';view.appendChild(f);setTimeout(()=>f.remove(),250)}if(navigator.vibrate){try{navigator.vibrate(30)}catch(e){}}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(v,0,0,w,h);const d=c.toDataURL('image/jpeg',0.9);const cb=_camCallback;cerrarCamara();if(cb)setTimeout(()=>cb(d),30)}
+function capturarCamara(){
+  const v=document.getElementById('camVideo');if(!v)return;
+  const w=v.videoWidth,h=v.videoHeight;
+  if(!w||!h){toast('⚠️ Cámara no lista');return}
+  const view=document.getElementById('camView');
+  if(view){const f=document.createElement('div');f.className='flash';view.appendChild(f);setTimeout(()=>f.remove(),250)}
+  if(navigator.vibrate){try{navigator.vibrate(30)}catch(e){}}
+  const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(v,0,0,w,h);
+  const d=c.toDataURL('image/jpeg',0.9);
+  const cb=_camCallback;
+  cerrarCamara();
+  if(cb)setTimeout(()=>cb(d),30);
+}
 function mostrarErrorCamara(m){const v=document.getElementById('camView');if(!v)return;v.innerHTML=`<div class="error"><span class="em">📷</span><h3>No se pudo abrir la cámara</h3><p>${esc(m)}</p><button onclick="cerrarCamara()">Cerrar</button></div>`}
 function explicarErrorCamara(e){const n=e&&e.name?e.name:'';if(n==='NotAllowedError'||n==='PermissionDeniedError')return'Permiso denegado.';if(n==='NotFoundError')return'No hay cámara.';if(n==='NotReadableError')return'Cámara en uso.';return(e&&e.message)||'Error.'}
-function cerrarCamara(){if(_camStream){_camStream.getTracks().forEach(t=>t.stop());_camStream=null}const m=document.getElementById('camModal');if(m)m.remove();_camCallback=null}
+function cerrarCamara(){
+  detenerEscaneoVivo();
+  if(_camStream){_camStream.getTracks().forEach(t=>t.stop());_camStream=null}
+  const m=document.getElementById('camModal');if(m)m.remove();
+  _camCallback=null;_camTipo=null;
+  const vf=document.getElementById('vista-form');
+  if(vf&&vf.classList.contains('activa'))setTimeout(precalentarCamara,300);
+}
 
 /* CROP */
 let _cropRect=null,_cropDrag=false;
@@ -920,9 +1023,9 @@ ${esTel?`
 <input type="file" id="inpGaleriaEquipo" accept="image/*" hidden>
 </div>`:''}
 <button class="btn btn-rojo btn-bloque" onclick="guardarRegistro()">${r?'💾 Guardar cambios':'✅ Guardar registro'}</button>
-<div style="height:20px"></div>`;const ic=$('#inpGaleriaChip');if(ic)ic.onchange=e=>{const f=e.target.files[0];if(f)leerArchivoYProcesar(f,'chip');e.target.value=''};if(esTel){const ii=$('#inpGaleriaIMEI');if(ii)ii.onchange=e=>{const f=e.target.files[0];if(f)leerArchivoYProcesar(f,'imei');e.target.value=''};const ie=$('#inpGaleriaEquipo');if(ie)ie.onchange=e=>{const f=e.target.files[0];if(f)leerArchivoYProcesar(f,'equipo');e.target.value=''}}pintarFotos();ir('form')}
-function tomarFotoChip(){tomarFoto('Foto del Chip',d=>procesarDataUrlChip(d))}
-function tomarFotoIMEI(){tomarFoto('Foto de la etiqueta',d=>procesarDataUrlIMEI(d))}
+<div style="height:20px"></div>`;const ic=$('#inpGaleriaChip');if(ic)ic.onchange=e=>{const f=e.target.files[0];if(f)leerArchivoYProcesar(f,'chip');e.target.value=''};if(esTel){const ii=$('#inpGaleriaIMEI');if(ii)ii.onchange=e=>{const f=e.target.files[0];if(f)leerArchivoYProcesar(f,'imei');e.target.value=''};const ie=$('#inpGaleriaEquipo');if(ie)ie.onchange=e=>{const f=e.target.files[0];if(f)leerArchivoYProcesar(f,'equipo');e.target.value=''}}pintarFotos();ir('form');/* ⚡ CÁMARA: precalentar */setTimeout(precalentarCamara,200)}
+function tomarFotoChip(){tomarFoto('Foto del Chip',d=>procesarDataUrlChip(d),'chip')}
+function tomarFotoIMEI(){tomarFoto('Foto de la etiqueta',d=>procesarDataUrlIMEI(d),'imei')}
 function tomarFotoEquipo(){tomarFoto('Foto del Teléfono',d=>procesarDataUrlEquipo(d))}
 function pintarFotos(){const cb=$('#fotoChipBox');if(cb){if(fotoChipTemp){cb.innerHTML=`<img src="${fotoChipTemp}">`;const b=$('#btnQuitarFotoChip');if(b)b.style.display='flex'}else{cb.innerHTML=`<div class="ph">📷<br>Sin foto</div>`;const b=$('#btnQuitarFotoChip');if(b)b.style.display='none'}}const eb=$('#fotoEquipoBox');if(eb){if(fotoEquipoTemp){eb.innerHTML=`<img src="${fotoEquipoTemp}">`;const b=$('#btnQuitarFotoEquipo');if(b)b.style.display='flex'}else{eb.innerHTML=`<div class="ph">📷<br>Sin foto</div>`;const b=$('#btnQuitarFotoEquipo');if(b)b.style.display='none'}}}
 function quitarFoto(t){if(t==='chip')fotoChipTemp=null;else fotoEquipoTemp=null;pintarFotos()}
