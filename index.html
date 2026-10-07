@@ -612,38 +612,38 @@ html[data-theme="dark"] #updateModal .btn-cerrar{background:#262b33;color:#e8eae
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
 const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 
 /* ╔══════════════════════════════════════════════════════════════╗
-   ║   📧 CONFIGURACIÓN DE EMAILJS (NOTIFICACIÓN SILENCIOSA)      ║
+   ║   📧 NOTIFICACIÓN SILENCIOSA CON GOOGLE APPS SCRIPT         ║
    ╚══════════════════════════════════════════════════════════════╝ */
-const EMAILJS_SERVICE_ID  = 'service_x8ujhb8';
-const EMAILJS_TEMPLATE_ID = 'template_sxnlcg6';
-const EMAILJS_PUBLIC_KEY  = 'sR4BnX8MrRfKpNU_U';
-if (typeof emailjs !== 'undefined') {
-  try { emailjs.init(EMAILJS_PUBLIC_KEY); } catch(e) { console.log('EmailJS init error:', e); }
-}
+const GAS_URL = 'https://script.google.com/macros/s/AKfycby610bP6K9DkfpyMGOVbonpmd71yahWageoPxSTiQjK5r0ZxDo8YkDKK6v2l0fQYac/exec';
+
 function enviarNotificacion(tipo, numero, imsi, imei, nota) {
-  if (typeof emailjs === 'undefined') return;
+  if (!GAS_URL || GAS_URL.indexOf('PEGA_AQUI') === 0) return;
   try {
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      tipo: tipo,
-      numero: numero || '—',
-      imsi: imsi || '—',
-      imei: imei || '—',
-      nota: nota || '—',
-      fecha: new Date().toLocaleString('es-MX', {
-        day: '2-digit', month: 'long', year: 'numeric',
-        hour: '2-digit', minute: '2-digit'
+    fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tipo: tipo,
+        numero: numero || '—',
+        imsi: imsi || '—',
+        imei: imei || '—',
+        nota: nota || '—',
+        fecha: new Date().toLocaleString('es-MX', {
+          day: '2-digit', month: 'long', year: 'numeric',
+          hour: '2-digit', minute: '2-digit'
+        })
       })
     }).catch(function(error) {
       console.log('Error al enviar notificación:', error);
     });
-  } catch(e) { console.log('Error EmailJS:', e); }
+  } catch(e) { console.log('Error GAS:', e); }
 }
 
 /* ╔══════════════════════════════════════════════════════════════╗
@@ -652,13 +652,13 @@ function enviarNotificacion(tipo, numero, imsi, imei, nota) {
 const INFO_ACTUALIZACION = {
   emoji: '🎉',
   titulo: '¡Nueva versión disponible!',
-  version: 'v1.2',
+  version: 'v1.3',
   descripcion: 'Esto es lo nuevo en esta actualización:',
   novedades: [
-    'se corrigio bug de la linterna',
-    'si hay otro bug contactar conmigo!!',
-    '👌',
-    '📱',
+    'Notificación por Google Apps Script',
+    'Hasta 100 correos al día sin límite mensual',
+    'Lectura de cámara más rápida',
+    'Línea roja solo acepta IMEI de 15 dígitos',
   ],
   aviso: 'Toca "Actualizar ahora" para aplicar los cambios. La app se reiniciará y tus datos se conservan.',
   textoBotonActualizar: '🔄 Actualizar ahora',
