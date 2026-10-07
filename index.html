@@ -655,10 +655,10 @@ const INFO_ACTUALIZACION = {
   version: 'v1.2',
   descripcion: 'Esto es lo nuevo en esta actualización:',
   novedades: [
-    'Lectura de cámara más rápida',
-    'Línea roja solo acepta IMEI de 15 dígitos',
-    'Selector si la caja tiene 2 IMEIs',
-    'Notificación silenciosa por correo',
+    'se corrigio bug de la linterna',
+    'si hay otro bug contactar conmigo!!',
+    '👌',
+    '📱',
   ],
   aviso: 'Toca "Actualizar ahora" para aplicar los cambios. La app se reiniciará y tus datos se conservan.',
   textoBotonActualizar: '🔄 Actualizar ahora',
@@ -1153,7 +1153,17 @@ function mostrarErrorCamara(m){const v=document.getElementById('camView');if(!v)
 function explicarErrorCamara(e){const n=e&&e.name?e.name:'';if(n==='NotAllowedError'||n==='PermissionDeniedError')return'Permiso denegado.';if(n==='NotFoundError')return'No hay cámara.';if(n==='NotReadableError')return'Cámara en uso.';return(e&&e.message)||'Error.'}
 function cerrarCamara(){
   detenerEscaneoVivo();
-  if(_camStream){_camStream.getTracks().forEach(t=>t.stop());_camStream=null}
+  /* 🔦 Apagar linterna explícitamente ANTES de detener el stream */
+  if(_camStream){
+    try{
+      const track = _camStream.getVideoTracks()[0];
+      if(track && track.getCapabilities && track.getCapabilities().torch){
+        track.applyConstraints({ advanced: [{ torch: false }] }).catch(()=>{});
+      }
+    }catch(e){}
+    try{ _camStream.getTracks().forEach(t=>t.stop()); }catch(e){}
+    _camStream = null;
+  }
   const m=document.getElementById('camModal');if(m)m.remove();
   _camCallback=null;_camTipo=null;
   const vf=document.getElementById('vista-form');
