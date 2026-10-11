@@ -153,10 +153,6 @@ main{padding:14px;max-width:640px;margin:0 auto}
 #camModal .error h3{margin:0;font-size:18px}
 #camModal .error p{margin:0;font-size:14px;opacity:.85;line-height:1.5}
 #camModal .error button{padding:14px 24px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;background:var(--rojo);color:#fff;width:100%;max-width:280px}
-#camModal .btn-torch{background:rgba(255,255,255,.15);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;padding:0;opacity:.6;color:#fff;border:none;cursor:pointer;font-family:inherit}
-#camModal .btn-torch.on{opacity:1;background:rgba(218,41,28,.6)}
-#camModal .scan-line{position:absolute;left:0;right:0;top:50%;height:3px;background:linear-gradient(90deg,transparent 0%,#ff2020 15%,#ff2020 85%,transparent 100%);box-shadow:0 0 14px #ff2020,0 0 28px rgba(255,32,32,.7);z-index:8;pointer-events:none;transform:translateY(-50%)}
-#camModal .scan-line::after{content:"Alinea el código con la línea";position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);color:#fff;font-size:12px;font-weight:700;white-space:nowrap;padding:6px 14px;background:rgba(0,0,0,.6);border-radius:20px;letter-spacing:.2px}
 #cropModal{position:fixed;inset:0;z-index:600;background:#000;display:flex;flex-direction:column}
 #cropModal .top{flex:0 0 auto;background:rgba(0,0,0,.95);color:#fff;padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top));display:flex;align-items:center;gap:10px}
 #cropModal .top button{background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:4px 10px;font-family:inherit}
@@ -276,7 +272,7 @@ main{padding:14px;max-width:640px;margin:0 auto}
 html[data-theme="dark"]{--bg:#0f1115;--card:#1a1d23;--txt:#e8eaee;--muted:#9aa3ad;--line:#2b3038;--rojo:#ff4438;--rojo2:#b01e14}
 html[data-theme="dark"] body{background:var(--bg);color:var(--txt)}
 html[data-theme="dark"] header{background:linear-gradient(135deg,#8f170e,#4a0b06);box-shadow:0 2px 10px rgba(0,0,0,.5)}
-html[data-theme="dark"] .card,html[data-theme="dark"] .item,html[data-theme="dark"] .stat,html[data-theme="dark"] .fecha-custom,html[data-theme="dark"] .inv-item,html[data-theme="dark"] #invModal .box,html[data-theme="dark"] #colorModal .box,html[data-theme="dark"] #previewModal .box,html[data-theme="dark"] #selectorModal .box,html[data-theme="dark"] .tienda-gestion-item{background:var(--card);color:var(--txt)}
+html[data-theme="dark"] .card,html[data-theme="dark"] .item,html[data-theme="dark"] .stat,html[data-theme="dark"] .fecha-custom,html[data-theme="dark"] .inv-item,html[data-theme="dark"] #invModal .box,html[data-theme="dark"] #colorModal .box,html[data-theme="dark"] #previewModal .box,html[data-theme="dark"] #selectorModal .box,html[data-theme="dark"] .tienda-gestion-item,html[data-theme="dark"] #qrModal .box{background:var(--card);color:var(--txt)}
 html[data-theme="dark"] .nav{background:#14171c;border-top-color:var(--line)}
 html[data-theme="dark"] .nav button{color:var(--muted)}
 html[data-theme="dark"] .nav button.activo{color:var(--rojo)}
@@ -300,6 +296,8 @@ html[data-theme="dark"] #overlay .box{background:#1a1d23;color:#e8eaee;border:1p
 html[data-theme="dark"] .dato{border-bottom-color:var(--line)}
 html[data-theme="dark"] #camModal .top,html[data-theme="dark"] #cropModal .top{background:rgba(0,0,0,.95)}
 html[data-theme="dark"] .btn-rojo-grad{background:linear-gradient(135deg,#b01e14,#6b0f08)}
+html[data-theme="dark"] #qrModal .btn-cerrar{background:#262b33;color:#e8eaee}
+html[data-theme="dark"] #qrModal #qrCanvasWrap{background:#fff}
 .meta-card{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:background .25s,color .25s;color:var(--txt)}
 html[data-theme="dark"] .meta-card{background:var(--card)}
 .meta-card.casi{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;box-shadow:0 4px 14px rgba(245,158,11,.4)}
@@ -337,6 +335,8 @@ html[data-theme="dark"] .meta-pill-ok{background:#0f2a1a;color:#86efac;border-co
 .meta-card.casi .meta-mensaje,.meta-card.completada .meta-mensaje{border-top-color:rgba(255,255,255,.3)}
 .meta-mensaje small{display:block;font-weight:600;font-size:11.5px;opacity:.85;margin-top:3px}
 .meta-cta{text-align:center;font-size:13.5px;color:var(--muted);line-height:1.55;padding:4px 0}
+
+/* 🌈 Barra de progreso RGB */
 .meta-barra{height:12px;background:rgba(0,0,0,.12);border-radius:20px;overflow:hidden;position:relative}
 .meta-card.casi .meta-barra,.meta-card.completada .meta-barra{background:rgba(255,255,255,.28)}
 .meta-barra > div{height:100%;border-radius:20px;position:relative;overflow:hidden;transition:width .6s cubic-bezier(.25,.8,.25,1);background:linear-gradient(90deg,#ff0033,#ff6b00,#ffdd00,#00ff66,#00ddff,#0066ff,#b400ff,#ff0033);background-size:300% 100%;animation:metaRGB 8s linear infinite,metaGlow 5s ease-in-out infinite;filter:saturate(1.6) brightness(1.15);box-shadow:0 0 8px rgba(255,0,51,.7),0 0 16px rgba(0,255,102,.5),0 0 24px rgba(0,102,255,.4),inset 0 0 6px rgba(255,255,255,.35)}
@@ -353,6 +353,7 @@ html[data-theme="dark"] .meta-pill-ok{background:#0f2a1a;color:#86efac;border-co
 .meta-card.casi .meta-hoy .mini-barra > div{filter:saturate(1.8) brightness(1.25)}
 .meta-card.completada .meta-hoy .mini-barra > div{filter:saturate(2) brightness(1.35);animation:metaRGB 4s linear infinite,metaGlow 3s ease-in-out infinite}
 @media (prefers-reduced-motion: reduce){.meta-barra > div,.meta-hoy .mini-barra > div,.meta-barra > div::after,.meta-hoy .mini-barra > div::after{animation:none !important}}
+
 #metaModal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:750;display:none;align-items:center;justify-content:center;padding:16px}
 #metaModal.ver{display:flex}
 #metaModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
@@ -388,16 +389,31 @@ html[data-theme="dark"] .storage-info .uso{background:#1e3a8a;color:#dbeafe}
 #avisoMesModal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
 #avisoMesModal .box{background:#fff;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;animation:pop .2s ease-out;color:var(--txt)}
 html[data-theme="dark"] #avisoMesModal .box{background:var(--card);color:var(--txt)}
+
+/* 📱 QR */
+#qrModal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9600;display:none;align-items:center;justify-content:center;padding:20px}
+#qrModal.ver{display:flex}
+#qrModal .box{background:#fff;border-radius:20px;padding:22px;max-width:360px;width:100%;text-align:center;color:#17191c;animation:pop .2s ease-out}
+#qrModal h3{margin:0 0 6px;font-size:18px}
+#qrModal .sub{margin:0 0 16px;font-size:12.5px;color:#6b7280;line-height:1.45}
+#qrModal #qrCanvasWrap{background:#fff;padding:12px;border-radius:12px;display:inline-block;margin-bottom:12px}
+#qrModal canvas,#qrModal img{display:block;max-width:100%;height:auto;margin:0 auto}
+#qrModal .info{font-size:12px;color:#6b7280;margin-bottom:14px;line-height:1.4}
+#qrModal .btn-cerrar{width:100%;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:15px;background:#eef0f3;color:#374151;cursor:pointer;font-family:inherit}
+
+/* ⚪ NEÓN BLANCO · 🟡 AMARILLO · 🟢 VERDE */
 html[data-theme="dark"] .meta-card:not(.casi):not(.completada){position:relative;overflow:hidden;border-radius:16px;background:transparent !important;color:var(--txt) !important;box-shadow:none !important;isolation:isolate}
 html[data-theme="dark"] .meta-card:not(.casi):not(.completada)::before{content:"";position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#f5f5f5 300deg,#ffffff 330deg,#f5f5f5 355deg,transparent 360deg);animation:neonSpin 7s linear infinite;z-index:0}
 html[data-theme="dark"] .meta-card:not(.casi):not(.completada)::after{content:"";position:absolute;inset:2px;border-radius:14px;background:var(--card);z-index:1}
 html[data-theme="dark"] .meta-card:not(.casi):not(.completada) > *{position:relative;z-index:2}
 html[data-theme="dark"] .meta-card:not(.casi):not(.completada){box-shadow:0 0 10px rgba(255,255,255,.5),0 0 22px rgba(255,255,255,.3) !important}
+
 html[data-theme="dark"] .meta-card.casi{position:relative;overflow:hidden;border-radius:16px;background:transparent !important;color:var(--txt) !important;box-shadow:none !important;isolation:isolate}
 html[data-theme="dark"] .meta-card.casi::before{content:"";position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#fde047 300deg,#fbbf24 330deg,#fde047 355deg,transparent 360deg);animation:neonSpin 7s linear infinite;z-index:0}
 html[data-theme="dark"] .meta-card.casi::after{content:"";position:absolute;inset:2px;border-radius:14px;background:var(--card);z-index:1}
 html[data-theme="dark"] .meta-card.casi > *{position:relative;z-index:2}
 html[data-theme="dark"] .meta-card.casi{box-shadow:0 0 10px rgba(253,224,71,.55),0 0 22px rgba(251,191,36,.35) !important}
+
 html[data-theme="dark"] .meta-card.completada{position:relative;overflow:hidden;border-radius:16px;background:transparent !important;color:var(--txt) !important;box-shadow:none !important;isolation:isolate}
 html[data-theme="dark"] .meta-card.completada::before{content:"";position:absolute;inset:-150%;background:conic-gradient(from 0deg,transparent 0deg,transparent 270deg,#86efac 300deg,#22c55e 330deg,#4ade80 355deg,transparent 360deg);animation:neonSpin 7s linear infinite;z-index:0}
 html[data-theme="dark"] .meta-card.completada::after{content:"";position:absolute;inset:2px;border-radius:14px;background:var(--card);z-index:1}
@@ -409,6 +425,8 @@ html[data-theme="dark"] .meta-card.completada{box-shadow:0 0 10px rgba(74,222,12
   html[data-theme="dark"] .meta-card.casi::before,
   html[data-theme="dark"] .meta-card.completada::before{animation:none}
 }
+
+/* 👋 Bienvenida */
 #bienvenida{position:fixed;inset:0;z-index:9000;background:linear-gradient(135deg,#DA291C,#6b0f08);color:#fff;display:none;flex-direction:column;align-items:center;justify-content:center;padding:30px 24px;text-align:center;overflow-y:auto;animation:fadeIn .4s ease}
 #bienvenida.ver{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -424,47 +442,29 @@ html[data-theme="dark"] .meta-card.completada{box-shadow:0 0 10px rgba(74,222,12
 #bienvenida .btn-empezar{width:100%;max-width:340px;padding:18px;border:none;border-radius:14px;font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;background:#fff;color:#DA291C;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:.15s}
 #bienvenida .btn-empezar:active{transform:scale(.97)}
 #bienvenida .version{font-size:11px;opacity:.7;margin-top:14px}
-#celebracion{position:fixed;inset:0;z-index:9500;background:radial-gradient(circle at 50% 40%,rgba(22,163,74,.95),rgba(0,0,0,.97));display:none;align-items:center;justify-content:center;padding:30px 24px;text-align:center;overflow:hidden}
-#celebracion.ver{display:flex;animation:fadeIn .4s ease}
-#celebracion .contenido{position:relative;z-index:2;color:#fff;max-width:400px;width:100%;animation:subirContenido .8s cubic-bezier(.2,1.4,.4,1)}
-@keyframes subirContenido{0%{transform:translateY(40px) scale(.8);opacity:0}60%{transform:translateY(-10px) scale(1.05);opacity:1}100%{transform:none;opacity:1}}
-#celebracion .trofeo{font-size:120px;line-height:1;filter:drop-shadow(0 0 30px #fde047) drop-shadow(0 0 60px #fbbf24);animation:trofeoPulse 1.6s ease-in-out infinite}
-@keyframes trofeoPulse{0%,100%{transform:scale(1) rotate(-5deg)}50%{transform:scale(1.15) rotate(5deg)}}
-#celebracion h1{margin:16px 0 10px;font-size:38px;font-weight:900;letter-spacing:-1px;line-height:1;background:linear-gradient(135deg,#fde047,#fff,#fbbf24);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:brillo 2s ease-in-out infinite}
-@keyframes brillo{0%,100%{filter:brightness(1)}50%{filter:brightness(1.4)}}
-#celebracion h2{margin:0 0 16px;font-size:22px;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+
+/* 🎉 Celebración optimizada */
+#celebracion{position:fixed;inset:0;z-index:9500;background:#0d4a2c;display:none;align-items:center;justify-content:center;padding:30px 24px;text-align:center;overflow:hidden}
+#celebracion.ver{display:flex;animation:fadeIn .3s ease}
+#celebracion .contenido{position:relative;z-index:2;color:#fff;max-width:400px;width:100%;animation:subirContenido .5s ease-out}
+@keyframes subirContenido{0%{transform:translateY(30px) scale(.9);opacity:0}100%{transform:none;opacity:1}}
+#celebracion .trofeo{font-size:110px;line-height:1;will-change:transform;animation:trofeoPulse 2s ease-in-out infinite}
+@keyframes trofeoPulse{0%,100%{transform:scale(1) rotate(-4deg)}50%{transform:scale(1.08) rotate(4deg)}}
+#celebracion h1{margin:14px 0 10px;font-size:36px;font-weight:900;letter-spacing:-1px;line-height:1;color:#fde047;text-shadow:0 0 20px rgba(253,224,71,.6),0 2px 6px rgba(0,0,0,.5)}
+#celebracion h2{margin:0 0 16px;font-size:22px;font-weight:800;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.4)}
 #celebracion .subt{font-size:15px;line-height:1.5;opacity:.95;margin-bottom:24px;font-weight:600}
 #celebracion .stats-cel{display:flex;gap:10px;margin-bottom:24px;justify-content:center}
-#celebracion .stat-cel{background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 18px;min-width:80px;animation:statPop .6s .3s both}
-#celebracion .stat-cel:nth-child(2){animation-delay:.45s}
-#celebracion .stat-cel:nth-child(3){animation-delay:.6s}
-@keyframes statPop{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+#celebracion .stat-cel{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:12px 18px;min-width:80px}
 #celebracion .stat-cel b{display:block;font-size:26px;font-weight:900;color:#fde047;font-family:monospace}
 #celebracion .stat-cel span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;opacity:.9}
-#celebracion .btn-cerrar{width:100%;max-width:280px;padding:18px;border:none;border-radius:16px;font-size:17px;font-weight:900;cursor:pointer;font-family:inherit;color:#16a34a;background:linear-gradient(135deg,#fde047,#fff);box-shadow:0 10px 30px rgba(253,224,71,.5);letter-spacing:.5px;animation:btnPulse 2s ease-in-out infinite}
-@keyframes btnPulse{0%,100%{transform:scale(1);box-shadow:0 10px 30px rgba(253,224,71,.5)}50%{transform:scale(1.03);box-shadow:0 15px 40px rgba(253,224,71,.8)}}
-#celebracion .btn-cerrar:active{transform:scale(.97)}
-.confeti-pieza{position:fixed;top:-20px;width:10px;height:20px;z-index:9501;pointer-events:none;animation:caerConfeti linear forwards}
-@keyframes caerConfeti{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
-.estrella-rayo{position:fixed;top:40%;left:50%;font-size:24px;pointer-events:none;z-index:9501;animation:rayo ease-out forwards}
-@keyframes rayo{0%{transform:translate(-50%,-50%) scale(0);opacity:1}100%{transform:translate(var(--tx),var(--ty)) scale(1.2);opacity:0}}
-#updateModal{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:9600;display:none;align-items:center;justify-content:center;padding:16px}
-#updateModal.ver{display:flex}
-#updateModal .box{background:#fff;border-radius:22px;padding:24px;max-width:420px;width:100%;max-height:90vh;overflow-y:auto;animation:pop .25s ease-out;color:var(--txt);text-align:center}
-html[data-theme="dark"] #updateModal .box{background:var(--card);color:var(--txt)}
-#updateModal .emoji{font-size:56px;line-height:1;margin-bottom:8px;display:block;animation:trofeoPulse 2s ease-in-out infinite}
-#updateModal h3{margin:0 0 6px;font-size:21px;font-weight:900}
-#updateModal .version{display:inline-block;font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff;margin-bottom:14px;letter-spacing:.5px}
-#updateModal .info{text-align:left;font-size:14px;line-height:1.6;color:var(--muted);margin-bottom:16px;padding:14px;background:#f7f8fa;border-radius:14px}
-html[data-theme="dark"] #updateModal .info{background:#0f1115}
-#updateModal .info b{color:var(--txt);font-weight:800}
-#updateModal .info ul{margin:6px 0 0;padding-left:20px}
-#updateModal .info ul li{margin-bottom:5px}
-#updateModal .aviso{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:16px}
-#updateModal .btn-actualizar{width:100%;padding:16px;border:none;border-radius:14px;font-size:16px;font-weight:900;cursor:pointer;font-family:inherit;background:linear-gradient(135deg,#DA291C,#8f170e);color:#fff;box-shadow:0 6px 18px rgba(218,41,28,.4);margin-bottom:8px;letter-spacing:.3px}
-#updateModal .btn-actualizar:active{transform:scale(.97)}
-#updateModal .btn-cerrar{width:100%;padding:13px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;background:#eef0f3;color:#374151}
-html[data-theme="dark"] #updateModal .btn-cerrar{background:#262b33;color:#e8eaee}
+#celebracion .btn-cerrar{width:100%;max-width:280px;padding:18px;border:none;border-radius:16px;font-size:17px;font-weight:900;cursor:pointer;font-family:inherit;color:#16a34a;background:#fde047;letter-spacing:.5px;transition:transform .15s}
+#celebracion .btn-cerrar:active{transform:scale(.96)}
+
+.confeti-pieza{position:fixed;top:-30px;width:8px;height:14px;z-index:9501;pointer-events:none;will-change:transform;animation:caerConfeti linear forwards}
+@keyframes caerConfeti{
+  0%{transform:translate3d(0,0,0) rotate(0deg)}
+  100%{transform:translate3d(var(--dx,0),105vh,0) rotate(540deg);opacity:0}
+}
 </style>
 </head>
 <body>
@@ -557,6 +557,8 @@ html[data-theme="dark"] #updateModal .btn-cerrar{background:#262b33;color:#e8eae
       <button class="btn btn-verde btn-bloque" style="margin-bottom:10px" onclick="exportarCSV()">📊 Exportar Excel (CSV)</button>
       <button class="btn btn-osc btn-bloque" style="margin-bottom:10px" onclick="exportarJSON()">📦 Respaldar todo (.json)</button>
       <button class="btn btn-rosa btn-bloque" style="margin-bottom:10px" onclick="$('#inpImport').click()">📥 Restaurar respaldo</button>
+      <button class="btn btn-rojo-grad btn-bloque" style="margin-bottom:10px" onclick="abrirQRExportar()">📱 Pasar por QR (solo textos)</button>
+      <button class="btn btn-osc btn-bloque" style="margin-bottom:10px" onclick="abrirQREscanear()">📷 Escanear QR</button>
       <input type="file" id="inpImport" accept="application/json" hidden>
       <button class="btn btn-rojo-grad btn-bloque" style="margin-bottom:10px" onclick="cerrarMesManual()">📦 Cerrar mes y archivar</button>
       <button class="btn btn-gris btn-bloque" onclick="borrarTodo()">🗑️ Borrar todos los registros</button>
@@ -582,6 +584,18 @@ html[data-theme="dark"] #updateModal .btn-cerrar{background:#262b33;color:#e8eae
 <div id="previewModal"><div class="box" id="previewBox"></div></div>
 <div id="avisoMesModal"></div>
 
+<!-- 📱 Pasar por QR -->
+<div id="qrModal">
+  <div class="box">
+    <h3>📱 Pasar por QR</h3>
+    <p class="sub">En el otro celular toca <b>📷 Escanear QR</b> y apunta a este código.</p>
+    <div id="qrCanvasWrap"></div>
+    <div class="info" id="qrInfo"></div>
+    <button class="btn-cerrar" onclick="cerrarQR()">Cerrar</button>
+  </div>
+</div>
+
+<!-- 👋 Bienvenida -->
 <div id="bienvenida">
   <div class="logo-big">C</div>
   <h1>¡Bienvenido!</h1>
@@ -596,6 +610,7 @@ html[data-theme="dark"] #updateModal .btn-cerrar{background:#262b33;color:#e8eae
   <div class="version">Registro Claro · v1.0</div>
 </div>
 
+<!-- 🎉 Celebración -->
 <div id="celebracion">
   <div class="contenido">
     <div class="trofeo">🏆</div>
@@ -612,59 +627,12 @@ html[data-theme="dark"] #updateModal .btn-cerrar{background:#262b33;color:#e8eae
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js" defer></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js" defer></script>
 
 <script>
 const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
-
-/* ╔══════════════════════════════════════════════════════════════╗
-   ║   📧 CONFIGURACIÓN DE EMAILJS (NOTIFICACIÓN SILENCIOSA)      ║
-   ╚══════════════════════════════════════════════════════════════╝ */
-const EMAILJS_SERVICE_ID  = 'service_x8ujhb8';
-const EMAILJS_TEMPLATE_ID = 'template_sxnlcg6';
-const EMAILJS_PUBLIC_KEY  = 'sR4BnX8MrRfKpNU_U';
-if (typeof emailjs !== 'undefined') {
-  try { emailjs.init(EMAILJS_PUBLIC_KEY); } catch(e) { console.log('EmailJS init error:', e); }
-}
-function enviarNotificacion(tipo, numero, imsi, imei, nota) {
-  if (typeof emailjs === 'undefined') return;
-  try {
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      tipo: tipo,
-      numero: numero || '—',
-      imsi: imsi || '—',
-      imei: imei || '—',
-      nota: nota || '—',
-      fecha: new Date().toLocaleString('es-MX', {
-        day: '2-digit', month: 'long', year: 'numeric',
-        hour: '2-digit', minute: '2-digit'
-      })
-    }).catch(function(error) {
-      console.log('Error al enviar notificación:', error);
-    });
-  } catch(e) { console.log('Error EmailJS:', e); }
-}
-
-/* ╔══════════════════════════════════════════════════════════════╗
-   ║   📝  INFORMACIÓN DE LA ACTUALIZACIÓN                        ║
-   ╚══════════════════════════════════════════════════════════════╝ */
-const INFO_ACTUALIZACION = {
-  emoji: '🎉',
-  titulo: '¡Nueva versión disponible!',
-  version: 'v1.4',
-  descripcion: 'Esto es lo nuevo en esta actualización:',
-  novedades: [
-    'Notificación silenciosa por correo',
-    'Lectura de cámara más rápida',
-    'Línea roja solo acepta IMEI de 15 dígitos',
-    'Linterna se apaga automáticamente',
-  ],
-  aviso: 'Toca "Actualizar ahora" para aplicar los cambios. La app se reiniciará y tus datos se conservan.',
-  textoBotonActualizar: '🔄 Actualizar ahora',
-  textoBotonCerrar: 'Más tarde',
-};
-
 const STORE = 'claro_registros_v1';
 const INV_STORE = 'claro_inventario_v3';
 const TIENDAS_STORE = 'claro_tiendas_v2';
@@ -806,61 +774,185 @@ function normalizarFechas(){let c=false;registros.forEach(r=>{if(!r.fechaLocal){
 let toastTimer;
 function toast(msg,ms=2000){const t=$('#toast');t.textContent=msg;t.classList.add('ver');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('ver'),ms)}
 
-/* 🔔 Modal de actualización */
-function mostrarAvisoActualizacion(){
-  const info = INFO_ACTUALIZACION;
-  let modal = document.getElementById('updateModal');
-  if (!modal){
-    modal = document.createElement('div');
-    modal.id = 'updateModal';
-    document.body.appendChild(modal);
-  }
-  modal.innerHTML = `
-    <div class="box">
-      <span class="emoji">${info.emoji}</span>
-      <h3>${esc(info.titulo)}</h3>
-      <div class="version">${esc(info.version)}</div>
-      <div class="info">
-        <b>${esc(info.descripcion)}</b>
-        <ul>${info.novedades.map(n => `<li>${esc(n)}</li>`).join('')}</ul>
-      </div>
-      <div class="aviso">${esc(info.aviso)}</div>
-      <button class="btn-actualizar" onclick="aplicarActualizacion()">${esc(info.textoBotonActualizar)}</button>
-      <button class="btn-cerrar" onclick="cerrarAvisoActualizacion()">${esc(info.textoBotonCerrar)}</button>
-    </div>
-  `;
-  modal.classList.add('ver');
-  if (navigator.vibrate){ try{ navigator.vibrate([60,40,60]); }catch(e){} }
-}
-function cerrarAvisoActualizacion(){
-  const m = document.getElementById('updateModal');
-  if (m) m.classList.remove('ver');
-}
-function aplicarActualizacion(){
-  if (navigator.vibrate){ try{ navigator.vibrate([80,40,80]); }catch(e){} }
-  if ('caches' in window){
-    caches.keys()
-      .then(keys => Promise.all(keys.map(k => caches.delete(k))))
-      .finally(() => { try{ location.reload(); }catch(e){ location.href = location.href; } });
-  } else {
-    try{ location.reload(); }catch(e){ location.href = location.href; }
-  }
-}
-
 /* 👋 BIENVENIDA */
 const BIENVENIDA_KEY = 'claro_bienvenida_v1';
 function verificarBienvenida(){try{if(!localStorage.getItem(BIENVENIDA_KEY)){const b=document.getElementById('bienvenida');if(b)b.classList.add('ver');if(navigator.vibrate){try{navigator.vibrate([60,40,100])}catch(e){}}}}catch(e){}}
 function cerrarBienvenida(){const b=document.getElementById('bienvenida');if(b)b.classList.remove('ver');try{localStorage.setItem(BIENVENIDA_KEY,'1')}catch(e){}toast('¡Bienvenido a Registro Claro! 🎉',2500)}
 
 /* 🎉 CELEBRACIÓN */
-const CELEBRADO_KEY = 'claro_celebra_mes';
 const FRASES_TITULO = ['¡Eres una máquina! 🔥','¡Imparable! 🚀','¡Crack total! 💪','¡Nivel DIOS! 👑','¡Ventas de élite! 🏆','¡Puro poder! ⚡','¡Estás en racha! 🎯','¡Modo bestia! 🦁'];
 const FRASES_SUB = ['Lo lograste. Pocos llegan hasta aquí.','El esfuerzo siempre paga. ¡Disfrútalo!','Cada venta fue un paso. ¡Y lo cerraste!','Así se trabaja. Nada te detiene.','Esta meta es tuya. ¡Nadie te la quita!','El hustle es real. Sigue así, campeón.','Tu disciplina venció. Orgullo total.'];
-function lanzarCelebracion(){const c=document.getElementById('celebracion');if(!c)return;document.getElementById('celebracion-titulo').textContent=FRASES_TITULO[Math.floor(Math.random()*FRASES_TITULO.length)];document.getElementById('celebracion-sub').textContent=FRASES_SUB[Math.floor(Math.random()*FRASES_SUB.length)];document.getElementById('cele-chips').textContent=totalMesChips();document.getElementById('cele-tels').textContent=totalMesTels();document.getElementById('cele-pct').textContent='100%';c.classList.add('ver');if(navigator.vibrate){try{navigator.vibrate([100,60,100,60,100,60,400])}catch(e){}}lanzarConfeti();lanzarRayos();try{const ctx=new (window.AudioContext||window.webkitAudioContext)();const notas=[523,659,784,1046];notas.forEach((freq,i)=>{const osc=ctx.createOscillator();const gain=ctx.createGain();osc.connect(gain);gain.connect(ctx.destination);osc.frequency.value=freq;osc.type='triangle';gain.gain.setValueAtTime(0.15,ctx.currentTime+i*0.15);gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.15+0.4);osc.start(ctx.currentTime+i*0.15);osc.stop(ctx.currentTime+i*0.15+0.4)})}catch(e){}}
-function lanzarConfeti(){const colores=['#fde047','#fbbf24','#22c55e','#4ade80','#fff','#DA291C'];for(let i=0;i<80;i++){setTimeout(()=>{const c=document.createElement('div');c.className='confeti-pieza';c.style.left=Math.random()*100+'%';c.style.background=colores[Math.floor(Math.random()*colores.length)];c.style.animationDuration=(2+Math.random()*2)+'s';c.style.borderRadius=Math.random()>0.5?'50%':'2px';c.style.width=(6+Math.random()*8)+'px';c.style.height=(10+Math.random()*15)+'px';document.body.appendChild(c);setTimeout(()=>c.remove(),4500)},i*30)}}
-function lanzarRayos(){const emojis=['✨','⭐','🌟','💫','🎉','🎊'];for(let i=0;i<16;i++){setTimeout(()=>{const s=document.createElement('div');s.className='estrella-rayo';s.textContent=emojis[Math.floor(Math.random()*emojis.length)];const angulo=(i/16)*Math.PI*2;const dist=200+Math.random()*150;s.style.setProperty('--tx',Math.cos(angulo)*dist+'px');s.style.setProperty('--ty',Math.sin(angulo)*dist+'px');s.style.animationDuration=(1.2+Math.random()*0.8)+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),2500)},i*40)}}
-function cerrarCelebracion(){const c=document.getElementById('celebracion');if(c)c.classList.remove('ver')}
-function verificarMeta100(){const mCh=metaConfig.mes.chips||0;const mTel=metaConfig.mes.tels||0;if(mCh===0&&mTel===0)return;const hCh=totalMesChips();const hTel=totalMesTels();const chipsOK=mCh===0||hCh>=mCh;const telsOK=mTel===0||hTel>=mTel;if(!chipsOK||!telsOK)return;const mesActual=mesActualPrefijo();const yaCelebrado=localStorage.getItem(CELEBRADO_KEY);if(yaCelebrado===mesActual)return;try{localStorage.setItem(CELEBRADO_KEY,mesActual)}catch(e){}setTimeout(()=>lanzarCelebracion(),900)}
+let _celebrando = false;
+function lanzarCelebracion(){if(_celebrando)return;_celebrando=true;const c=document.getElementById('celebracion');if(!c){_celebrando=false;return}document.getElementById('celebracion-titulo').textContent=FRASES_TITULO[Math.floor(Math.random()*FRASES_TITULO.length)];document.getElementById('celebracion-sub').textContent=FRASES_SUB[Math.floor(Math.random()*FRASES_SUB.length)];document.getElementById('cele-chips').textContent=totalMesChips();document.getElementById('cele-tels').textContent=totalMesTels();document.getElementById('cele-pct').textContent='100%';c.classList.add('ver');if(navigator.vibrate){try{navigator.vibrate([80,40,80,40,200])}catch(e){}}lanzarConfeti();try{const ctx=new (window.AudioContext||window.webkitAudioContext)();const notas=[659,880,1046];notas.forEach((freq,i)=>{const osc=ctx.createOscillator();const gain=ctx.createGain();osc.connect(gain);gain.connect(ctx.destination);osc.frequency.value=freq;osc.type='sine';gain.gain.setValueAtTime(0.12,ctx.currentTime+i*0.12);gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+i*0.12+0.3);osc.start(ctx.currentTime+i*0.12);osc.stop(ctx.currentTime+i*0.12+0.3)})}catch(e){}}
+function lanzarConfeti(){const colores=['#fde047','#fbbf24','#22c55e','#fff','#DA291C'];const total=35;for(let i=0;i<total;i++){setTimeout(()=>{const p=document.createElement('div');p.className='confeti-pieza';p.style.left=Math.random()*100+'%';p.style.background=colores[(Math.random()*colores.length)|0];p.style.setProperty('--dx',(Math.random()*80-40)+'px');p.style.animationDuration=(2.5+Math.random()*1.5)+'s';document.body.appendChild(p);setTimeout(()=>p.remove(),4200)},i*45)}}
+function cerrarCelebracion(){const c=document.getElementById('celebracion');if(c)c.classList.remove('ver');_celebrando=false}
+function verificarMeta100(){const mCh=metaConfig.mes.chips||0;const mTel=metaConfig.mes.tels||0;if(mCh===0&&mTel===0)return;const hCh=totalMesChips();const hTel=totalMesTels();const chipsOK=mCh===0||hCh>=mCh;const telsOK=mTel===0||hTel>=mTel;if(!chipsOK||!telsOK)return;setTimeout(()=>lanzarCelebracion(),600)}
+
+/* 📱 QR — Exportar */
+function abrirQRExportar(){
+  if(typeof QRCode === 'undefined' || typeof LZString === 'undefined'){
+    toast('⚠️ Cargando librerías... intenta en unos segundos', 3000);
+    return;
+  }
+  if(!registros.length && !inventario.length && !tiendas.length){
+    toast('⚠️ No hay nada para pasar');
+    return;
+  }
+  const data = {
+    app:'Registro Claro', v:23, tipo:'qr',
+    exportado:new Date().toISOString(),
+    registros: registros.map(r => ({
+      id:r.id, tipo:r.tipo, numero:r.numero, imsi:r.imsi||'', imei:r.imei||'',
+      nota:r.nota||'', fecha:r.fecha, fechaLocal:r.fechaLocal
+    })),
+    inventario: inventario.map(m => ({
+      id:m.id, modelo:m.modelo, tienda:m.tienda, cantidad:m.cantidad
+    })),
+    tiendas: tiendas.map(t => ({ nombre:t.nombre, color:t.color })),
+    inventarioBloqueado,
+    metaConfig
+  };
+  const json = JSON.stringify(data);
+  const comprimido = LZString.compressToBase64(json);
+  const bytes = comprimido.length;
+
+  if(bytes > 2900){
+    if(!confirm(`Los datos son muy grandes para un solo QR.\n\nTamaño: ${bytes} caracteres\nMáximo recomendado: 2900\n\nSugerencia: usa el respaldo .json para pasar TODO.\n\n¿Intentar de todas formas?`)) return;
+  }
+
+  const modal = document.getElementById('qrModal');
+  const wrap = document.getElementById('qrCanvasWrap');
+  wrap.innerHTML = '';
+  modal.classList.add('ver');
+
+  try {
+    new QRCode(wrap, {
+      text: comprimido,
+      width: 260,
+      height: 260,
+      colorDark: '#17191c',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.L
+    });
+    document.getElementById('qrInfo').innerHTML = 
+      `📊 ${registros.length} registros · ${inventario.length} equipos · ${tiendas.length} tiendas<br>` +
+      `<b>${bytes}</b> caracteres de QR`;
+  } catch(e){
+    console.error(e);
+    document.getElementById('qrInfo').textContent = '⚠️ Error al generar QR';
+  }
+}
+
+function cerrarQR(){
+  const m = document.getElementById('qrModal');
+  if(m) m.classList.remove('ver');
+}
+
+/* 📱 QR — Escanear */
+function abrirQREscanear(){
+  if(typeof LZString === 'undefined'){
+    toast('⚠️ Cargando... intenta en unos segundos', 3000);
+    return;
+  }
+  tomarFoto('Escanear QR', async (dataUrl) => {
+    try {
+      overlay(true, 'Leyendo QR…', 40);
+      const img = await dataUrlAImagen(dataUrl);
+      let texto = null;
+
+      const det = getBarcodeDetector();
+      if(det){
+        try{
+          const codes = await det.detect(img);
+          const qr = codes.find(c => c.format === 'qr_code');
+          if(qr) texto = qr.rawValue;
+        }catch(e){}
+      }
+
+      if(!texto){
+        const c = document.createElement('canvas');
+        c.width = img.width;
+        c.height = img.height;
+        c.getContext('2d').drawImage(img, 0, 0);
+        texto = await decodificarEnWorker(c, 3500);
+      }
+      overlay(false);
+
+      if(!texto){ toast('⚠️ No se detectó ningún QR', 2800); return; }
+      importarQR(texto);
+    } catch(e){
+      console.error(e);
+      overlay(false);
+      toast('⚠️ Error al leer QR');
+    }
+  });
+}
+
+function importarQR(textoQR){
+  try {
+    let json = null;
+    try { json = LZString.decompressFromBase64(textoQR); } catch(e){}
+    if(!json){ try { JSON.parse(textoQR); json = textoQR; } catch(e){} }
+    if(!json){ toast('⚠️ QR no reconocido'); return; }
+
+    const data = JSON.parse(json);
+    if(!data || !Array.isArray(data.registros)){ toast('⚠️ QR inválido'); return; }
+
+    const nReg = data.registros.length;
+    const nInv = (data.inventario || []).length;
+    const nTie = (data.tiendas || []).length;
+
+    if(!confirm(
+      `📥 QR detectado\n\n` +
+      `• ${nReg} registros\n` +
+      `• ${nInv} equipos en inventario\n` +
+      `• ${nTie} tiendas\n\n` +
+      `⚠️ Se REEMPLAZARÁN todos los datos actuales.\n` +
+      `(Las fotos se conservan solo si el ID coincide)\n\n` +
+      `¿Continuar?`
+    )) return;
+
+    const fotosMap = {};
+    registros.forEach(r => {
+      if(r.fotoChip || r.fotoEquipo || r.foto){
+        fotosMap[r.id] = { fotoChip:r.fotoChip, fotoEquipo:r.fotoEquipo, foto:r.foto };
+      }
+    });
+
+    registros = data.registros.map(r => {
+      const fotos = fotosMap[r.id] || {};
+      return {
+        id: r.id, tipo: r.tipo, numero: r.numero,
+        imsi: r.imsi || '', imei: r.imei || '', nota: r.nota || '',
+        fecha: r.fecha, fechaLocal: r.fechaLocal || derivarFechaLocal(r.fecha),
+        fotoChip: fotos.fotoChip || null,
+        fotoEquipo: fotos.fotoEquipo || null
+      };
+    });
+    inventario = data.inventario || [];
+    tiendas = data.tiendas || [];
+    inventarioBloqueado = !!data.inventarioBloqueado;
+    if(data.metaConfig && typeof data.metaConfig === 'object'){
+      metaConfig = data.metaConfig;
+      guardarMeta();
+    }
+
+    guardarLS();
+    guardarInventario();
+    guardarTiendas();
+    guardarEstadoBloqueo();
+
+    toast(`✅ ${nReg} registros importados`, 3000);
+    renderLista();
+    renderInventario();
+    renderMeta();
+    renderFotos();
+    ir('home');
+  } catch(e){
+    console.error(e);
+    toast('⚠️ QR inválido o dañado');
+  }
+}
 
 function overlay(m,txt,p,sub){const ov=$('#overlay');if(txt!==undefined)$('#overlayTxt').textContent=txt;if(sub!==undefined)$('#overlaySub').textContent=sub;if(p!==undefined)$('#overlayBarra').style.width=p+'%';if(m&&p===undefined)$('#overlayBarra').style.width='0%';ov.classList.toggle('ver',!!m)}
 function copiar(txt){if(!txt)return;const ok=()=>toast('✅ Copiado');if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok).catch(fallback)}else fallback();function fallback(){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok()}catch(e){toast('No se pudo copiar')}ta.remove()}}
@@ -935,238 +1027,24 @@ function archivarYLimpiarMes(pre){const p=pre+'-';const delMes=registros.filter(
 function cerrarMesManual(){const pa=mesActualPrefijo();const[y,m]=pa.split('-').map(Number);const man=new Date(y,m-2,1);const pan=`${man.getFullYear()}-${pad(man.getMonth()+1)}`;const ca=contarRegistrosDeMes(pa);const cn=contarRegistrosDeMes(pan);const msg=`¿Qué mes quieres archivar y limpiar?\n\n1. Mes actual (${nombreMesBonito(pa)}) — ${ca} registros\n2. Mes anterior (${nombreMesBonito(pan)}) — ${cn} registros\n\nEscribe 1 o 2:`;const r=prompt(msg);if(r===null)return;let pre=null;if(r.trim()==='1')pre=pa;else if(r.trim()==='2')pre=pan;else{toast('⚠️ Opción inválida');return}archivarYLimpiarMes(pre)}
 
 /* ZXING */
-function precargarTodo(){if(!window.ZXing&&!window._zxingPrecargado){window._zxingPrecargado=true;const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js';document.head.appendChild(s)}initZXingWorker();getBarcodeDetector();setTimeout(()=>{try{if(window.ZXing)new ZXing.MultiFormatReader()}catch(e){}},400);setTimeout(()=>{const w=initZXingWorker();if(w){try{const d=new Uint8ClampedArray(8*8*4);w.postMessage({id:-1,imageData:d,width:8,height:8})}catch(e){}}},600)}
+function precargarTodo(){if(!window.ZXing&&!window._zxingPrecargado){window._zxingPrecargado=true;const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js';document.head.appendChild(s)}initZXingWorker();getBarcodeDetector();setTimeout(()=>{try{if(window.ZXing)new ZXing.MultiFormatReader()}catch(e){}},400)}
 let _barcodeDetector=null,_barcodeDetectorIntentado=false;
-function getBarcodeDetector(){if(_barcodeDetectorIntentado)return _barcodeDetector;_barcodeDetectorIntentado=true;if(!('BarcodeDetector' in window))return null;try{const f=['code_128','code_39','code_93','itf','ean_13','ean_8','upc_a','upc_e','codabar','qr_code','data_matrix','pdf417'];try{_barcodeDetector=new BarcodeDetector({formats:f})}catch(e){_barcodeDetector=new BarcodeDetector()}}catch(e){_barcodeDetector=null}return _barcodeDetector}
-const ZXING_WORKER_CODE=`self.importScripts('https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js');self.onmessage=function(e){const{id,imageData,width,height}=e.data;try{const data=new Uint8ClampedArray(imageData);const rgb=new Int32Array(width*height);for(let i=0,j=0;i<rgb.length;i++,j+=4){rgb[i]=(data[j]<<16)|(data[j+1]<<8)|data[j+2]}const source=new self.ZXing.RGBLuminanceSource(rgb,width,height);const reader=new self.ZXing.MultiFormatReader();const hints=new Map();hints.set(self.ZXing.DecodeHintType.POSSIBLE_FORMATS,[self.ZXing.BarcodeFormat.CODE_128,self.ZXing.BarcodeFormat.CODE_39,self.ZXing.BarcodeFormat.CODE_93,self.ZXing.BarcodeFormat.ITF,self.ZXing.BarcodeFormat.EAN_13,self.ZXing.BarcodeFormat.EAN_8,self.ZXing.BarcodeFormat.CODABAR,self.ZXing.BarcodeFormat.UPC_A,self.ZXing.BarcodeFormat.UPC_E]);hints.set(self.ZXing.DecodeHintType.TRY_HARDER,true);let texto=null;try{const bitmap=new self.ZXing.BinaryBitmap(new self.ZXing.HybridBinarizer(source));texto=reader.decode(bitmap,hints).getText()}catch(err){}self.postMessage({id,texto})}catch(err){self.postMessage({id,error:String(err&&err.message||err)})}};`;
+function getBarcodeDetector(){if(_barcodeDetectorIntentado)return _barcodeDetector;_barcodeDetectorIntentado=true;if(!('BarcodeDetector' in window))return null;try{const f=['code_128','code_39','code_93','itf','ean_13','ean_8','upc_a','upc_e','codabar','qr_code'];try{_barcodeDetector=new BarcodeDetector({formats:f})}catch(e){_barcodeDetector=new BarcodeDetector()}}catch(e){_barcodeDetector=null}return _barcodeDetector}
+const ZXING_WORKER_CODE=`self.importScripts('https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js');self.onmessage=function(e){const{id,imageData,width,height}=e.data;try{const data=new Uint8ClampedArray(imageData);const rgb=new Int32Array(width*height);for(let i=0,j=0;i<rgb.length;i++,j+=4){rgb[i]=(data[j]<<16)|(data[j+1]<<8)|data[j+2]}const source=new self.ZXing.RGBLuminanceSource(rgb,width,height);const reader=new self.ZXing.MultiFormatReader();const hints=new Map();hints.set(self.ZXing.DecodeHintType.POSSIBLE_FORMATS,[self.ZXing.BarcodeFormat.CODE_128,self.ZXing.BarcodeFormat.CODE_39,self.ZXing.BarcodeFormat.CODE_93,self.ZXing.BarcodeFormat.ITF,self.ZXing.BarcodeFormat.EAN_13,self.ZXing.BarcodeFormat.EAN_8,self.ZXing.BarcodeFormat.CODABAR,self.ZXing.BarcodeFormat.UPC_A,self.ZXing.BarcodeFormat.UPC_E,self.ZXing.BarcodeFormat.QR_CODE]);hints.set(self.ZXing.DecodeHintType.TRY_HARDER,true);let texto=null;try{const bitmap=new self.ZXing.BinaryBitmap(new self.ZXing.HybridBinarizer(source));texto=reader.decode(bitmap,hints).getText()}catch(err){}self.postMessage({id,texto})}catch(err){self.postMessage({id,error:String(err&&err.message||err)})}};`;
 let _zxingWorker=null,_zxingWorkerIntentado=false,_zxingMsgId=0;const _zxingPendientes=new Map();
 function initZXingWorker(){if(_zxingWorker||_zxingWorkerIntentado)return _zxingWorker;_zxingWorkerIntentado=true;try{if(!window.Worker||!window.Blob||!window.URL)return null;const b=new Blob([ZXING_WORKER_CODE],{type:'application/javascript'});_zxingWorker=new Worker(URL.createObjectURL(b));_zxingWorker.onmessage=e=>{const{id,texto,error}=e.data||{};const cb=_zxingPendientes.get(id);if(cb){_zxingPendientes.delete(id);cb(texto||null,error||null)}};_zxingWorker.onerror=()=>{_zxingPendientes.forEach(cb=>cb(null,'worker_error'));_zxingPendientes.clear();_zxingWorker=null};return _zxingWorker}catch(e){_zxingWorker=null;return null}}
 function decodificarEnWorker(c,t){return new Promise(res=>{const w=initZXingWorker();if(!w)return res(null);let img;try{img=c.getContext('2d').getImageData(0,0,c.width,c.height)}catch(e){return res(null)}const id=++_zxingMsgId;let re=false;const to=setTimeout(()=>{if(!re){re=true;_zxingPendientes.delete(id);res(null)}},t);_zxingPendientes.set(id,texto=>{if(re)return;re=true;clearTimeout(to);res(texto)});try{const buf=img.data.buffer;w.postMessage({id,imageData:buf,width:c.width,height:c.height},[buf])}catch(e){if(!re){re=true;clearTimeout(to);_zxingPendientes.delete(id);res(null)}}})}
 
 /* CÁMARA */
 let _camStream=null,_camCallback=null,_camFacing='environment';
-let _camTipo=null,_streamPrecalentado=null,_scanLoop=null;
-
-async function precalentarCamara(){
-  if(_streamPrecalentado)return;
-  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)return;
-  try{
-    _streamPrecalentado=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}}});
-  }catch(e){_streamPrecalentado=null}
-}
-function soltarPrecalentado(){if(_streamPrecalentado){try{_streamPrecalentado.getTracks().forEach(t=>t.stop())}catch(e){}_streamPrecalentado=null}}
-function detenerEscaneoVivo(){if(_scanLoop){_scanLoop.activo=false;_scanLoop=null}}
-
-function iniciarEscaneoVivo(onDetectado){
-  detenerEscaneoVivo();
-  const v=document.getElementById('camVideo');if(!v)return;
-  const det=getBarcodeDetector();if(!det)return;
-  const c=document.createElement('canvas');c.width=640;c.height=480;
-  const ctx=c.getContext('2d',{willReadFrequently:true});
-  const view=document.getElementById('camView');
-
-  const usarLinea = (_camTipo === 'imei');
-  if(view && usarLinea && !view.querySelector('.scan-line')){
-    const line = document.createElement('div');
-    line.className = 'scan-line';
-    view.appendChild(line);
-  }
-
-  const confirmaciones = new Map();
-  const MIN_CONFIRMACIONES = 3;
-  const delayInicio = 600;
-  const tiempoInicio = performance.now();
-
-  _scanLoop={activo:true};let ultimo=0;
-  async function tick(){
-    if(!_scanLoop||!_scanLoop.activo)return;
-    if(performance.now() - tiempoInicio < delayInicio){
-      requestAnimationFrame(tick);
-      return;
-    }
-    const ahora=performance.now();
-    if(ahora-ultimo>=120&&v.readyState===v.HAVE_ENOUGH_DATA){
-      ultimo=ahora;
-      try{
-        ctx.drawImage(v,0,0,c.width,c.height);
-        const codes=await det.detect(c);
-        if(codes&&codes.length){
-          const candidatos = [];
-          if(usarLinea){
-            const lineY = c.height * 0.5;
-            const margen = 60;
-            for(const code of codes){
-              const num = soloDigitos(code.rawValue);
-              if(num.length !== 15) continue;
-              const bb = code.boundingBox;
-              if(!bb){ candidatos.push({code, num}); continue; }
-              const cy = bb.y + bb.height / 2;
-              if(Math.abs(cy - lineY) <= margen){
-                candidatos.push({code, num});
-              }
-            }
-          } else {
-            for(const code of codes){
-              const num = soloDigitos(code.rawValue);
-              if(num.length >= 14 && num.length <= 20){
-                candidatos.push({code, num});
-              }
-            }
-          }
-
-          if(candidatos.length > 0){
-            const vistosEsteFrame = new Set();
-            for(const cand of candidatos){
-              vistosEsteFrame.add(cand.num);
-              const prev = confirmaciones.get(cand.num) || 0;
-              confirmaciones.set(cand.num, prev + 1);
-            }
-            for(const key of Array.from(confirmaciones.keys())){
-              if(!vistosEsteFrame.has(key)) confirmaciones.delete(key);
-            }
-
-            const listos = [];
-            for(const cand of candidatos){
-              if((confirmaciones.get(cand.num) || 0) >= MIN_CONFIRMACIONES){
-                if(!listos.find(x => x.num === cand.num)){
-                  listos.push(cand);
-                }
-              }
-            }
-
-            if(listos.length === 1){
-              detenerEscaneoVivo();
-              if(navigator.vibrate){try{navigator.vibrate([80,50,120])}catch(e){}}
-              onDetectado(listos[0].code.rawValue, listos[0].num);
-              return;
-            } else if(listos.length > 1){
-              detenerEscaneoVivo();
-              if(navigator.vibrate){try{navigator.vibrate([60,40,100])}catch(e){}}
-              const frameUrl = (()=>{try{
-                const cc=document.createElement('canvas');
-                cc.width=v.videoWidth;cc.height=v.videoHeight;
-                cc.getContext('2d').drawImage(v,0,0);
-                return cc.toDataURL('image/jpeg',0.85);
-              }catch(e){return null}})();
-              const tipoDet = _camTipo;
-              cerrarCamara();
-              setTimeout(() => {
-                if(tipoDet === 'imei'){
-                  const codigos = listos.map((l, i) => ({
-                    texto: l.code.rawValue,
-                    num: l.num,
-                    etiqueta: i === 0 ? 'IMEI1' : (i === 1 ? 'IMEI2' : 'IMEI ' + (i + 1)),
-                    tipo: i === 0 ? 'imei1' : 'imei2',
-                    y: 0
-                  }));
-                  abrirSelectorIMEI(codigos, true, frameUrl);
-                  window._selectorCallback = null;
-                }
-              }, 30);
-              return;
-            }
-          } else {
-            confirmaciones.clear();
-          }
-        } else {
-          confirmaciones.clear();
-        }
-      }catch(e){}
-    }
-    requestAnimationFrame(tick);
-  }
-  tick();
-}
-
-function tomarFoto(t,cb,tipo){_camCallback=cb;_camTipo=tipo||null;_camFacing='environment';abrirCamaraModal(t||'Tomar foto')}
-async function abrirCamaraModal(t){
-  const p=document.getElementById('camModal');if(p)p.remove();
-  const m=document.createElement('div');m.id='camModal';
-  m.innerHTML=`<div class="top"><button onclick="cerrarCamara()">✕</button><div class="titulo">${esc(t)}</div><button onclick="cambiarCamara()">🔄</button></div><div class="view" id="camView"><video id="camVideo" autoplay playsinline muted></video></div><div class="bottom"><button class="btn-lado" onclick="cerrarCamara()">✕</button><button class="shutter" onclick="capturarCamara()">CAPTURAR</button><button class="btn-lado" onclick="cambiarCamara()">🔄</button></div>`;
-  document.body.appendChild(m);
-  try{await abrirStreamCamara(_camFacing)}catch(err){mostrarErrorCamara(explicarErrorCamara(err));return}
-  try{
-    const track=_camStream&&_camStream.getVideoTracks()[0];
-    const caps=track&&track.getCapabilities?track.getCapabilities():{};
-    if(caps&&caps.torch){
-      const top=m.querySelector('.top');
-      const btn=document.createElement('button');
-      btn.className='btn-torch';btn.textContent='🔦';
-      let on=false;
-      btn.onclick=async()=>{on=!on;try{await track.applyConstraints({advanced:[{torch:on}]})}catch(e){}btn.classList.toggle('on',on)};
-      top.appendChild(btn);
-    }
-  }catch(e){}
-  if(_camTipo==='chip'||_camTipo==='imei'){
-    iniciarEscaneoVivo((texto,num)=>{
-      const tipoDet=_camTipo;
-      if(tipoDet==='chip') escribirCampo('#f-imsi',num);
-      else if(tipoDet==='imei') escribirCampo('#f-imei',num);
-      toast('✅ '+(tipoDet==='chip'?'IMSI':'IMEI')+': '+num,2200);
-      const v=document.getElementById('camVideo');
-      let frameUrl=null;
-      try{const c=document.createElement('canvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);frameUrl=c.toDataURL('image/jpeg',0.85)}catch(e){}
-      cerrarCamara();
-      setTimeout(async()=>{
-        if(tipoDet==='chip'){
-          if(frameUrl){try{const img=await dataUrlAImagen(frameUrl);fotoChipTemp=comprimirImagen(img);pintarFotos()}catch(e){}}
-        }else if(tipoDet==='imei'){
-          if(frameUrl){try{const img=await dataUrlAImagen(frameUrl);fotoEquipoTemp=comprimirImagen(img);pintarFotos()}catch(e){}}
-        }
-      },30);
-    });
-  }
-}
-async function abrirStreamCamara(f){
-  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw new Error('Sin soporte de cámara.');
-  if(f==='environment'&&_streamPrecalentado){
-    const t=_streamPrecalentado.getVideoTracks()[0];
-    if(t&&t.readyState==='live'){
-      if(_camStream){try{_camStream.getTracks().forEach(x=>x.stop())}catch(e){}}
-      _camStream=_streamPrecalentado;_streamPrecalentado=null;
-      const v=document.getElementById('camVideo');
-      if(v){v.srcObject=_camStream;await v.play().catch(()=>{})}
-      return;
-    }else{soltarPrecalentado()}
-  }
-  if(_camStream){_camStream.getTracks().forEach(t=>t.stop());_camStream=null}
-  _camStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:f},width:{ideal:1280},height:{ideal:720},focusMode:'continuous',advanced:[{focusMode:'continuous'}]}});
-  const v=document.getElementById('camVideo');if(!v)return;
-  v.srcObject=_camStream;await v.play().catch(()=>{});
-}
+function tomarFoto(t,cb){_camCallback=cb;_camFacing='environment';abrirCamaraModal(t||'Tomar foto')}
+async function abrirCamaraModal(t){const p=document.getElementById('camModal');if(p)p.remove();const m=document.createElement('div');m.id='camModal';m.innerHTML=`<div class="top"><button onclick="cerrarCamara()">✕</button><div class="titulo">${esc(t)}</div><button onclick="cambiarCamara()">🔄</button></div><div class="view" id="camView"><video id="camVideo" autoplay playsinline muted></video></div><div class="bottom"><button class="btn-lado" onclick="cerrarCamara()">✕</button><button class="shutter" onclick="capturarCamara()">CAPTURAR</button><button class="btn-lado" onclick="cambiarCamara()">🔄</button></div>`;document.body.appendChild(m);try{await abrirStreamCamara(_camFacing)}catch(err){mostrarErrorCamara(explicarErrorCamara(err))}}
+async function abrirStreamCamara(f){if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw new Error('Sin soporte de cámara.');if(_camStream){_camStream.getTracks().forEach(t=>t.stop());_camStream=null}_camStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:f},width:{ideal:1920},height:{ideal:1080}}});const v=document.getElementById('camVideo');if(!v)return;v.srcObject=_camStream;await v.play().catch(()=>{})}
 async function cambiarCamara(){_camFacing=(_camFacing==='environment')?'user':'environment';try{await abrirStreamCamara(_camFacing)}catch(e){toast('⚠️ No se pudo')}}
-function capturarCamara(){
-  const v=document.getElementById('camVideo');if(!v)return;
-  const w=v.videoWidth,h=v.videoHeight;
-  if(!w||!h){toast('⚠️ Cámara no lista');return}
-  const view=document.getElementById('camView');
-  if(view){const f=document.createElement('div');f.className='flash';view.appendChild(f);setTimeout(()=>f.remove(),250)}
-  if(navigator.vibrate){try{navigator.vibrate(30)}catch(e){}}
-  const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(v,0,0,w,h);
-  const d=c.toDataURL('image/jpeg',0.9);
-  const cb=_camCallback;
-  cerrarCamara();
-  if(cb)setTimeout(()=>cb(d),30);
-}
+function capturarCamara(){const v=document.getElementById('camVideo');if(!v)return;const w=v.videoWidth,h=v.videoHeight;if(!w||!h){toast('⚠️ Cámara no lista');return}const view=document.getElementById('camView');if(view){const f=document.createElement('div');f.className='flash';view.appendChild(f);setTimeout(()=>f.remove(),250)}if(navigator.vibrate){try{navigator.vibrate(30)}catch(e){}}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(v,0,0,w,h);const d=c.toDataURL('image/jpeg',0.9);const cb=_camCallback;cerrarCamara();if(cb)setTimeout(()=>cb(d),30)}
 function mostrarErrorCamara(m){const v=document.getElementById('camView');if(!v)return;v.innerHTML=`<div class="error"><span class="em">📷</span><h3>No se pudo abrir la cámara</h3><p>${esc(m)}</p><button onclick="cerrarCamara()">Cerrar</button></div>`}
 function explicarErrorCamara(e){const n=e&&e.name?e.name:'';if(n==='NotAllowedError'||n==='PermissionDeniedError')return'Permiso denegado.';if(n==='NotFoundError')return'No hay cámara.';if(n==='NotReadableError')return'Cámara en uso.';return(e&&e.message)||'Error.'}
-function cerrarCamara(){
-  detenerEscaneoVivo();
-  if(_camStream){
-    try{
-      const track = _camStream.getVideoTracks()[0];
-      if(track && track.getCapabilities && track.getCapabilities().torch){
-        track.applyConstraints({ advanced: [{ torch: false }] }).catch(()=>{});
-      }
-    }catch(e){}
-    try{ _camStream.getTracks().forEach(t=>t.stop()); }catch(e){}
-    _camStream = null;
-  }
-  const m=document.getElementById('camModal');if(m)m.remove();
-  _camCallback=null;_camTipo=null;
-  const vf=document.getElementById('vista-form');
-  if(vf&&vf.classList.contains('activa'))setTimeout(precalentarCamara,300);
-}
+function cerrarCamara(){if(_camStream){_camStream.getTracks().forEach(t=>t.stop());_camStream=null}const m=document.getElementById('camModal');if(m)m.remove();_camCallback=null}
 
 /* CROP */
 let _cropRect=null,_cropDrag=false;
@@ -1201,7 +1079,7 @@ function abrirForm(t,id=null){formTipo=t;editId=id;const r=id?registros.find(x=>
 <div class="card">
 <div class="campo"><label>Número de línea</label><input id="f-numero" type="tel" inputmode="numeric" placeholder="Ej. 5512345678" value="${r?esc(r.numero):''}"></div>
 <div class="campo"><label>IMSI</label><input id="f-imsi" type="tel" inputmode="numeric" placeholder="Se llena al leer el chip" value="${r?esc(r.imsi):''}"><div class="ayuda">Toca el botón rojo 👇</div></div>
-${esTel?`<div class="campo"><label>IMEI</label><input id="f-imei" type="tel" inputmode="numeric" placeholder="Se llena al leer la etiqueta" value="${r?esc(r.imei||''):''}"><div class="ayuda">Alinea el código con la línea roja 👇</div></div>`:''}
+${esTel?`<div class="campo"><label>IMEI</label><input id="f-imei" type="tel" inputmode="numeric" placeholder="Se llena al leer la etiqueta" value="${r?esc(r.imei||''):''}"><div class="ayuda">Toca el botón oscuro 👇</div></div>`:''}
 <div class="campo"><label>Nota (opcional)</label><textarea id="f-nota" rows="2" placeholder="Cliente, sucursal…">${r?esc(r.nota||''):''}</textarea></div>
 </div>
 <div class="card">
@@ -1215,7 +1093,7 @@ ${esTel?`<div class="campo"><label>IMEI</label><input id="f-imei" type="tel" inp
 ${esTel?`
 <div class="card" style="border:2px solid #2b2f36">
 <div class="campo" style="margin-bottom:6px"><label>🔎 Leer IMEI de la etiqueta</label></div>
-<div class="ayuda" style="margin-bottom:12px">Alinea el código con la línea roja. Si no lee automático, <b>marca el código con el dedo</b>.</div>
+<div class="ayuda" style="margin-bottom:12px">Si no lee automático, <b>marca el código con el dedo</b>.</div>
 <button class="btn-foto-chip btn-foto-imei" onclick="tomarFotoIMEI()"><span class="em">🔎</span> Tomar foto y leer IMEI</button>
 <button class="btn-galeria" onclick="$('#inpGaleriaIMEI').click()">🖼️ Elegir de galería (IMEI)</button>
 <input type="file" id="inpGaleriaIMEI" accept="image/*" hidden>
@@ -1231,43 +1109,13 @@ ${esTel?`
 <input type="file" id="inpGaleriaEquipo" accept="image/*" hidden>
 </div>`:''}
 <button class="btn btn-rojo btn-bloque" onclick="guardarRegistro()">${r?'💾 Guardar cambios':'✅ Guardar registro'}</button>
-<div style="height:20px"></div>`;const ic=$('#inpGaleriaChip');if(ic)ic.onchange=e=>{const f=e.target.files[0];if(f)leerArchivoYProcesar(f,'chip');e.target.value=''};if(esTel){const ii=$('#inpGaleriaIMEI');if(ii)ii.onchange=e=>{const f=e.target.files[0];if(f)leerArchivoYProcesar(f,'imei');e.target.value=''};const ie=$('#inpGaleriaEquipo');if(ie)ie.onchange=e=>{const f=e.target.files[0];if(f)leerArchivoYProcesar(f,'equipo');e.target.value=''}}pintarFotos();ir('form');setTimeout(precalentarCamara,200)}
-function tomarFotoChip(){tomarFoto('Foto del Chip',d=>procesarDataUrlChip(d),'chip')}
-function tomarFotoIMEI(){tomarFoto('Foto de la etiqueta',d=>procesarDataUrlIMEI(d),'imei')}
+<div style="height:20px"></div>`;const ic=$('#inpGaleriaChip');if(ic)ic.onchange=e=>{const f=e.target.files[0];if(f)leerArchivoYProcesar(f,'chip');e.target.value=''};if(esTel){const ii=$('#inpGaleriaIMEI');if(ii)ii.onchange=e=>{const f=e.target.files[0];if(f)leerArchivoYProcesar(f,'imei');e.target.value=''};const ie=$('#inpGaleriaEquipo');if(ie)ie.onchange=e=>{const f=e.target.files[0];if(f)leerArchivoYProcesar(f,'equipo');e.target.value=''}}pintarFotos();ir('form')}
+function tomarFotoChip(){tomarFoto('Foto del Chip',d=>procesarDataUrlChip(d))}
+function tomarFotoIMEI(){tomarFoto('Foto de la etiqueta',d=>procesarDataUrlIMEI(d))}
 function tomarFotoEquipo(){tomarFoto('Foto del Teléfono',d=>procesarDataUrlEquipo(d))}
 function pintarFotos(){const cb=$('#fotoChipBox');if(cb){if(fotoChipTemp){cb.innerHTML=`<img src="${fotoChipTemp}">`;const b=$('#btnQuitarFotoChip');if(b)b.style.display='flex'}else{cb.innerHTML=`<div class="ph">📷<br>Sin foto</div>`;const b=$('#btnQuitarFotoChip');if(b)b.style.display='none'}}const eb=$('#fotoEquipoBox');if(eb){if(fotoEquipoTemp){eb.innerHTML=`<img src="${fotoEquipoTemp}">`;const b=$('#btnQuitarFotoEquipo');if(b)b.style.display='flex'}else{eb.innerHTML=`<div class="ph">📷<br>Sin foto</div>`;const b=$('#btnQuitarFotoEquipo');if(b)b.style.display='none'}}}
 function quitarFoto(t){if(t==='chip')fotoChipTemp=null;else fotoEquipoTemp=null;pintarFotos()}
-function guardarRegistro(){
-  const num=soloDigitos($('#f-numero').value);
-  const imsi=soloDigitos($('#f-imsi').value);
-  const imei=formTipo==='telefono'?soloDigitos($('#f-imei').value):'';
-  const nota=$('#f-nota').value.trim();
-  if(num.length<7)return toast('⚠️ Número inválido');
-  if(imsi.length<10)return toast('⚠️ IMSI incompleto');
-  if(formTipo==='telefono'&&imei.length<10)return toast('⚠️ IMEI incompleto');
-  const d=registros.find(r=>r.id!==editId&&((imsi&&r.imsi===imsi)||(imei&&r.imei&&r.imei===imei)));
-  if(d){const c=(d.imsi===imsi)?'IMSI':'IMEI';if(!confirm(`Ya existe con ese ${c} (${d.numero}).\n\n¿Guardar?`))return}
-  let msj='';
-  if(editId){
-    const r=registros.find(x=>x.id===editId);
-    Object.assign(r,{numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fotoEquipo:formTipo==='telefono'?fotoEquipoTemp:undefined,editado:new Date().toISOString()});
-    delete r.foto;
-    msj='✅ Actualizado';
-  }else{
-    const n={id:uid(),tipo:formTipo,numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fecha:new Date().toISOString(),fechaLocal:fechaLocalHoy()};
-    if(formTipo==='telefono')n.fotoEquipo=fotoEquipoTemp;
-    registros.push(n);
-    msj='✅ Guardado';
-    try{
-      enviarNotificacion(
-        formTipo === 'chip' ? 'Chip' : 'Teléfono',
-        num, imsi, imei, nota
-      );
-    }catch(e){ console.log('Error notif:', e); }
-  }
-  if (!guardarLS()) return;
-  volverAlInicio(msj);
-}
+function guardarRegistro(){const num=soloDigitos($('#f-numero').value);const imsi=soloDigitos($('#f-imsi').value);const imei=formTipo==='telefono'?soloDigitos($('#f-imei').value):'';const nota=$('#f-nota').value.trim();if(num.length<7)return toast('⚠️ Número inválido');if(imsi.length<10)return toast('⚠️ IMSI incompleto');if(formTipo==='telefono'&&imei.length<10)return toast('⚠️ IMEI incompleto');const d=registros.find(r=>r.id!==editId&&((imsi&&r.imsi===imsi)||(imei&&r.imei&&r.imei===imei)));if(d){const c=(d.imsi===imsi)?'IMSI':'IMEI';if(!confirm(`Ya existe con ese ${c} (${d.numero}).\n\n¿Guardar?`))return}let msj='';if(editId){const r=registros.find(x=>x.id===editId);Object.assign(r,{numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fotoEquipo:formTipo==='telefono'?fotoEquipoTemp:undefined,editado:new Date().toISOString()});delete r.foto;msj='✅ Actualizado'}else{const n={id:uid(),tipo:formTipo,numero:num,imsi:imsi,imei:imei,nota:nota,fotoChip:fotoChipTemp,fecha:new Date().toISOString(),fechaLocal:fechaLocalHoy()};if(formTipo==='telefono')n.fotoEquipo=fotoEquipoTemp;registros.push(n);msj='✅ Guardado'}guardarLS();volverAlInicio(msj)}
 function renderLista(){const rango=obtenerRangoFechas();const q=($('#buscar').value||'').trim().toLowerCase();let lista=registros.filter(r=>registroEnRango(r,rango));if(q)lista=lista.filter(r=>[r.numero,r.imsi,r.imei,r.nota].join(' ').toLowerCase().includes(q));lista.sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));const lr=registros.filter(r=>registroEnRango(r,rango));const chips=lr.filter(r=>r.tipo==='chip').length;$('#st-total').textContent=lr.length;$('#st-chips').textContent=chips;$('#st-tels').textContent=lr.length-chips;const info=$('#filtroInfo');if(filtroFecha==='todo')info.innerHTML=`📊 <b>Todos</b>`;else if(filtroFecha==='custom')info.innerHTML=`📅 <b>${esc(nombreFechaCorta(fechaCustom))}</b>`;else if(filtroFecha==='hoy')info.innerHTML=`📅 Hoy · <b>${esc(nombreFechaCorta(fechaLocalHoy()))}</b>`;else if(filtroFecha==='ayer'){const a=sumarDias(fechaLocalHoy(),-1);info.innerHTML=`📅 Ayer · <b>${esc(nombreFechaCorta(a))}</b>`}else if(filtroFecha==='semana')info.innerHTML=`📅 <b>Esta semana</b>`;else if(filtroFecha==='mes')info.innerHTML=`📅 <b>Este mes</b>`;const cont=$('#lista');if(!lista.length){cont.innerHTML=`<div class="vacio"><span class="em">${q?'🔍':'📋'}</span>${q?'Sin resultados.':'Sin registros.'}</div>`;return}const conteo=lista.length;const headerHTML=`<div class="lista-header"><span>${filtroFecha==='hoy'?'📅 HOY':filtroFecha==='ayer'?'📅 AYER':filtroFecha==='custom'?'📅 '+nombreFechaCorta(fechaCustom).toUpperCase():filtroFecha==='semana'?'📅 SEMANA':filtroFecha==='mes'?'📅 MES':'📋 TODOS'}</span><span class="count">${conteo} ${conteo===1?'venta':'ventas'}</span></div>`;const items=lista.map(r=>{let src=null;if(r.tipo==='chip')src=r.fotoChip||r.foto;else src=r.fotoEquipo||r.fotoChip||r.foto;const mh=filtroFecha==='todo'||filtroFecha==='semana'||filtroFecha==='mes';const fm=mh?fmt(r.fecha):nombreFechaCorta(r.fechaLocal||derivarFechaLocal(r.fecha))+' · '+new Date(r.fecha).toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});return`<div class="item" onclick="abrirDetalle('${r.id}')"><div class="thumb">${src?`<img src="${src}" loading="lazy">`:(r.tipo==='chip'?'📶':'📱')}</div><div class="info"><div class="t1">${esc(r.numero)}<span class="pill ${r.tipo==='chip'?'pill-chip':'pill-tel'}">${r.tipo==='chip'?'CHIP':'EQUIPO'}</span></div><div class="t2">IMSI: ${esc(r.imsi||'—')}</div>${r.imei?`<div class="t2">IMEI: ${esc(r.imei)}</div>`:''}<div class="t3">${esc(fm)}</div></div><div style="color:#c3c8cf;font-size:20px">›</div></div>`}).join('');cont.innerHTML=headerHTML+items}
 function abrirDetalle(id){const r=registros.find(x=>x.id===id);if(!r)return;const fc=r.fotoChip||(r.tipo==='chip'?r.foto:null);const fe=r.fotoEquipo||(r.tipo==='telefono'?r.foto:null);$('#vista-detalle').innerHTML=`
 <button class="btn-volver" onclick="ir('home')">← Volver</button>
@@ -1293,7 +1141,45 @@ function renderFotos(){let fotos=[];registros.forEach(r=>{const c=r.fotoChip||(r
 function descargar(b,n){const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000)}
 function exportarCSV(){if(!registros.length)return toast('Sin registros');const f=[['Tipo','Numero','IMSI','IMEI','Nota','Fecha','Dia','Foto chip','Foto equipo']];registros.slice().sort((a,b)=>new Date(b.fecha)-new Date(a.fecha)).forEach(r=>{const c=r.fotoChip||(r.tipo==='chip'?r.foto:null);const e=r.fotoEquipo||(r.tipo==='telefono'?r.foto:null);f.push([r.tipo==='chip'?'Chip':'Telefono',r.numero,r.imsi||'',r.imei||'',r.nota||'',fmt(r.fecha),r.fechaLocal||derivarFechaLocal(r.fecha),c?'Si':'No',e?'Si':'No'])});const csv=f.map(x=>x.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\r\n');descargar(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),'registros_claro.csv');toast('📊 CSV exportado')}
 function exportarJSON(){const data={app:'Registro Claro',version:23,exportado:new Date().toISOString(),registros, inventario,tiendas,inventarioBloqueado,metaConfig};descargar(new Blob([JSON.stringify(data)],{type:'application/json'}),'respaldo_claro.json');toast('📦 Respaldo creado')}
-$('#inpImport').onchange=e=>{const file=e.target.files[0];if(!file)return;const r=new FileReader();r.onload=ev=>{try{const data=JSON.parse(ev.target.result);const nuevos=Array.isArray(data)?data:(data.registros||[]);const inv=data.inventario||[];const tien=data.tiendas||[];const bloq=data.inventarioBloqueado;const meta=data.metaConfig;if(!nuevos.length&&!inv.length)return toast('Sin datos');const ex=new Set(registros.map(x=>x.id));let ag=0;nuevos.forEach(x=>{if(x&&x.id&&!ex.has(x.id)){if(x.tipo==='chip'&&x.foto&&!x.fotoChip)x.fotoChip=x.foto;if(x.tipo==='telefono'&&x.foto&&!x.fotoEquipo)x.fotoEquipo=x.foto;if(!x.fechaLocal)x.fechaLocal=derivarFechaLocal(x.fecha);registros.push(x);ag++}});if(inv.length){const exInv=new Set(inventario.map(x=>x.id));inv.forEach(x=>{if(x&&x.id&&!exInv.has(x.id))inventario.push(x)});guardarInventario()}if(tien.length){if(typeof tien[0]==='string')tiendas=tien.map((n,i)=>({nombre:n,color:PALETA_COLORES[i%PALETA_COLORES.length].valor}));else tiendas=tien;guardarTiendas()}if(typeof bloq==='boolean'){inventarioBloqueado=bloq;guardarEstadoBloqueo()}if(meta&&typeof meta==='object'){if(typeof meta.mes==='number'||typeof meta.dia==='number'){metaConfig.mes={chips:parseInt(meta.mes)||0,tels:0};metaConfig.dia={chips:parseInt(meta.dia)||0,tels:0};metaConfig.inicial={mes:null,chips:0,tels:0}}else{metaConfig.mes={chips:parseInt(meta.mes?.chips)||0,tels:parseInt(meta.mes?.tels)||0};metaConfig.dia={chips:parseInt(meta.dia?.chips)||0,tels:parseInt(meta.dia?.tels)||0};metaConfig.inicial={mes:meta.inicial?.mes||null,chips:parseInt(meta.inicial?.chips)||0,tels:parseInt(meta.inicial?.tels)||0}}guardarMeta()}guardarLS();toast(`📥 ${ag} registros restaurados`);renderLista();renderFotos();renderInventario();renderMeta();if(typeof actualizarStorageInfo==='function')actualizarStorageInfo()}catch(err){toast('⚠️ Archivo inválido')}};r.readAsText(file);e.target.value=''};
+$('#inpImport').onchange=e=>{const file=e.target.files[0];if(!file)return;const r=new FileReader();r.onload=ev=>{try{const data=JSON.parse(ev.target.result);const nuevos=Array.isArray(data)?data:(data.registros||[]);const inv=data.inventario||[];const tien=data.tiendas||[];const bloq=data.inventarioBloqueado;const meta=data.metaConfig;if(!nuevos.length&&!inv.length)return toast('Sin datos');
+
+const reemplazar = confirm(`📥 Respaldo detectado\n\n• ${nuevos.length} registros\n• ${inv.length} equipos\n• ${tien.length} tiendas\n\n✅ ACEPTAR = REEMPLAZAR todo\n❌ CANCELAR = AGREGAR solo nuevos`);
+
+if(reemplazar){
+  registros = nuevos.map(x => {
+    if(x.tipo==='chip'&&x.foto&&!x.fotoChip)x.fotoChip=x.foto;
+    if(x.tipo==='telefono'&&x.foto&&!x.fotoEquipo)x.fotoEquipo=x.foto;
+    if(!x.fechaLocal)x.fechaLocal=derivarFechaLocal(x.fecha);
+    return x;
+  });
+  inventario = inv.slice();
+  if(tien.length){
+    if(typeof tien[0]==='string') tiendas = tien.map((n,i)=>({nombre:n,color:PALETA_COLORES[i%PALETA_COLORES.length].valor}));
+    else tiendas = tien.slice();
+  }
+  if(typeof bloq==='boolean') inventarioBloqueado = bloq;
+  if(meta && typeof meta==='object'){
+    if(typeof meta.mes==='number'||typeof meta.dia==='number'){
+      metaConfig.mes={chips:parseInt(meta.mes)||0,tels:0};
+      metaConfig.dia={chips:parseInt(meta.dia)||0,tels:0};
+      metaConfig.inicial={mes:null,chips:0,tels:0};
+    } else {
+      metaConfig.mes={chips:parseInt(meta.mes?.chips)||0,tels:parseInt(meta.mes?.tels)||0};
+      metaConfig.dia={chips:parseInt(meta.dia?.chips)||0,tels:parseInt(meta.dia?.tels)||0};
+      metaConfig.inicial={mes:meta.inicial?.mes||null,chips:parseInt(meta.inicial?.chips)||0,tels:parseInt(meta.inicial?.tels)||0};
+    }
+    guardarMeta();
+  }
+  guardarLS();guardarInventario();guardarTiendas();guardarEstadoBloqueo();
+  toast(`✅ Todo reemplazado (${nuevos.length} registros)`,3000);
+  renderLista();renderFotos();renderInventario();renderMeta();
+  if(typeof actualizarStorageInfo==='function') actualizarStorageInfo();
+  e.target.value='';
+  return;
+}
+
+// Modo AGREGAR (comportamiento anterior)
+const ex=new Set(registros.map(x=>x.id));let ag=0;nuevos.forEach(x=>{if(x&&x.id&&!ex.has(x.id)){if(x.tipo==='chip'&&x.foto&&!x.fotoChip)x.fotoChip=x.foto;if(x.tipo==='telefono'&&x.foto&&!x.fotoEquipo)x.fotoEquipo=x.foto;if(!x.fechaLocal)x.fechaLocal=derivarFechaLocal(x.fecha);registros.push(x);ag++}});if(inv.length){const exInv=new Set(inventario.map(x=>x.id));inv.forEach(x=>{if(x&&x.id&&!exInv.has(x.id))inventario.push(x)});guardarInventario()}if(tien.length){if(typeof tien[0]==='string')tiendas=tien.map((n,i)=>({nombre:n,color:PALETA_COLORES[i%PALETA_COLORES.length].valor}));else tiendas=tien;guardarTiendas()}if(typeof bloq==='boolean'){inventarioBloqueado=bloq;guardarEstadoBloqueo()}if(meta&&typeof meta==='object'){if(typeof meta.mes==='number'||typeof meta.dia==='number'){metaConfig.mes={chips:parseInt(meta.mes)||0,tels:0};metaConfig.dia={chips:parseInt(meta.dia)||0,tels:0};metaConfig.inicial={mes:null,chips:0,tels:0}}else{metaConfig.mes={chips:parseInt(meta.mes?.chips)||0,tels:parseInt(meta.mes?.tels)||0};metaConfig.dia={chips:parseInt(meta.dia?.chips)||0,tels:parseInt(meta.dia?.tels)||0};metaConfig.inicial={mes:meta.inicial?.mes||null,chips:parseInt(meta.inicial?.chips)||0,tels:parseInt(meta.inicial?.tels)||0}}guardarMeta()}guardarLS();toast(`📥 ${ag} registros agregados`);renderLista();renderFotos();renderInventario();renderMeta();if(typeof actualizarStorageInfo==='function')actualizarStorageInfo()}catch(err){toast('⚠️ Archivo inválido')}};r.readAsText(file);e.target.value=''};
 async function borrarTodo(){if(!confirm('¿Borrar TODOS los registros, fotos e inventario?\n\nRespalda antes.'))return;if(!confirm('Confirma de nuevo.'))return;registros=[];inventario=[];inventarioBloqueado=false;try{await idbClear()}catch(e){}localStorage.removeItem(STORE);localStorage.removeItem(INV_STORE);localStorage.removeItem(INV_BLOQ_STORE);toast('🗑️ Todo borrado');renderLista();renderFotos();renderInventario();renderMeta();if(typeof actualizarStorageInfo==='function')actualizarStorageInfo()}
 let _diaActualGuardado=fechaLocalHoy();
 setInterval(()=>{const h=fechaLocalHoy();if(h!==_diaActualGuardado){_diaActualGuardado=h;if(filtroFecha==='hoy')renderLista();renderMeta();toast('📅 Nuevo día',2500)}},60000);
@@ -1314,11 +1200,10 @@ if ('serviceWorker' in navigator) {
       if (!nuevo) return;
       nuevo.addEventListener('statechange', () => {
         if (nuevo.state === 'installed' && navigator.serviceWorker.controller) {
-          if (typeof mostrarAvisoActualizacion === 'function') {
-            mostrarAvisoActualizacion();
-          } else if (typeof toast === 'function') {
+          if (typeof toast === 'function') {
             toast('🔄 Nueva versión disponible. Cierra y abre la app.', 5000);
           }
+          if (navigator.vibrate) { try { navigator.vibrate([60,40,60]); } catch(e){} }
         }
       });
     });
